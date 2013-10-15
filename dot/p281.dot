@@ -1,0 +1,137 @@
+// ------------------------
+// dot -Tpng p281.dot -o p281.png
+// ------------------------
+
+digraph G {
+
+size = "8,8";
+
+
+// ------------------------
+//    281/pb
+// ------------------------
+
+
+f281 [label="281/pb"];
+
+mc281 [label="MC"];
+
+// ------------------------
+//    MC 281/pb
+// ------------------------
+
+mcdt281 [label="Double Tag"];
+
+mcdt281_diag [label="Diagonal"];
+
+mcdt281_diag_0 [label="cleog", shape=box, style=filled, fillcolor=green];
+mcdt281_diag_0_1 [label="pass2", shape=box, style=filled, fillcolor=green];
+mcdt281_diag_0_2 [label="dskim", shape=box, style=filled, fillcolor=green];
+mcdt281_diag_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+mcdt281_diag_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+mcdt281_diag_3 [label="fit paras", shape=box, style=filled, fillcolor=green];
+mcdt281_diag_4 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+mcdt281_nondiag [label="Non-Diagonal"];
+
+mcdt281_nondiag_0 [label="cleog", shape=box, style=filled, fillcolor=green];
+mcdt281_nondiag_0_1 [label="pass2", shape=box, style=filled, fillcolor=green];
+mcdt281_nondiag_0_2 [label="dskim", shape=box, style=filled, fillcolor=green];
+mcdt281_nondiag_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+mcdt281_nondiag_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+mcdt281_nondiag_3 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+
+mcst281 [label="Single Tag"];
+mcst281_0 [label="cleog", shape=box, style=filled, fillcolor=green];
+mcst281_0_1 [label="pass2", shape=box, style=filled, fillcolor=green];
+mcst281_0_2 [label="dskim", shape=box, style=filled, fillcolor=green];
+mcst281_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+mcst281_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+mcst281_3 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+mcst281_1_2 [label="crossfeed yields", shape=box, style=filled, fillcolor=green];
+mcst281_1_2_3 [label="crossfeed fits", shape=box, style=filled, fillcolor=green];
+
+// ------------------------
+//    Data 281/pb
+// ------------------------
+
+data281 [label="Data"];
+
+datast281 [label="Single Tag"];
+datast281_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+datast281_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+datast281_3 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+datadt281 [label="Double Tag"];
+datadt281_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+datadt281_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+datadt281_3 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+
+// BFs for final fits
+
+bf281 [label="Branching Fractions fit", shape=box, style=filled, fillcolor=green];
+
+// --- 281/pb -> MC and Data
+
+f281 -> mc281;
+
+f281 -> data281;
+
+// --- MC -> Single Tag and Double Tag
+
+mc281 -> mcst281;
+
+mc281 -> mcdt281;
+
+
+// Single Tag -> CLEOG ... fit mBC
+//                       +--> crossfeed fits.  
+mcst281 -> mcst281_0 -> mcst281_0_1 -> mcst281_0_2 -> mcst281_1 -> mcst281_2 -> mcst281_3;
+mcst281_1 -> mcst281_1_2 ->  mcst281_1_2_3;
+
+
+// Double Tag -> Diag and Non-diag
+
+mcdt281 -> mcdt281_diag;
+
+mcdt281 -> mcdt281_nondiag;
+
+// Double Tag Diag -> CLEOG ... fit paras 
+mcdt281_diag -> mcdt281_diag_0 -> mcdt281_diag_0_1 -> mcdt281_diag_0_2 -> mcdt281_diag_1 -> mcdt281_diag_2-> mcdt281_diag_3 ;
+
+
+// Double Tag NonDiag -> CLEOG ... fit mBC
+
+mcdt281_nondiag -> mcdt281_nondiag_0 -> mcdt281_nondiag_0_1 -> mcdt281_nondiag_0_2 -> mcdt281_nondiag_1 -> mcdt281_nondiag_2-> mcdt281_nondiag_3 ;
+
+
+// fit paras -> mBC fit
+
+mcdt281_diag_3 -> mcst281_3;
+mcdt281_diag_3 -> mcdt281_diag_4;
+mcdt281_diag_3 -> mcdt281_nondiag_3;
+
+mcdt281_diag_3 -> datast281_3;
+mcdt281_diag_3 -> datadt281_3;
+
+// --- Data ----
+
+data281 -> datast281 -> datast281_1 -> datast281_2 -> datast281_3;
+data281 -> datadt281 -> datadt281_1 -> datadt281_2 -> datadt281_3;
+
+
+// BFs
+mcdt281_diag_4-> bf281;
+mcdt281_nondiag_3-> bf281;
+mcst281_3->  bf281;
+
+datast281_3 -> bf281;
+
+datadt281_3 -> bf281;
+mcst281_1_2_3 -> bf281;
+
+
+}

@@ -1,0 +1,13 @@
+set colour representation 8 0.8 0.1 0.05 burgundy
+set colour representation 9 0.5 0.4 0.3 brown
+set colour representation 10 1.0 0.95 0.8 beige
+set colour representation 11 0.8 0.7 0.1 mustard
+set colour representation 12 1.0 0.5 0.1 orange
+set colour representation 13 0.1 0.1 0.6 navy
+set colour representation 14 0.2 0.7 0.2 kelly
+set colour representation 15 0.6 0.6 0.8 lavender
+set colour representation 16 0.2 0.5 0.2 olive
+set colour representation 17 0.4 0.2 0.7 indigo
+set colour representation 18 1.0 0.98 0.9 eggshell
+set colour representation 19 0.9 0.8 0.1 gold
+set colour representation 20 0.8 0.9 1.0 sky

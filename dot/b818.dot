@@ -1,0 +1,57 @@
+// ------------------------
+// cd $dhad/fig/818ipbv12
+// dot -Tpng b818.dot -o b818.png
+// ------------------------
+
+digraph G {
+
+size = "6,6";
+
+
+// ------------------------
+//    Background 818/pb
+// ------------------------
+
+bkg818 [label="Backgrounds", shape=folder];
+
+bkgst818 [label="Single Tag"];
+bkgst818_1 [label="Internal"];
+bkgst818_2 [label="External"];
+bkgst818_3 [label="Continuum", shape=box, style=filled, fillcolor=green];
+bkgst818_4 [label="Radiative Return", shape=box, style=filled, fillcolor=green];
+bkgst818_5 [label="tau-pairs", shape=box, style=filled, fillcolor=green];
+
+
+bkgst818_1_1 [label="Particle swap", shape=box, style=filled, fillcolor=white];
+
+bkgst818_2_1 [label="DCSD", shape=box, style=filled, fillcolor=white];
+bkgst818_2_2 [label="SCSD", shape=box, style=filled, fillcolor=white];
+bkgst818_2_3 [label="Multipions", shape=box, style=filled, fillcolor=white];
+
+bkgdt818 [label="Double Tag", shape=box, style=filled, fillcolor=green];
+
+// ------------------------
+//    Systematics 818/pb
+// ------------------------
+
+//sys818 [label="Systematics", shape=folder];
+
+//sys818_1 [label="Signal shaped", shape=box, style=filled, fillcolor=green];
+
+
+// --- Backgrounds ---
+
+bkg818 -> bkgst818 -> bkgst818_1 -> bkgst818_1_1;
+
+bkg818 -> bkgdt818;
+
+bkgst818 -> bkgst818_2 -> bkgst818_2_1;
+ bkgst818_2 -> bkgst818_2_2;
+ bkgst818_2 -> bkgst818_2_3;
+
+bkgst818 -> bkgst818_3;
+bkgst818 -> bkgst818_4;
+bkgst818 -> bkgst818_5;
+
+
+}

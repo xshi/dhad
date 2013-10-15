@@ -1,0 +1,9 @@
+! PDG points
+
+! @1 = point #
+! @2 = value
+! @3 = error
+
+dep ir1 = @1
+parse dep mpdg{ir1,(i2.2)} = @2
+parse dep dpdg{ir1,(i2.2)} = @3

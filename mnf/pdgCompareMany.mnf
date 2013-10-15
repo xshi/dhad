@@ -1,0 +1,105 @@
+! This script plots many different quantities on the same plot, so it
+! normalizes all of them to the PDG value.
+
+! @1 = low x limit
+! @2 = high x limit
+! @3 = color of background
+! @4 = color of PDG error box
+! @5 = color of data points
+! @6 = PDG label
+! @7 = PDG label x position (cm)
+! @8 = CLEO label
+! @9 = CLEO label x position (cm)
+
+!~~~~~~ Calculate fractional PDG errors ~~~~~~
+
+do i = 1, nmodes
+	dep ir1 = @i
+	parse dep dpdg{ir1,(i2.2)} = dpdg{ir1,(i2.2)} / mpdg{ir1,(i2.2)}
+enddo
+
+
+!~~~~~~ Get data points and normalize to PDG ~~~~~~
+
+book/unbinned 1 'Data/PDG, stat only' 1 nmodes
+book/unbinned 2 'Data/PDG, stat+syst' 1 nmodes
+
+do i = 1, nmodes
+	dep ir1 = @i
+
+	! normalize data value to PDG
+	parse dep xvalue = data{ir1,(i2.2)} / mpdg{ir1,(i2.2)}
+	dep yvalue = -@i + yoffset
+
+	! stat only
+	parse dep dxvalue = stat{ir1,(i2.2)} / mpdg{ir1,(i2.2)}
+	fill 1 xvalue yvalue dxvalue 0
+
+	! stat+syst
+	parse dep dxvalue = sqrt( stat{ir1,(i2.2)}**2 + syst{ir1,(i2.2)}**2 ) /mpdg{ir1,(i2.2)}
+	fill 2 xvalue yvalue dxvalue 0
+enddo
+
+
+!~~~~~~ Make plot ~~~~~~
+
+set header off
+!set title user 'Data results (points) normalized to PDG WA (boxes)'
+set title off
+set thick 8
+set tick left off
+set tick right off
+set colour background @3
+
+dep ylow = -nmodes - 1
+set y limits ylow 0
+set x limits @1 @2
+
+set ssize 0.4
+set dsize 10
+pl 1 -60/@5
+over 2 -60/@5
+
+set plot 1 default
+dep ylow = r207
+dep yhigh = r208
+draw line 3 black 10 plot
+1.0, ylow
+1.0, yhigh
+
+do i = 1, nmodes
+	dep ir1 = @i
+	parse dep xlow = 1. - dpdg{ir1,(i2.2)}
+	parse dep xhigh = 1. + dpdg{ir1,(i2.2)}
+	dep ylow = -@i - 0.25
+	dep yhigh = -@i + 0.25
+
+	draw box 1 @4 1 plot 0 100 1 black @4
+	xlow, ylow
+	xhigh, yhigh
+enddo
+
+key
+1
+new
+1000
+@6
+@7 17.5 0.4 0 left cm -2000 @4 3 0.01 black
+new
+1000
+@8
+@9 17.5 0.4 0 left cm -2000 @5 3 0.01 black
+
+!14 16 0.5 0 left cm -2004 @4 1 0.01 black
+!14 15.2 0.4 0 left cm -2004 @5 1 0.01 black
+
+!key
+!1
+!new
+!1000
+!'56 pb^-1! (stat. only)'
+!5 17.5 0.4 0 left cm -2000 @4 3 0.01 black
+!new
+!1000
+!'281 pb^-1!'
+!13 17.5 0.4 0 left cm -2000 @5 3 0.01 black

@@ -1,0 +1,161 @@
+! Adding a new mode:
+!    Change nmodes
+!    Add PDG and data values
+!    Add line at end calling pdgCompareComment.mnf
+
+set def
+del 0
+
+dep nmodes = 9
+
+! PDG 2004
+exec addPdg 1 0.0380 0.0009
+exec addPdg 2 0.130 0.008
+exec addPdg 3 0.0746 0.0031
+exec addPdg 4 0.092 0.006
+exec addPdg 5 0.065 0.011
+exec addPdg 6 0.0141 0.0010
+exec addPdg 7 0.0485 0.015
+exec addPdg 8 0.0355 0.005
+exec addPdg 9 0.0089 0.0008
+
+! PDG 2006
+!exec addPdg 1 0.0380 0.0007
+!exec addPdg 2 0.141 0.005
+!exec addPdg 3 0.0772 0.0028
+!exec addPdg 4 0.0951 0.0034
+!exec addPdg 5 0.060 0.003
+!exec addPdg 6 0.0147 0.0006
+!exec addPdg 7 0.070 0.005
+!exec addPdg 8 0.0311 0.0021
+!exec addPdg 9 0.0100 0.0004
+
+! Feb 04 2005
+!exec addData 1 0.03909 0.00084 0.00090
+!exec addData 2 0.1490 0.0030 0.0038
+!exec addData 3 0.0829 0.0017 0.0032
+!exec addData 4 0.0952 0.0025 0.0027
+!exec addData 5 0.0602 0.0018 0.0019
+!exec addData 6 0.0155 0.0005 0.0006
+!exec addData 7 0.0716 0.0021 0.0032
+!exec addData 8 0.0320 0.0011 0.0016
+!exec addData 9 0.00971 0.00041 0.00037
+
+! Feb 24 2005, 56 pb^-1
+exec addData 1 0.0390883 0.000836133 0.000899853
+exec addData 2 0.149359 0.00300001 0.00469039
+exec addData 3 0.0828862 0.0017387 0.00315551
+exec addData 4 0.095244 0.00245618 0.00274232
+exec addData 5 0.0603721 0.00181015 0.00221659
+exec addData 6 0.0154654 0.000518499 0.000631884
+exec addData 7 0.0717278 0.00213747 0.00380663
+exec addData 8 0.0320021 0.00109728 0.00163791
+exec addData 9 0.00970996 0.000411003 0.000427584
+
+! CLEO-c 281 pb^-1, 30 Mar 2006
+!exec addData 1 0.0383895 0.000347592 0.0005956
+!exec addData 2  0.144601 0.00121643 0.003798
+!exec addData 3 0.0829418 0.000724098 0.002007
+!exec addData 4 0.0911049 0.000985789 0.0016728
+!exec addData 5 0.0594769 0.000747114 0.0016885
+!exec addData 6 0.0154557 0.000219175 0.000366
+!exec addData 7 0.0720196 0.000901447 0.002995
+!exec addData 8 0.0318331 0.00045857 0.0008761
+!exec addData 9 0.00929533 0.000163678 0.0003004
+
+! CLEO-c 281 pb^-1, 14 Sep 2006
+!exec addData 1 0.0388223 0.000353499 0.000507632
+!exec addData 2 0.145812 0.00123146 0.00356107
+!exec addData 3 0.0826638 0.000733147 0.00181465
+!exec addData 4 0.0919668 0.000998406 0.00143854
+!exec addData 5 0.0598515 0.000755935 0.00162094
+!exec addData 6 0.0155233 0.000221337 0.000289208
+!exec addData 7 0.0722243 0.000907693 0.00243134
+!exec addData 8 0.0314311 0.000451475 0.00087248
+!exec addData 9 0.00930671 0.000164545 0.000212979
+
+! CLEO-c 281 pb^-1, 13 Oct 2006 (prelim. for HQL and DPF)
+!exec addData 1 0.0387584 0.000353416 0.000845144
+!exec addData 2 0.145709 0.00123141 0.00421398
+!exec addData 3 0.0825723 0.000732929 0.00290964
+!exec addData 4 0.0917955 0.000998585 0.00247633
+!exec addData 5 0.0598493 0.000755916 0.0020763
+!exec addData 6 0.0154917 0.000221311 0.000469274
+!exec addData 7 0.0721945 0.000907211 0.00299281
+!exec addData 8 0.0313441 0.000451433 0.00141901
+!exec addData 9 0.00927893 0.000164558 0.0002947
+
+exec colors
+dep yoffset = -0.15
+exec pdgCompareMany 0.4 1.6 beige mustard burgundy "PDG04" 4 "'CLEO-c 56 pb^-1'" 8
+
+! Add another set of data points
+rename 1 11
+rename 2 12
+
+! PDG 2004
+exec addPdg 1 0.0380 0.0009
+exec addPdg 2 0.130 0.008
+exec addPdg 3 0.0746 0.0031
+exec addPdg 4 0.092 0.006
+exec addPdg 5 0.065 0.011
+exec addPdg 6 0.0141 0.0010
+exec addPdg 7 0.0485 0.015
+exec addPdg 8 0.0355 0.005
+exec addPdg 9 0.0089 0.0008
+
+! CLEO-c 281 pb^-1, 28 Mar 2007 (paper vote)
+!exec addData 1 0.03881 0.00035 0.00063
+!exec addData 2 0.1457 0.0012 0.0037
+!exec addData 3 0.0827 0.0007 0.0019
+!exec addData 4 0.0922 0.0010 0.0017
+!exec addData 5 0.0600 0.0008 0.0017
+!exec addData 6 0.01555 0.00022 0.00038
+!exec addData 7 0.0697 0.0009 0.0025
+!exec addData 8 0.03149 0.00045 0.00096
+!exec addData 9 0.00931 0.00016 0.00025
+
+! CLEO-c 281 pb^-1, final, Nov 2007
+exec addData 1 0.03891 0.00035 0.00069
+exec addData 2 0.1457 0.0012 0.0038
+exec addData 3 0.0830 0.0007 0.0020
+exec addData 4 0.0914 0.0010 0.0017
+exec addData 5 0.0598 0.0008 0.0016
+exec addData 6 0.01526 0.00022 0.00038
+exec addData 7 0.0699 0.0009 0.0025
+exec addData 8 0.03122 0.00046 0.00096
+exec addData 9 0.00935 0.00017 0.00024
+
+dep yoffset = 0.15
+exec pdgCompareMany 0.4 1.6 beige mustard burgundy "PDG04" 3 "'CLEO-c 281 pb^-1'" 6.5
+
+over 11 -60/lavender
+over 12 -60/lavender
+
+key
+1
+new
+1000
+'CLEO-c 56 pb^-1'
+13 17.5 0.4 0 left cm -2000 lavender 3 0.01 black
+
+draw line 1 black 1 plot
+0.4, -3.5
+1.6, -3.5
+
+
+! xleft is the x position of the mode label in plot units
+dep xleft = 0.45
+dep textsize = 0.45
+
+exec pdgCompareComment 1 xleft textsize "'K^-![p]^+'"
+exec pdgCompareComment 2 xleft textsize "'K^-![p]^+![p]^0!'"
+exec pdgCompareComment 3 xleft textsize "'K^-![p]^+![p]^-![p]^+!'"
+exec pdgCompareComment 4 xleft textsize "'K^-![p]^+![p]^+!'"
+exec pdgCompareComment 5 xleft textsize "'K^-![p]^+![p]^+![p]^0!'"
+exec pdgCompareComment 6 xleft textsize "'K^0?S![p]^+!'"
+exec pdgCompareComment 7 xleft textsize "'K^0?S![p]^+![p]^0!'"
+exec pdgCompareComment 8 xleft textsize "'K^0?S![p]^+![p]^-![p]^+!'"
+exec pdgCompareComment 9 xleft textsize "'K^-!K^+![p]^+!'"
+
+hard epost

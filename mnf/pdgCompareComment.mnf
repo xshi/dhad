@@ -1,0 +1,14 @@
+! @1 = point number
+! @2 = x position in plot coordinates
+! @3 = text size
+! @4 = text
+
+dep ycomment = -@1 - 0.1
+
+comment
+1
+new
+@4
+@2 ycomment @3 0 left plot -2000 black 5
+
+

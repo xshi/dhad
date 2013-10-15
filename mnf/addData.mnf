@@ -1,0 +1,12 @@
+! Data points
+
+! @1 = point #
+! @2 = value
+! @3 = stat error
+! @4 = syst error
+
+dep ir1 = @1
+parse dep data{ir1,(i2.2)} = @2
+parse dep stat{ir1,(i2.2)} = @3
+parse dep syst{ir1,(i2.2)} = @4
+

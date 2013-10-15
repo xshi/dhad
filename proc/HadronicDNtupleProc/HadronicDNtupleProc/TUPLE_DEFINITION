@@ -1,0 +1,456 @@
+DOC $Id$
+DOC $Log$
+DOC Revision 1.2  2010/05/21 19:30:44  xs32
+DOC add isType1Pi0 info
+DOC
+DOC Revision 1.1  2010/05/17 17:30:24  xs32
+DOC Add
+DOC
+DOC Revision 1.29  2005/08/30 19:20:56  ponyisi
+DOC Update to current state.  New features:
+DOC
+DOC New eta block parallels pi0s;
+DOC New lepton ID variables (dpthmu, Rochester EID f_with_rich);
+DOC Trkman info;
+DOC Missing mass information filled in separate functions;
+DOC dataselection.tcl has new input data types, allowing information to be
+DOC   specified by another tcl;
+DOC Will use setup_analysis if requested
+DOC
+DOC Revision 1.28  2005/04/29 15:29:40  ponyisi
+DOC Add LabNet4Momentum information
+DOC Add shower e9/e25 and e9/e25 unfolded
+DOC
+DOC Revision 1.27  2005/04/14 18:23:35  ponyisi
+DOC Store beamspot-corrected d0 (trdb)
+DOC
+DOC Revision 1.26  2004/11/03 22:14:55  ponyisi
+DOC Allow a fifth D daughter
+DOC
+DOC Revision 1.25  2004/07/28 14:41:51  ponyisi
+DOC Add trigger word for test board; allow genDefinitions.py to work on multiple
+DOC systems
+DOC
+DOC Revision 1.24  2004/07/19 17:39:25  ryd
+DOC Added bunch decission to ntuple
+DOC
+DOC Revision 1.23  2004/07/14 22:03:26  ponyisi
+DOC Add trigger information
+DOC
+DOC Revision 1.22  2004/07/08 14:45:51  chengp
+DOC added Monte Carlo match to DTag
+DOC
+DOC Revision 1.21  2004/06/29 21:34:56  ponyisi
+DOC Increase MC block size
+DOC
+DOC Revision 1.20  2004/06/25 20:25:18  ponyisi
+DOC Add TRRICHPHP and TRRICHKHP variables; add helper functions to
+DOC HadronicDNtupleProc class
+DOC
+DOC Revision 1.19  2004/06/22 19:39:24  ponyisi
+DOC Fix documentation bug for trtaginfo
+DOC
+DOC Revision 1.18  2004/06/22 19:14:27  ponyisi
+DOC Fix a bunch of variables that were floats that should be integers
+DOC
+DOC Added variable for MC truth indexing
+DOC
+DOC Revision 1.17  2004/06/19 03:23:10  ryd
+DOC Rewrote the code for tracking eff. studies.
+DOC
+DOC Revision 1.16  2004/05/26 14:43:04  ponyisi
+DOC Add new variables trhitf (overall track hit fraction) and ksflsig (Kshort
+DOC flight significance)
+DOC
+DOC Revision 1.15  2004/05/18 23:02:53  ponyisi
+DOC add track fit abort variable
+DOC
+DOC Revision 1.14  2004/05/18 17:57:55  ponyisi
+DOC Fix pi0 daughter indices to be integers
+DOC
+DOC Revision 1.13  2004/05/13 15:00:46  ryd
+DOC Added lepton veto variables to ntuple
+DOC
+DOC Revision 1.12  2004/05/12 19:27:43  ryd
+DOC Further changes to handle the K-pi tracking eff. studies.
+DOC
+DOC Revision 1.11  2004/05/07 02:17:53  ryd
+DOC added M2miss block to measure pi0 eff. and K and pi tracking eff. in the Kpipi0 mode
+DOC
+DOC Revision 1.10  2004/04/20 18:25:06  ponyisi
+DOC MC block now larger, also diagnostics will be printed if block size
+DOC exceeded
+DOC
+DOC Revision 1.9  2004/04/06 05:38:03  ponyisi
+DOC Changes to add MC particle truth block.  No MC-to-detected matching yet.
+DOC
+DOC Revision 1.8  2004/04/01 21:01:24  ryd
+DOC Fixes to the M2miss calculation
+DOC
+DOC Revision 1.7  2004/04/01 20:11:40  ponyisi
+DOC Change "dkchg" to "dcsign": new variable is the sign of the charm quark if the
+DOC decay determines it, and is 0 for D0 self conjugate modes
+DOC
+DOC Revision 1.6  2004/03/26 04:18:33  ryd
+DOC Increased sizes of arrays ad I got crashes if all the photons were not stored in a pi0.
+DOC
+DOC Revision 1.5  2004/03/25 00:31:30  wsun
+DOC Added chi2vddb to double tag block.
+DOC
+DOC Revision 1.4  2004/03/24 23:44:27  wsun
+DOC Added DDoubleTag block to ntuple.
+DOC
+DOC Revision 1.3  2004/03/22 19:25:02  ponyisi
+DOC Added track tag info (you can now check if TagD*Prod thinks the track is
+DOC 	a K or a pi)
+DOC Added pi0 daughter shower link
+DOC Added D four-vector
+DOC Changed D0/D0bar distinction method: dmode is now always nonnegative.  Now,
+DOC 	the variable dkchg stores the charge of the kaon.
+DOC
+
+NTUPLE DNT Hadronic D Ntuple
+
+BLOCK GENERAL
+
+INTEGER RUN
+DOC "Run number"
+INTEGER EVENT
+DOC "Event number"
+FLOAT ECM
+DOC "2*Ebeam"
+FLOAT XANGLE
+DOC "Crossing angle"
+FLOAT ENEU
+DOC "Neutral energy"
+FLOAT ECHG
+DOC "Charged energy"
+FLOAT EVTMM2
+DOC "Overall missing mass squared"
+INTEGER L1TRIG
+DOC "Bitmap of physics trigger lines, as defined in TriggerL1Data/TriggerL1Data.h"
+DOC "Some juicy values:"
+DOC "bit 0: hadron line"
+DOC "bit 4: mu pair line"
+DOC "bit 16: electron+track line"
+DOC "bit 17: radtau line"
+INTEGER NBUNCH
+DOC "Number of tested bunches"
+INTEGER BUNCH
+DOC "Best bunch"
+INTEGER L1TRIG2
+DOC "Bitmap of test trigger lines, as defined in TriggerL1Data/TriggerL1Data.h"
+DOC "Some juicy values:"
+DOC "Bit 0: pulser"
+DOC "Bit 1: random trigger"
+DOC "Bit 2: two track"
+FLOAT PXCM
+DOC "Center of mass px"
+FLOAT PYCM
+DOC "Center of mass py"
+FLOAT PZCM
+DOC "Center of mass pz"
+
+BLOCK TRACK
+
+INDEX NTRACK 0 100
+DOC "Number of tracks"
+INTEGER TRIDENT NTRACK
+DOC "Track FATable identifier"
+FLOAT TRPIE NTRACK
+DOC "Track energy, pi hypothesis"
+FLOAT TRPIPX NTRACK
+DOC "Track px, pi hypothesis"
+FLOAT TRPIPY NTRACK
+DOC "Track py, pi hypothesis"
+FLOAT TRPIPZ NTRACK
+DOC "Track pz, pi hypothesis"
+FLOAT TRPIP NTRACK
+DOC "Track p, pi hypothesis"
+FLOAT TRKE NTRACK
+DOC "Track energy, kaon hypothesis"
+FLOAT TRKPX NTRACK
+DOC "Track px, kaon hypothesis"
+FLOAT TRKPY NTRACK
+DOC "Track py, kaon hypothesis"
+FLOAT TRKPZ NTRACK
+DOC "Track pz, kaon hypothesis"
+FLOAT TRCHG NTRACK
+DOC "Track charge"
+FLOAT TRZ0 NTRACK
+DOC "Track z0"
+FLOAT TRD0 NTRACK
+DOC "Track d0"
+FLOAT TRCOSTH NTRACK
+DOC "Track cos theta"
+FLOAT TRPHI0 NTRACK
+DOC "Track phi0"
+FLOAT TRDRHITF NTRACK
+DOC "Track DR hit fraction"
+FLOAT TRZDHITF NTRACK
+DOC "Track ZD hit fraction"
+FLOAT TRHITF NTRACK
+DOC "Track overall hit fraction"
+FLOAT TRCHI2 NTRACK
+DOC "Track chi^2"
+INTEGER TRCHI2DOF NTRACK
+DOC "Track chi^2 degrees of freedom"
+FLOAT TRSIGPI NTRACK
+DOC "Track dE/dx pion sigma"
+FLOAT TRSIGK NTRACK
+DOC "Track dE/dx kaon sigma"
+FLOAT TRRICHPLL NTRACK
+DOC "Track RICH pion log likelihood"
+INTEGER TRRICHPNP NTRACK
+DOC "Track RICH pion number of photons"
+FLOAT TRRICHKLL NTRACK
+DOC "Track RICH kaon log likelihood"
+INTEGER TRRICHKNP NTRACK
+DOC "Track RICH kaon number of photons"
+INTEGER TRTAGINFO NTRACK
+DOC "Bit 0 is set if tagged as a pion by TagDPionProd, bit 1 is set if tagged as a kaon by TagDKaonProd"
+INTEGER TRFABORT NTRACK
+DOC "nonzero if pion fitAbort() flag is set"
+INTEGER TRRICHPHP NTRACK
+DOC "1 if RICH pion hypothesis was analyzed"
+INTEGER TRRICHKHP NTRACK
+DOC "1 if RICH kaon hypothesis was analyzed"
+FLOAT TRDB NTRACK
+DOC "Signed DCA to beamspot"
+FLOAT TRDPTHMU NTRACK
+DOC "Muon depth in mu system"
+FLOAT TRROCEID NTRACK
+DOC "Rochester EID: f_with_rich"
+INTEGER TRTRKMAN NTRACK
+DOC "Trkman info for this track.  >=0: Trkman Approved."
+
+BLOCK SHOWER
+INDEX NSHOW 0 1000
+DOC "Number of showers"
+INTEGER SIDENT NSHOW
+DOC "Shower FATable identifier"
+FLOAT SE NSHOW
+DOC "Shower energy"
+FLOAT SPX NSHOW
+DOC "Shower px"
+FLOAT SPY NSHOW
+DOC "Shower py"
+FLOAT SPZ NSHOW
+DOC "Shower pz"
+FLOAT SPHI NSHOW
+DOC "Shower phi"
+FLOAT SCOSTH NSHOW
+DOC "Shower cos theta"
+INTEGER SE9O25UOK NSHOW
+DOC "Shower E9/E25 unfolded passes cut"
+INTEGER SHOT NSHOW
+DOC "Shower involves a hot channel"
+INTEGER SDETTYPE NSHOW
+DOC "Shower ring ID"
+INTEGER STRMATCH NSHOW
+DOC "Index of shower matched to track; -1 if no such track"
+FLOAT STRME NSHOW
+DOC "Energy matched by track"
+FLOAT STRDIST NSHOW
+DOC "Distance to track, meters"
+FLOAT SE9O25 NSHOW
+DOC "Shower E9/E25"
+FLOAT SE9O25U NSHOW
+DOC "Shower E9/E25 unfolded"
+
+BLOCK PI0
+INDEX NPI0 0 1000
+DOC "Number of Pi0 candidates"
+INTEGER PI0IDENT NPI0
+DOC "Pi0 FATable identifier"
+FLOAT PI0MASS NPI0
+DOC "Pi0 raw mass"
+FLOAT PI0CHI2 NPI0
+DOC "Pi0 chi^2 of mass constraint"
+FLOAT PI0E NPI0
+DOC "Pi0 candidate energy"
+FLOAT PI0PX NPI0
+DOC "Pi0 candidate x momentum"
+FLOAT PI0PY NPI0
+DOC "Pi0 candidate y momentum"
+FLOAT PI0PZ NPI0
+DOC "Pi0 candidate z momentum"
+FLOAT PI0MERR NPI0
+DOC "Pi0 candidate mass uncertainty"
+INTEGER PI0DAU1 NPI0
+DOC "Pi0 candidate first daughter shower index"
+INTEGER PI0DAU2 NPI0
+DOC "Pi0 candidate second daughter shower index"
+INTEGER PI0ISTYPE1 NPI0
+DOC "Does this pi0 pass type 1 PhotonDecaysProd cuts?"
+
+BLOCK ETA
+INDEX NETA 0 1000
+DOC "Number of eta candidates"
+INTEGER ETAIDENT NETA
+DOC "Eta FATable identifier"
+FLOAT ETAMASS NETA
+DOC "Eta raw mass"
+FLOAT ETACHI2 NETA
+DOC "Eta chi^2 of mass constraint"
+FLOAT ETAE NETA
+DOC "Eta candidate energy"
+FLOAT ETAPX NETA
+DOC "Eta candidate x momentum"
+FLOAT ETAPY NETA
+DOC "Eta candidate y momentum"
+FLOAT ETAPZ NETA
+DOC "Eta candidate z momentum"
+FLOAT ETAMERR NETA
+DOC "Eta candidate mass uncertainty"
+INTEGER ETADAU1 NETA
+DOC "Eta candidate first daughter shower index"
+INTEGER ETADAU2 NETA
+DOC "Eta candidate second daughter shower index"
+
+BLOCK KSHORT
+INDEX NKS 0 50
+DOC "Number of Ks candidates"
+INTEGER KSIDENT NKS
+DOC "Ks FATable identifier"
+FLOAT KSMASS NKS
+DOC "Ks mass"
+FLOAT KSE NKS
+DOC "Ks energy"
+FLOAT KSPX NKS
+DOC "Ks px"
+FLOAT KSPY NKS
+DOC "Ks py"
+FLOAT KSPZ NKS
+DOC "Ks pz"
+FLOAT KSCHI2 NKS
+DOC "Ks vertex fit chi^2"
+FLOAT KSRAD NKS
+DOC "Ks vertex radius"
+FLOAT KSRADERR NKS
+DOC "Ks vertex radius uncertainty"
+INTEGER KSDAU1 NKS
+DOC "Ks first daughter track block index"
+INTEGER KSDAU2 NKS
+DOC "Ks second daughter track block index"
+FLOAT KSFLSIG NKS
+DOC "Ks flight significance (= VFinderQualityObject::flightDistanceSignificanceEnhanced2D )
+
+BLOCK DTAG
+
+INDEX NDCAND 0 1000
+DOC "Number of D candidates"
+INTEGER DMODE NDCAND
+DOC "Decay mode of D.  Documented on DTagProd webpage."
+FLOAT DMBC NDCAND
+DOC "Beam-constrained D mass"
+FLOAT DDELTAE NDCAND 
+DOC "D delta E"
+FLOAT DDELTAEERR NDCAND
+DOC "D delta E uncertainty"
+FLOAT DMRAW NDCAND
+DOC "D raw mass"
+FLOAT DMRAWERR NDCAND
+DOC "D raw mass uncertainty"
+FLOAT DKCHI2 NDCAND
+DOC "D kinematic constraint chi^2"
+FLOAT DE NDCAND
+DOC "D four-vector E"
+FLOAT DPX NDCAND
+DOC "D four-vector px"
+FLOAT DPY NDCAND
+DOC "D four-vector py"
+FLOAT DPZ NDCAND
+DOC "D four-vector pz"
+INTEGER DDAU1 NDCAND
+DOC "Index in corresponding block of first D daughter"
+INTEGER DDAU2 NDCAND
+DOC "Index in corresponding block of second D daughter"
+INTEGER DDAU3 NDCAND
+DOC "Index in corresponding block of third D daughter"
+INTEGER DDAU4 NDCAND
+DOC "Index in corresponding block of fourth D daughter"
+INTEGER DCSIGN NDCAND
+DOC "Sign of the charge of the charm quark.  +1 for D0 and D+, -1 for D0bar and D-, 0 for D0 self-conjugate modes."
+INTEGER LEPVETO NDCAND
+DOC "1+number of unmatched clusters, and negative if fails lepton vetor"
+INTEGER DDAU5 NDCAND
+
+BLOCK MMISS
+INDEX NMISS 0 10000
+DOC "Number of missing mass candidates"
+INTEGER MMODE NMISS
+DOC "0:K+ 1:pi- 2:K+ pi0: 3:pi- pi0 4:KS 5:pi0 6:pi+pi-"
+DOC "100:pi- 101:KS 102:pi+ pi+ 103:K- pi+"
+DOC "mode numbers below 100 is for D0 recoils and 100 and above are for D+ recoils"
+INTEGER MDCAND NMISS
+DOC "Index to recoil D cand"
+INTEGER MTRACK1 NMISS
+DOC "Index to particle 1"
+INTEGER MTRACK2 NMISS
+DOC "Index to particle 2"
+FLOAT MMSQ NMISS
+DOC "Missing mass"
+FLOAT MPX NMISS
+DOC "recoil px"
+FLOAT MPY NMISS
+DOC "recoil py"
+FLOAT MPZ NMISS
+DOC "recoil pz"
+FLOAT ME NMISS
+DOC "recoil energy"
+FLOAT MBESTMBC NMISS
+DOC "best mbc for fully reconstructed event"
+
+BLOCK DDOUBLETAG
+
+INDEX NDDCAND 0 200
+DOC "Number of D double tag candidates"
+INTEGER D NDDCAND
+DOC "Index to D candidate"
+INTEGER DBAR NDDCAND
+DOC "Index to Dbar candidate"
+INTEGER DDMODE NDDCAND
+DOC "Double tag mode number"
+FLOAT COSANGLE NDDCAND
+DOC "Cosine of angle between D and Dbar"
+FLOAT CHI2VD NDDCAND
+DOC "Chi^2 of D vertex constraint"
+FLOAT CHI2VDB NDDCAND
+DOC "Chi^2 of Dbar vertex constraint"
+FLOAT CHI2ED NDDCAND
+DOC "Chi^2 of D energy constraint"
+FLOAT CHI2EDB NDDCAND
+DOC "Chi^2 of Dbar energy constraint"
+FLOAT CHI2MD NDDCAND
+DOC "Chi^2 of D mass constraint"
+FLOAT CHI2MDB NDDCAND
+DOC "Chi^2 of Dbar mass constraint"
+FLOAT CHI2VDDB NDDCAND
+DOC "Chi^2 of DDbar vertex constraint"
+
+BLOCK MC OPTIONAL
+INTEGER MCDMODE
+DOC "Decay mode of D0 or D+.  NOTE: *NOT* the same as dmode!!!"
+INTEGER MCDBMODE
+DOC "Decay mode of D0bar or D-.  NOTE: *NOT* the same as dmode!!!"
+INTEGER MCDMATCH NDCAND
+DOC "Index to MC Block if the DTag has a MC match"
+INDEX NMCPART 0 50
+DOC "Number of Monte Carlo particles in this block"
+INTEGER MCIDENT NMCPART
+DOC "Internal node identifier"
+INTEGER MCPDGID NMCPART
+DOC "PDG ID of particle"
+INTEGER MCPARENT NMCPART
+DOC "Index of parent in block"
+FLOAT MCE NMCPART
+DOC "Energy of MC particle"
+FLOAT MCPX NMCPART
+DOC "Px of MC particle"
+FLOAT MCPY NMCPART
+DOC "Py of MC particle"
+FLOAT MCPZ NMCPART
+DOC "Pz of MC particle"
+INTEGER MCTRUTH NMCPART
+DOC "Index of the reconstructed object corresponding to this particle"

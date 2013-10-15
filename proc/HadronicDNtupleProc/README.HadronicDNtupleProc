@@ -1,0 +1,11 @@
+Sample tcl file to run HadronicDNtupleProc is in
+Test/loadHadronicDNtupleProc.tcl .
+
+TO ADD NEW VARIABLES:
+
+Edit the file HadronicDNtupleProc/TUPLE_DEFINITION ; the format should be
+pretty much self-explanatory.  Then change to the HadronicDNtupleProc
+subdirectory and run ./genDefinitions.py .  This will produce a new class
+definition for the tuple structure, as well as the hooks for the HBOOK and
+ROOT output.  (To see the current tuple structure variables, look at
+HadronicDNtupleProc/tuple_cxx_structure.h)

@@ -1,0 +1,25 @@
+digraph G {
+	size = "5,5"
+	EvtGen [style=filled, fillcolor=green, shape=box]
+	"DECAY.DEC" [style=filled, fillcolor=yellow, shape=parallelogram]
+	"evt.pdl" [style=filled, fillcolor=yellow, shape=parallelogram]
+	DCTree [style=filled, fillcolor=green, shape=parallelogram]
+	"Const(CLEOG)" [style=filled, fillcolor=yellow, shape=parallelogram]
+	CLEOG [style=filled, fillcolor=green, shape=box]
+	"Const(PASS2)" [style=filled, fillcolor=green, shape=parallelogram]
+	PASS2 [style=filled, fillcolor=green, shape=box]
+	DNTUPLE [style=filled, fillcolor=green, shape=box]
+	"ANA + Fit" [style=filled, fillcolor=green, shape=box]
+	subgraph cluster_evtgen {
+		"DECAY.DEC" -> EvtGen
+		"evt.pdl" -> EvtGen
+		EvtGen -> DCTree
+		DCTree -> CLEOG
+		"Const(CLEOG)" -> EvtGen
+		"Const(CLEOG)" -> CLEOG 
+		CLEOG -> PASS2 
+		"Const(PASS2)" -> PASS2
+		PASS2 -> DNTUPLE
+		DNTUPLE -> "ANA + Fit"
+	}
+}

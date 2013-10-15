@@ -1,0 +1,43 @@
+This is the README file for CWNFramework. It shows you how to write
+a Processor in the new CLEO3 Suez environment.
+
+1.) You should only need to edit the CWNFramework.cc file (and
+    potentially also CWNFramework.h). Fill CWNFramework.cc with your
+    analysis code.
+
+2.) Make a shared library: "gmake CXX=<compiler>"
+This step requires that you have a standard type of build area,
+consisting of (../bin, ../lib, and ../shlib) directories.
+The shared processor library will end up in ../shlib!
+
+3.) Set the environment variable C3_SHLIB to include the ../shlib
+directory above: setenv C3_SHLIB /home/mkl/build/shlib
+
+4.) A tcl file to load your processor called loadCWNFramework.tcl is
+    located in CWNFramework's Test subdirectory.  It includes any other
+    packages needed for the auto-generated example code.
+
+5.) Start up Suez: suez
+
+6.) Here is a sample job:
+
+suez> file in test.rp
+suez> proc ls
+
+Listing all available Processors:
+
+in memory:
+
+and on disk:
+/home/mkl/build/shlib/ CWNFramework
+
+suez> run_file loadCWNFramework.tcl
+suez> go 1
+... 
+suez> exit
+
+
+ Please read the documentation: 
+     http://w4.lns.cornell.edu/restricted/CLEO/CLEO3/soft/index.html
+
+ That's It! Questions, Suggestions, Complaints --> Martin Lohner

@@ -1,0 +1,133 @@
+digraph G {
+
+size = "8,8";
+
+
+// ------------------------
+//    537/pb
+// ------------------------
+
+
+f537 [label="537/pb"];
+
+mc537 [label="MC"];
+
+// ------------------------
+//    MC 537/pb
+// ------------------------
+
+mcdt537 [label="Double Tag"];
+
+mcdt537_diag [label="Diagonal"];
+
+mcdt537_diag_0 [label="cleog", shape=box, style=filled, fillcolor=green];
+mcdt537_diag_0_1 [label="pass2", shape=box, style=filled, fillcolor=green];
+mcdt537_diag_0_2 [label="dskim", shape=box, style=filled, fillcolor=green];
+mcdt537_diag_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+mcdt537_diag_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+mcdt537_diag_3 [label="fit paras", shape=box, style=filled, fillcolor=green];
+mcdt537_diag_4 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+mcdt537_nondiag [label="Non-Diagonal"];
+
+mcdt537_nondiag_0 [label="cleog", shape=box, style=filled, fillcolor=green];
+mcdt537_nondiag_0_1 [label="pass2", shape=box, style=filled, fillcolor=green];
+mcdt537_nondiag_0_2 [label="dskim", shape=box, style=filled, fillcolor=green];
+mcdt537_nondiag_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+mcdt537_nondiag_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+mcdt537_nondiag_3 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+
+mcst537 [label="Single Tag"];
+mcst537_0 [label="cleog", shape=box, style=filled, fillcolor=green];
+mcst537_0_1 [label="pass2", shape=box, style=filled, fillcolor=green];
+mcst537_0_2 [label="dskim", shape=box, style=filled, fillcolor=green];
+mcst537_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+mcst537_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+mcst537_3 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+mcst537_1_2 [label="crossfeed yields", shape=box, style=filled, fillcolor=green];
+mcst537_1_2_3 [label="crossfeed fits", shape=box, style=filled, fillcolor=green];
+
+// ------------------------
+//    Data 537/pb
+// ------------------------
+
+data537 [label="Data"];
+
+datast537 [label="Single Tag"];
+datast537_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+datast537_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+datast537_3 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+datadt537 [label="Double Tag"];
+datadt537_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+datadt537_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+datadt537_3 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+
+// BFs for final fits
+
+bf537 [label="Branching Fractions fit", shape=box, style=filled, fillcolor=green];
+
+// --- 537/pb -> MC and Data
+
+f537 -> mc537;
+
+f537 -> data537;
+
+// --- MC -> Single Tag and Double Tag
+
+mc537 -> mcst537;
+
+mc537 -> mcdt537;
+
+
+// Single Tag -> CLEOG ... fit mBC
+//                       +--> crossfeed fits.  
+mcst537 -> mcst537_0 -> mcst537_0_1 -> mcst537_0_2 -> mcst537_1 -> mcst537_2 -> mcst537_3;
+mcst537_1 -> mcst537_1_2 ->  mcst537_1_2_3;
+
+
+// Double Tag -> Diag and Non-diag
+
+mcdt537 -> mcdt537_diag;
+
+mcdt537 -> mcdt537_nondiag;
+
+// Double Tag Diag -> CLEOG ... fit paras 
+mcdt537_diag -> mcdt537_diag_0 -> mcdt537_diag_0_1 -> mcdt537_diag_0_2 -> mcdt537_diag_1 -> mcdt537_diag_2-> mcdt537_diag_3 ;
+
+
+// Double Tag NonDiag -> CLEOG ... fit mBC
+
+mcdt537_nondiag -> mcdt537_nondiag_0 -> mcdt537_nondiag_0_1 -> mcdt537_nondiag_0_2 -> mcdt537_nondiag_1 -> mcdt537_nondiag_2-> mcdt537_nondiag_3 ;
+
+
+// fit paras -> mBC fit
+
+mcdt537_diag_3 -> mcst537_3;
+mcdt537_diag_3 -> mcdt537_diag_4;
+mcdt537_diag_3 -> mcdt537_nondiag_3;
+
+mcdt537_diag_3 -> datast537_3;
+mcdt537_diag_3 -> datadt537_3;
+
+// --- Data ----
+
+data537 -> datast537 -> datast537_1 -> datast537_2 -> datast537_3;
+data537 -> datadt537 -> datadt537_1 -> datadt537_2 -> datadt537_3;
+
+
+// BFs
+mcdt537_diag_4-> bf537;
+mcdt537_nondiag_3-> bf537;
+mcst537_3->  bf537;
+
+datast537_3 -> bf537;
+
+datadt537_3 -> bf537;
+mcst537_1_2_3 -> bf537;
+
+
+}

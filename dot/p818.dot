@@ -1,0 +1,155 @@
+// ------------------------
+// cd $dhad/fig/818ipbv12
+// dot -Tpng p818.dot -o p818.png
+// ------------------------
+
+digraph G {
+
+size = "10,8";
+
+
+// ------------------------
+//    818/pb
+// ------------------------
+
+
+f818 [label="818/pb", shape=folder];
+
+mc818 [label="MC"];
+
+// ------------------------
+//    MC 818/pb
+// ------------------------
+
+mcdt818 [label="Double Tag"];
+
+mcdt818_diag [label="Diagonal"];
+
+mcdt818_diag_0 [label="cleog", shape=box, style=filled, fillcolor=green];
+mcdt818_diag_0_1 [label="pass2", shape=box, style=filled, fillcolor=green];
+mcdt818_diag_0_2 [label="dskim", shape=box, style=filled, fillcolor=green];
+mcdt818_diag_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+mcdt818_diag_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+mcdt818_diag_3 [label="fit paras", shape=box, style=filled, fillcolor=green];
+mcdt818_diag_4 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+mcdt818_nondiag [label="Non-Diagonal"];
+
+mcdt818_nondiag_0 [label="cleog", shape=box, style=filled, fillcolor=green];
+mcdt818_nondiag_0_1 [label="pass2", shape=box, style=filled, fillcolor=green];
+mcdt818_nondiag_0_2 [label="dskim", shape=box, style=filled, fillcolor=green];
+mcdt818_nondiag_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+mcdt818_nondiag_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+mcdt818_nondiag_3 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+
+mcst818 [label="Single Tag"];
+mcst818_0 [label="cleog", shape=box, style=filled, fillcolor=green];
+mcst818_0_1 [label="pass2", shape=box, style=filled, fillcolor=green];
+mcst818_0_2 [label="dskim", shape=box, style=filled, fillcolor=green];
+mcst818_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+mcst818_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+mcst818_3 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+mcst818_1_2 [label="crossfeed yields", shape=box, style=filled, fillcolor=green];
+mcst818_1_2_3 [label="crossfeed fits", shape=box, style=filled, fillcolor=green];
+
+// ------------------------
+//    Data 818/pb
+// ------------------------
+
+data818 [label="Data"];
+
+datast818 [label="Single Tag"];
+datast818_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+datast818_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+datast818_3 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+datadt818 [label="Double Tag"];
+datadt818_1 [label="ntuple", shape=box, style=filled, fillcolor=green];
+datadt818_2 [label="extract yields", shape=box, style=filled, fillcolor=green];
+datadt818_3 [label="mBC fit", shape=box, style=filled, fillcolor=green];
+
+
+// ------------------------
+//    Backgrounds 818/pb
+// ------------------------
+
+bkg818 [label="Backgrounds", shape=folder];
+
+// ------------------------
+//    Systematics 818/pb
+// ------------------------
+
+sys818 [label="Systematics", shape=folder];
+
+// BFs for final fits
+
+bf818 [label="Branching Fractions fit", shape=box, style=filled, fillcolor=white];
+
+// --- 818/pb -> MC, Data, Backgrouds
+
+f818 -> mc818;
+
+f818 -> data818;
+
+f818 -> bkg818;
+
+f818 -> sys818;
+
+// --- MC -> Single Tag and Double Tag
+
+mc818 -> mcst818;
+
+mc818 -> mcdt818;
+
+
+// Single Tag -> CLEOG ... fit mBC
+//                       +--> crossfeed fits.  
+mcst818 -> mcst818_0 -> mcst818_0_1 -> mcst818_0_2 -> mcst818_1 -> mcst818_2 -> mcst818_3;
+mcst818_1 -> mcst818_1_2 ->  mcst818_1_2_3;
+
+
+// Double Tag -> Diag and Non-diag
+
+mcdt818 -> mcdt818_diag;
+
+mcdt818 -> mcdt818_nondiag;
+
+// Double Tag Diag -> CLEOG ... fit paras 
+mcdt818_diag -> mcdt818_diag_0 -> mcdt818_diag_0_1 -> mcdt818_diag_0_2 -> mcdt818_diag_1 -> mcdt818_diag_2-> mcdt818_diag_3 ;
+
+
+// Double Tag NonDiag -> CLEOG ... fit mBC
+
+mcdt818_nondiag -> mcdt818_nondiag_0 -> mcdt818_nondiag_0_1 -> mcdt818_nondiag_0_2 -> mcdt818_nondiag_1 -> mcdt818_nondiag_2-> mcdt818_nondiag_3 ;
+
+
+// fit paras -> mBC fit
+
+mcdt818_diag_3 -> mcst818_3;
+mcdt818_diag_3 -> mcdt818_diag_4;
+mcdt818_diag_3 -> mcdt818_nondiag_3;
+
+mcdt818_diag_3 -> datast818_3;
+mcdt818_diag_3 -> datadt818_3;
+
+// --- Data ----
+
+data818 -> datast818 -> datast818_1 -> datast818_2 -> datast818_3;
+data818 -> datadt818 -> datadt818_1 -> datadt818_2 -> datadt818_3;
+
+// BFs
+mcdt818_diag_4-> bf818;
+mcdt818_nondiag_3-> bf818;
+mcst818_3->  bf818;
+
+datast818_3 -> bf818;
+
+datadt818_3 -> bf818;
+mcst818_1_2_3 -> bf818;
+
+bkg818 -> bf818;
+sys818 -> bf818;
+
+}

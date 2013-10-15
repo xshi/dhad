@@ -1,0 +1,57 @@
+// ------------------------
+// cd $dhad/fig/818ipbv12
+// dot -Tpng s818.dot -o s818.png
+// ------------------------
+
+digraph G {
+
+size = "6,9";
+
+// ------------------------
+//    Systematics 818/pb
+// ------------------------
+
+sys818 [label="Systematics", shape=folder];
+
+sys818_1 [label="Signal shaped", shape=box, style=filled, fillcolor=white];
+
+sys818_2 [label="Double DCSD interference", shape=box, style=filled, fillcolor=white];
+
+sys818_3 [label="Detector simulation"];
+
+sys818_3_1 [label="Tracking and KS0", shape=box, style=filled, fillcolor=white];
+
+sys818_3_2 [label="pi0 efficiency", shape=box, style=filled, fillcolor=white];
+
+sys818_3_3 [label="Particle ID effs", shape=box, style=filled, fillcolor=white];
+
+sys818_6 [label="Lepton veto", shape=box, style=filled, fillcolor=white];
+
+
+sys818_7 [label="Trigger simulation", shape=box, style=filled, fillcolor=white];
+
+sys818_8 [label="|E| requirement", shape=box, style=filled, fillcolor=white];
+
+sys818_9 [label="Background shape", shape=box, style=filled, fillcolor=white];
+
+sys818_10 [label="Final-state radiation", shape=box, style=filled, fillcolor=white];
+
+sys818_11 [label="Resonant substructure", shape=box, style=filled, fillcolor=white];
+
+sys818_12 [label="Multiple candidates", shape=box, style=filled, fillcolor=white];
+
+sys818_11 [label="Luminosity", shape=box, style=filled, fillcolor=white];
+
+
+sys818 -> sys818_1 -> sys818_2 -> sys818_3 -> sys818_3_1;
+sys818_3 -> sys818_3_2;
+sys818_3 -> sys818_3_3;
+
+sys818_3_1 -> sys818_6;
+sys818_3_2 -> sys818_6;
+sys818_3_3 -> sys818_6;
+
+sys818_6 -> sys818_7 -> sys818_8 -> sys818_9 -> sys818_10 -> sys818_11 -> sys818_12 ;
+
+
+}
