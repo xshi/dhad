@@ -883,6 +883,7 @@ def mode_dependent_syst(opts, tabname, tabprefix):
     else:
         signal_shape_prefix = tabprefix
         
+
     tab = DHadCBXTable()
     modenames = [modes[mode]['sname'] for mode in modes]
     modenames.insert(0, 'Source')
@@ -937,6 +938,13 @@ def mode_syst_tracking(tabprefix):
                     sy = per_kaon
                 else:
                     sy += per_kaon
+
+            if '818ipbv12.7' in tabprefix: 
+                if dau == 'KS': 
+                    if sy == '--':
+                        sy = 2*per_pion
+                    else:
+                        sy += 2*per_pion
                     
         syst.append(sy)
     return syst

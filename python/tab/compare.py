@@ -370,13 +370,13 @@ def brf_data_results(opts, tabname, args):
             tab.column_append(tools.parse_result(bffile, 'paras'),
                               'Parameters')
             paras = True
-        tab.column_append(tools.parse_result(bffile, 'value'), 'value')
+        tab.column_append(tools.parse_result(bffile, 'value'), 'value', rnd='.00001' )
         tab.column_append(tools.parse_result(bffile, 'stat'),  'stat')
         tab.column_append(tools.parse_result(bffile, 'syst'),  'syst')
         tab.columns_join3('Fitted Value', 'value', 'stat',  'syst')
         tab.column_trim('Fitted Value', row=['ND0D0Bar', 'ND+D-'],
-                        rnd='.001', factor=factor, opt='(cell)x1E6')
-        tab.column_trim('Fitted Value', rnd='.0001',
+                        rnd='.0001', factor=factor, opt='(cell)x1E6')
+        tab.column_trim('Fitted Value', rnd='.00001',
                         except_row=['ND0D0Bar', 'ND+D-'])
         tab.column_append(tools.parse_result(bffile, 'err_frac'),
                           'Frac. Err', rnd='.1', opt='(cell%)')

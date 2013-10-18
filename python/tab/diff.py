@@ -10,8 +10,11 @@ import attr
 import yld
 import diff
 
+import tools 
 from tools.filetools import UserFile
 from sets import Set
+from tools import DHadTable
+
 
 __author__ = "Xin Shi <xs32@cornell.edu>"
 __revision__ = "$Revision$"
@@ -63,4 +66,27 @@ def output_set_to_file(set_, file_):
     f.output(file_)
     
 
+def brf_data_syst(args):
+    print args
+    
+    label_A = args[0]
+    label_B = args[1]
+   
+    bffilename = 'bf_stat_sys'
+    tab = DHadTable()
+
+
+    bffileA = os.path.join(attr.brfpath, label_A, bffilename)
+    tab.column_append(tools.parse_result(bffileA, 'paras'), 'Parameters')   
+    tab.column_append(tools.parse_result(bffileA, 'value'), 'value_A')
+    tab.column_append(tools.parse_result(bffileA, 'syst'), label_A)
+
+    bffileB = os.path.join(attr.brfpath, label_B, bffilename)
+    tab.column_append(tools.parse_result(bffileB, 'value'), 'value_B')
+    tab.column_append(tools.parse_result(bffileB, 'syst'), label_B)
+
+    #tab.column_append_by_diff_sigma_pct('diff(%)', label_B,label_A, rnd=rnd)
+    
+    tab.output()
+    
     
