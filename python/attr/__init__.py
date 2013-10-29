@@ -537,7 +537,7 @@ def get_tag_numbers(mode):
     return tag_number
 
 
-def get_generated_numbers(tag, jobs=30, mode=None):
+def get_generated_numbers(tag, jobs=30, mode=None, label=None):
     numbers  =  []
     if tag == 'double': 
         for i, j in PossibleDoubleTags:
@@ -561,6 +561,14 @@ def get_generated_numbers(tag, jobs=30, mode=None):
         for mode, sign in mode_sign_list:
             tag_number = modes[mode]['tag_num_s']
             count = tag_number*jobs
+            
+            if label is not None and 'v13' in label: 
+                if mode == 205: 
+                    if sign == 1:
+                        count = 30000
+                    if sign == -1: 
+                        count = 36000
+            
             numbers.append(count)
 
     return numbers

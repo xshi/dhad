@@ -1334,7 +1334,8 @@ def singletag_de_syst(opts, tabname, tabprefix):
 def singletag_sigmc_eff(opts, tabname, tabprefix):
     tab = DHadCBXTable()
     tab.column_append_from_dict('Mode', 'fname,fnamebar')
-    tab.column_append(get_generated_numbers('single'), 'Generated')
+    tab.column_append(get_generated_numbers('single', label=tabprefix),
+                      'Generated')
     tab.column_append_from_files('Yield', 'N1,N2', fitbase, tabprefix, 
                                  's', 's' ,'txt', rnd='1.')
     tab.column_append_from_files('mass', 'md,md', fitbase, tabprefix, 
