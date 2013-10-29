@@ -28,8 +28,8 @@ export USER_SHLIB=${USER_BUILD}/Linux/shlib
 c3rel $C3LIB
 
 
-ln -sf $dhad/src/$rel/python/dhad.py $dhad/bin/dhad-$rel
-ln -sf $dhad/bin/dhad-$rel $dhad/bin/dhad
+#ln -sf $dhad/src/$rel/python/dhad.py $dhad/bin/dhad-$rel
+#ln -sf $dhad/bin/dhad-$rel $dhad/bin/dhad
 
 #----------------------------------------------------------------------
 # For ROOT and python 

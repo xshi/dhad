@@ -10,9 +10,9 @@ import attr
 
 
 __author__ = "Xin Shi <xs32@cornell.edu>"
-__version__ = "11.4"
+__version__ = "v2"
 __date__ = "$Date$"
-__copyright__ = "Copyright (c) 2005-2011 Xin Shi"
+__copyright__ = "Copyright (c) 2005-2013 Xin Shi"
 __license__ = "Python"
 
 

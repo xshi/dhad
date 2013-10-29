@@ -281,7 +281,7 @@ def get_resolution_paras(mode, label):
         tab_name='para_momentum_resolution'
         short_label = label.split('/')[0] 
         if short_label in ['281ipbv0', '281ipbv12', '537ipbv12',
-                           '818ipbv12', '818ipbv13']:
+                           '818ipbv12', '818ipbv13', 'v13']:
             tab_name = '%s/%s' % (short_label, tab_name)
         else:
             raise NameError(label)
@@ -314,7 +314,7 @@ def init_paras_single(label, dt_type, tag, mode):
         init_para_prefix = 'dir_281ipbv12'
     elif '537ipb' in label:
         init_para_prefix = 'dir_537ipbv12'
-    elif '818ipb' in label:
+    elif '818ipb' in label or 'v13' in label:
         init_para_prefix = 'dir_818ipbv12'
     else:
         raise ValueError(label)
@@ -330,6 +330,7 @@ def init_paras_single(label, dt_type, tag, mode):
                               extbase=init_para_base)
 
     sys.stdout.write('Loading init paras from %s ... \n' %tabfile)
+
     tab     = DHadTable(tabfile)
     
     N1      = float(tab.cell_get('N1', 'Value'))
