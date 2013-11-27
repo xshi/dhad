@@ -543,7 +543,34 @@ def get_generated_numbers(tag, jobs=30, mode=None, label=None):
         for i, j in PossibleDoubleTags:
             tag_number = 2000
             count = tag_number*jobs
+            if label is not None and 'v13' in label: 
+                fname = modes[i]['fname']
+                fnamebar = modes[j]['fnamebar']
+                modename = 'Double_%s__%s' %(fname, fnamebar)
+                if modename == 'Double_Dp_to_KKpi__Dm_to_KKpi': 
+                    count = 47966
+                if modename == 'Double_Dp_to_KKpi__Dm_to_Kpipipi0':
+                    count = 58403
+                if modename == 'Double_Dp_to_KKpi__Dm_to_Kpipi': 
+                    count = 57954
+                if modename == 'Double_Dp_to_KKpi__Dm_to_Kspipi0': 
+                    count = 57969
+                if modename == 'Double_Dp_to_KKpi__Dm_to_Kspipipi': 
+                    count = 24693
+                if modename == 'Double_Dp_to_KKpi__Dm_to_Kspi': 
+                    count = 57953
+                if modename == 'Double_Dp_to_Kpipi__Dm_to_KKpi':
+                    count = 59952
+                if modename == 'Double_Dp_to_Kpipipi0__Dm_to_KKpi':
+                    count = 55955
+                if modename == 'Double_Dp_to_Kspi__Dm_to_KKpi':
+                    count = 57954
+                if modename == 'Double_Dp_to_Kspipi0__Dm_to_KKpi':
+                    count = 57956
+                if modename == 'Double_Dp_to_Kspipipi__Dm_to_KKpi':
+                    count = 57954
             numbers.append(count)
+
         if mode != None:
             numbers = [count, count]
             
@@ -565,9 +592,9 @@ def get_generated_numbers(tag, jobs=30, mode=None, label=None):
             if label is not None and 'v13' in label: 
                 if mode == 205: 
                     if sign == 1:
-                        count = 30000
+                        count = 29972 # 30000
                     if sign == -1: 
-                        count = 36000
+                        count = 35969 # 36000
             
             numbers.append(count)
 

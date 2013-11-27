@@ -439,7 +439,7 @@ def doubletag_de_syst(opts, tabname, tabprefix):
 def doubletageff(opts, tabname, tabprefix):
     tab = DHadCBXTable()
     tab.column_append_from_dict('Mode', 'fname,fnamebar', 'double')
-    tab.column_append(get_generated_numbers('double'), 'Generated')
+    tab.column_append(get_generated_numbers('double', label=tabprefix), 'Generated')
     tab.column_append_from_files('Signal yield', 'N',  
                                  fitbase, tabprefix, 
                                  's', 'd',  'txt', rnd='1.')
