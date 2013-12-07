@@ -749,10 +749,16 @@ def sys_err(label):
         from attr.syserr_818ipbv12 import sys_err, sys_err_by_mode
     elif label == '818ipbv12.2' or label == '818ipbv12.3':
         from attr.syserr_818ipbv12_2 import sys_err, sys_err_by_mode
-    elif label == '818ipbv12.2' or label == '818ipbv12.3':
-        from attr.syserr_818ipbv12_2 import sys_err, sys_err_by_mode
     elif label == '818ipbv12.4' :
         from attr.syserr_818ipbv12_4 import sys_err, sys_err_by_mode
+    elif label == '818ipbv12.5' :
+        from attr.syserr_818ipbv12_5 import sys_err, sys_err_by_mode
+    elif label == '818ipbv12.6' :
+        from attr.syserr_818ipbv12_6 import sys_err, sys_err_by_mode
+    elif label == '818ipbv12.7' or \
+         label == '818ipbv12.8' or \
+         label == 'v13.1':
+        from attr.syserr_818ipbv12_7 import sys_err, sys_err_by_mode
     else:
         raise NameError(label)
     return sys_err, sys_err_by_mode
