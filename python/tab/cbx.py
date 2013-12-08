@@ -446,19 +446,19 @@ def doubletageff(opts, tabname, tabprefix):
     tab.column_append_by_divide('Efficiency(%)', 
                                 'Signal yield', 'Generated', 
                                 'Efcy', '.01', 100)
-    tab.column_append_from_files('FSR', 'FSR', evtlogbase, tabprefix+'/nofsr',  
-                                 's', 'd', 'log', rnd='1.', colName='Value')
-    tab.column_append_by_subtract('Generated noFSR', 
-                                  'Generated', 'FSR')
-    tab.column_append_from_files('Signal yield noFSR', 'N',  
-                                 fitbase,  tabprefix+'/nofsr',  
-                                 's', 'd',  'txt', rnd='1.')
-    tab.column_append_by_divide('Efficiency no FSR(%)', 
-                                'Signal yield noFSR', 'Generated noFSR', 
-                                'Efcy', '.01', 100)
-    tab.column_delete('FSR')
-    tab.column_delete('Generated noFSR')
-    tab.column_delete('Signal yield noFSR')
+    # tab.column_append_from_files('FSR', 'FSR', evtlogbase, tabprefix+'/nofsr',  
+    #                              's', 'd', 'log', rnd='1.', colName='Value')
+    # tab.column_append_by_subtract('Generated noFSR', 
+    #                               'Generated', 'FSR')
+    # tab.column_append_from_files('Signal yield noFSR', 'N',  
+    #                              fitbase,  tabprefix+'/nofsr',  
+    #                              's', 'd',  'txt', rnd='1.')
+    # tab.column_append_by_divide('Efficiency no FSR(%)', 
+    #                             'Signal yield noFSR', 'Generated noFSR', 
+    #                             'Efcy', '.01', 100)
+    # tab.column_delete('FSR')
+    # tab.column_delete('Generated noFSR')
+    # tab.column_delete('Signal yield noFSR')
     tab.row_hline('D0_to_Kpipipi D0B_to_Kpipipi')
     tab.output(tabname, tabprefix=tabprefix, outputtxt=True) 
 

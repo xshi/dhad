@@ -2384,7 +2384,7 @@ class UserTable(object):
         print_sep()
 
 
-    def output_tex(self, outputname, top=2, bottom=2,
+    def output_tex(self, outputname, top=0, bottom=0,
                    texhead=None, verbose=1, texstyle=None):
         if verbose > 0:
             sys.stdout.write('Writing to %s ...' %(outputname))
