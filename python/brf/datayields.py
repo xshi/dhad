@@ -139,7 +139,7 @@ def get_dcsd_sys(label, i, j):
         dcsd_sys = float(sys_err['Double DCSD interference(Neutral DT)'])
         dcsd_cor = None
     elif label in ['818ipbv12.0', '818ipbv12.1', '818ipbv12.2', '818ipbv12.3',
-                   '818ipbv12.4']:
+                   '818ipbv12.4', 'v13.1']:
         tabdir = '818ipbv7'
         tabfile = os.path.join(attr.cbxtabpath, tabdir,
                                'dcsd_correction.txt')

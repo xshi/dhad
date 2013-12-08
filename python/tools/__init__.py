@@ -1337,6 +1337,37 @@ def ln(args):
 	sys.stdout.write('Total   ....... %s\n' %(linked+skipped))
 
 
+def ln_files(srcdir, dstdir, pattern=None):
+    if not os.path.exists(dstdir):
+        os.mkdir(dstdir)
+
+    fs = []
+    for root, dirs, files in os.walk(srcdir):
+        fs.extend(files)
+        break
+    
+    if pattern is None:
+        src_fs = fs
+    else:
+        src_fs = [f for f in fs if pattern in f]
+        
+    n_lnk = 0 
+    cwd = os.getcwd()
+    os.chdir(dstdir)
+    for f in src_fs:
+        src = os.path.join(srcdir, f)
+        try:
+            os.symlink(src, f)
+            n_lnk += 1
+
+        except OSError:
+            pass 
+
+    os.chdir(cwd)
+    sys.stdout.write('Linked %s files. \n' %n_lnk)
+
+
+
 def makeDDecaySubTree(pte, sign):
     top = None
     nodes = []

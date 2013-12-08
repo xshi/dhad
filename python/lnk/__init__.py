@@ -6,6 +6,7 @@ Module for D-Hadronic: Link files
 import os
 import sys
 import attr
+from tools import ln_files
 
 
 __author__ = "Xin Shi <xs32@cornell.edu>"
@@ -18,6 +19,8 @@ __revision__ = "$Revision$"
 def main(opts, args):
     if args[0] == 'fit':
         return fit(args[1:]) 
+    elif args[0] == 'fit/crossfeeds':
+        return fit_crossfeeds(args[1:]) 
     else:
 	raise NameError(args)
 
@@ -34,29 +37,19 @@ def fit(args):
 
     ln_files(srcdir, dstdir, '.txt')
 
-def ln_files(srcdir, dstdir, pattern=None):
-    fs = []
-    for root, dirs, files in os.walk(srcdir):
-        fs.extend(files)
-        break
-    
-    if pattern is None:
-        src_fs = fs
+
+def fit_crossfeeds(args):
+    label = args[0] 
+    subdir = 'crossfeeds'
+
+    if label == 'v13':
+        src_label = '818ipbv12'
     else:
-        src_fs = [f for f in fs if pattern in f]
+        raise NameError(args)
         
-    n_lnk = 0 
-    cwd = os.getcwd()
-    os.chdir(dstdir)
-    for f in src_fs:
-        src = os.path.join(srcdir, f)
-        try:
-            os.symlink(src, f)
-            n_lnk += 1
+    srcdir = os.path.join(attr.fitpath, src_label, subdir)
+    dstdir = os.path.join(attr.fitpath, label    , subdir)
 
-        except OSError:
-            pass 
+    ln_files(srcdir, dstdir, '.txt')
 
-    os.chdir(cwd)
-    sys.stdout.write('Linked %s files. \n' %n_lnk)
 
