@@ -16,7 +16,7 @@ from tools import DHadCBXTable, data_bkg_double, matrix_inv_cov_epsilon,\
 from attr.modes import modes
 from attr import get_generated_numbers, fitbase, evtlogbase, cbxtabpath,\
     get_dcsd_correction, get_pi0_eff_correction, get_cp_asymmetry
-from tools.filetools import BrfFile, PDLFile
+from tools.filetools import BrfFile, PDLFile, UserFile
 from brf import yields_and_efficiencies
 from math import sqrt 
 
@@ -43,6 +43,10 @@ def brf_chisq(opts, tabname, tabprefix):
     bffile = tools.set_file(
         extbase=attr.brfpath, prefix=tabprefix, comname=bffilename)
     brf = BrfFile(bffile)
+
+    # 49.4 for 52 degrees of freedom, corresponding to a confidence level of 57.8\%. 
+    prs = brf.parsed['chisq']
+    
     sys.stdout.write('%s\n' % brf.parsed['chisq'])
 
 
@@ -341,6 +345,14 @@ def crossSections(opts, tabname, tabprefix):
     tab.output(tabname, trans_dict=attr.cross_sections_dict,
                texstyle=texstyle, tabprefix=tabprefix)
 
+    coeff = tools.set_file(
+        'tex', extbase=attr.cbxtabpath, prefix=tabprefix, comname='coeff')
+    f = UserFile()
+    co = brf.parsed['coeff_ddbar']
+    co = co.split()[-1]
+    value = DHadCBXTable().cell_trim(cell=co, rnd='.01')
+    f.append(str(value))
+    f.output(coeff)
     sys.stdout.write('%s\n' % brf.parsed['coeff_ddbar'])
     
 
@@ -626,6 +638,15 @@ def extlabsbkg_generic(opts, tabname, tabprefix):
                         absbkg_generic_sideband_mctruth, factor])
 
     tab.output()#tabname, tabprefix=tabprefix, outputtxt=True)
+
+
+def fitResults(opts, tabname, tabprefix):
+    fitResultsData(opts, 'fitResultsData', tabprefix)
+    fitResultsRatiosData(opts, 'fitResultsRatiosData', tabprefix)
+    correlationMatrixData(opts, 'correlationMatrixData', tabprefix)
+    yieldSTResidualsData(opts, 'yieldSTResidualsData', tabprefix)
+    yieldDTResidualsData(opts, 'yieldDTResidualsData', tabprefix)
+    crossSections(opts, 'crossSections', tabprefix)
 
 
 def fitResultsData(opts, tabname, tabprefix):
