@@ -146,20 +146,21 @@ def get_sys_err_for_fit(label):
             sys_err_by_mode[mode]['Signal lineshape'] = sig
             sys_err_by_mode[mode]['FSR'] = fsr
 
-    if label not in ['818ipbv12.2', '818ipbv12.3', '818ipbv12.4']:
-        raise NameError(label)
-        n = 0    
-        for fit_para in fit_paras:
-            if fit_para == 'ND0D0Bar' or fit_para =='ND+D-': continue
-            n+= 1
-            sig = float(line_shape_sys[n])*.01
-            fsr = float(fsr_sys[n])*.01
+    # if label not in ['818ipbv12.2', '818ipbv12.3', '818ipbv12.4', '818ipbv12.5', 
+    #                  '818ipbv12.6']:
+    #     raise NameError(label)
+    #     n = 0    
+    #     for fit_para in fit_paras:
+    #         if fit_para == 'ND0D0Bar' or fit_para =='ND+D-': continue
+    #         n+= 1
+    #         sig = float(line_shape_sys[n])*.01
+    #         fsr = float(fsr_sys[n])*.01
 
-            sys_err['Fractional uncertainty per single tag associated \
-            with fit parameter'][fit_para]= sig
+    #         sys_err['Fractional uncertainty per single tag associated \
+    #         with fit parameter'][fit_para]= sig
         
-            sys_err['Fractional uncertainty per D associated with fit \
-            parameter'][fit_para]= fsr
+    #         sys_err['Fractional uncertainty per D associated with fit \
+    #         parameter'][fit_para]= fsr
         
 
     _list = []
@@ -180,7 +181,9 @@ def get_sys_err_for_fit(label):
     for fit_para in fit_paras:
         li = sys_err['Fractional uncertainty per D associated with \
 fit parameter'][fit_para]
-        _list.append(li)
+        #_list.append(li)
+        a = reduce(lambda x, y: math.sqrt(x**2+y**2), li)
+        _list.append(a)
 
     _list.append(sys_err['Fractional uncertainty per single tag'])
 

@@ -1,0 +1,253 @@
+#+SETUPFILE: ~/work/CLEO/analysis/DHad/web/ver.org
+#+TITLE: D-Hadronic Analysis  - 9.03
+
+
+
+* Overview
+ - Objective :: Reproduce the 281/pb signal MC in new release.
+
+ - Environment :: The CLEOG simulation was done in release
+		  =20080624_MCGEN=. The PASS2 reconstruction was done
+		  in =20041104_MCP2_A_1= ( see [[https://wiki.lepp.cornell.edu/lepp/bin/view/CLEO/Private/SW/CodeReleases][CodeReleases]]
+		  description ).  The NTuple was created with the
+		  =HadronicDNTupleProc= module compiled in release
+		  =20080228_FULL=.
+
+
+ - Summary :: We traced several places in order to find the source of
+	      the MC difference. The whole process of this procedure
+	      can be viewed as a diagram below. There are three
+	      places which account for the change, (indicated yellow
+	      in the diagram). A grand comparison table was made to
+	      summarize (see [[./9.03/tab/combine_compare_yields_signal_7dot06_regular_all.org][table]] ). 
+
+	      We figured that to fit the new signal MC, one has to
+	      use new lineshape function along with a few new
+	      parameters and tweaking a factor in the fitting code. A
+	      detailed description and a summary table can be seen at
+	      [[./9.03/tab/combine_compare_yields_signal_7dot06_regular_all_new.org][table]].  From there, we knew that the biggest resource of
+	      this difference comes from the updated DECAY.DEC
+	      file. 
+
+	      Comparing the DECAY.DEC file between 'Original' (2005)
+	      and the 'Defult' (2008), we can see that for D^+, there
+	      were 59 modes unchanged (common modes), but all of
+	      their decay ratios have been changed (see [[./9.03/tab/diff_dec_dp2005_dp2008_common.org][table]] ). 14
+	      modes were removed (see  [[./9.03/tab/diff_dec_dp2005_dp2008_1unique.org][table]] ), and 30 new modes were
+	      added (see [[./9.03/tab/diff_dec_dp2005_dp2008_2unique.org][table]]). For D^0, there were 72 modes
+	      unchanged (see [[./9.03/tab/diff_dec_d02005_d02008_common.org][table]] ), 7 modes added (see [[./9.03/tab/diff_dec_d02005_d02008_1unique.org][table]]), and 56
+	      new modes added (see [[./9.03/tab/diff_dec_d02005_d02008_2unique.org][table]]).
+
+
+	      A similar comparison table for the evt.pdl files between
+              'Original' and 'Default' can be seen at [[./9.03/tab/diff_pdl_2005_2008_common.org][table]] . Certain
+              particles related with the DHad decay are selected in
+              this table (see [[./9.03/tab/diff_pdl_2005_2008_common_selected.org][table]]).
+
+ - Diagram :: The process of tracing the MC difference.  The "Yellow"
+	      process in the diagram means the sources contribute to
+	      the yield difference in MC.
+
+
+	      [[./9.03/fig/trace.png]]
+
+
+ 
+
+* Figures
+
+  1. Virtual photon Energy distribution
+
+     1. Original (7.06) => [[./9.03/fig/virtual_photon_energy_original.org][figure]]
+
+     2. New Release (Regular) =>  [[./9.03/fig/virtual_photon_energy_new.org][figure]]
+
+     3. Old CLEOG constants (Regular3) => [[./9.03/fig/virtual_photon_energy_old_constants.org][figure]]
+
+     4. Four-vector Decay Tree (Regular4) =>  [[./9.03/fig/virtual_photon_energy_decay_tree.org][figure]]
+
+  2. Center of Mass Energy
+
+     1. Default => [[./9.03/fig/center_of_mass_energy_default.org][figure]]
+
+     2. Original (7.06) =>  [[./9.03/fig/center_of_mass_energy_original.org][figure]]
+
+     3. 4Vector =>  [[./9.03/fig/center_of_mass_energy_4vec.org][figure]]
+
+     4. CLEOG constants =>  [[./9.03/fig/center_of_mass_energy_cleog_const.org][figure]]
+
+     5. CLEOG&PDL&DEC  =>  [[./9.03/fig/center_of_mass_energy_cleog_pdl_dec.org][figure]]
+
+  3. \Psi(3770) Energy distribution
+
+     1. Original (7.06) => [[./9.03/fig/psi3770_energy_original.org][figure]]
+
+     2. New Release (Regular) => [[./9.03/fig/psi3770_energy_new.org][figure]]
+
+  4. Radiate photon Energy 
+
+     1. Original (7.06) => [[./9.03/fig/radiate_photon_energy_original.org][figure]]
+
+     2. Default (Regular) => [[./9.03/fig/radiate_photon_energy_default.org][figure]]
+
+     3. Overlay => [[./9.03/fig/radiate_photon_energy_overlay.org][figure]]
+
+  5. Difference of the yields between original and various new tests
+
+     1. Default  => [[./9.03/fig/deviations_compare_yields_signal_default.org][figure]]
+
+     2. Pass2  => [[./9.03/fig/deviations_compare_yields_signal_pass2.org][figure]]
+
+     3. 4Vec  => [[./9.03/fig/deviations_compare_yields_signal_4vec.org][figure]]
+
+     4. DEC  => [[./9.03/fig/deviations_compare_yields_signal_dec.org][figure]]
+
+     5. EBeam => [[./9.03/fig/deviations_compare_yields_signal_ebeam.org][figure]]
+
+     6. PDL&DEC => [[./9.03/fig/deviations_compare_yields_signal_pdl_dec.org][figure]]
+
+     7. EvtGen => [[./9.03/fig/deviations_compare_yields_signal_evtgen.org][figure]]
+
+     8. LineShape  => [[./9.03/fig/deviations_compare_yields_signal_lineshape.org][figure]]
+
+     9. Factor => [[./9.03/fig/deviations_compare_yields_signal_factor.org][figure]]
+
+     10. EvtFac => [[./9.03/fig/deviations_compare_yields_signal_evtfac.org][figure]]
+
+     11. PDL&DEC with new fitting code => [[./9.03/fig/deviations_compare_yields_signal_pdl_dec_new.org][figure]]
+
+     12. EBeam with new fitting code => [[./9.03/fig/deviations_compare_yields_signal_ebeam_new.org][figure]]
+
+     13.  DEC with new fitting code => [[./9.03/fig/deviations_compare_yields_signal_dec_new.org][figure]]
+
+  6. Fitting mBC 
+
+     1. Original (7.06) => [[./7.06/fig/web_plots_regular_t_s_version_7.06.org][figure]]
+
+     2. Default => [[./9.03/fig/web_plots_regular_t_s.org][figure]]
+
+     3. Pass2 => [[./9.03/fig/web_plots_regular1_t_s.org][figure]]
+
+     4. 4Vec => [[./9.03/fig/web_plots_regular4_t_s.org][figure]]
+
+     5. DEC => [[./9.03/fig/web_plots_regular2_t_s.org][figure]]
+
+     6. EBeam => [[./9.03/fig/web_plots_regular3_t_s.org][figure]]
+
+     7. PDL&DEC [[./9.03/fig/web_plots_regular5_t_s.org][figure]]
+
+     8. EvtGen => [[./9.03/fig/web_plots_regular8_t_s.org][figure]]
+
+     9. LineShape => [[./9.03/fig/web_plots_regular11_t_s.org][figure]]
+
+     10. Factor (New Default) => [[./9.03/fig/web_plots_regular12_t_s.org][figure]]
+
+     11. EvtFac => [[./9.03/fig/web_plots_regular13_t_s.org][figure]]
+
+     12. PDL&DEC with new fitting code => [[./9.03/fig/web_plots_regular14_t_s.org][figure]]
+
+     13. EBeam with new fitting code => [[./9.03/fig/web_plots_regular15_t_s.org][figure]]
+
+     14. DEC with new fitting code => [[./9.03/fig/web_plots_regular16_t_s.org][figure]]
+
+
+
+
+* Tables
+
+  1. Grand Comparison Table => [[./9.03/tab/combine_compare_yields_signal_7dot06_regular_all.org][table]] 
+
+  2. Grand comparison table with new fitting code => [[./9.03/tab/combine_compare_yields_signal_7dot06_regular_all_new.org][table]]
+
+  3. New CLEOG and New DNtuple
+
+     1. Compare yields signal 7.06 => [[./9.03/tab/compare_yields_signal_7.06.org][table]]
+
+     2. Single Signal Efficiency => [[./9.03/tab/eff_single_signal.org][table]]
+
+     3. Compare signal efficiency with 7.06 => [[./9.03/tab/compare_eff_single_signal_7.06_9.03.org][table]]
+
+  4. Only New DNtuple - regular1
+
+     1. Compare yields signal 7.06 regular1 => [[./9.03/tab/compare_yields_signal_7.06_regular1.org][table]]
+
+     2. Compare yields regular and regular1 => [[./9.03/tab/compare_yields_signal_regular_regular1.org][table]]
+
+     3. Compare yields data 7.06 regular => [[./9.03/tab/compare_yields_data_7.06_regular.org][table]]
+
+  5. Old DEC file, new release - regular2 
+
+     1. Compare yields signal 7.06 regular2 => [[./9.03/tab/compare_yields_signal_7.06_regular2.org][table]]
+
+     2. Compare yields signal regular regular2 => [[./9.03/tab/compare_yields_signal_regular_regular2.org][table]]
+
+  6. Energy Shift Between Releases
+
+     1. Ecm Energy for MC-20050214, MC-20080624, and Data 31-37 => [[./9.03/tab/energy_shift_for_mc_data.org][table]]
+
+     2. Ecm Energy with constants  =>  [[./9.03/tab/energy_shift_with_constants.org][table]]
+
+     3. Ecm for Data 31-37 with different Dtuple releases =>  [[./9.03/tab/energy_shift_different_dtuple_rel.org][table]]
+
+  7. Old CLEOG constants - regular3 
+
+     1. Compare yields signal 7.06 regular3 => [[./9.03/tab/compare_yields_signal_7.06_regular3.org][table]]
+
+     2. Old table =>  [[./9.03/tab/compare_yields_signal_7.06_regular3_bak.org][table]]
+
+  8. Old DecayTree - regular4
+
+     1. Compare yields Single\_Dm\_to\_Kspipi0 7.06 regular4 => [[./9.03/tab/compare_yields_Single_Dm_to_Kspipi0_7.06_regular4.org][table]]
+
+     2. Compare yields signal 7.06 regular4 => [[./9.03/tab/compare_yields_signal_7.06_regular4.org][table]]
+
+  9. Use old particle table listing - regular5 => [[./9.03/tab/compare_yields_signal_7.06_regular5.org][table]]
+
+  10. Virtual photon Energy => [[./9.03/tab/virtual_photon_energy.org][table]]
+
+  11. Use old constants and old evt.pdl - regular8 =>  [[./9.03/tab/compare_yields_signal_7.06_regular8.org][table]] 
+
+  12. More events in trouble mode - regular9 => [[./9.03/tab/more_events_in_trouble_mode.org][table]]
+
+  13. More event in trouble mode with old constants and old evt.pdl - regular10 =>  [[./9.03/tab/more_events_in_trouble_mode_old_constants.org][table]]
+
+  14. New lineshapes - regular11 => [[./9.03/tab/compare_yields_signal_7.06_regular11.org][table]]
+
+  15. Remove the factor in the lineshape - regular12 => [[./9.03/tab/compare_yields_signal_7.06_regular12.org][table]]
+
+  16. Compare chisquare between "Factor" and original - regular12 => [[./9.03/tab/compare_chisquare_between_factor_and_original.org][table]]
+
+  17. List yields for original and default in signal and background => [[./9.03/tab/sig_bkg_tot_single_signal_7.06_9.03.org][table]]
+
+  18. Compare yields between EvtFac and Orginal - regular13 => [[./9.03/tab/compare_yields_signal_7.06_regular13.org][table]]
+
+  19. 'PDL&DEC' with new fitting code - regular14 => [[./9.03/tab/compare_yields_signal_7.06_regular14.org][table]]
+
+  20. 'EBeam' with new fitting code - regular15 => [[./9.03/tab/compare_yields_signal_7.06_regular15.org][table]]
+
+  21. 'DEC' with new fitting code - regular16 => [[./9.03/tab/compare_yields_signal_7.06_regular16.org][table]] 
+
+  22. Common modes of the DECAY.DEC files between 'Original' (2005) and 'Default' (2008) for D+ => [[./9.03/tab/diff_dec_dp2005_dp2008_common.org][table]]
+
+  23. Unique modes of the DECAY.DEC in 'Original' (2005) for D+ => [[./9.03/tab/diff_dec_dp2005_dp2008_1unique.org][table]]
+
+  24. Unique modes of the DECAY.DEC in 'Default' (2008) for D+ => [[./9.03/tab/diff_dec_dp2005_dp2008_2unique.org][table]]
+
+  25. Common modes of the DECAY.DEC files between 'Original' (2005) and 'Default' (2008) for D0 => [[./9.03/tab/diff_dec_d02005_d02008_common.org][table]]
+
+  26. Unique modes of the DECAY.DEC in 'Original' (2005) for D0 => [[./9.03/tab/diff_dec_d02005_d02008_1unique.org][table]]
+
+  27. Unique modes of the DECAY.DEC in 'Default' (2008) for D0 => [[./9.03/tab/diff_dec_d02005_d02008_2unique.org][table]]
+
+  28. Common particles of the EVT.PDL files between 'Original' and 'Default' => [[./9.03/tab/diff_pdl_2005_2008_common.org][table]]
+
+  29. Common particles of the EVT.PDL files between 'Original' and 'Default' - selected to DHad => [[./9.03/tab/diff_pdl_2005_2008_common_selected.org][table]]
+
+
+ 
+
+ 
+
+* Details
+
+  - [[./rel-9.03-details][Details]]

@@ -1,0 +1,102 @@
+#+TITLE: D-Hadronic Analysis Tables - 11.4 
+
+
+* Version 11.4 
+
+  - Momentum resolution Parameters
+
+    | 281ipbv12    | 537ipbv12    | 818ipbv12    | 818ipbv13    |
+    |--------------+--------------+--------------+--------------|
+    | [[./tab/281ipbv12/para_momentum_resolution.org][table]] ([[./tab/281ipbv12/para_momentum_resolution.info][info]]) | [[./tab/537ipbv12/para_momentum_resolution.org][table]] ([[./tab/537ipbv12/para_momentum_resolution.info][info]]) | [[./tab/818ipbv12/para_momentum_resolution.org][table]] ([[./tab/818ipbv12/para_momentum_resolution.info][info]]) | [[./tab/818ipbv13/para_momentum_resolution.org][table]] ([[./tab/818ipbv13/para_momentum_resolution.info][info]]) |
+
+
+  - Compare Yields
+
+    | Type          | Label     | 281ipbv0     | 537ipbv7     |
+    |---------------+-----------+--------------+--------------|
+    | Data Single   | 281ipbv12 | [[./tab/281ipbv12/compare_yields_data_single_281ipbv0.org][table]] ([[./tab/281ipbv12/compare_yields_data_single_281ipbv0.info][info]]) |              |
+    |               | 281ipbv7  | [[./tab/281ipbv7/compare_yields_data_single_281ipbv0.org][table]] ([[./tab/281ipbv7/compare_yields_data_single_281ipbv0.info][info]]) |              |
+    |---------------+-----------+--------------+--------------|
+    | Signal Single | 281ipbv12 | [[./tab/281ipbv12/compare_yields_signal_single_281ipbv0.org][table]] ([[./tab/281ipbv12/compare_yields_signal_single_281ipbv0.info][info]]) |              |
+    |               | 281ipbv7  | [[./tab/281ipbv7/compare_yields_signal_single_281ipbv0.org][table]] ([[./tab/281ipbv7/compare_yields_signal_single_281ipbv0.info][info]]) |              |
+    |---------------+-----------+--------------+--------------|
+    | Data Single   | 537ipbv12 |              | [[./tab/537ipbv12/compare_yields_data_single_537ipbv7.org][table]] ([[./tab/537ipbv12/compare_yields_data_single_537ipbv7.info][info]]) |
+    | Signal Single |           |              | [[./tab/537ipbv12/compare_yields_signal_single_537ipbv7.org][table]] ([[./tab/537ipbv12/compare_yields_signal_single_537ipbv7.info][info]]) |
+
+
+  - Compare BFs
+
+    | Label       | 281ipbv0     |
+    |-------------+--------------|
+    | 281ipbv12.0 | [[./tab/281ipbv12.0/compare_brf_data_results_281ipbv0.org][table]] ([[./tab/281ipbv12.0/compare_brf_data_results_281ipbv0.info][info]]) |
+    | 818ipbv12.0 | [[./tab/818ipbv12.0/compare_brf_data_results_281ipbv0.org][table]] ([[./tab/818ipbv12.0/compare_brf_data_results_281ipbv0.info][info]]) |
+    | 818ipbv12.1 | [[./tab/818ipbv12.1/compare_brf_data_results_281ipbv0.org][table]] ([[./tab/818ipbv12.1/compare_brf_data_results_281ipbv0.info][info]]) |
+    | 818ipbv12.2 | [[./tab/818ipbv12.2/compare_brf_data_results_281ipbv0.org][table]] ([[./tab/818ipbv12.2/compare_brf_data_results_281ipbv0.info][info]]) |
+    | 818ipbv12.3 | [[./tab/818ipbv12.3/compare_brf_data_results_281ipbv0.org][table]] ([[./tab/818ipbv12.3/compare_brf_data_results_281ipbv0.info][info]]) |
+    | 818ipbv12.4 | [[./tab/818ipbv12.4/compare_brf_data_results_281ipbv0.org][table]] ([[./tab/818ipbv12.4/compare_brf_data_results_281ipbv0.info][info]]) |
+
+    - 818ipbv12.2 compare with 12.3: [[./tab/818ipbv12.2/compare_brf_data_results_818ipbv12.3.org][table]] 
+    - 818ipbv12.5 (with out tracking): compare with 12.3:  [[./tab/818ipbv12.5/compare_brf_data_results_818ipbv12.3.org][table]]
+
+    - 818ipbv12.6: uncertainty per D associated with fit parameter
+      Compare with 12.3  [[./tab/818ipbv12.6/compare_brf_data_results_818ipbv12.3.org][table]]
+
+    - 818ipbv12.7: add two pions tracking syst to the Ks modes. 
+      Compare with 12.6 [[./tab/818ipbv12.7/compare_brf_data_results_818ipbv12.6.org][table]]
+
+    - 818ipbv12.8: update the DCSD corrections with PDG2013. 
+      Compare with 12.7 [[./tab/818ipbv12.8/compare_brf_data_results_818ipbv12.7.org][table]]
+
+    - v13.1: update the DEDAY.DEC for KKpi 
+      Compare with 12.8 [[./tab/v13.1/compare_brf_data_results_818ipbv12.8.org][table]] 
+      Compare with 281ipbv0 [[./tab/v13.1/compare_brf_data_results_281ipbv0.org][table]]
+
+    - v13.2: update the KKpi structrue syst to 2.6%
+      Compare with v13.1 [[./tab/v13.2/compare_brf_data_results_v13.1.org][table]]
+      Compare with 12.8 
+    - 818ipbv12.6: uncertainty per D associated with fit parameter
+      Compare with 12.3  [[./tab/818ipbv12.6/compare_brf_data_results_818ipbv12.3.org][table]]
+
+    - 818ipbv12.7: add two pions tracking syst to the Ks modes. 
+      Compare with 12.6 [[./tab/818ipbv12.7/compare_brf_data_results_818ipbv12.6.org][table]]
+
+    - 818ipbv12.8: update the DCSD corrections with PDG2013. 
+      Compare with 12.7 [[./tab/818ipbv12.8/compare_brf_data_results_818ipbv12.7.org][table]]
+
+    - v13.1: update the DEDAY.DEC for KKpi 
+      Compare with 12.8 [[./tab/v13.1/compare_brf_data_results_818ipbv12.8.org][table]] 
+      Compare with 281ipbv0 [[./tab/v13.1/compare_brf_data_results_281ipbv0.org][table]]
+
+    - v13.2: update the KKpi structrue syst to 2.6%
+      Compare with v13.1 [[./tab/v13.2/compare_brf_data_results_v13.1.org][table]]
+      Compare with 12.8 [[./tab/v13.2/compare_brf_data_results_818ipbv12.8.org][table]] 
+
+
+
+  - Generic BFs
+
+    | Label       | BFs          |
+    |-------------+--------------|
+    | 281ipbv0.0  | [[./tab/281ipbv0.0/generic_fitResultsMC.org][table]] ([[./tab/281ipbv0.0/generic_fitResultsMC.info][info]]) |
+    | 281ipbv0.1  | [[./tab/281ipbv0.1/generic_fitResultsMC.org][table]] ([[./tab/281ipbv0.1/generic_fitResultsMC.info][info]]) |
+    | 281ipbv0.2  | [[./tab/281ipbv0.2/generic_fitResultsMC.org][table]] ([[./tab/281ipbv0.2/generic_fitResultsMC.info][info]]) |
+    |-------------+--------------|
+    | 281ipbv12.0 | [[./tab/281ipbv12.0/generic_fitResultsMC.org][table]] ([[./tab/281ipbv12.0/generic_fitResultsMC.info][info]]) |
+    | 281ipbv12.1 | [[./tab/281ipbv12.1/generic_fitResultsMC.org][table]] ([[./tab/281ipbv12.1/generic_fitResultsMC.info][info]]) |
+    | 281ipbv12.2 | [[./tab/281ipbv12.2/generic_fitResultsMC.org][table]] ([[./tab/281ipbv12.2/generic_fitResultsMC.info][info]]) |
+    |-------------+--------------|
+    | 818ipbv12.0 | [[./tab/818ipbv12.0/generic_fitResultsMC.org][table]] ([[./tab/818ipbv12.0/generic_fitResultsMC.info][info]]) |
+    | 818ipbv12.2 | [[./tab/818ipbv12.2/generic_fitResultsMC.org][table]] ([[./tab/818ipbv12.2/generic_fitResultsMC.info][info]]) |
+
+ 
+* COMMENT Setup 
+#+STARTUP: hidestars 
+#+LINK_HOME: http://www.lepp.cornell.edu/~xs32/
+#+LINK_UP: ./
+#+STYLE: <link rel="stylesheet" type="text/css" href="web/main.css" />
+#+STYLE: <link rel="shortcut icon" href="web/cleo.ico"/>
+#+INFOJS_OPT: view:info path:web/org-info.js tdepth:1 ftoc:t 
+#+OPTIONS: author:nil creator:nil num:nil toc:nil todo:nil H:4 
+#+SEQ_TODO: TODO STARTED WAITING | DONE CANCELED
+#+PROPERTY: Effort_ALL 0:15 0:30 1:00 1:30 2:00 2:30 3:00 4:00 5:00 6:00 7:00 8:00
+#+COLUMNS: %40ITEM(Task) %5Effort(Estimated Effort){:} %CLOCKSUM

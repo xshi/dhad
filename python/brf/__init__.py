@@ -19,7 +19,6 @@ __revision__ = "$Revision$"
 
 def main(opts, args):
     verbose = opts.verbose
-    
     paras = parse_parameters(opts, args)
 
     prefix = paras[0]
@@ -29,7 +28,7 @@ def main(opts, args):
     fit1 = paras[4]
     fit2 = paras[5]
 
-
+ 
     if '/generic' in prefix:
         if prefix == 'dir_281ipbv0.0/generic' or \
                prefix == 'dir_281ipbv0.2/generic' :

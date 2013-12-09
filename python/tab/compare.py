@@ -357,14 +357,16 @@ def brf_data_results(opts, tabname, args):
             factor =  0.000001
         elif '537ipb' in label:
             factor =  0.000001*281/537
-        elif '818ipb' in label:
+        elif '818ipb' in label or 'v13' in label:
             factor =  0.000001*281/818
         else:
             raise NameError(label)
 
         if '818ipb' in label_A and '818ipb' in label_B:
             factor = 0.000001
-            
+        if '818ipb' in label_A and 'v13' in label_B: 
+            factor = 0.000001            
+
         bffile = os.path.join(attr.brfpath, label, bffilename)
         if not paras:
             tab.column_append(tools.parse_result(bffile, 'paras'),

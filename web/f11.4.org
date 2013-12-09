@@ -1,0 +1,139 @@
+#+TITLE: D-Hadronic Analysis Figures - 11.4 
+
+
+* Signal
+
+   | Type                  | 281ipbv12 | 537ipbv12 | 818ipbv12       | 818ipbv13 |
+   |-----------------------+-----------+-----------+-----------------+-----------|
+   | Progress              | [[./fig/281ipbv12/p281.png][diagram]]   |           | [[./fig/818ipbv12/p818.png][proc]], [[./fig/818ipbv12/b818.png][bkg]], [[./fig/818ipbv12/s818.png][sys]]  |           |
+   |-----------------------+-----------+-----------+-----------------+-----------|
+   | Resolution parameters | [[./fig/281ipbv12/signal_diagdouble_resolution.org][figure]]    | [[./fig/537ipbv12/signal_diagdouble_resolution.org][figure]]    | [[./fig/818ipbv12/signal_diagdouble_resolution.org][figure]]          | [[./fig/818ipbv13/signal_diagdouble_resolution.org][figure]]    |
+   | Signal MC single tags | [[./fig/281ipbv12/signal_single_p.org][figure]]    | [[./fig/537ipbv12/signal_single_p.org][figure]]    | [[./fig/818ipbv12/signal_single_p.org][figure]]          | [[./fig/818ipbv13/signal_single_p.org][figure]]    |
+   | Signal MC double tags | [[./fig/281ipbv12/signal_double.org][figure]]    | [[./fig/537ipbv12/signal_double.org][figure]]    | [[./fig/818ipbv12/signal_double.org][figure]]          | [[./fig/818ipbv13/signal_double.org][figure]]    |
+   | Data single tags      | [[./fig/281ipbv12/data_single_p.org][figure]]    | [[./fig/537ipbv12/data_single_p.org][figure]]    | [[./fig/818ipbv12/data_single_p.org][figure]]          | [[./fig/818ipbv13/data_single_p.org][figure]]    |
+   | Data double tags      | [[./fig/281ipbv12/data_double.org][figure]]    | [[./fig/537ipbv12/data_double.org][figure]]    | [[./fig/818ipbv12/data_double.org][figure]]          | [[./fig/818ipbv13/data_double.org][figure]]    |
+   | Crossfeeds - diagonal | [[./fig/281ipbv12/crossfeeds_signal_diag.org][figure]]    | [[./fig/537ipbv12/crossfeeds_signal_diag.org][figure]]    | [[./fig/818ipbv12/crossfeeds_signal_diag.org][figure]]          | [[./fig/818ipbv13/crossfeeds_signal_diag.org][figure]]    |
+   | Crossfeeds - non-diag | [[./fig/281ipbv12/crossfeeds_signal_nondiag.org][figure]]    | [[./fig/537ipbv12/crossfeeds_signal_nondiag.org][figure]]    | [[./fig/818ipbv12/crossfeeds_signal_nondiag.org][figure]]          | [[./fig/818ipbv13/crossfeeds_signal_nondiag.org][figure]]    |
+   | Generic MC single tag | [[./fig/281ipbv12/generic_single_p.org][figure]]    |           | [[./fig/818ipbv12/generic_single_p.org][figure]]          |           |
+   | Generic MC double tag | [[./fig/281ipbv12/generic_double.org][figure]]    |           | [[./fig/818ipbv12/generic_double.org][figure]]          |           |
+   | Data double all D0s   |           |           | [[./fig/818ipbv12/data_double_all_d0s.org][figure]] , [[./fig/818ipbv12.1/data_double_all_d0s.org][figure]] |           |
+   | Data double all Dps   |           |           | [[./fig/818ipbv12/data_double_all_dps.org][figure]] , [[./fig/818ipbv12.1/data_double_all_dps.org][figure]] |           |
+
+  - 281ipbv0:
+    Generic MC single tag: [[./fig/281ipbv0/generic_single_p.org][figure]] 
+    Generic MC double tag: [[./fig/281ipbv0/generic_double.org][figure]]
+
+  - Backgrounds:
+
+    Kssideband (818ipbv12) signal MC: [[./fig/818ipbv12/signal_single_ks_p_kssideband.org][figure]]
+
+  - Systmatics
+
+    | Data type  | Tag    | Type                          | 818ipbv12 |
+    |------------+--------+-------------------------------+-----------|
+    | Data       | single | Gamma = 0.0227 GeV            | [[./fig/818ipbv12/data_single_p_gamma_0.0227.org][figure]]    |
+    |            |        | Gamma = 0.0277 GeV            | [[./fig/818ipbv12/data_single_p_gamma_0.0277.org][figure]]    |
+    |            |        | Mass = 3.7719 GeV             | [[./fig/818ipbv12/data_single_p_mass_3.7719.org][figure]]    |
+    |            |        | Mass = 3.7729 GeV             | [[./fig/818ipbv12/data_single_p_mass_3.7729.org][figure]]    |
+    |            |        | Mass = 3.7779 GeV             | [[./fig/818ipbv12/data_single_p_mass_3.7779.org][figure]]    |
+    |            |        | Mass = 3.7709 GeV             | [[./fig/818ipbv12/data_single_p_mass_3.7709.org][figure]]    |
+    |            |        | Mass = 3.7734 GeV             | [[./fig/818ipbv12/data_single_p_mass_3.7734.org][figure]]    |
+    |            |        | Mass = 3.7704 GeV             | [[./fig/818ipbv12/data_single_p_mass_3.7704.org][figure]]    |
+    |            |        | Mass = 3.7739 GeV             | [[./fig/818ipbv12/data_single_p_mass_3.7739.org][figure]]    |
+    |            |        | R = 8.7                       | [[./fig/818ipbv12/data_single_p_r_8.7.org][figure]]    |
+    |            |        | R = 16.7                      | [[./fig/818ipbv12/data_single_p_r_16.7.org][figure]]    |
+    |            |        | Wide Delta E                  | [[./fig/818ipbv12/data_single_p_widede.org][figure]]    |
+    |            |        | P = 0.5                       | [[./fig/818ipbv12/data_single_p_p_0.5.org][figure]]    |
+    |            |        | \pi^0 mass:                   |           |
+    |            |        | +--> D0 \to K\pi\pi^0         |           |
+    |            |        | +-----> Delta E sideband low  |           |
+    |            |        | +-----> Delta E sideband high |           |
+    |            |        | +-----> Combined              |           |
+    |            |        | Delta E distribution          |           |
+    |            |        | Delta E sideband low          | [[./fig/818ipbv12/data_single_p_desideband_low.org][figure]]    |
+    |            |        | +--> fix sigmap1              |           |
+    |            |        | +--> fix N1, N2               |           |
+    |            |        | Detla E sideband high         | [[./fig/818ipbv12/data_single_p_desideband_high.org][figure]]    |
+    |            |        | +--> fix sigmap1              |           |
+    |            |        | +--> fix N1, N2               |           |
+    |            |        | ARGUS para low                | [[./fig/818ipbv12/data_single_p_argus_low.org][figure]]    |
+    |            |        | +--> fix N1, N2               |           |
+    |            |        | ARGUS para high               | [[./fig/818ipbv12/data_single_p_argus_high.org][figure]]    |
+    |            |        | +--> fix N1, N2               |           |
+    |            |        | single candidate              |           |
+    |            |        | multiple candidate            |           |
+    |            |        | Ks sideband                   | [[./fig/818ipbv12/data_single_ks_p_kssideband.org][figure]]    |
+    |            |        | +--> fix sigmap1              | [[./fig/818ipbv12/data_single_ks_p_kssideband_fix_sigmap1.org][figure]]    |
+    |            |        | KK mass                       |           |
+    |            |        | +--> compare with signal      | [[./fig/818ipbv12/evt_kkmass_signal,data_Single_Dp_to_KKpi.org][figure]]    |
+    |            |        | +--> In Bins                  | [[./fig/818ipbv12/kkmass0_signal_data_Single_Dp_to_KKpi.org][figure]]    |
+    |            |        | +--> In Bins bkgd subtracted  | [[./fig/818ipbv12/kkmass_data_Single_Dp_to_KKpi.org][figure]]    |
+    |            |        | +-----> Compare with signal   | [[./fig/818ipbv12/kkmass1_signal_data_Single_Dp_to_KKpi.org][figure]]    |
+    |            |        | Kpi mass                      |           |
+    |            |        | +--> compare with signal      | [[./fig/818ipbv12/evt_kpimass_signal,data_Single_Dp_to_KKpi.org][figure]]    |
+    |            |        | +--> In bins                  | [[./fig/818ipbv12/kpimass0_signal_data_Single_Dp_to_KKpi.org][figure]]    |
+    |            |        | +--> In bins bkgd subtracted  | [[./fig/818ipbv12/kpimass_data_Single_Dp_to_KKpi.org][figure]]    |
+    |            |        | +-----> Compare with signal   | [[./fig/818ipbv12/kpimass1_signal_data_Single_Dp_to_KKpi.org][figure]]    |
+    |            | double | Gamma = 0.0227 GeV            | [[./fig/818ipbv12/data_double_gamma_0.0227.org][figure]]    |
+    |            |        | Gamma = 0.0277 GeV            | [[./fig/818ipbv12/data_double_gamma_0.0277.org][figure]]    |
+    |            |        | Mass = 3.7719 GeV             | [[./fig/818ipbv12/data_double_mass_3.7719.org][figure]]    |
+    |            |        | Mass = 3.7729 GeV             | [[./fig/818ipbv12/data_double_mass_3.7729.org][figure]]    |
+    |            |        | R = 8.7                       | [[./fig/818ipbv12/data_double_r_8.7.org][figure]]    |
+    |            |        | R = 16.7                      | [[./fig/818ipbv12/data_double_r_16.7.org][figure]]    |
+    |            |        | Wide Delta E                  | [[./fig/818ipbv12/data_double_widede.org][figure]]    |
+    |            |        | P = 0.5                       | [[./fig/818ipbv12/data_double_p_0.5.org][figure]]    |
+    |------------+--------+-------------------------------+-----------|
+    | Signal MC  | single | Wide Delta E                  | [[./fig/818ipbv12/signal_single_p_widede.org][figure]]    |
+    |            |        | no FSR                        | [[./fig/818ipbv12/signal_single_p_nofsr.org][figure]]    |
+    |            |        | P = 0.5                       | [[./fig/818ipbv12/signal_single_p_p_0.5.org][figure]]    |
+    |            |        | Wide Delta E, noFSR           | [[./fig/818ipbv12/signal_single_p_widede_nofsr.org][figure]]    |
+    |            |        | Triggered                     | [[./fig/818ipbv12/signal_single_p_trig.org][figure]]    |
+    |            |        | +--> 281ipbv0                 | [[./fig/281ipbv0/signal_single_p_trig.org][figure]]    |
+    |            |        | Delta E sideband              |           |
+    |            |        | single candidate              |           |
+    |            |        | multiple candidate            |           |
+    |            |        | Ks sideband                   | [[./fig/818ipbv12/signal_single_ks_p_kssideband.org][figure]]    |
+    |            |        | KK mass                       |           |
+    |            |        | +--> In Bins                  | [[./fig/818ipbv12/kkmass_signal_Single_Dp_to_KKpi.org][figure]]    |
+    |            |        | KKpi components               |           |
+    |            |        | +--> phi pi                   | [[./fig/818ipbv12/signal_Single_Dp_to_KKpi_phipi.org][figure]]    |
+    |            |        | +--> k0star                   | [[./fig/818ipbv12/signal_Single_Dp_to_KKpi_k0star.org][figure]]    |
+    |            |        | +--> PHSP                     | [[./fig/818ipbv12/signal_Single_Dp_to_KKpi_phsp.org][figure]]    |
+    |            |        | +--> kstar1410                | [[./fig/818ipbv12/signal_Single_Dp_to_KKpi_kstar1410.org][figure]]    |
+    |            |        | +--> phi pi (old MC)          | [[./fig/281ipbv0/signal_Single_Dp_to_KKpi_phipi.org][figure]]    |
+    |            |        | +--> k0star (old MC)          | [[./fig/281ipbv0/signal_Single_Dp_to_KKpi_k0star.org][figure]]    |
+    |            |        | +--> PHSP (old MC)            | [[./fig/281ipbv0/signal_Single_Dp_to_KKpi_phsp.org][figure]]    |
+    |            |        | KKpi momentum distributions   |           |
+    |            |        | +--> phipi                    | [[./fig/818ipbv12/phipi/trkmtm/kkpi_momenta.pdf][figure]]    |
+    |            |        | +--> k0star                   | [[./fig/818ipbv12/k0star/trkmtm/kkpi_momenta.pdf][figure]]    |
+    |            |        | +--> phsp                     | [[./fig/818ipbv12/phsp/trkmtm/kkpi_momenta.pdf][figure]]    |
+    |            | double | Wide Delta E                  | [[./fig/818ipbv12/signal_double_widede.org][figure]]    |
+    |            |        | no FSR                        | [[./fig/818ipbv12/signal_double_nofsr.org][figure]]    |
+    |            |        | P = 0.5                       | [[./fig/818ipbv12/signal_double_p_0.5.org][figure]]    |
+    |            |        | Wide Delta E, noFSR           | [[./fig/818ipbv12/signal_double_widede_nofsr.org][figure]]    |
+    |            |        | Triggered                     | [[./fig/818ipbv12/signal_double_trig.org][figure]]    |
+    |            |        | single candidate              |           |
+    |            |        | multiple candidate            |           |
+    |------------+--------+-------------------------------+-----------|
+    | Generic MC | single | Delta E sideband low          |           |
+    |            |        | Delta E sideband high         |           |
+    |            |        | ARGUS para low                |           |
+    |            |        | ARGUS para high               |           |
+    |            |        | Ks sideband                   | [[./fig/818ipbv12/generic_single_ks_p_kssideband.org][figure]]    |
+    |            |        | +--> fix sigmap1              |           |
+    |            |        | single candidate              |           |
+    |            |        | multiple candidate            |           |
+
+
+
+
+* COMMENT Setup 
+#+STARTUP: hidestars 
+#+LINK_HOME: http://www.lepp.cornell.edu/~xs32/
+#+LINK_UP: ./
+#+STYLE: <link rel="stylesheet" type="text/css" href="web/main.css" />
+#+STYLE: <link rel="shortcut icon" href="web/cleo.ico"/>
+#+INFOJS_OPT: view:info path:web/org-info.js tdepth:1 ftoc:t 
+#+OPTIONS: author:nil creator:nil num:nil toc:nil todo:nil H:4 
+#+SEQ_TODO: TODO STARTED WAITING | DONE CANCELED
+

@@ -877,13 +877,15 @@ def lineshapeparameters(opts, tabname, tabprefix):
 def mode_dependent_syst(opts, tabname, tabprefix):
     label = tabprefix.replace('dir_', '')
     outtabprefix = tabprefix
+
     if label == '818ipbv12.4':
         tabprefix = 'dir_818ipbv12'
         signal_shape_prefix = 'dir_818ipbv12.4'
-    else:
+    
+    if label == 'v13.2':
+        tabprefix = 'dir_818ipbv12.7'
         signal_shape_prefix = tabprefix
         
-
     tab = DHadCBXTable()
     modenames = [modes[mode]['sname'] for mode in modes]
     modenames.insert(0, 'Source')
@@ -899,7 +901,12 @@ def mode_dependent_syst(opts, tabname, tabprefix):
     tab.row_append(mode_syst_fsr(tabprefix))
     tab.row_append(mode_syst_de(tabprefix))
     tab.row_append(mode_syst_signal_shape(signal_shape_prefix))
-    tab.row_append(mode_syst_substructure(tabprefix))
+
+    if label == 'v13.2':
+        tab.row_append(mode_syst_substructure(label))
+    else: 
+        tab.row_append(mode_syst_substructure(tabprefix))
+
     tab.row_append(mode_syst_multcand(tabprefix))
 
     texhead = r'''Source & $K\pi$ & $K\pi\pi^0$ & $K\pi\pi\pi$ & $K\pi\pi$ & $K\pi\pi\pi^0$ & $K_S^0\pi$ & $K_S^0\pi\pi^0$ & $K_S^0\pi\pi\pi$ & $KK\pi$ '''
@@ -1083,8 +1090,12 @@ def mode_syst_signal_shape(tabprefix):
 
 def mode_syst_substructure(tabprefix):
     tabdir = tabprefix.replace('dir_', '')
+    inputdir = tabdir 
+    if tabdir == 'v13.2':
+        inputdir = '818ipbv12.7'
+    
     tabname = 'resonant_syst.txt'
-    tabfile = os.path.join(cbxtabpath, tabdir, tabname)
+    tabfile = os.path.join(cbxtabpath, inputdir, tabname)
     tab = DHadCBXTable(tabfile)
     colname = 'max (%)'
     syst = tab.column_get(colname)
@@ -1093,7 +1104,10 @@ def mode_syst_substructure(tabprefix):
     # tab_kkpi.output()
     # syst_kkpi = tab_kkpi.column_get('max-diff(%)')
     # syst_kkpi = max(syst_kkpi[1], syst_kkpi[2])
-    syst_kkpi = 0.99
+    if tabdir == '818ipbv12.7': 
+        syst_kkpi = 0.99
+    if tabdir == 'v13.2': 
+        syst_kkpi = 2.60 
     syst[-1] = syst_kkpi
     syst[0] = 'Substructure (*)'
     return syst

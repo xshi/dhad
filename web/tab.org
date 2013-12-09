@@ -1,0 +1,9 @@
+#+STARTUP: hidestars 
+#+LINK_HOME: http://www.lepp.cornell.edu/~xs32/
+#+LINK_UP: ../../
+#+STYLE: <link rel="stylesheet" type="text/css" href="../../web/main.css" />
+#+STYLE: <link rel="shortcut icon" href="../../web/cleo.ico"/>
+#+TITLE: D-Hadronic Analysis Table
+#+OPTIONS: author:nil creator:nil num:nil toc:nil todo:nil H:4 
+
+

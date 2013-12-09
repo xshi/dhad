@@ -309,11 +309,14 @@ def get_external_bkg_files(prefix):
 
         if '281ipb' in label or label in ['818ipbv12.0', '818ipbv12.0/generic',
                                           '818ipbv12.1', '818ipbv12.2',
-                                          '818ipbv12.3', '818ipbv12.4']:
+                                          '818ipbv12.3', '818ipbv12.4', 
+                                          '818ipbv12.8', 'v13.1', 'v13.2']:
             shutil.copy2(source_file, dest_file) 
+
         elif '537ipb' in label:
             factor = 1.91
             scale_absolute_bkgs(source_file, dest_file, factor)
+
         elif label in ['818ipbv7', '818ipbv8', '818ipbv9']:
             factor = 2.91
             scale_absolute_bkgs(source_file, dest_file, factor)
@@ -362,7 +365,7 @@ def get_data_statonly_crosssectionsdef(prefix):
         lumi = '281.50'
     elif '537ipb' in prefix:
         lumi = '536.57'
-    elif '818ipb' in prefix:
+    elif '818ipb' in prefix or 'v13' in prefix:
         lumi = '818.10'
     else:
         raise NameError(prefix)
@@ -393,7 +396,7 @@ def get_data_crosssectionsdef(prefix):
     elif '537ipb' in prefix:
         lumi = '536.57'
         lumi_err = '5.3657'
-    elif '818ipb' in prefix:
+    elif '818ipb' in prefix or 'v13' in prefix:
         lumi = '818.10'
         lumi_err = '8.1810'
     else:

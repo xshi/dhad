@@ -517,9 +517,6 @@ def desideband(mode, side):
 #--------------------------------------------------
 # Functions
 #--------------------------------------------------
-
-
-
 def get_tag_numbers(mode):
     if 'Single_' in mode:
         name = mode.replace('Single_', '')
@@ -759,6 +756,8 @@ def sys_err(label):
          label == '818ipbv12.8' or \
          label == 'v13.1':
         from attr.syserr_818ipbv12_7 import sys_err, sys_err_by_mode
+    elif label == 'v13.2':
+        from attr.syserr_v13_2 import sys_err, sys_err_by_mode        
     else:
         raise NameError(label)
     return sys_err, sys_err_by_mode
@@ -779,7 +778,8 @@ def import_bkg(label):
     elif label == '818ipbv12.0/generic' or label == '818ipbv12.2/generic': 
         from attr import bkg_818ipbv7_generic as bkg
     elif label == '818ipbv12.1' or label == '818ipbv12.2' \
-            or label == '818ipbv12.3' or label == '818ipbv12.4': 
+            or label == '818ipbv12.3' or label == '818ipbv12.4' \
+            or label == 'v13.1' or label == 'v13.2': 
         from attr import bkg_818ipbv12 as bkg
     else:
         raise NameError(label)

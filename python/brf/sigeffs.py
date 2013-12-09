@@ -81,7 +81,7 @@ def get_generated_numbers_single(i, prefix=''):
         mult_fact = 10
     elif '537ipb' in prefix:
         mult_fact = 20
-    elif '818ipb' in prefix:
+    elif '818ipb' in prefix or 'v13' in prefix:
         mult_fact = 30
     else:
         raise NameError(prefix)
@@ -90,6 +90,11 @@ def get_generated_numbers_single(i, prefix=''):
     sign = i[1]
     tag_number = modes[mode]['tag_num_s']
     count = tag_number*mult_fact
+    if mode == 205: 
+        if sign == 1:
+            count = 29972 # 30000
+        if sign == -1: 
+            count = 35969 # 36000
 
     if 'noFSR' in prefix:
         mode = i[0]
@@ -248,7 +253,7 @@ def get_generated_numbers_double(pair, prefix=''):
         mult_fact = 10
     elif '537ipb' in prefix:
         mult_fact = 20
-    elif '818ipb' in prefix:
+    elif '818ipb' in prefix or 'v13' in prefix:
         mult_fact = 30
     else:
         raise NameError(prefix)
@@ -264,7 +269,33 @@ def get_generated_numbers_double(pair, prefix=''):
 
     tag_number = 2000
     count = tag_number * mult_fact
-
+    if 'v13' in prefix: 
+        fname = modes[i]['fname']
+        fnamebar = modes[j]['fnamebar']
+        modename = 'Double_%s__%s' %(fname, fnamebar)
+        if modename == 'Double_Dp_to_KKpi__Dm_to_KKpi': 
+            count = 47966
+        if modename == 'Double_Dp_to_KKpi__Dm_to_Kpipipi0':
+            count = 58403
+        if modename == 'Double_Dp_to_KKpi__Dm_to_Kpipi': 
+            count = 57954
+        if modename == 'Double_Dp_to_KKpi__Dm_to_Kspipi0': 
+            count = 57969
+        if modename == 'Double_Dp_to_KKpi__Dm_to_Kspipipi': 
+            count = 24693
+        if modename == 'Double_Dp_to_KKpi__Dm_to_Kspi': 
+            count = 57953
+        if modename == 'Double_Dp_to_Kpipi__Dm_to_KKpi':
+            count = 59952
+        if modename == 'Double_Dp_to_Kpipipi0__Dm_to_KKpi':
+            count = 55955
+        if modename == 'Double_Dp_to_Kspi__Dm_to_KKpi':
+            count = 57954
+        if modename == 'Double_Dp_to_Kspipi0__Dm_to_KKpi':
+            count = 57956
+        if modename == 'Double_Dp_to_Kspipipi__Dm_to_KKpi':
+            count = 57954
+ 
     if 'noFSR' in prefix:
         logfile =  tools.set_file('log', 's',  pair, 'd', prefix=prefix,
                                   extbase=evtlogbase)

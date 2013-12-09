@@ -1,0 +1,148 @@
+body { 
+  font-size: medium;
+  margin: 0px 20px 10px 20px;
+  padding: 0 0 0 0px;
+  text-align: left;
+/* 
+  font-family: Palatino, Verdana, Arial, sans-serif;
+  background-image: url(cleo.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 20px 20px;
+*/
+}
+
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:link    { color: #366EC0; }
+a:visited { color: #366EC0; }
+a:active  { color: #666666; }
+a:hover   { color: #CC6600; }
+
+
+h1 {
+    color: white;
+    font-size: 150%;
+    font-weight: bold;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #366EC0;
+    background-image: url(cleo.jpg);
+    background-repeat: no-repeat;
+    text-align: center;
+
+}
+
+h2 {
+    font-size: 120%;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+h3 {
+    font-size: 110%;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+h4 {
+    text-align: center;
+    font-size: 110%;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+h5 {
+    font-size: 110%;
+}
+
+
+#table-of-contents {
+    color: black;
+    background: white;  
+    font-size: 80%;
+    padding: 5px;
+    float: right;
+    display: block;
+    border: 3px solid #CCC;
+    max-width: 50%;
+    overflow: auto;
+    text-decoration: none;
+}
+
+
+/*
+#table-of-contents {
+    font-size: 80%;
+    position: fixed;
+    display: block;
+    left: 5px;
+    top: 130px;
+    width: 120px;
+    height: 600px;
+    line-height: 14pt;
+    overflow:auto;
+    border-style: dashed;
+    border-width: 0 0 0  0 ;
+    border-color: #CFCFCF;
+}
+*/
+
+#table-of-contents h2 {
+   display: none;
+   border-bottom: 0px ;
+}
+
+#table-of-contents ul {
+    list-style: none; 
+    margin: 1px 0px 1px 1px ; 
+    padding: 0px;
+}
+
+.example{ 
+   white-space: pre;
+   font-family: sans-serif;
+   margin-left: 50px;
+   margin-right: 30px;
+   border-color: #ac9;
+   border-style: solid;
+   border-width: 1px 0  1px  0;
+   padding: 10px;
+   padding-left: 10px;
+   background: rgb(240, 240, 255); 
+   overflow: auto 
+}
+
+
+
+#postamble {
+border-top: 0.5px solid gray;
+font-size: 80%;
+margin-left: 15px;
+margin-right: 15px;
+padding-bottom:10px;
+padding-top:5px;
+padding-right:10px;
+text-align:right;
+color:  gray;
+}
+
+
+tr.tr-old td {
+	background-color: #D2D3D4;
+}
+tr.tr-even td {
+	background-color: #E7E7E7;
+}
+
+
+dt { 
+   font-weight: bold;
+   margin-left: 20px;	
+}

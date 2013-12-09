@@ -1,0 +1,1272 @@
+#+STARTUP: hidestars 
+#+TITLE: D-Hadronic Meetings 2011
+
+
+* 2011
+
+** 2011-10-25
+   :PROPERTIES:
+   :CUSTOM_ID: 20111025
+   :END:
+
+   - Compare the chisq of more Masses to get the yield:
+     
+     [[./log/2011/1025/mass_chisq.png]]
+
+     Txt file [[./doc/cbx818/tab/818ipbv12/vary_mass_single_ext_chisq.txt][link]].
+
+   - Draft of PRD-RC paper ([[./doc/dhadprd818/dhadprd818.pdf][V1.2]]), with the main results only. Not
+     tuned for the text yet. 
+
+
+** 2011-10-11
+   :PROPERTIES:
+   :CUSTOM_ID: 20111011
+   :END:
+
+   - Compare the chisq of the KEDR Mass to get the yield:
+     
+     [[./log/2011/1011/chisq.png]]
+
+     
+
+** 2011-10-04
+   :PROPERTIES:
+   :CUSTOM_ID: 20111004
+   :END:
+
+   - Use the KEDR Mass to get the yield:
+     
+     Previous procedure to evaluate the lineshape syst:
+
+     [[./log/2011/1003/mass.png]]
+
+     [[./log/2011/1003/total.png]]
+
+     Use KEDR mass:
+
+     [[./log/2011/1003/kedr.png]]
+
+     Shall we increase the range ?
+
+   - CVS repo for dhadprd818 paper:
+
+     ~ryd/CVSROOT/dhadprd818
+
+   - Todo: 
+
+     Create table with chisq to compare. 
+
+
+   
+** 2011-09-27
+   :PROPERTIES:
+   :CUSTOM_ID: 20110927
+   :END:
+
+   - CP Asymmetries update
+     
+     Previously, the updated ACP for 818/pb is:
+
+     [[./log/2011/0927/acp1.png]]
+
+
+     It turned out previous ACP calulation didn't count the bkgd
+     uncertainties: [[https://hypernews.lepp.cornell.edu/HyperNews/get/DHadGroup/162.html][HyperNews Link]]. So, If I ignore the background
+     uncertainties, I get: 
+   
+     [[./log/2011/0927/acp2.png]]      [[./log/2011/0927/bkg.png]]
+
+     Comments from Peter: because the background error and yields are
+     correlated, treating the background uncertainties as uncorrelated
+     is larger than the true value. So, in first order, treating them
+     without uncertainties should be enough. 
+
+     
+   - Questions from Committee:
+
+     [[./log/2011/0927/qa.txt][Draft Answers]] 
+
+     Current Version of CBX: ([[./doc/cbx818/dhadcbx818.pdf][PDF]])
+
+   - Discussion about the KEDR result?
+
+     From Werner:
+
+     KEDR have finally released their measurement of psi(3770) mass and
+     width: http://arxiv.org/abs/1109.4205 . Presumably this affects your
+     systematics....
+
+     Xin : 
+
+     Thanks for pointing out. I have read that paper and noticed their
+     psi(3770) mass has a 3-sigma difference than the BES-II value
+     (which we use). On the other hand, the width is the
+     same. Currently we are using +/- 0.5 MeV variation for the
+     psi(3770) mass in the mBC fitting, while the results from KEDR
+     have a relatively large uncertainties (~1.9 MeV). I'm wondering
+     if that should affect our systematics evaluation procedure. ...
+
+     Any suggestion or further comments?
+
+     Peter:
+
+     It's worth paying attention to the point the KEDR people make:
+     their mass and width values need to be interpreted with the
+     interference model they use.  What's relevant to us is the (Born)
+     cross-section, and whether the model that we are using describes
+     this reasonably.
+
+   - Todo:
+
+     - Add explanation in the text for the colors and "see in the
+       text" in the figures captions. 
+
+     - Use the M = 3779.1 MeV in our fit and test the result for a few
+       modes, in order to defend. 
+
+
+** 2011-09-20
+   :PROPERTIES:
+   :CUSTOM_ID: 20110920
+   :END:
+
+   - CP Asymmetries update
+
+     Re-calculated the previous ACP:
+
+     [[./log/2011/0920/acp281.png]]
+
+     Updated the K,pi tracking for 818/pb: (PID not updated from
+     Purdue group)
+
+     [[./log/2011/0920/acp818.png]]
+
+     Check the large Kspipipi stat error. 
+
+     
+** 2011-09-06
+   :PROPERTIES:
+   :CUSTOM_ID: 20110906
+   :END:
+
+   - CP Asymmetries study
+
+     [[./log/2011/0906/cp1.png]]
+     [[./log/2011/0906/cp2.png]]
+     [[./log/2011/0906/cp3.png]]
+   
+     But using this two numbers only gives ~1.5%. How to get 0.85%?
+
+   - Todo: Send out the committee questions. 
+
+     
+** 2011-08-30
+   :PROPERTIES:
+   :CUSTOM_ID: 20110830
+   :END:
+
+   - KKpi components efficiencies for old MC:
+     
+     Old DECAY file for signal MC:
+
+:    Decay myD+
+:    0.003437   myphip pi+                       SVS;
+:    0.002796   myanti-K*0p  K+                         SVS;
+:    # Is 0.0087 too high?
+:    0.0087   K+   K-  pi+                    PHSP;
+:    Enddecay
+:    #
+     
+
+     | Mode                           | Eff(%)         | phipi(%)       | k0star(%)      | phsp(%)        |
+     |--------------------------------+----------------+----------------+----------------+----------------|
+     | D^{+ }\to K^{+ }K^{- }\pi^{+ } | 47.03 +/- 0.36 | 44.11 +/- 0.75 | 45.24 +/- 0.84 | 48.68 +/- 0.48 |
+     | D^{- }\to K^{- }K^{+ }\pi^{- } | 46.73 +/- 0.35 | 42.42 +/- 0.74 | 46.07 +/- 0.83 | 50.06 +/- 0.48 |
+
+
+    
+     New MC:
+     
+:    Decay myD+
+:    0.00366685  myanti-K_0*0p K+	          PHSP;
+:    0.0031915  myphip pi+                        SVS;
+:    0.00299565  myanti-K*0p  K+                  SVS;
+:    0.0001	K+   K-  pi+                      PHSP;
+:    0.000044	myf_0p pi+			  PHSP;
+:    0.0000184	myf_2p pi+			  STS;
+:    Enddecay
+    
+
+     [[./log/2011/0830/kkpi.png]]
+
+     - The large difference comes from the PHSP contribution in the old
+       MC. 
+     
+
+
+** 2011-08-23
+   :PROPERTIES:
+   :CUSTOM_ID: 20110823
+   :END:
+
+   - Finalize the syst uncertainty for KKpi:
+
+     [[./log/2011/0823/kkpi-1.png]]
+
+     [[./log/2011/0823/kkpi-2.png]]
+
+   - Updated the BFs using the new syst and update related tables for data in the CBX.
+     
+     BFs compare with 281/pb results: [[./tab/818ipbv12.3/compare_brf_data_results_281ipbv0.org][table]]
+     
+
+   - Todo: address committees questions in the CBX. 
+   
+
+
+** 2011-08-16
+   :PROPERTIES:
+   :CUSTOM_ID: 20110816
+   :END:
+   
+   - Using Peter's method:
+
+     : Unfortunately, looking at the data/MC momentum comparison plots
+     : from Tuesday, I don't think it's possible to reproduce data with
+     : an incoherent mixture of the modes you have - there's pretty
+     : clearly some interference.  That being said, I'd say that every
+     : mode is within 30% of where it should be (at least there are few
+     : data/MC differences larger than this; the big one is in the
+     : middle of the pi+ spectrum where it shouldn't make much
+     : difference).  So if you repeat the weighting procedure that David
+     : wrote up with ~30% branching fraction uncertainties, I'd
+     : personally be happy with using that number.
+   
+     | Mode            | BFs (PDG2007)            | Effs (%)       |
+     |-----------------+--------------------------+----------------|
+     | D+ \to \phi \pi | (3.2 \pm 0.4) x 10^-3    | 43.68 \pm 0.38 |
+     | D+ -> K*0 K+    | (3.02 \pm 0.35) x 10^-3  | 45.21 \pm 0.37 |
+     | D+ -> K*1410    | (3.7 \pm 0.4) x 10^-3    | 40.52 \pm 0.33 |
+   
+     Eff = 0.4297 +/-  0.0041 (0.94 %) 
+
+     So, we'll use 0.94% as the systematic uncertainty for the
+     result. 
+ 
+
+** 2011-08-09
+   :PROPERTIES:
+   :CUSTOM_ID: 20110809
+   :END:
+   
+   - KKpi momentum distributions
+
+     - All components:
+
+       [[./log/2011/0809/kkpi_all.png]]
+
+     - for different components:
+
+       | phipi  | [[./fig/818ipbv12/phipi/trkmtm/kkpi_momenta.pdf][figure]] |
+       | k0star | [[./fig/818ipbv12/k0star/trkmtm/kkpi_momenta.pdf][figure]] |
+       | phsp   | [[./fig/818ipbv12/phsp/trkmtm/kkpi_momenta.pdf][figure]] |
+
+   - Todo: plot the MC truth level momentum distribution. 
+
+
+** 2011-08-02
+   :PROPERTIES:
+   :CUSTOM_ID: 20110802
+   :END:
+   
+   - Average KKpi Efficiency
+
+     - Previous method (comparing data/MC):
+   
+       [[./log/2011/0802/res.png]]
+
+     - Peter's methord:
+       
+       [[./log/2011/0802/kkpi.png]]
+
+     - Using David's methord [[./doc/ref/avg-ref.pdf][PDF]]:      
+
+       | Mode            | BFs (PDG2007)            | Effs (%)       |
+       |-----------------+--------------------------+----------------|
+       | D+ \to \phi \pi | (3.2 \pm 0.4) x 10^^-3   | 43.68 \pm 0.38 |
+       | D+ -> K*0 K+    | (3.02 \pm 0.35) x 10^^-3 | 45.21 \pm 0.37 |
+       | D+ -> PHSP      | (3.7 \pm 0.4) x 10^-^3   | 40.52 \pm 0.33 |
+       
+       The Average Eff = 0.4297 +/- 0.0024 (0.57 %) 
+
+       So, shall we use the 0.57% uncertainty for the systematics for
+       this mode ?
+
+   - Todo: Make the momentum distribution plot for three components.
+
+     
+
+
+
+** 2011-07-19
+   :PROPERTIES:
+   :CUSTOM_ID: 20110719
+   :END:
+   
+   - Undertand the difference in KKpi (used in my [[http://www.lepp.cornell.edu/~xs32/thesis/v88.pdf][thesis]])
+ 
+     [[./log/2011/0719/kkpi.png]]
+
+
+   - Update the Generic BF with external bkgd
+
+     | 818ipbv12.2 | [[./tab/818ipbv12.2/generic_fitResultsMC.org][table]] ([[./tab/818ipbv12.2/generic_fitResultsMC.info][info]]) |
+
+   - Plan:
+
+     1. Respond to the committee with the current BFs result.
+	Use another method to evaluate. (David suggestion)
+	
+     2. Call a stop for the 20x generic MC check. 
+     3. Write the draft of the paper (which journal ?) 
+	PRD - with rewrite. 
+    
+  
+** 2011-05-31
+   :PROPERTIES:
+   :CUSTOM_ID: 20110531
+   :END:
+
+   - Undertand the difference in KKpi 
+
+     Done: Got the subset of the KKpi samples. (K0*, phi pi, PHSP)
+
+     Todo: Calculate signal efficiencies for each subset and evaluate
+     the syst errors. 
+
+     Will focus on thesis for the next 2-3 of weeks, defense time July
+     13th. Submission deadline July 29. 
+   
+
+** 2011-05-24
+   :PROPERTIES:
+   :CUSTOM_ID: 20110524
+   :END:
+
+   - Undertand the difference in KKpi 
+
+     Method from Peter's thesis:  [[./log/2011/0510/dskkpi.pdf][PDF]] 
+     
+     Kpi mass for data and signal MC: 
+     - Without background subtraction: [[./fig/818ipbv12/kpimass0_signal_data_Single_Dp_to_KKpi.org][figure]]  
+     - With background subtractoin: [[./fig/818ipbv12/kpimass1_signal_data_Single_Dp_to_KKpi.org][figure]]  
+
+       (The Kpi bins mBC fittings for data :[[./fig/818ipbv12/kpimass_data_Single_Dp_to_KKpi.org][figure]] )  
+
+
+   - BFs for Generic MC
+
+     Use the old input for 10xlumi and new BFFitter can reproduce the
+     same results. 
+     
+     | 281ipbv0.2 | [[./tab/281ipbv0.2/generic_fitResultsMC.org][table]] ([[./tab/281ipbv0.2/generic_fitResultsMC.info][info]]) |
+     
+     New fitter on 20xlumi generic smaple:
+
+     | 281ipbv12.1 | [[./tab/281ipbv12.1/generic_fitResultsMC.org][table]] ([[./tab/281ipbv12.1/generic_fitResultsMC.info][info]]) |
+
+   - Question about "Data efficiency" for exernal backgrounds:
+
+     From CBX281:
+
+     [[./log/2011/0524/t14.png]]
+
+   - Todo:
+     1. Check fitting plot
+     2. Regen signal mc
+     3. Absolute bkg subtraction
+     4. Efficiency with pi, kion for syst.
+     5. Create ratio difference column. 
+
+
+
+
+
+     
+
+
+
+** 2011-05-17
+   :PROPERTIES:
+   :CUSTOM_ID: 20110517
+   :END:
+
+   - Undertand the difference in KKpi 
+
+     Method from Peter's thesis:  [[./log/2011/0510/dskkpi.pdf][PDF]] 
+     
+     KK mass for data and signal MC without background subtraction: [[./fig/818ipbv12/kkmass0_signal_data_Single_Dp_to_KKpi.pdf][PDF]]
+   
+     Fit the data with mBC using the DLineshape and argus bkgd: [[./fig/818ipbv12/kkmass2_signal_data_Single_Dp_to_KKpi.pdf][PDF]] 
+     
+     Takes very long to fit: [[./fig/818ipbv12/kkmass_data_Single_Dp_to_KKpi.org][figure]], need simple bkg version to fit?
+
+     Q: How to count the events for different components?
+
+   - BFs for Generic MC
+     
+     Last week, can produce the original result using the old 10x lumi
+     Generic MC: 
+
+     | Label      | BFs          |
+     |------------+--------------|
+     | 281ipbv0.0 | [[./tab/281ipbv0.0/generic_fitResultsMC.org][table]] ([[./tab/281ipbv0.0/generic_fitResultsMC.info][info]]) |
+     | 281ipbv0.1 | [[./tab/281ipbv0.1/generic_fitResultsMC.org][table]] ([[./tab/281ipbv0.1/generic_fitResultsMC.info][info]]) |
+
+     This week, using the new 20xlumi generic MC: 
+     
+          | Label       | BFs          |
+          |-------------+--------------|
+          | 281ipbv12.0 | [[./tab/281ipbv12.0/generic_fitResultsMC.org][table]] ([[./tab/281ipbv12.0/generic_fitResultsMC.info][info]]) |
+          |-------------+--------------|
+          | 818ipbv12.0 | [[./tab/818ipbv12.0/generic_fitResultsMC.org][table]] ([[./tab/818ipbv12.0/generic_fitResultsMC.info][info]]) |
+
+     Still minor problems. 
+
+     Can use the new fitter, difference? 
+
+   - Todo:
+
+     1. Make the Kpi invmass comparison plots.
+     2. Take out different components to see the efficiency change.
+     3. Fit old 10xlumi sample with new BFitter. 
+
+
+** 2011-05-10
+   :PROPERTIES:
+   :CUSTOM_ID: 20110510
+   :END:
+
+   - Undertand the difference in KKpi 
+
+     Method from Peter's thesis:  [[./log/2011/0510/dskkpi.pdf][PDF]] 
+
+     KK mass for data and signal MC in 281/pb: [[./fig/281ipbv12/evt_mass_kk_signal,data_Single_Dp_to_KKpi.org][figure]]  
+
+     Question: How to subtract the background in data?
+
+
+     [[./log/2011/0510/sig.png]] 
+
+     [[./log/2011/0510/data.png]] 
+
+     A: The yields from the fitting are already background-subtracted!
+     (Jim)
+
+   - BFs for Generic MC
+
+     281ipbv0.0: Exactly reproduce.
+
+     281ipbv0.1: Use the effs from my fitting procedure. 
+
+     
+         | Label      | BFs          |
+         |------------+--------------|
+         | 281ipbv0.0 | [[./tab/281ipbv0.0/generic_fitResultsMC.org][table]] ([[./tab/281ipbv0.0/generic_fitResultsMC.info][info]]) |
+         | 281ipbv0.1 | [[./tab/281ipbv0.1/generic_fitResultsMC.org][table]] ([[./tab/281ipbv0.1/generic_fitResultsMC.info][info]]) |
+
+
+
+** 2011-05-03
+   :PROPERTIES:
+   :CUSTOM_ID: 20110503
+   :END:
+
+   - Undertand the difference in KKpi 
+
+     - Momentum distribution: [[./log/2011/0503/kkpi_old.pdf][Old PDF]],  [[./log/2011/0503/kkpi_new.pdf][New PDF]] 
+
+#       Difference in pi+:
+#       [[./log/2011/0503/pi_old.png]] 
+#       [[./log/2011/0503/pi_new.png]] 
+
+     - Systematic study for KKpi with new MC with 818/pb: [[./log/2011/0503/kkpi_momentum.pdf][Momentum]], [[./log/2011/0503/res_sys.pdf][systematics]]. 
+
+     - DECAY difference :
+
+       | Chain              | BF Old (%) | BF New (%) |
+       |--------------------+------------+------------|
+       | D+ to phi pi+      |       0.34 |       0.32 |
+       | D+ to anti-K*0 K+  |       0.28 |       0.30 |
+       | D+ to K+ K- pi+    |       0.87 |       0.01 |
+       | D+ to anti-K0*0 K+ |          0 |       0.37 |
+
+
+   - BFs for Generic MC
+
+     - Understand the asymmetry of yields
+       
+       Check the yields in Generic MC:
+       
+       | Mode   |      D |   Dbar | Diff (%) |
+       |--------+--------+--------+----------|
+       | Kpipi0 | 973050 | 980784 |     0.79 |
+       | Kpipi  | 836152 | 846878 |     1.28 |
+       
+       Check yields in data 281/pb: 
+       | Mode   |     D |  Dbar | Diff (%) |
+       |--------+-------+-------+----------|
+       | Kpipi0 | 50276 | 50537 |     0.52 |
+       | Kpipi  | 40248 | 40734 |     1.21 |
+       
+       Very close to the generic MC. So, the asymmetry should not be
+       the reason.
+
+     - Reproduce the 10xlumi Generic MC results: 
+       Previous result: [[./log/2011/0503/10x_old.pdf][PDF]] 
+
+       https://hypernews.lepp.cornell.edu/HyperNews/get/DHadGroup/73.html 
+       
+       My current: [[./tab/281ipbv0.1/generic_fitResultsMC.org][table]]
+
+   - Todo:
+     1. Use Peter's Ds method to deal with KKpi change.
+     2. Compare the double tag inputs for the generic Fit. 
+
+
+
+
+** 2011-04-26
+   :PROPERTIES:
+   :CUSTOM_ID: 20110426
+   :END:
+
+   - BFs with new DECAY.DEC for 281/pb: [[./tab/281ipbv12.0/compare_brf_data_results_281ipbv0.org][table]]
+     
+     Old DECAY (K+ K- pi+):
+   : Alias myphip phi
+   : #
+   : Alias myanti-K*0p anti-K*0
+   : #
+   : Decay myD+
+   : 0.003437   myphip pi+                       SVS;
+   : 0.002796   myanti-K*0p  K+                         SVS;
+   : # Is 0.0087 too high?
+   : 0.0087   K+   K-  pi+                    PHSP;
+   : Enddecay
+   : #
+   : Decay myphip
+   : 0.4910   K+   K-                         VSS;
+   : Enddecay
+   : #
+   : Decay myanti-K*0p
+   : 0.6657      K-  pi+                        VSS;
+   : Enddecay
+
+     New DECAY:
+
+     : Alias myanti-K*0p anti-K*0
+     : Alias myanti-K_0*0p anti-K_0*0
+     : Alias myf_0p f_0
+     : Alias myf_2p f_2
+     : #
+     : Decay myD+
+     : 0.00366685  myanti-K_0*0p K+			PHSP;
+     : 0.0031915  myphip pi+                         SVS;
+     : 0.00299565  myanti-K*0p  K+                    SVS;
+     : 0.0001	K+   K-  pi+                    PHSP;
+     : 0.000044	myf_0p pi+				PHSP;
+     : 0.0000184	myf_2p pi+				STS;
+     : Enddecay
+     : #
+     : Decay myphip
+     : 0.4910   K+   K-                         VSS;
+     : Enddecay
+     : #
+     : Decay myanti-K*0p
+     : 0.6657      K-  pi+                        VSS;
+     : Enddecay
+     : #
+     : Decay myanti-K_0*0p
+     : 0.6667      K-  pi+                       PHSP;
+     : Enddecay
+     : #
+     : Decay myf_0p
+     : 0.1100   K+   K-                         PHSP;
+     : Enddecay
+     : #
+     : Decay myf_2p
+     : 0.0230   K+   K-                         TSS;
+     : Enddecay
+     : #
+
+   - Data yields between 281/pb and 537/pb:  [[./tab/537ipbv12/compare_yields_data_single_537ipbv7.org][table]]
+
+   - Sanity check for 281/pb generic MC (20xlumi):  [[./tab/281ipbv12.0/generic_fitResultsMC.org][table]]
+
+   - Todo:
+     1. Proceed on the backgrouds and systematics using the new
+        MC. (hold till understand the difference.)
+     2. Plot the children momentum for KKpi. 
+     3. Use original 5xlumi generic MC to test. 
+
+
+
+** 2011-04-19
+   :PROPERTIES:
+   :CUSTOM_ID: 20110419
+   :END:
+
+   - Updated the DECAY.DEC for signal MC
+
+     - Generated for 281/pb sample.
+       Compare Yields
+
+       | Type          | Label     | 281ipbv0     |
+       |---------------+-----------+--------------|
+       | Data Single   | 281ipbv12 | [[./tab/281ipbv12/compare_yields_data_single_281ipbv0.org][table]] ([[./tab/281ipbv12/compare_yields_data_single_281ipbv0.info][info]]) |
+       |               | 281ipbv7  | [[./tab/281ipbv7/compare_yields_data_single_281ipbv0.org][table]] ([[./tab/281ipbv7/compare_yields_data_single_281ipbv0.info][info]]) |
+       |---------------+-----------+--------------|
+       | Signal Single | 281ipbv12 | [[./tab/281ipbv12/compare_yields_signal_single_281ipbv0.org][table]] ([[./tab/281ipbv12/compare_yields_signal_single_281ipbv0.info][info]]) |
+       |               | 281ipbv7  | [[./tab/281ipbv7/compare_yields_signal_single_281ipbv0.org][table]] ([[./tab/281ipbv7/compare_yields_signal_single_281ipbv0.info][info]]) |
+
+   - Draft slides [[./doc/pta201104/xshi-pta-20110422.pdf][PDF]]
+
+
+** 2011-04-12
+   :PROPERTIES:
+   :CUSTOM_ID: 20110412
+   :END:
+
+    - External backgrounds - D+ to multipions
+
+      Las week:
+      Get the raw sideband yield for 281/pb in the new env:
+
+      | Mode        | 281ipbv0 (CBX) | 281ipbv7     | Delta            |
+      |-------------+----------------+--------------+------------------|
+      | Ks pi       | 172 +/- 14     | 404 +/- 36   | +135% (16\sigma) |
+      | Ks pi pi0   | 670 +/- 46     | 1096 +/- 125 | +64% (9\sigma)   |
+      | Ks pi pi pi | 888 +/- 62     | 864 +/- 78   | -3% (0.4\sigma)  |
+
+      Fix the shape of core Gaussian for the Kspi, and Kspipipi modes:
+
+      | Mode        | 281ipbv0 (Fitting) | 281ipbv7 (fixed) | Delta             |
+      |-------------+--------------------+------------------+-------------------|
+      | Ks pi       | 183 +/- 20         | 183 +/- 20       | +0 (0\sigma)      |
+      | Ks pi pi0   | 686 +/- 64         | 705 +/- 74       | +2.8% (0.3\sigma) |
+      | Ks pi pi pi | 863 +/- 88         | 805 +/- 69       | -6.7% (0.6\sigma) |
+      
+      Use the same technique for the full data sample:
+      
+      | Mode        | 281/pb | 281/pb * 2.91 | 818/pb | Delta (%) |
+      |-------------+--------+---------------+--------+-----------|
+      | Ks pi       |    183 |        532.53 |    495 |     -7.05 |
+      | Ks pi pi0   |    686 |       1996.26 |   2072 |      3.79 |
+      | Ks pi pi pi |    863 |       2511.33 |   2438 |     -2.92 |
+      #+TBLFM: $3=$2*2.91::$5=($4-$3)*100/$3;%.2f
+
+      [[./log/2011/0412/extbkg_fixed.png]]
+
+      | Mode        | Bkgs 281/pb | 281/pb X 2.91 | Bkgs 818/pb | Delta (%) |
+      |-------------+-------------+---------------+-------------+-----------|
+      | Ks pi       |          81 |        235.71 |         221 |     -6.24 |
+      | Ks pi pi0   |         220 |         640.2 |         552 |    -13.78 |
+      | Ks pi pi pi |         117 |        340.47 |         338 |     -0.73 |
+      #+TBLFM: $3=$2*2.91::$5=($4-$3)*100/$3;%.2f
+   
+    - Update the BFs (818ipbv11)
+     
+      Compare with last one :  [[./10.1/tab/compare_brf_data_results_818ipbv10_818ipbv11.org][table]]
+
+      Compare with Lake Louise Results (818ipbv8): [[./10.1/tab/compare_brf_data_results_818ipbv8_818ipbv11.org][table]] 
+
+    - Updating the BFs for Generic MC
+
+      Need to get the generated number of single and double tags in
+      the generic MC in order to calculate the efficiency. 
+
+
+** 2011-04-05
+   :PROPERTIES:
+   :CUSTOM_ID: 20110405
+   :END:
+
+    - External backgrounds - D+ to multipions
+
+      Previous:
+      | Mode        | Bkgs 281/pb | 281/pb X 2.91 | Bkgs 818/pb |         Delta |
+      |-------------+-------------+---------------+-------------+---------------|
+      | Ks pi       |          81 |        235.71 |         372 |    0.36637097 |
+      | Ks pi pi0   |         220 |         640.2 |        1405 |    0.54434164 |
+      | Ks pi pi pi |         117 |        340.47 |         338 | -7.3076923e-3 |
+
+      Compare the raw sideband yield from data for 281/pb and 818/pb:
+      
+      | Mode        | 281/pb | 281/pb * 2.91 | 818/pb | Delta |
+      |-------------+--------+---------------+--------+-------|
+      | Ks pi       |    172 |           501 |    643 |  0.28 |
+      | Ks pi pi0   |    670 |          1950 |   2891 |  0.48 |
+      | Ks pi pi pi |    888 |          2584 |   2645 |  0.02 |
+
+      Get the raw sideband yield for 281/pb in the new env:
+
+      | Mode        | 281ipbv0   | 281ipbv7     | Delta            |
+      |-------------+------------+--------------+------------------|
+      | Ks pi       | 172 +/- 14 | 404 +/- 36   | +135% (16\sigma) |
+      | Ks pi pi0   | 670 +/- 46 | 1096 +/- 125 | +64% (9\sigma)   |
+      | Ks pi pi pi | 888 +/- 62 | 864 +/- 78   | -3% (0.4\sigma)  |
+      
+      Ks mass distribution for data: [[./10.1/fig/var_ksmass_data_Single_Dp_to_Kspi_281ipbv0.org][figure]] (281ipbv0),  [[./10.1/fig/var_ksmass_data_Single_Dp_to_Kspi_281ipbv7.org][figure]]
+      (281ipbv7)
+
+
+      - pi momentum in Ks: compare with 281ipbv0 data
+	- Ks pi: [[./10.1/fig/var_momentum_pi_KS_data_Single_Dp_to_Kspi_281ipbv0_281ipbv7.org][figure]] (pi+), [[./10.1/fig/var_momentum_pim_KS_data_Single_Dp_to_Kspi_281ipbv0_281ipbv7.org][figure]] (pi-)
+	- Ks pi pi0: [[./10.1/fig/var_momentum_pi_KS_data_Single_Dp_to_Kspipi0_281ipbv0_281ipbv7.org][figure]] (pi+), [[./10.1/fig/var_momentum_pim_KS_data_Single_Dp_to_Kspipi0_281ipbv0_281ipbv7.org][figure]] (pi-)
+	- Ks pi pi pi: [[./10.1/fig/var_momentum_pi_KS_data_Single_Dp_to_Kspipipi_281ipbv0_281ipbv7.org][figure]] (\pi^{+})
+
+      - Ks vertex radius:
+	- Ks pi: [[./10.1/fig/var_ksrad_data_Single_Dp_to_Kspi_281ipbv0_281ipbv7.org][figure]]
+	- Ks pi pi0: [[./10.1/fig/var_ksrad_data_Single_Dp_to_Kspipi0_281ipbv0_281ipbv7.org][figure]]
+	- Ks pi pi pi: [[./10.1/fig/var_ksrad_data_Single_Dp_to_Kspipipi_281ipbv0_281ipbv7.org][figure]]
+
+
+** 2011-03-29
+   :PROPERTIES:
+   :CUSTOM_ID: 20110329
+   :END:
+
+   - Multiple candidate rate 
+     
+     Previous:
+
+     [[./log/2011/0322/mult_cand_281.png]]
+
+      [[./log/2011/0322/mult_cand.png]]
+
+     Fixed by using the Generic MC:
+
+     [[./log/2011/0329/mult818.png]]
+      
+   - External backgrounds - D+ to multipions
+
+     Previous:
+
+     [[./log/2011/0322/ks281.png]]
+
+     [[./log/2011/0322/ks818.png]]
+     
+     Fixed error: (should use signal MC, but used data)
+
+     [[./log/2011/0329/ks818.png]]
+    
+     Update the absolute backgrounds: 
+     
+     [[./log/2011/0329/absbkg281.png]]
+
+     [[./log/2011/0329/absbkg818.png]]
+
+     | Mode        | Bkgs 281/pb | 281/pb X 2.91    | Bkgs 818/pb |         Delta |
+     |-------------+-------------+---------------+-------------+---------------|
+     | Ks pi       |          81 |        235.71 |         372 |    0.36637097 |
+     | Ks pi pi0   |         220 |         640.2 |        1405 |    0.54434164 |
+     | Ks pi pi pi |         117 |        340.47 |         338 | -7.3076923e-3 |
+     #+TBLFM: $3=$2*2.91::$5=($4-$3)/$4
+
+   - Update the BFs (818ipbv10)
+
+     Compare with Lake Louise Results (818ipbv8): [[./10.1/tab/compare_brf_data_results_818ipbv8_818ipbv10.org][table]] 
+
+   
+** 2011-03-22
+   :PROPERTIES:
+   :CUSTOM_ID: 20110322
+   :END:
+
+   - Multiple candidate rate 
+     
+     - 281/pb:
+
+       [[./log/2011/0322/mult_cand_281.png]]
+
+     - 818/pb:
+
+       [[./log/2011/0322/mult_cand.png]]
+
+   - Question: How to assign the error? 
+     
+     A: Used the smaller one from (F_MC - F_data) or Delta e/e_MC 
+
+     Todo: Check the F_MC in the procedure, use Generic MC which have
+     more fakes. 
+     
+   - External backgrounds - D+ to multipions
+
+     [[./log/2011/0322/ks1.png]]
+
+     [[./log/2011/0322/ks2.png]]
+
+     Done:
+
+     [[./log/2011/0322/ks281.png]]
+
+     [[./log/2011/0322/ks818.png]]
+
+   - Question: How to get the Ebkg ? 
+
+     A: Generate the multipion samples and calculate. 
+
+#     To get the corrected backgrounds:
+     
+#     [[./log/2011/0322/absbkg281.png]]
+     
+     
+
+
+       
+
+
+** 2011-03-15
+   :PROPERTIES:
+   :CUSTOM_ID: 20110315
+   :END:
+   
+   - Reproduced the mutiplicity results: largest error (0.62% to
+     0.50%), still ignorable. 
+
+     Stated with the same "3-sigma" table. 
+
+   - Processing the multiple candidate rate study. 
+
+     Have split the sample into single and mutiple candidate, fits OK
+     with all data, but have problem in some signal MC modes. 
+
+     Investigating mode D0 to Kpipi0:
+
+     Compared the mBC distribution with original sample (281ipbv0):
+
+     -  mBC distribution for signal MC (D0 to Kpipi0), compare with
+       281ipbv0: [[./10.1/fig/var_mbc_signal_Single_D0_to_Kpipi0_281ipbv0_281ipbv7.org][figure]]
+
+	Notice the shift.
+	
+	Check the other modes, check the beam energy shifts. 
+
+	
+
+** 2011-03-08
+   :PROPERTIES:
+   :CUSTOM_ID: 20110308
+   :END:
+   
+   - Questions on CBX from Committee:
+
+     1. More digits for the BFs ... done.
+     2. About the lineshape parameters:
+	
+	: Sec. 6.1.3 says, mψ(3770) = 3.7724 GeV; Γψ(3770) = 25.2 MeV; R
+        : = 12.7 GeV−1, while sec. 8.2 says 3.7718 GeV; 28.6 MeV; 12.3
+        : GeV−1. I assume the first is what was used, while the second
+        : is a remnant. Is this right? If so, why the change from the
+        : 281 analysis?  Also, if so, this is even further from BES's
+        : (no longer "recent") measurements.  Perhaps this choice needs
+        : to be better explained--there is sufficient discussion of the
+        : correlation between mass and width, but I didn't get why any
+        : particular combination was chosen (the figure didn't help me,
+        : anyway). Also, what was the basis for the choice (and change
+        : in choice) of R?
+
+	The PID of \psi(3770) have been changed in the =evt.pdl=:
+
+        |                        | CLEO 2005 | CLEO 2008 | PDG 2010 |
+        |------------------------+-----------+-----------+----------|
+        | \psi(3770) mass (GeV)  |    3.7699 |    3.7724 |   3.7729 |
+        | \psi(3770) width (MeV) |      23.6 |      25.2 |     27.3 |
+
+	For the mass of \psi(3770), we used 3771.8 MeV in the 281/pb
+	analysis, because our energy scale has been shifted by 0.6
+	MeV. In the 818/pb version, this shift has been corrected in
+	the pass2 process. (right?) 
+
+	Not sure why we have 25.2 MeV for the width.?
+
+	And R change from 12.3 to 12.7 ? 
+
+	
+   - Compare the 281/pb and 537/pb data yields
+
+     [[./log/2011/0308/ST.png]]
+
+     [[./log/2011/0308/DT.png]]
+
+   - SQRT scale plot OK. (Thanks to Peter! )
+     
+   - Todo: Add (check) digits to ST, DT tables. 
+
+
+
+
+	
+	
+
+** 2011-03-01
+   :PROPERTIES:
+   :CUSTOM_ID: 20110301
+   :END:
+   
+   - Define goals for the CBX final version.
+     - Answer questions from committee.
+     - Add descriptions about what's new at the beginning of each section.
+     - Backgrounds, systematic, etc.
+     - Think about the difference for the kpipi0 mode. 
+     - Use Peter's ROOT version to plot the sqrt. 
+
+   - When shall we work on the paper, and which journal (PRD?)
+     - Finish the body of thesis by the end of March
+
+     
+
+
+
+** 2011-02-15
+   :PROPERTIES:
+   :CUSTOM_ID: 20110215
+   :END:
+
+    - Slides for Lake Louise Winter Institute - February 24, 2011 ([[./doc/lwi2011/xshi-lwi-20110224.pdf][PDF]])
+
+    - Released the CBX2011-003 for 818/pb analysis ([[./doc/cbx818/dhadcbx818.pdf][PDF]]) 
+
+      
+
+
+
+** 2011-02-08
+   :PROPERTIES:
+   :CUSTOM_ID: 20110208
+   :END:
+
+   1. Preliminary BF results using the updated systematics (818ipbv8)
+
+      - Updated items:
+	- ST Background modeling 
+	- Delta E requirement
+	- Signal lineshape
+	- FSR
+	- Trigger
+	- K/pi tracking
+	- pi0 efficiency
+	- Double DCSD corrections
+      - Compare with last version (818ipbv7, used 281/pb systematics)
+	=> [[./10.1/tab/compare_brf_data_results_818ipbv7_818ipbv8.org][table]]
+      - Compare with 281/pb result => [[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv8.org][table]]
+      - Compare the PDG04, 281/pb, and 818/pb => [[./src/10.1.10/mnf/pdg2004_281ipbv0_818ipbv8.png][figure]]
+      - Compare the PDG2010, 281/pb, and 818/pb => [[./src/10.1.10/mnf/pdg2010_281ipbv0_818ipbv8.png][figure]]
+
+   2. Resulst with imaginary best senario (818ipbv9)
+
+      - Improve all of the syst in 'ST Background modeling'.
+         | Mode     | 281/pb | 818ipbv8 | 818ipbv9 (Imaginary) |
+         |----------+--------+----------+----------------------|
+         | Kpi      |    0.4 |     0.59 |                  0.4 |
+         | Kpipi0   |    1.0 |      1.2 |                  1.0 |
+         | Kpipipi  |    0.4 |     0.64 |                  0.4 |
+         | Kpipi    |    0.4 |     0.41 |                 0.41 |
+         | Kpipipi0 |    1.5 |     3.31 |                  1.0 |
+         | Kspi     |    0.4 |     0.91 |                  0.3 |
+         | Kspipi0  |    1.0 |     1.46 |                  1.0 |
+         | Kspipipi |    1.0 |     1.24 |                  1.0 |
+         | KKpi     |    1.0 |     0.80 |                  0.8 |
+
+   3. Compare with 818ipbv8 =>  [[./10.1/tab/compare_brf_data_results_818ipbv8_818ipbv9.org][table]]
+
+      - Compare with 281/pb =>  [[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv9.org][table]] 
+
+   4. Todo:
+      - Check the difference calculation.
+      - Provide David for the txt file.
+      - Prepare the slides in next two days. 
+
+
+
+** 2011-02-01
+   :PROPERTIES:
+   :CUSTOM_ID: 20110201
+   :END:
+
+   - Update on Substructure syst.
+     
+     Fixed the bug in applying the efficiency correction on two pions,
+     now the uncertainty is in the same level as before, dominated by
+     the Kaon effect. 
+
+     Last week:
+
+     [[./log/2011/0125/res.png]]
+
+     After fix:
+
+     [[./log/2011/0201/t1.png]]
+
+     Compare with previous value:
+    
+     | Mode    | 281/pb | 818/pb (old) | 818/pb (new) |
+     |---------+--------+--------------+--------------|
+     | Kpipipi |    1.2 |         5.96 |         1.21 |
+
+     Checked the KKpi procedure, found no obvious problem there. 
+
+   - Questions on multiplicity study
+
+     [[./log/2011/0201/c1.png]]
+
+     [[./log/2011/0201/c2.png]]
+
+   - Todo:
+     Move on using the previous multiplicity study result and get the
+     preliminary result for BFs first.
+
+     
+     
+
+
+** 2011-01-25
+   :PROPERTIES:
+   :CUSTOM_ID: 20110125
+   :END:
+
+   - Update on Substructure syst.
+     
+     1. Calculate uncertainties for each mode:
+
+	[[./log/2011/0125/res.png]]
+
+     2. Compare with the 281/pb analysis
+
+        | Mode     | 281/pb (%) | 818/pb (%) |
+        |----------+------------+------------|
+        | Kpipi0   |        0.3 |       0.52 |
+        | Kpipipi  |        1.2 |       5.96 |
+        |----------+------------+------------|
+        | Kpipi    |        0.6 |       0.52 |
+        | Kpipipi0 |        0.5 |       0.91 |
+        | Kspipi0  |        1.2 |       0.78 |
+        | Kspipipi |        0.5 |       0.61 |
+        | KKpi     |        1.3 |       1.85 |
+	
+	Trouble modes: D0 \to K- pi+ pi+ pi- and D+ \to K+ K- pi+.
+	
+     3. Compare the daughters' momentum: 
+	
+	- D0 \to K- pi+ pi+ pi-:
+
+	  [[./log/2011/0125/k3pi_old.pdf][./log/2011/0125/k3pi_old.png]]
+
+	  [[./log/2011/0125/k3pi_new.pdf][./log/2011/0125/k3pi_new.png]]
+
+	- D+ \to K+ K- pi+
+
+	  [[./log/2011/0125/kkpi_old.pdf][./log/2011/0125/kkpi_old.png]]
+
+	  [[./log/2011/0125/kkpi_new.pdf][./log/2011/0125/kkpi_new.png]]
+
+     4. Noticed big shifts in K momentum in D0 \to K- pi+ pi+ pi-:
+        | New                     | Original                |
+        |-------------------------+-------------------------|
+        | [[./log/2011/0125/km2.png]] | [[./log/2011/0125/km1.png]] |
+
+     5. Parsed the Decay info for the two MC:
+
+	D0 \to K- pi+ pi+ pi-:
+   : 20050525_MCGEN/data/DECAY.DEC        20080624_MCGEN/data/DECAY.DEC
+   : Parent particle? D0                  Final state? K- pi+ pi+ pi-          
+   : Final state? K- pi+ pi+ pi-	  Total 0.077048600879                 
+   : 0.035916 Chain: 			  0.0369 Chain:                        
+   :         D0 -> a_1+ K-		          D0 -> a_1+ K-                
+   :         a_1+ -> pi+ rho0		          a_1+ -> pi+ rho0             
+   :         rho0 -> pi+ pi-		          rho0 -> pi+ pi-              
+   : 0.01497825 Chain: 			  0.0159 Chain:                        
+   :         D0 -> anti-K*0 pi+ pi-	          D0 -> K- pi+ rho0            
+   :         anti-K*0 -> K- pi+		          rho0 -> pi+ pi-              
+   : 0.00971922 Chain: 			  0.0099855 Chain:                     
+   :         D0 -> anti-K*0 rho0	          D0 -> anti-K*0 rho0          
+   :         anti-K*0 -> K- pi+		          anti-K*0 -> K- pi+           
+   :         rho0 -> pi+ pi-		          rho0 -> pi+ pi-              
+   : 0.0074 Chain: 			  0.0055 Chain:                        
+   :         D0 -> K- pi+ pi+ pi-	          D0 -> K- pi+ pi+ pi-         
+   : 0.006 Chain: 			  0.00412734 Chain:                    
+   :         D0 -> K- pi+ rho0		          D0 -> anti-K*0 pi+ pi-       
+   :         rho0 -> pi+ pi-		          anti-K*0 -> K- pi+           
+   : 0.00154508 Chain: 			  0.00160284 Chain:                    
+   :         D0 -> K_1- pi+		          D0 -> K_1- pi+               
+   :         K_1- -> K- pi+ pi-		          K_1- -> K- pi+ pi-           
+   : 0.001498 Chain: 			  0.001554 Chain:                      
+   :         D0 -> K_1- pi+		          D0 -> K_1- pi+               
+   :         K_1- -> K- rho0		          K_1- -> K- rho0              
+   :         rho0 -> pi+ pi-		          rho0 -> pi+ pi-              
+   : 0.000760023033 Chain: 		  0.000788435109 Chain:                
+   :         D0 -> K_1- pi+		          D0 -> K_1- pi+               
+   :         K_1- -> anti-K*0 pi-	          K_1- -> anti-K*0 pi-         
+   :         anti-K*0 -> K- pi+		          anti-K*0 -> K- pi+           
+   : 0.00066963 Chain: 			  0.00050167 Chain:                    
+   :         D0 -> K- omega pi+		          D0 -> K- omega pi+           
+   :         omega -> pi+ pi-		          omega -> pi+ pi-             
+   : 0.00016183167 Chain: 		  0.00016183167 Chain:                 
+   :         D0 -> anti-K*0 omega	          D0 -> anti-K*0 omega         
+   :         anti-K*0 -> K- pi+		          anti-K*0 -> K- pi+           
+   :         omega -> pi+ pi-		          omega -> pi+ pi-             
+   : 2.60117e-05 Chain: 		  2.69841e-05 Chain:                   
+   :         D0 -> K_1- pi+		          D0 -> K_1- pi+               
+   :         K_1- -> K- omega		          K_1- -> K- omega             
+   :         omega -> pi+ pi-		          omega -> pi+ pi-             
+   
+
+   Checked the evt.pdl: 
+   
+   a1+ is not changed. 
+
+   rho0 has changed its madd from 0.7685 to 0.7755 (0.91%). This may
+   account for the difference. 
+
+
+   For D+ \to K+ K- pi+: 
+
+   : 20050525_MCGEN/data/DECAY.DEC             20080624_MCGEN/data/DECAY.DEC
+   : Parent particle? D+                       Parent particle? D+            
+   : Final state? K+ K- pi+		       Final state? K+ K- pi+         
+   : 0.0087 Chain: 			       Total 0.0100164                
+   :         D+ -> K+ K- pi+		       0.00366685 Chain:              
+   : 0.003437 Chain: 			               D+ -> anti-K_0*0 K+    
+   :         D+ -> phi pi+		               anti-K_0*0 -> K- pi+   
+   :         phi -> K+ K-		       0.0031915 Chain:               
+   : 0.00279594 Chain: 			               D+ -> phi pi+          
+   :         D+ -> K+ anti-K*0		               phi -> K+ K-           
+   :         anti-K*0 -> K- pi+		       0.00299565 Chain:              
+   : 					               D+ -> K+ anti-K*0      
+   : 					               anti-K*0 -> K- pi+     
+   : 					       0.0001 Chain:                  
+   : 					               D+ -> K+ K- pi+        
+   : 					       4.4e-05 Chain:                 
+   : 					               D+ -> f_0 pi+          
+   : 					               f_0 -> K+ K-           
+   : 					       1.84e-05 Chain:                
+   : 					               D+ -> f_2 pi+          
+   : 					               f_2 -> K+ K-           
+
+   Now, the question is how to correct this difference?
+
+   Todo: Check the correction for pions in k3pi mode. 
+
+    
+
+** 2011-01-18
+   :PROPERTIES:
+   :CUSTOM_ID: 20110118
+   :END:
+
+   - Updated the FSR Systmatics. Used 25% as suggested by HFAG. 
+
+     [[./log/2011/0118/fsr.png]]
+
+   - Progress on Substructure syst.
+
+     I'm not sure how to get the "effective overall efficiencies".  To
+     be specific, I suppose the top row in Figure 4 are signal MC, and
+     bottom row are generic MC / data comparison.  Following your
+     script at :
+
+     : /nfs/cor/user/ponyisi/hadD/summerconf/kpipi0/
+
+     I can produce the plots, but wondering about where to get the
+     final number (0.3% in this case).
+
+  - Practice talk schedule? 
+
+
+
+
+
+
+** 2011-01-11
+   :PROPERTIES:
+   :CUSTOM_ID: 20110111
+   :END:
+
+   - Progress on the sqrt scale plot
+     
+     1. Patched the SQRT code and the RooDLineShape in ROOT 5.28.
+     2. Fit the signal MC for DtoKKpi
+
+	[[./log/2011/0106/signal_Single_Dp_to_KKpi__Dm_to_KKpi.pdf][./log/2011/0106/signal_Single_Dp_to_KKpi__Dm_to_KKpi.png]]
+
+     3. Compare the original one:
+	
+	[[./log/2010/1022/signal_Single_Dp_to_KKpi__Dm_to_KKpi.pdf][./log/2010/1022/signal_Single_Dp_to_KKpi__Dm_to_KKpi.png]]
+
+
+   Go with the plot only path. Send Peter details. 
+
+   - Progress on the background shape systematics
+
+     1. Get the yields shift with generic MC, compare with Data:
+	[[./log/2011/0107/vary_argus.pdf][./log/2011/0107/vary_argus.png]]
+     2. Get the MC Truth info for the backgrounds in delta E sidebands
+        for generic MC:
+
+        | Delta E sidebnad low MC Truth  | [[./10.1/tab/bkg_generic_single_p_818ipbv7_desideband_low.org][table]] ([[./10.1/tab/bkg_generic_single_p_818ipbv7_desideband_low.info][info]]) |
+        | Delta E sidebnad high MC Truth | [[./10.1/tab/bkg_generic_single_p_818ipbv7_desideband_high.org][table]] ([[./10.1/tab/bkg_generic_single_p_818ipbv7_desideband_high.info][info]]) |
+
+	
+   Move on the the rest of the systematics. 
+   
+     
+	
+
+
+
+** 2011-01-04
+   :PROPERTIES:
+   :CUSTOM_ID: 20110104
+   :END:
+
+   - Progress on Background Shape Systematics : fixing the
+     D0toKpipipi0 mode. 
+
+     1. Plot the \pi^0 mass for D0 \to K \pi \pi \pi^0 for delta E sideband:
+        [[./10.1/fig/var_pi0mass_data_Single_Dp_to_Kpipipi0_818ipbv7_desideband_low_high.org][figure]] 
+
+     2. Ran the generic MC for the delta E sideband
+
+        |------------+--------+-----------------------+--------|
+        | Generic MC | single | Delta E sideband low  | [[./10.1/fig/generic_diagsingle_818ipbv7_desideband_low.org][figure]] |
+        |            |        | Delta E sideband high | [[./10.1/fig/generic_diagsingle_818ipbv7_desideband_high.org][figure]] |
+ 
+	Need to fit with the Argus parameters. (Get the MC Truth
+	info). 
+
+	Delta E cut range: abour +/- 30 MeV.
+
+   - Progress on the SQRT scale plot
+
+     1. Tried to use Peter's ROOT on reploting the existing root plot,
+        but not work. 
+
+     2. Patched the code into the latest ROOT (v5.28), compiled OK.
+
+     3. Working on the RooDLineShape into the new ROOT. (Check Name Space)
+
+
+
+* COMMENT Setup
+#+LINK_HOME: http://www.lepp.cornell.edu/~xs32/
+#+LINK_UP: ./
+#+STYLE: <link rel="stylesheet" type="text/css" href="web/main.css" />
+#+STYLE: <link rel="shortcut icon" href="web/cleo.ico"/>
+#+INFOJS_OPT: view:info path:web/org-info.js tdepth:1 ftoc:t 
+#+OPTIONS: author:nil creator:nil num:nil toc:nil todo:nil H:4 
+#+SEQ_TODO: TODO STARTED WAITING | DONE CANCELED
+#+PROPERTY: Effort_ALL 0:15 0:30 1:00 1:30 2:00 2:30 3:00 4:00 5:00 6:00 7:00 8:00
+#+COLUMNS: %40ITEM(Task) %5Effort(Estimated Effort){:} %CLOCKSUM
+
