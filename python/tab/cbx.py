@@ -44,10 +44,23 @@ def brf_chisq(opts, tabname, tabprefix):
         extbase=attr.brfpath, prefix=tabprefix, comname=bffilename)
     brf = BrfFile(bffile)
 
-    # 49.4 for 52 degrees of freedom, corresponding to a confidence level of 57.8\%. 
+
     prs = brf.parsed['chisq']
-    
-    sys.stdout.write('%s\n' % brf.parsed['chisq'])
+    items = prs.split() 
+
+    chisq = DHadCBXTable().cell_trim(cell=items[1], rnd='.1')
+    ndof = items[3]
+    prob = DHadCBXTable().cell_trim(cell=items[5], factor=100, rnd='.1')
+
+    chisq_file = tools.set_file(
+        'tex', extbase=attr.cbxtabpath, prefix=tabprefix, comname=tabname)
+    f = UserFile()
+    content = '%s for %s degrees of freedom, \
+corresponding to a confidence level of %s\%%' %(chisq, ndof, prob)
+    sys.stdout.write(content+'\n')
+    f.append(content)
+    f.output(chisq_file, verbose=1)
+     #sys.stdout.write('%s\n' % brf.parsed['chisq'])    
 
 
 def brf_results(opts, tabname, tabprefix):
@@ -352,7 +365,7 @@ def crossSections(opts, tabname, tabprefix):
     co = co.split()[-1]
     value = DHadCBXTable().cell_trim(cell=co, rnd='.01')
     f.append(str(value))
-    f.output(coeff)
+    f.output(coeff, verbose=1)
     sys.stdout.write('%s\n' % brf.parsed['coeff_ddbar'])
     
 
@@ -647,6 +660,7 @@ def fitResults(opts, tabname, tabprefix):
     yieldSTResidualsData(opts, 'yieldSTResidualsData', tabprefix)
     yieldDTResidualsData(opts, 'yieldDTResidualsData', tabprefix)
     crossSections(opts, 'crossSections', tabprefix)
+    brf_chisq(opts, 'brf_chisq', tabprefix)
 
 
 def fitResultsData(opts, tabname, tabprefix):

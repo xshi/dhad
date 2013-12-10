@@ -1,12 +1,12 @@
 """
-Script for Thesis related tables
+Script for PRD related tables
 
 """
 
 import os
 import sys
 import attr
-import ths
+import prd
 import tools
 import cbx
 
@@ -28,7 +28,7 @@ __license__ = "GNU GPL"
 def main(opts, args):
     tabname = args[0]
     label = args[1]
-    function = getattr(ths, tabname)
+    function = getattr(prd, tabname)
     return function(opts, tabname, label)
 
 
