@@ -1,0 +1,100 @@
+/*****************************************************************************
+ * Project: RooFit                                                           *
+ * Package: RooFitModels                                                     *
+ *    File: $$                                                               *
+ * Authors:                                                                  *
+ *   WV, Wouter Verkerke, UC Santa Barbara, verkerke@slac.stanford.edu       *
+ *   DK, David Kirkby,    UC Irvine,         dkirkby@uci.edu                 *
+ *   AR, Anders Ryd,      Cornell U.,        ryd@lepp.cornell.edu            *
+ *                                                                           *
+ * Copyright (c) 2000-2004, Regents of the University of California          *
+ *                          and Stanford University. All rights reserved.    *
+ * Copyright (c) 2004,      Cornell University                               *
+ *                                                                           *
+ * Redistribution and use in source and binary forms,                        *
+ * with or without modification, are permitted according to the terms        *
+ * listed in LICENSE (http://roofit.sourceforge.net/license.txt)             *
+ *****************************************************************************/
+#ifndef ROO_DLINESHAPE2D
+#define ROO_DLINESHAPE2D
+
+#include "RooFitCore/RooAbsPdf.hh"
+#include "RooFitCore/RooRealProxy.hh"
+#include <vector>
+
+class RooDLineShapeImp2D;
+class RooRealVar;
+
+class RooDLineShape2D : public RooAbsPdf {
+public:
+  RooDLineShape2D(const char *name, const char *title,
+	          int npointEbeam, 
+		  RooAbsReal& _mbc1,
+		  RooAbsReal& _mbc2,
+		  RooAbsReal& _Ebeam,
+		  RooAbsReal& _mres,
+	     	  RooAbsReal& _gamma, 
+	     	  RooAbsReal& _r, 
+	     	  RooAbsReal& _sigmaE,
+                  RooArgList& _smearpar, 
+	     	  RooAbsReal& _md, 
+		  RooAbsReal& _nonres);
+
+  RooDLineShape2D(const RooDLineShape2D& other, const char* name = 0);
+  virtual TObject* clone(const char* newname) const { return new RooDLineShape2D(*this,newname); }
+
+  inline virtual ~RooDLineShape2D() { }
+
+  Int_t getAnalyticalIntegral(RooArgSet& allVars, RooArgSet& analVars, const char* rangeName=0) const ;
+  Double_t analyticalIntegral(Int_t code, const char* rangeName=0) const ;
+
+protected:
+
+  RooRealProxy mbc1;
+  RooRealProxy mbc2;
+  RooRealProxy mres;	
+  RooRealProxy Ebeam;
+  RooRealProxy gamma;
+  RooRealProxy r;
+  RooRealProxy sigmaE;
+  RooRealProxy sigmap1;
+  RooRealProxy sigmap1a;
+  RooRealProxy sigmap1b;
+  RooRealProxy f1a;
+  RooRealProxy f1b;
+  RooRealProxy sigmap2;
+  RooRealProxy sigmap2a;
+  RooRealProxy sigmap2b;
+  RooRealProxy f2a;
+  RooRealProxy f2b;
+  RooRealProxy md;
+  RooRealProxy nonres;
+  int m_npointEbeam;
+
+  mutable std::vector<RooDLineShapeImp2D*> shapes;
+
+
+  mutable double mres_save, 
+		gamma_save,
+		r_save, 
+		sigmaE_save, 
+		sigmap1_save,
+		sigmap1a_save,	
+		sigmap1b_save,
+		f1a_save,
+		f1b_save,
+		sigmap2_save, 
+		sigmap2a_save,
+		sigmap2b_save,
+		f2a_save,
+		f2b_save,
+		md_save;
+
+  Double_t evaluate() const;
+
+private:
+
+  ClassDef(RooDLineShape2D,0) // Special shape for mBC dist. in psi(3770) decays
+};
+
+#endif

@@ -1,0 +1,21 @@
+
+  Package Contents
+  ----------------
+
+  This package contains a library of models for RooFit. For instructions
+  on compiling and using this package, please read the README of RooFitCore.
+  
+
+  How to write your own PDF
+  -------------------------
+
+  Consult the 'RooFit programmers tutorial' available on the RooFit tutorials page: 
+  http://roofit.sourceforge.net/docs/tutorial/prog
+
+
+  Contributions
+  -------------
+
+  If you have developed a PDF class that you think might be of interest to other users,
+  and is well debugged and documented, you can have your class included in the 
+  RooFitModels package. Please contact us for details.

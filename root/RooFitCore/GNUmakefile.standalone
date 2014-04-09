@@ -1,0 +1,145 @@
+ #############################################################################
+ # Project: RooFit                                                           #
+ # Package: RooFitCore                                                       #
+ #    File: $Id: GNUmakefile.standalone,v 1.16 2005/04/04 14:59:12 wverkerke Exp $
+ # Authors:                                                                  #
+ #   WV, Wouter Verkerke, UC Santa Barbara, verkerke@slac.stanford.edu       #
+ #   DK, David Kirkby,    UC Irvine,         dkirkby@uci.edu                 #
+ #                                                                           #
+ # Copyright (c) 2000-2005, Regents of the University of California          #
+ #                          and Stanford University. All rights reserved.    #
+ #                                                                           #
+ # Redistribution and use in source and binary forms,                        #
+ # with or without modification, are permitted according to the terms        #
+ # listed in LICENSE (http://roofit.sourceforge.net/license.txt)             #
+ #                                                                           #
+ #   Standalone Makefile for RooFitCore                                      #
+ #   ----------------------------------                                      #
+ #                                                                           #
+ #   Instructions                                                            #
+ #       - Review 'external configuration' section below                     #
+ #         to match systems compilers setup                                  #
+ #                                                                           #
+ #       - Make sure the ROOTSYS environment variable is set and points      #
+ #         to your ROOT release (3.02-07 or higher)                          #
+ #                                                                           #
+ #       - run 'gmake -f GNUMakefile.standalone <target>'                    #
+ #         from the RooFitCore/ directory                                    #
+ #                                                                           #
+ #         >> For Linux/Unix choose 'shlib', for CygWin choose 'winlib' <<   #
+ #                                                                           #
+ #   Build targets                                                           #
+ #     lib   - make libRooFitCore.a                                          #
+ #     shlib - make libRooFitCore.so                                         #
+ #    winlib - make libRooFitCore.dll (for CygWin)                           #
+ #     clean - delete all intermediate and final build objects               #
+ #                                                                           #
+ ############################################################################# 
+
+
+# --- External configuration ----------------------------------
+CC       = g++
+CCFLAGS  = -O3 -Wall -Wno-parentheses
+MFLAGS   = -MM
+INCLUDES =
+WORKDIR  = tmp/
+LIBDIR   = $(WORKDIR)
+# -------------------------------------------------------------
+
+
+# Internal configuration
+PACKAGE=RooFitCore
+LD_LIBRARY_PATH:=$(ROOTSYS)/lib:$(LD_LIBRARY_PATH)
+OBJDIR=$(WORKDIR)/objects/
+INCDIR=$(WORKDIR)/$(PACKAGE)/
+VPATH=$(INCDIR) $(OBJDIR)
+#LDFLAGS  = -shared
+INCLUDES += -I.. -I$(WORKDIR)/ -I$(ROOTSYS)/include
+ROOTSYS  ?= ERROR_RootSysIsNotDefined
+RDLLIST   = $(filter-out $(PACKAGE)_LinkDef.rdl,$(wildcard *.rdl))
+SKIPLIST  = makedocs.cc RooIntegratorTest.cc
+CINTFILE  = $(PACKAGE)Cint.cc
+CINTOBJ   = $(PACKAGE)Cint.o
+LIBFILE   = $(LIBDIR)/lib$(PACKAGE).a
+SHLIBFILE = $(LIBDIR)/lib$(PACKAGE).so
+DLLIBFILE = $(LIBDIR)/lib$(PACKAGE).dll
+UNAME = $(shell uname)
+
+default: shlib
+
+# List of all includes files to copy from rdl
+HHLIST=$(patsubst %.rdl,%.hh,$(RDLLIST))
+
+# List of all source files to build
+CCLIST=$(filter-out $(SKIPLIST),$(wildcard *.cc))
+
+# List of all object files to build
+OLIST=$(patsubst %.cc,%.o,$(CCLIST))
+
+# List of all dependency file to make
+DLIST=$(patsubst %.rdl,%.d,$(RDLLIST))
+
+# Implicit rule making all dependency Makefiles included at the end of this makefile
+$(INCDIR)/%.d: %.cc $(HHLIST)
+	@echo "Making $@"
+	@set -e; $(CC) $(MFLAGS) $(CPPFLAGS) $(INCLUDES) $< \
+	          | sed 's/\($(notdir $*)\)\.o[ :]*/\1.o $(notdir $@) : /g' > $@; \
+	        [ -s $@ ] || rm -f $@
+
+# Implicit rule copying all RDL to INCDIR/HH
+%.hh: %.rdl 
+	@mkdir -p $(INCDIR)
+	@cp $< $(INCDIR)/$@
+
+# Implicit rule to compile all classes
+%.o : %.cc 
+	@echo "Compiling $<"
+	@mkdir -p $(OBJDIR)
+	@$(CC) $(CCFLAGS) -c $< -o $(OBJDIR)/$(notdir $@) $(INCLUDES)
+
+
+# Rule to make ROOTCINT output file
+$(OBJDIR)/$(CINTOBJ): $(RDLLIST) $(PACKAGE)_LinkDef.hh $(INCDIR)
+	@mkdir -p $(INCDIR)
+	@mkdir -p $(OBJDIR)
+	@cp *.hh $(INCDIR)
+	@echo "Running rootcint"
+	@ROOTSYS=$(ROOTSYS)
+	@export ROOTSYS
+	@cd $(INCDIR) ; $(ROOTSYS)/bin/rootcint -f $(CINTFILE) -c $(INCLUDES) $(HHLIST) $(PACKAGE)_LinkDef.hh
+	@echo "Compiling $(CINTFILE)"
+	@$(CC) $(CCFLAGS) -c $(INCDIR)/$(CINTFILE) -o $(OBJDIR)/$(CINTOBJ) $(INCLUDES)
+
+# Rule to combine objects into a library
+$(LIBFILE): $(OLIST) $(INCDIR)/$(CINTFILE)) $(patsubst %.cc,%.o,$(OBJDIR)/$(CINTFILE))
+	@echo "Making $(LIBFILE)"
+	@rm -f $(LIBFILE)
+	@ar q $(LIBFILE) $(addprefix $(OBJDIR)/,$(OLIST) $(patsubst %.cc,%.o,$(CINTFILE))) 
+	@ranlib $(LIBFILE)
+
+# Rule to combine objects into a unix shared library
+$(SHLIBFILE): $(OLIST) $(patsubst %.cc,%.o,$(OBJDIR)/$(CINTFILE))
+	@echo "Making $(SHLIBFILE)"
+	@rm -f $(SHLIBFILE)
+	@$(CC) $(addprefix $(OBJDIR)/,$(OLIST) $(patsubst %.cc,%.o,$(CINTFILE))) -shared -o $(SHLIBFILE)
+
+# Rule to combine objects into a windows shared library
+$(DLLIBFILE): $(OLIST) $(patsubst %.cc,%.o,$(OBJDIR)/$(CINTFILE))
+	@echo "Making $(DLLIBFILE)"
+	@rm -f $(DLLIBFILE)
+	$(CC) -Wl,--export-all-symbols -Wl,--export-dynamic -Wl,--enable-auto-import -Wl,-Bdynamic -shared --enable-auto-image-base -Wl,-soname -o $(DLLIBFILE) -Wl,--whole-archive $(addprefix $(OBJDIR)/,$(OLIST) $(patsubst %.cc,%.o,$(CINTFILE))) -Wl,--no-whole-archive -L$(ROOTSYS)/lib -lCore -lCint -lHist -lGraf -lGraf3d -lTree -lRint -lPostscript -lMatrix -lMinuit -lPhysics -lHtml -lm
+
+# Useful build targets
+lib: $(LIBFILE) 
+shlib: $(SHLIBFILE)
+winlib: $(DLLIBFILE)
+clean:
+	rm -f $(OBJDIR)/*
+	rm -f $(INCDIR)/*
+	rm -f $(LIBFILE)
+	rm -f $(SHLIBFILE)
+	rm -f $(DLLIBFILE)
+
+.PHONY : winlib shlib lib default clean
+
+-include $(addprefix $(INCDIR)/,$(DLIST))

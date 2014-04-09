@@ -1,0 +1,103 @@
+/*****************************************************************************
+ * Project: RooFit                                                           *
+ * Package: RooFitModels                                                     *
+ *    File: $$                                                               *
+ * Authors:                                                                  *
+ *   WV, Wouter Verkerke, UC Santa Barbara, verkerke@slac.stanford.edu       *
+ *   DK, David Kirkby,    UC Irvine,         dkirkby@uci.edu                 *
+ *   AR, Anders Ryd,      Cornell U.,        ryd@lepp.cornell.edu            *
+ *                                                                           *
+ * Copyright (c) 2000-2004, Regents of the University of California          *
+ *                          and Stanford University. All rights reserved.    *
+ * Copyright (c) 2004,      Cornell University                               *
+ *                                                                           *
+ * Redistribution and use in source and binary forms,                        *
+ * with or without modification, are permitted according to the terms        *
+ * listed in LICENSE (http://roofit.sourceforge.net/license.txt)             *
+ *****************************************************************************/
+#ifndef ROO_DLINESHAPEIMP2D
+#define ROO_DLINESHAPEIMP2D
+
+#include "TNamed.h"
+#include <vector>
+#include <string>
+
+#include "RooFitModels/RooDEnergyImp.hh"
+
+class RooDLineShapeImp2D{
+
+public:
+
+  RooDLineShapeImp2D(double mres,
+		     double gamma,
+                     double r,
+		     double sigmaE,
+		     double sigmap1,
+		     double sigmap1a,
+		     double sigmap1b,
+		     double f1a,
+		     double f1b,
+		     double sigmap2,
+		     double sigmap2a,
+		     double sigmap2b,
+		     double f2a,
+		     double f2b,
+		     double md, 
+		     double Ebeam, 
+		     double nonres, 
+		     int nbin=500,
+		     double mbcmin=1.83);
+
+
+  // mres is psi'' mass ~3.77 GeV
+  // gamma is psi'' width ~0.023 GeV
+  // r is the interaction radius
+  // sigmaE is center of mass energy spread ~0.0021 GeV
+  // sigmap1 is momentum resolution of first D ~0.05 geV
+  // sigmap2 is momentum resolution of second D ~0.05 geV
+  // md is actuall D mass ~1.869 GeV
+  // Ebeam is the energy used in calculation of mBC ~ 1.885 GeV
+  // nonres is 0 means data, 1 means MC and -1 means nonres
+  // nbin is number of bins
+  // mbcmin is minimum mBC, maximum mbc is Ebeam.
+
+  virtual ~RooDLineShapeImp2D(){
+    delete m_edist;
+  }
+
+
+  double evalInt2(double mbc1);
+
+  double evalInt1(double mbc2);
+
+  double evaluate(double mbc1,double mbc2);
+
+private:
+
+
+  double m_mres;
+  double m_gamma;
+  double m_r;
+  double m_sigmaE;
+  double m_sigmap1;
+  double m_sigmap1a;
+  double m_sigmap1b;
+  double m_f1a;
+  double m_f1b;
+  double m_sigmap2;
+  double m_sigmap2a;
+  double m_sigmap2b;
+  double m_f2a;
+  double m_f2b;
+  double m_md;
+  double m_Ebeam;
+  double m_nonres;
+
+  RooDEnergyImp* m_edist;
+
+  ClassDef(RooDLineShapeImp2D,0) 
+
+};
+
+
+#endif

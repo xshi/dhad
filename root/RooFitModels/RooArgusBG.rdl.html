@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- Created by htmlize-1.34 in css mode. -->
+<html>
+  <head>
+    <title>RooArgusBG.rdl</title>
+    <style type="text/css">
+    <!--
+      body {
+        color: #f0fff0;
+        background-color: #4169e1;
+      }
+      .builtin {
+        /* font-lock-builtin-face */
+        color: #b0c4de;
+      }
+      .comment {
+        /* font-lock-comment-face */
+        color: #ff7f24;
+      }
+      .constant {
+        /* font-lock-constant-face */
+        color: #7fffd4;
+      }
+      .keyword {
+        /* font-lock-keyword-face */
+        color: #00ffff;
+      }
+      .string {
+        /* font-lock-string-face */
+        color: #ffa07a;
+      }
+      .type {
+        /* font-lock-type-face */
+        color: #98fb98;
+      }
+      .variable-name {
+        /* font-lock-variable-name-face */
+        color: #eedd82;
+      }
+
+      a {
+        color: inherit;
+        background-color: inherit;
+        font: inherit;
+        text-decoration: inherit;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    -->
+    </style>
+  </head>
+  <body>
+    <pre>
+<span class="comment">/*****************************************************************************
+ * Project: RooFit                                                           *
+ * Package: RooFitModels                                                     *
+ *    File: $Id: RooArgusBG.rdl,v 1.2 2007/07/02 13:50:52 xs32 Exp $
+ * Authors:                                                                  *
+ *   WV, Wouter Verkerke, UC Santa Barbara, verkerke@slac.stanford.edu       *
+ *   DK, David Kirkby,    UC Irvine,         dkirkby@uci.edu                 *
+ *                                                                           *
+ * Copyright (c) 2000-2004, Regents of the University of California          *
+ *                          and Stanford University. All rights reserved.    *
+ *                                                                           *
+ * Redistribution and use in source and binary forms,                        *
+ * with or without modification, are permitted according to the terms        *
+ * listed in LICENSE (http://roofit.sourceforge.net/license.txt)             *
+ *****************************************************************************/</span>
+#<span class="builtin">ifndef</span> ROO_ARGUS_BG
+#<span class="builtin">define</span> ROO_ARGUS_BG
+
+#<span class="builtin">include</span> <span class="string">"RooFitCore/RooAbsPdf.hh"</span>
+#<span class="builtin">include</span> <span class="string">"RooFitCore/RooRealProxy.hh"</span>
+
+<span class="keyword">class</span> <span class="variable-name">RooParmFcn</span>;
+<span class="keyword">class</span> <span class="variable-name">RooRealVar</span>;
+<span class="keyword">class</span> <span class="variable-name">RooAbsReal</span>;
+
+<span class="keyword">class</span> <span class="variable-name">RooArgusBG</span> : <span class="keyword">public</span> RooAbsPdf {
+<span class="constant">public</span>:
+  RooArgusBG(<span class="keyword">const</span> <span class="type">char *name</span>, <span class="keyword">const</span> <span class="type">char *title</span>, 
+             RooAbsReal&amp; _m, RooAbsReal&amp; _m0, RooAbsReal&amp; _c);
+  RooArgusBG(<span class="keyword">const</span> <span class="type">char *name</span>, <span class="keyword">const</span> <span class="type">char *title</span>, 
+             RooAbsReal&amp; _m, RooAbsReal&amp; _m0, RooAbsReal&amp; _c, RooAbsReal&amp; _p);
+  RooArgusBG(<span class="keyword">const</span> RooArgusBG&amp; other,<span class="keyword">const</span> <span class="type">char* name</span>=0) ;
+  <span class="keyword">virtual</span> TObject* clone(<span class="keyword">const</span> <span class="type">char* newname</span>) <span class="keyword">const</span> { <span class="keyword">return</span> <span class="keyword">new</span> RooArgusBG(*<span class="keyword">this</span>,newname); }
+  <span class="keyword">inline</span> <span class="keyword">virtual</span> ~RooArgusBG() { }
+
+  <span class="type">Int_t getAnalyticalIntegral</span>(RooArgSet&amp; allVars, RooArgSet&amp; analVars, <span class="keyword">const</span> <span class="type">char* rangeName</span>=0) <span class="keyword">const</span> ;
+  <span class="type">Double_t analyticalIntegral</span>(<span class="type">Int_t code</span>, <span class="keyword">const</span> <span class="type">char* rangeName</span>=0) <span class="keyword">const</span> ;
+
+<span class="constant">protected</span>:
+  RooRealProxy m ;
+  RooRealProxy m0 ;
+  RooRealProxy c ;
+  RooRealProxy p ;
+
+  <span class="type">Double_t evaluate</span>() <span class="keyword">const</span> ;
+<span class="comment">//   void initGenerator();
+</span>
+<span class="constant">private</span>:
+
+  <span class="keyword">mutable</span> <span class="type">double p_save</span>;
+  <span class="keyword">mutable</span> <span class="type">double c_save</span>;
+
+  <span class="type">double m_min</span>,<span class="variable-name">m_max</span>;
+
+  <span class="keyword">mutable</span> RooParmFcn* norm;
+
+  ClassDef(RooArgusBG,0) <span class="comment">// Argus background shape PDF
+</span>};
+
+#<span class="builtin">endif</span>
+</pre>
+  </body>
+</html>

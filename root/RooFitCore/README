@@ -1,0 +1,68 @@
+
+ *** This document describes how to compile and load RooFit ***
+
+
+ --> BABAR USERS : Please consult README in RooFitBabar on how to         <---
+ -->               compile RooFit in the BaBar SoftRelTools environment   <---
+
+
+Package contents:
+-----------------
+
+      .cc -> C++ code
+      .hh -> C++ headers 
+      .rdl -> C++ headers that need to be processed by rootcint
+
+      GNUmakefile.standalone -> Standalone make file 
+
+      GNUmakefile -> Makefile for BaBar SoftRelTools framework 
+   
+
+Compiling RooFit                     
+----------------
+
+   Execute 'gmake -f GNUmakefile.standalone' in the package directory   
+
+   The standalone makefile is still rudimentary, but your should
+   be able to get it to run without much effort. Prior to running
+   you need to edit GNUMakefile.standalone to supply it with
+   some local configuration details, such as
+
+      - Which compiler to use
+      - Location of local ROOT installation
+   
+   Follow the instructions in GNUmakefile.standalone for detais
+
+   --> RooFit needs ROOT version 3.02-07 or higher.
+
+   After compiling RooFitCore, repeat the same procedure for RooFitModels.
+
+ [ WVE - Note: I'm not a makefile guru. If you have suggestions/
+   contributions to improve the standalone makefiles, please contact us ]
+
+
+
+
+Loading RooFit in your ROOT session
+-----------------------------------
+
+  root> gSystem->Load("<libDir>/libRooFitCore.so") ;
+  root> gSystem->Load("<libDir>/libRooFitModels.so") ;
+
+where <libDir> is the directory where you keep the RooFit shared libraries.
+Alternatively add <libDir> to your LD_LIBRARY_PATH environment variable
+and omit it in the gSystem->Load() call.
+
+
+
+How to update the html class documentation:
+-------------------------------------------
+
+ In root, execute the RooFitCore/makedocs("private","html/") macro.
+ Output will appears in the directory given as 2nd argument.
+
+
+
+
+
+
