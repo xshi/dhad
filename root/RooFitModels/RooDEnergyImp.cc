@@ -34,7 +34,7 @@
 ClassImp(RooDEnergyImp)
 
 static const char rcsid[] =
-"$Id: RooDEnergyImp.cc,v 1.3 2007/05/09 12:54:37 xs32 Exp $";
+"$Id: RooDEnergyImp.cc,v 1.3 2007/05/09 12:54:37 xs32 Exp xs32 $";
 
 
 
@@ -250,7 +250,11 @@ double RooDEnergyImp::BW(double e){
     //double gamma=m_gamma;
     double gamma=m_gamma*(pp*pp*pp/(1.0+(m_r*pp)*(m_r*pp))+pn*pn*pn/(1.0+(m_r*pn)*(m_r*pn)))/
       (pp0*pp0*pp0/(1.0+(m_r*pp0)*(m_r*pp0))+pn0*pn0*pn0/(1.0+(m_r*pn0)*(m_r*pn0)));
-    return (p*p*p/(1.0+(m_r*p)*(m_r*p)))/((e-m_mres)*(e-m_mres)+gamma*gamma/4.0);
+    // return (p*p*p/(1.0+(m_r*p)*(m_r*p)))/((e-m_mres)*(e-m_mres)+gamma*gamma/4.0);
+
+    // Remove the factor to match the EvtGenModels/Class/EvtVPHOtoVISR.cc - xs32 12/23/2009
+    
+    return (p*p*p)/((e-m_mres)*(e-m_mres)+gamma*gamma/4.0);
   }
 
   
