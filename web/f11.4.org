@@ -3,21 +3,21 @@
 
 * Signal
 
-   | Type                  | 281ipbv12 | 537ipbv12 | 818ipbv12       | 818ipbv13 |
-   |-----------------------+-----------+-----------+-----------------+-----------|
-   | Progress              | [[./fig/281ipbv12/p281.png][diagram]]   |           | [[./fig/818ipbv12/p818.png][proc]], [[./fig/818ipbv12/b818.png][bkg]], [[./fig/818ipbv12/s818.png][sys]]  |           |
-   |-----------------------+-----------+-----------+-----------------+-----------|
-   | Resolution parameters | [[./fig/281ipbv12/signal_diagdouble_resolution.org][figure]]    | [[./fig/537ipbv12/signal_diagdouble_resolution.org][figure]]    | [[./fig/818ipbv12/signal_diagdouble_resolution.org][figure]]          | [[./fig/818ipbv13/signal_diagdouble_resolution.org][figure]]    |
-   | Signal MC single tags | [[./fig/281ipbv12/signal_single_p.org][figure]]    | [[./fig/537ipbv12/signal_single_p.org][figure]]    | [[./fig/818ipbv12/signal_single_p.org][figure]]          | [[./fig/818ipbv13/signal_single_p.org][figure]]    |
-   | Signal MC double tags | [[./fig/281ipbv12/signal_double.org][figure]]    | [[./fig/537ipbv12/signal_double.org][figure]]    | [[./fig/818ipbv12/signal_double.org][figure]]          | [[./fig/818ipbv13/signal_double.org][figure]]    |
-   | Data single tags      | [[./fig/281ipbv12/data_single_p.org][figure]]    | [[./fig/537ipbv12/data_single_p.org][figure]]    | [[./fig/818ipbv12/data_single_p.org][figure]]          | [[./fig/818ipbv13/data_single_p.org][figure]]    |
-   | Data double tags      | [[./fig/281ipbv12/data_double.org][figure]]    | [[./fig/537ipbv12/data_double.org][figure]]    | [[./fig/818ipbv12/data_double.org][figure]]          | [[./fig/818ipbv13/data_double.org][figure]]    |
-   | Crossfeeds - diagonal | [[./fig/281ipbv12/crossfeeds_signal_diag.org][figure]]    | [[./fig/537ipbv12/crossfeeds_signal_diag.org][figure]]    | [[./fig/818ipbv12/crossfeeds_signal_diag.org][figure]]          | [[./fig/818ipbv13/crossfeeds_signal_diag.org][figure]]    |
-   | Crossfeeds - non-diag | [[./fig/281ipbv12/crossfeeds_signal_nondiag.org][figure]]    | [[./fig/537ipbv12/crossfeeds_signal_nondiag.org][figure]]    | [[./fig/818ipbv12/crossfeeds_signal_nondiag.org][figure]]          | [[./fig/818ipbv13/crossfeeds_signal_nondiag.org][figure]]    |
-   | Generic MC single tag | [[./fig/281ipbv12/generic_single_p.org][figure]]    |           | [[./fig/818ipbv12/generic_single_p.org][figure]]          |           |
-   | Generic MC double tag | [[./fig/281ipbv12/generic_double.org][figure]]    |           | [[./fig/818ipbv12/generic_double.org][figure]]          |           |
-   | Data double all D0s   |           |           | [[./fig/818ipbv12/data_double_all_d0s.org][figure]] , [[./fig/818ipbv12.1/data_double_all_d0s.org][figure]] |           |
-   | Data double all Dps   |           |           | [[./fig/818ipbv12/data_double_all_dps.org][figure]] , [[./fig/818ipbv12.1/data_double_all_dps.org][figure]] |           |
+   | Type                  | 281ipbv12 | 537ipbv12 | 818ipbv12                  | 818ipbv13 |
+   |-----------------------+-----------+-----------+----------------------------+-----------|
+   | Progress              | [[./fig/281ipbv12/p281.png][diagram]]   |           | [[./fig/818ipbv12/p818.png][proc]], [[./fig/818ipbv12/b818.png][bkg]], [[./fig/818ipbv12/s818.png][sys]]             |           |
+   |-----------------------+-----------+-----------+----------------------------+-----------|
+   | Resolution parameters | [[./fig/281ipbv12/signal_diagdouble_resolution.org][figure]]    | [[./fig/537ipbv12/signal_diagdouble_resolution.org][figure]]    | [[./fig/818ipbv12/signal_diagdouble_resolution.org][figure]]                     | [[./fig/818ipbv13/signal_diagdouble_resolution.org][figure]]    |
+   | Signal MC single tags | [[./fig/281ipbv12/signal_single_p.org][figure]]    | [[./fig/537ipbv12/signal_single_p.org][figure]]    | [[./fig/818ipbv12/signal_single_p.org][figure]]                     | [[./fig/818ipbv13/signal_single_p.org][figure]]    |
+   | Signal MC double tags | [[./fig/281ipbv12/signal_double.org][figure]]    | [[./fig/537ipbv12/signal_double.org][figure]]    | [[./fig/818ipbv12/signal_double.org][figure]]                     | [[./fig/818ipbv13/signal_double.org][figure]]    |
+   | Data single tags      | [[./fig/281ipbv12/data_single_p.org][figure]]    | [[./fig/537ipbv12/data_single_p.org][figure]]    | [[./fig/818ipbv12/data_single_p.org][figure]]                     | [[./fig/818ipbv13/data_single_p.org][figure]]    |
+   | Data double tags      | [[./fig/281ipbv12/data_double.org][figure]]    | [[./fig/537ipbv12/data_double.org][figure]]    | [[./fig/818ipbv12/data_double.org][figure]]                     | [[./fig/818ipbv13/data_double.org][figure]]    |
+   | Crossfeeds - diagonal | [[./fig/281ipbv12/crossfeeds_signal_diag.org][figure]]    | [[./fig/537ipbv12/crossfeeds_signal_diag.org][figure]]    | [[./fig/818ipbv12/crossfeeds_signal_diag.org][figure]]                     | [[./fig/818ipbv13/crossfeeds_signal_diag.org][figure]]    |
+   | Crossfeeds - non-diag | [[./fig/281ipbv12/crossfeeds_signal_nondiag.org][figure]]    | [[./fig/537ipbv12/crossfeeds_signal_nondiag.org][figure]]    | [[./fig/818ipbv12/crossfeeds_signal_nondiag.org][figure]]                     | [[./fig/818ipbv13/crossfeeds_signal_nondiag.org][figure]]    |
+   | Generic MC single tag | [[./fig/281ipbv12/generic_single_p.org][figure]]    |           | [[./fig/818ipbv12/generic_single_p.org][figure]]                     |           |
+   | Generic MC double tag | [[./fig/281ipbv12/generic_double.org][figure]]    |           | [[./fig/818ipbv12/generic_double.org][figure]]                     |           |
+   | Data double all D0s   |           |           | [[./fig/818ipbv12/data_double_all_d0s.org][figure]] , [[./fig/818ipbv12.1/data_double_all_d0s.org][figure]] , [[./doc/dhadprd/fig/d03.pdf][PDF]], [[./doc/dhadprd/log/d03.log][log]] |           |
+   | Data double all Dps   |           |           | [[./fig/818ipbv12/data_double_all_dps.org][figure]] , [[./fig/818ipbv12.1/data_double_all_dps.org][figure]] , [[./doc/dhadprd/fig/dp3.pdf][PDF]], [[./doc/dhadprd/log/dp3.log][log]] |           |
 
   - 281ipbv0:
     Generic MC single tag: [[./fig/281ipbv0/generic_single_p.org][figure]] 
