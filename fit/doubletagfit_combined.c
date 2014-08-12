@@ -5,7 +5,7 @@ using namespace std;
 // To run in batch mode:
 // root -b -q 'doubletagfit_combined.c("/home/xs32/work/CLEO/analysis/DHad/dat/evt/818ipbv7/data_Double_d0_d0bar_with_mode.evt", "/home/xs32/work/CLEO/analysis/DHad/doc/dhadprd/fig/d03_test.eps", 1, 3)' >  /home/xs32/work/CLEO/analysis/DHad/doc/dhadprd/log/d03_test.log 
 
-// root -b -q 'doubletagfit_combined.c("/home/xs32/work/CLEO/analysis/DHad/dat/evt/818ipbv7/data_Double_dp_dm_with_mode.evt", "/home/xs32/work/CLEO/analysis/DHad/doc/dhadprd/fig/dp3_test.eps", 1, 3)' >  /home/xs32/work/CLEO/analysis/DHad/doc/dhadprd/log/dp3_test.log 
+// root -b -q 'doubletagfit_combined.c("/home/xs32/work/CLEO/analysis/DHad/dat/evt/818ipbv7/data_Double_dp_dm_with_mode.evt", "/home/xs32/work/CLEO/analysis/DHad/doc/dhadprd/fig/dp3_test.eps", 0, 3)' >  /home/xs32/work/CLEO/analysis/DHad/doc/dhadprd/log/dp3_test.log 
 
 
 void fitpars(TString mode, double& sigma, double& fa, double& fb, double& sa, double& sb){
