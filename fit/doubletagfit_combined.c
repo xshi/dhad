@@ -1,9 +1,14 @@
 #include <iostream>
 using namespace std;
-using namespace RooFit;
+// using namespace RooFit;
+
+// To run in batch mode:
+// root -b -q 'doubletagfit_combined.c("/home/xs32/work/CLEO/analysis/DHad/dat/evt/818ipbv7/data_Double_d0_d0bar_with_mode.evt", "/home/xs32/work/CLEO/analysis/DHad/doc/dhadprd/fig/d03_test.eps", 1, 3)' >  /home/xs32/work/CLEO/analysis/DHad/doc/dhadprd/log/d03_test.log 
+
+// root -b -q 'doubletagfit_combined.c("/home/xs32/work/CLEO/analysis/DHad/dat/evt/818ipbv7/data_Double_dp_dm_with_mode.evt", "/home/xs32/work/CLEO/analysis/DHad/doc/dhadprd/fig/dp3_test.eps", 1, 3)' >  /home/xs32/work/CLEO/analysis/DHad/doc/dhadprd/log/dp3_test.log 
+
 
 void fitpars(TString mode, double& sigma, double& fa, double& fb, double& sa, double& sb){
-
 
  if (mode=="kpi"){
    sigma=0.00394;
@@ -70,7 +75,13 @@ void fitpars(TString mode, double& sigma, double& fa, double& fb, double& sa, do
 
 void doubletagfit_combined(TString file, TString epsfile, int d0, int mc=0){
 
+  gSystem->Load("/home/xs32/work/CLEO/analysis/DHad/lib/RooFitCore/libRooFitCore_3_0.so"); 
+  gSystem->Load("/home/xs32/work/CLEO/analysis/DHad/lib/RooFitModels/libRooFitModels_3_0.so");
 
+  gROOT->SetStyle("Plain"); 
+  
+  using namespace RooFit;
+  
   RooRealVar mbc1("mbc1","M(D1)",1.83,1.89,"GeV");
   RooRealVar mbc2("mbc2","M(D2)",1.83,1.89,"GeV");
   RooRealVar Ebeam("Ebeam","Ebeam",1.885,1.89,"GeV");
@@ -330,7 +341,6 @@ void doubletagfit_combined(TString file, TString epsfile, int d0, int mc=0){
 
   cout << "Will fit" << endl;
 
-
   totalPdf.fitTo(*dataset,"ermh");
 
   cout << "Done with fit" << endl;
@@ -465,96 +475,3 @@ void doubletagfit_combined(TString file, TString epsfile, int d0, int mc=0){
 
 }
 
-/*
-  for (int i=0;i<nmodes;i++){
-    for (int j=0;j<nmodes;j++){
-
-      TString modename=names[i]+"_"+names[j];
-      int modenum=i*nmodes+j;
-
-      TCanvas *canvas=new TCanvas("c_"+modename,
-				  "Fit_"+modename,900,300);
-
-
-      //canvas_1->SetLogy();
-      //canvas_2->SetLogy();
-
-
-  
-
-      canvas->Divide(3,1);
-
-      canvas->cd(1);
-
-      //gPad->SetLogy();
-
-      RooPlot* mbcFrame=mbc1.frame(50);
-
-      mbcFrame->SetTitle(names[i]);
-
-      dataset->plotOn(mbcFrame,Cut("dmodes==dmodes::"+modename));
-      mbcFrame->Draw();
-
-      //totalPdf.paramOn(mbcFrame,dataset,"Fit parameters",2,"NELU",0.45);
-      //mbcFrame->Draw();
-
-      dataset->plotOn(mbcFrame,Cut("dmodes==dmodes::"+modename));
-      mbcFrame->Draw();
-
-      dmodes=modename;
-
-      totalPdf.plotOn(mbcFrame,Slice(dmodes),ProjWData(dmodes,*dataset),Components(RooArgSet(*(BkgdFlat[modenum]),*(Bkgd1[modenum]),*(Bkgd2[modenum]),*(Bkgd3[modenum]))),LineColor(kBlue),LineStyle(kDashed));
-      //totalPdf.plotOn(mbcFrame,ProjWData(Ebeam,*dataset),Slice(dmodes),Components(RooArgSet(*(BkgdFlat[modenum]),*(Bkgd1[modenum]),*(Bkgd2[modenum]),*(Bkgd3[modenum]))),LineColor(kBlue));
-      mbcFrame->Draw();
-
-
-      totalPdf.plotOn(mbcFrame,Slice(dmodes),ProjWData(dmodes,*dataset),LineColor(kRed));
-      //totalPdf.plotOn(mbcFrame,ProjWData(Ebeam,*dataset),Slice(dmodes),LineColor(kRed));
-      mbcFrame->Draw();
-
-
-      canvas->cd(2);
-
-      //gPad->SetLogy();
-
-      RooPlot* mbcFrame2=mbc2.frame(50);
-
-      mbcFrame2->SetTitle(names[j]);
-
-      dataset->plotOn(mbcFrame2,Cut("dmodes==dmodes::"+modename));
-      mbcFrame2->Draw();
-
-
-      dataset->plotOn(mbcFrame2,Cut("dmodes==dmodes::"+modename));
-      mbcFrame2->Draw();
-
-      dmodes=modename;
-
-      totalPdf.plotOn(mbcFrame2,Slice(dmodes),ProjWData(dmodes,*dataset),Components(RooArgSet(*(BkgdFlat[modenum]),*(Bkgd1[modenum]),*(Bkgd2[modenum]),*(Bkgd3[modenum]))),LineColor(kBlue),LineStyle(kDashed));
-      //totalPdf.plotOn(mbcFrame2,ProjWData(Ebeam,*dataset),Slice(dmodes),Components(RooArgSet(*(BkgdFlat[modenum]),*(Bkgd1[modenum]),*(Bkgd2[modenum]),*(Bkgd3[modenum]))),LineColor(kBlue));
-      mbcFrame2->Draw();
-
-      totalPdf.plotOn(mbcFrame2,Slice(dmodes),ProjWData(dmodes,*dataset),LineColor(kRed));
-      //totalPdf.plotOn(mbcFrame2,ProjWData(Ebeam,*dataset),Slice(dmodes),LineColor(kRed));
-      //totalPdf.plotOn(mbcFrame2,LineColor(kRed));
-      mbcFrame2->Draw();
-
-      canvas->cd(3);
-
-
-
-
-      RooPlot* aplot=new RooPlot();
-
-      totalPdf.paramOn(aplot,dataset,"Fit parameters",2,"NELU",0.45);
-      aplot->Draw();
-
-      canvas->Print("Doubletag_"+modename+".eps");
-      canvas->Print("Doubletag_"+modename+".ps");
-  
-    }
-  }
-  
-
-}
-*/
