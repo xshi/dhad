@@ -115,12 +115,14 @@ void doubletagfit_combined(TString file, TString epsfile, int d0, int mc=0){
 
   cout << "Here02"<<endl;
 
-  RooRealVar mres("mres","mres",3.77);
+  // RooRealVar mres("mres","mres",3.77);
+  RooRealVar mres("mres","mres",3.7724);
 
   RooRealVar res("datares","datares",mc);
   RooRealVar *gamma;
   if (mc){
-    gamma=new RooRealVar("gamma","gamma",0.0236);
+    // gamma=new RooRealVar("gamma","gamma",0.0236);
+    gamma=new RooRealVar("gamma","gamma",0.0252); // mc=3 data 
   }
   else{
     //gamma=new RooRealVar("gamma","gamma",0.024,0.020,0.070);
