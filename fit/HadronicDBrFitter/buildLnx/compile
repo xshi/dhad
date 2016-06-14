@@ -1,0 +1,22 @@
+#!/bin/tcsh
+
+rm -f *.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBChisqFitIterator.cc -o HDBChisqFitIterator.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBChisqMinimizer.cc -o HDBChisqMinimizer.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBData.cc -o HDBData.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBEfficiencyMatrix.cc -o HDBEfficiencyMatrix.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBFitInputFactory.cc -o HDBFitInputFactory.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBFitIterator.cc -o HDBFitIterator.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBFitterMain.cc -o HDBFitterMain.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBInputData.cc -o HDBInputData.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBParameterData.cc -o HDBParameterData.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBParameterEstimator.cc -o HDBParameterEstimator.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBStandardFitInputFactory.cc -o HDBStandardFitInputFactory.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBStandardFitInputFactoryTTY.cc -o HDBStandardFitInputFactoryTTY.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBStandardInputData.cc -o HDBStandardInputData.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBStandardMCInputData.cc -o HDBStandardMCInputData.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBVariableMatrix.cc -o HDBVariableMatrix.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBVariableMatrixElement.cc -o HDBVariableMatrixElement.o
+g++ -I.. -I/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources -c ../Class/HDBVariableVector.cc -o HDBVariableVector.o
+ar -r libHadronicDBrFitter.a *.o
+g++ -L. -L/nfs/cleo3/Offline/rel/Mar04_04_MC/lib/Linux/g++ -L/nfs/cleo3/Offline/rel/Mar04_04_MC/other_sources/lib/Linux/g++ -L/nfs/cleo3/Offline/rel/Mar04_04_MC/lib/Linux ${CERNLIB}/cernpatch.o -L${CERNLIB} -lHadronicDBrFitter -lHbookHistogram -lLoadFortranCommons -lToolBox -llunmgr -lCLHEP -lpacklib -lmathlib -lg2c -o HDBFitter

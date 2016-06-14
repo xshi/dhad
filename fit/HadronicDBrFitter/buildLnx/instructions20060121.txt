@@ -1,0 +1,277 @@
+I changed the way in which the fit parameters are constrained.  Instead of
+a two step process where the fit is first done without constraints and
+then the external measurements are averaged in, I now put the external
+constraints directly in the chi^2 minimization.  Below are revised
+instructions.  Note that entering constraints now comes before entering
+seed errors.
+
+I made this change so we could handle cases where there is not enough
+information in the input yields to determine all the free parameters.  For
+instance, if the fit uses only double tags (no single tags), then the
+branching fractions cannot be extracted separately from NDDBar, and the
+fit will crash (because the input error matrix will be singular).  What
+you can do now is enter external measurements of these branching fractions
+(values, errors, and correlation coefficients), thus lifting the error
+matrix singularity.
+
+This way, Alexander can do his analysis without semileptonic modes:
+
+* Fit only KPi/CP and KPi/KPi double tags, enter the PDG values
+for y and CP mode branching fractions, and get a result for rz.
+
+* Fit only KPi/CP and KPi/KPi double tags AND single tags for KPi and CP,
+enter the PDG value for y, and get a result for rz.
+
+--------------------------------------------------------------------------
+
+S = # single tags
+D = # double tags
+N = S+D
+B = # background sources
+
+n = Ec + Fb
+
+n = measured signal yields (vector of length N)
+c = efficiency-corrected or "true" signal yields (vector of length N)
+E = signal efficiency matrix (NxN)
+
+b = true background yields (vector of length B)
+F = background efficiency matrix (NxB)
+
+The fitter needs to be told what single and double tag yields and what
+background sources will be entered.  And then, it needs every element
+(value and error) of n, E, F, and b.
+
+The executable is in ~wsun/c3lib/HadronicDBrFitter/buildLnx/HDBFitterNew
+
+A sample script that does the TQCA fit sent to PANIC05 is in
+~wsun/c3lib/HadronicDBrFitter/buildLnx/tqca/panic05/new/data.com, and the
+output is in data.log in the same directory.  To jump to the fit results
+in the log file, search for the string "Fitted".
+
+The data entry is from the command line, and the fitter currently requires
+every piece of information that it might need to be entered 
+explicitly.  If you look in the log file, you'll see the prompts that
+were printed to the screen.  The more user-friendly version I'd like to
+make will take input from a file and will assume default values for things
+like the off-diagonal efficiency matrix elements, so the user will have to
+enter only the non-zero elements.
+
+Anyway, here's what each line of the sample script means:
+
+* Are single tags exclusive (y/n)?
+[ exclusive = not part of a double tag.  This should always be "n". ]
+
+* Generate toy MC (y/n)?
+
+* Now enter the signal modes.  The fitter automatically determines what
+are the fit parameters based on the sample types and final states.
+
+	- Mode type: single/double/end [ end = no more modes to enter ]
+
+	- Sample type: D+D-/Ds+Ds-/D0D0BarUncorrelated/
+	D0D0BarC-/D0D0BarC-WithC+/D0D0BarC+/D0D0BarC+WithC-
+	[ D0D0BarC-WithC+ and D0D0BarC+WithC- are for the self-calibrating
+   	C-content fits we talked about a few months ago.
+	D0D0BarUncorrelated is for the DHad fit without TQCA parameters. ]
+
+	- Final states: available options are
+	D02K-Pi+ D0b2K+Pi- D0(b)2KPi
+	D02K-Pi+Pi0 D0b2K+Pi-Pi0 D0(b)2KPiPi0
+	D02K-Pi+Pi0Pi0 D0b2K+Pi-Pi0Pi0 D0(b)2KPiPi0Pi0
+	D02K-Pi+Pi+Pi- D0b2K+Pi-Pi-Pi+ D0(b)2KPiPiPi
+	D02K-e+nu D0b2K+e-nubar D0(b)2Kenu
+
+	D0(b)2KsPi+Pi-
+	D0(b)2KsPi+Pi-Pi0
+	D0(b)2Pi+Pi-Pi0
+
+	D0(b)2K+K-
+	D0(b)2Pi+Pi-
+	D0(b)2KlPi0
+	D0(b)2KsPi0Pi0
+	D0(b)2KsPi+Pi-CP+
+	D0(b)2KlPi+Pi-CP+
+
+	D0(b)2KsEta
+	D0(b)2KsPhi
+	D0(b)2KsOmega
+	D0(b)2KsPi0
+	D0(b)2KlPi0Pi0
+	D0(b)2KsPi+Pi-CP-
+	D0(b)2KlPi+Pi-CP-
+
+	D+2K-Pi+Pi+ D-2K+Pi-Pi-
+	D+2K-Pi+Pi+Pi0 D-2K+Pi-Pi-Pi0
+	D+2KsPi+ D-2KsPi-
+	D+2KsPi+Pi0 D-2KsPi-Pi0
+	D+2KsPi+Pi-Pi+ D-2KsPi-Pi+Pi-
+	D+2K-K+Pi+ D-2K+K-Pi-
+
+	Ds+2KsK+ Ds-2KsK-
+	Ds+2K+K-Pi+ Ds-2K-K+Pi-
+	Ds+2KsK+Pi0 Ds-2KsK-Pi0
+	Ds+2KsKsPi+ Ds-2KsKsPi-
+	Ds+2K+K-Pi+Pi0 Ds-2K-K+Pi-Pi0
+	Ds+2KsK-Pi+Pi+ Ds-2KsK+Pi-Pi-
+	Ds+2KsK+Pi-Pi+ Ds-2KsK-Pi+Pi-
+	Ds+2K+K-Pi+Pi-Pi+ Ds-2K-K+Pi-Pi+Pi-
+	Ds+2Pi+Pi0 Ds-2Pi-Pi0
+	Ds+2Pi+Pi-Pi+ Ds-2Pi-Pi+Pi-
+	Ds+2Pi+Eta Ds-2Pi-Eta
+	Ds+2Pi+Pi0Eta Ds-2Pi-Pi0Eta
+	Ds+2Pi+EtaPrime Ds-2Pi-EtaPrime
+	Ds+2Pi+Pi0EtaPrime Ds-2Pi-Pi0EtaPrime
+
+
+* The fitter then rearranges the mode order so that single tags preceed
+the double tags.  For each mode, enter {yield, stat error, syst error}.
+
+* Background sources:
+
+	- Background type: neutralD/chargedD/Ds/
+	neutralDC-/neutralDC-WithC+/neutralDC+/neutralDC+WithC-/nonD/end
+	[ end = no more background sources ]
+
+	- Name of background (arbitrary)
+
+	- Background parameters:
+
+		o If the background is a non-signal D decay:
+		{ branching fraction, branching fraction error}.
+		If NDDBar is not a fit parameter, it needs to be entered
+		as a background parameter, in which case
+		{ NDDBar name, value, error } are entered before the BFs.
+
+		o If the background is non-D (like continuum or tau):
+		{ cross section name, luminosity, lumi error, xsec, xsec
+		error }, where lumi and lumi error are omitted if they
+		were previously entered.
+
+* Signal efficiency matrices, first the ST block, then the DT block.
+
+	- ST matrix (SxS) entered row by row.
+	- DT matrix (DxD) entered row by row.
+
+* Background efficiency matrix, NxB, entered row by row.
+
+* Uncorrelated errors on the above matrices: ST, DT, background.
+
+* Correlated systematic errors:
+
+	- Fractional uncertainty for tracks
+	- Fractional uncertainty for charged pions
+	- Fractional uncertainty for charged kaons
+	- Fractional uncertainty for electrons
+	- Fractional uncertainty for showers
+	- Fractional uncertainty for K0S
+	- Fractional uncertainty for pi0
+	- Fractional uncertainty for eta(->gammagamma)
+	- Correction factor for tracks [e.g. 1.01 = 1% upward correction]
+	- Correction factor for charged pions
+	- Correction factor for charged kaons
+	- Correction factor for electrons
+	- Correction factor for showers
+	- Correction factor for K0S
+	- Correction factor for pi0
+	- Correction factor for eta(->gammagamma)
+
+	- Fractional uncertainty associated with each fit parameter
+	[ I.e., if we say there is a 1% uncertainty for BrD2KPi, then each
+	ST or DT mode with K-Pi+ OR K+Pi- will get a correlated 1% error.]
+
+	- Fractional uncertainty per yield
+
+	- Fractional uncertainty per D
+	[ If 1%, then ST yields get 1%, DT yields get 2%, all correlated.]
+
+	- Fractional uncertainty per single tag
+
+	- Fractional uncertainty per double tag
+
+* Seed parameters to start the fit.
+
+* Constrain parameters? (y/n)
+Here, we can add in external measurements of, say, branching fractions or
+r^2.  If "y", then
+
+	- Name of parameter to constrain [ end = no more constraints ]
+
+	- External measurement of parameter
+
+	- External error on parameter
+
+* Correlation coefficients for external measurements, upper-triangular
+off-diagonal only, entered row by row.
+
+* Enter seed errors? (y/n)
+These are not used during the fit, but afterwards to see how consistent
+the fit results are with the seeds.  If "y", then
+
+	- Error on each seed parameter [ -1 = no error ]
+
+	- Seed correlation matrix: upper-triangular off-diagonal
+	correlation coefficients, entered row by row.
+
+The fitter then prints out a chi^2 that characterizes the difference
+between the fit result and the seeds.
+
+* Enter statistical errors? (y/n)
+If the fit is done including systematic errors, then you can enter the
+errors obtained using statistical errors only (one for each parameter),
+and the fitter will take the quadrature difference to get the systematic
+error.
+
+* Compute ratios of parameters? (y/n).  If "y", then
+
+	- Index of numerator parameter (starts from 0)
+	[ -1 = no more ratios to compute ]
+	[ I should change this to be parameter name, not index. ]
+
+	- Index of denominator parameter (starts from 0)
+
+	- External central value to compare
+
+	- External error to compare
+
+	- Enter statistical error for ratio? (y/n).
+	If "y", then enter error.
+
+* Compute cross sections? (y/n).  If "y", then
+
+	- ND0D0Bar index  [ -1 = does not exist ]
+
+	- ND+D- index  [ -1 = does not exist ]
+
+	- Luminosity in whatever units user desires (result will be in
+	inverse units).
+
+	- Luminosity error in same units
+
+	- Uncorrelated fractional systematic error on neutral xsec
+
+	- Enter statistical error on neutral xsec? (y/n)
+	If "y", then enter error.
+
+        - Uncorrelated fractional systematic error on charged xsec
+        
+        - Enter statistical error on charged xsec? (y/n)
+        If "y", then enter error.
+
+	Now, if both cross sections exist, the fitter calculates the sum
+	and ratio.
+
+	- Enter statistical error on total xsec? (y/n)
+	If "y", then enter error.
+
+	- Enter statistical error on xsec ratio? (y/n)
+	If "y", then enter error.
+
+
+And that's it!  The fitter prints out fit results, error and correlation
+matrices, global correlation coefficients, residuals, etc....
+
+
+
+
+

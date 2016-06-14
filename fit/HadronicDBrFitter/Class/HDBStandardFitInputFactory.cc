@@ -1,0 +1,1039 @@
+// -*- C++ -*-
+//
+// Package:     <HadronicDBrFitter>
+// Module:      HDBStandardFitInputFactory
+// 
+// Description: <one line class summary>
+//
+// Implementation:
+//     <Notes on implementation>
+//
+// Author:      Werner Sun
+// Created:     Wed May 26 21:53:28 EDT 2004
+// $Id$
+//
+// Revision history
+//
+// $Log$
+
+// #include "Experiment/Experiment.h"
+
+// system include files
+// You may have to uncomment some of these or other stl headers
+// depending on what other header files you include (e.g. FrameAccess etc.)!
+//#include <string>
+//#include <vector>
+//#include <set>
+//#include <map>
+//#include <algorithm>
+//#include <utility>
+#include <assert.h>
+
+// user include files
+//#include "Experiment/report.h"
+#include "HadronicDBrFitter/HDBStandardFitInputFactory.h"
+#include "HadronicDBrFitter/HDBStandardInputData.h"
+#include "HadronicDBrFitter/HDBStandardMCInputData.h"
+
+//
+// constants, enums and typedefs
+//
+
+static const char* const kFacilityString = "HadronicDBrFitter.HDBStandardFitInputFactory" ;
+
+// ---- cvs-based strings (Id and Tag with which file was checked out)
+static const char* const kIdString  = "$Id: skeleton.cc,v 1.7 2004/02/12 02:14:38 pcs Exp $";
+static const char* const kTagString = "$Name:  $";
+
+//
+// static data member definitions
+//
+
+//
+// constructors and destructor
+//
+HDBStandardFitInputFactory::HDBStandardFitInputFactory(
+   bool aSingleTagsExclusive,
+   bool aGenerateMC )
+   : m_fitParametersDefined( false ),
+     m_generateMC( aGenerateMC ),
+     m_nDPlusDMinusIndex( -1 ),
+     m_nDsPlusDsMinusIndex( -1 ),
+     m_nD0D0BarIndex( -1 ),
+     m_nD0D0BarCOddIndex( -1 ),
+     m_nD0D0BarCOddEvenFracIndex( -1 ),
+     m_nD0D0BarCEvenIndex( -1 ),
+     m_nD0D0BarCEvenOddFracIndex( -1 ),
+     m_yIndex( -1 ),
+     m_x2Index( -1 ),
+     m_r2Index( -1 ),
+     m_rzIndex( -1 ),
+     m_rwxIndex( -1 ),
+     m_inputYieldsAndErrorsDefined( false ),
+     m_seedsDefined( false ),
+     m_externalDataDefined( false ),
+     m_backgroundsDefined( false ),
+     m_efficienciesDefined( false )
+{
+   // m_fitPredictions is instantiated in defineFitParameters() ;
+
+   // Don't print out diagnostics if generating MC.
+   if( m_generateMC )
+   {
+      m_inputData = new HDBStandardMCInputData( aSingleTagsExclusive ) ;
+   }
+   else
+   {
+      m_inputData = new HDBStandardInputData( aSingleTagsExclusive ) ;
+      m_inputData->setPrintDiagnostics( m_printDiagnostics ) ;
+   }
+
+   m_standardInputData = dynamic_cast< HDBStandardInputData* >( m_inputData ) ;
+   assert( m_standardInputData ) ;
+}
+
+// HDBStandardFitInputFactory::HDBStandardFitInputFactory( const HDBStandardFitInputFactory& rhs )
+// {
+//    // do actual copying here; if you implemented
+//    // operator= correctly, you may be able to use just say      
+//    *this = rhs;
+// }
+
+HDBStandardFitInputFactory::~HDBStandardFitInputFactory()
+{
+}
+
+//
+// assignment operators
+//
+// const HDBStandardFitInputFactory& HDBStandardFitInputFactory::operator=( const HDBStandardFitInputFactory& rhs )
+// {
+//   if( this != &rhs ) {
+//      // do actual copying here, plus:
+//      // "SuperClass"::operator=( rhs );
+//   }
+//
+//   return *this;
+// }
+
+//
+// member functions
+//
+
+// Returns true if input aMode is a known mode.  This mode is added to the
+// list aFitParameterNames if it is not already there.  Also fills outputs
+// aInputInfo and aInputDefinition.
+bool
+HDBStandardFitInputFactory::getInputInfo(
+   const string& aMode,
+   SampleType aSampleType,
+   HDBInputInfoHolder& aInputInfo,
+   HepVector& aParticleContent,
+   vector< string >& aFitParameterNames )
+{
+   string fitParameterName;
+   FitParameterType fitParameterType ;
+   bool knownMode = true ;
+
+   aParticleContent =
+      HepVector( HDBStandardFitInputFactory::kNumParticleTypes, 0 ) ;
+
+   bool sampleTypeDCharged = ( aSampleType == kDPlusDMinus ) ;
+   bool sampleTypeDs = ( aSampleType == kDsPlusDsMinus ) ;
+   bool sampleTypeDNeutral = ( aSampleType == kD0D0BarUncorrelated ||
+			       aSampleType == kD0D0BarCOdd ||
+			       aSampleType == kD0D0BarCOddWithEven ||
+			       aSampleType == kD0D0BarCEven ||
+			       aSampleType == kD0D0BarCEvenWithOdd ) ;
+
+   // Flavored neutral modes
+   if( ( aMode == "D02K-Pi+" ||
+	 aMode == "D0b2K+Pi-" ||
+	 aMode == "D0(b)2KPi" ) &&
+       sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 1. ;
+      fitParameterName = "BrD2KPi" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 if( aMode == "D0(b)2KPi" )
+	 {
+	    fitParameterType = kDNeutral ;
+	 }
+	 else
+	 {
+	    fitParameterType = aMode == "D02K-Pi+" ? kD0 : kD0Bar ;
+	 }
+      }
+      else      
+      {
+	 if( aMode == "D0(b)2KPi" )
+	 {
+	    knownMode = false ;
+	 }
+	 else
+	 {
+	    fitParameterType = aMode == "D02K-Pi+" ?
+	       kD0Flavored : kD0BarFlavored ;
+	 }
+      }
+   }
+   else if( ( aMode == "D02K-Pi+Pi0" ||
+	      aMode == "D0b2K+Pi-Pi0" ||
+	      aMode == "D0(b)2KPiPi0" ) &&
+	    sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 1. ;
+      fitParameterName = "BrD2KPiPi0" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 if( aMode == "D0(b)2KPiPi0" )
+	 {
+	    fitParameterType = kDNeutral ;
+	 }
+	 else
+	 {
+	    fitParameterType = aMode == "D02K-Pi+Pi0" ? kD0 : kD0Bar ;
+	 }
+      }
+      else
+      {
+	 if( aMode == "D0(b)2KPiPi0" )
+	 {
+	    knownMode = false ;
+	 }
+	 else
+	 {
+	    fitParameterType = aMode == "D02K-Pi+Pi0" ?
+	       kD0Flavored : kD0BarFlavored ;
+	 }
+      }
+   }
+   else if( ( aMode == "D02K-Pi+Pi0Pi0" ||
+	      aMode == "D0b2K+Pi-Pi0Pi0" ||
+	      aMode == "D0(b)2KPiPi0Pi0" ) &&
+	    sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 4. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 2. ;
+      fitParameterName = "BrD2KPiPi0Pi0" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 if( aMode == "D0(b)2KPiPi0Pi0" )
+	 {
+	    fitParameterType = kDNeutral ;
+	 }
+	 else
+	 {
+	    fitParameterType = aMode == "D02K-Pi+Pi0Pi0" ? kD0 : kD0Bar ;
+	 }
+      }
+      else
+      {
+	 if( aMode == "D0(b)2KPiPi0Pi0" )
+	 {
+	    knownMode = false ;
+	 }
+	 else
+	 {
+	    fitParameterType = aMode == "D02K-Pi+Pi0Pi0" ?
+	       kD0Flavored : kD0BarFlavored ;
+	 }
+      }
+   }
+   else if( ( aMode == "D02K-Pi+Pi+Pi-" ||
+	      aMode == "D0b2K+Pi-Pi-Pi+" ||
+	      aMode == "D0(b)2KPiPiPi" ) &&
+	    sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 4. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 1. ;
+      fitParameterName = "BrD2KPiPiPi" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 if( aMode == "D0(b)2KPiPiPi" )
+	 {
+	    fitParameterType = kDNeutral ;
+	 }
+	 else
+	 {
+	    fitParameterType = aMode == "D02K-Pi+Pi+Pi-" ? kD0 : kD0Bar ;
+	 }
+      }
+      else
+      {
+	 if( aMode == "D0(b)2KPiPiPi" )
+	 {
+	    knownMode = false ;
+	 }
+	 else
+	 {
+	    fitParameterType = aMode == "D02K-Pi+Pi+Pi-" ?
+	       kD0Flavored : kD0BarFlavored ;
+	 }
+      }
+   }
+   else if( ( aMode == "D02K-e+nu" || 
+	      aMode == "D0b2K+e-nubar" ||
+	      aMode == "D0(b)2Kenu" ) &&
+	    sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kElectron ] = 1. ;
+      fitParameterName = "BrD2Kenu" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 if( aMode == "D0(b)2Kenu" )
+	 {
+	    fitParameterType = kDNeutral ;
+	 }
+	 else
+	 {
+	    fitParameterType = aMode == "D02K-e+nu" ? kD0SL : kD0BarSL ;
+	 }
+      }
+      else
+      {
+	 if( aMode == "D0(b)2Kenu" )
+	 {
+	    knownMode = false ;
+	 }
+	 else
+	 {
+	    fitParameterType = aMode == "D02K-e+nu" ?
+	       kD0SL : kD0BarSL ;
+	 }
+      }
+   }
+   else if( ( aMode == "D02X-e+nu" || 
+	      aMode == "D0b2X+e-nubar" ||
+	      aMode == "D0(b)2Xenu" ) &&
+	    sampleTypeDNeutral )
+   {
+      // Inclusive semileptonic -- only the electron is reconstructed.
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kElectron ] = 1. ;
+      fitParameterName = "BrD2Xenu" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 if( aMode == "D0(b)2Xenu" )
+	 {
+	    fitParameterType = kDNeutral ;
+	 }
+	 else
+	 {
+	    fitParameterType = aMode == "D02X-e+nu" ? kD0SL : kD0BarSL ;
+	 }
+      }
+      else
+      {
+	 if( aMode == "D0(b)2Xenu" )
+	 {
+	    knownMode = false ;
+	 }
+	 else
+	 {
+	    fitParameterType = aMode == "D02X-e+nu" ?
+	       kD0SL : kD0BarSL ;
+	 }
+      }
+   }
+   // Unflavored neutral modes
+   else if( aMode == "D0(b)2KsPi+Pi-" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 4. ;
+      // PID is not applied to Kshort daughters.
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      fitParameterName = "BrD2KsPiPi" ;
+      fitParameterType = kDUnflavored ;
+   }
+   else if( aMode == "D0(b)2KsPi+Pi-Pi0" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 4. ;
+      // PID is not applied to Kshort daughters.
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 1. ;
+      fitParameterName = "BrD2KsPiPiPi0" ;
+      fitParameterType = kDUnflavored ;
+   }
+   else if( aMode == "D0(b)2Pi+Pi-Pi0" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 1. ;
+      fitParameterName = "BrD2Pi+Pi-Pi0" ;
+      fitParameterType = kDUnflavored ;
+   }
+   else if( aMode == "D0(b)2K+K-" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 2. ;
+      fitParameterName = "BrD2K+K-" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 fitParameterType = kDUnflavored ;
+      }
+      else
+      {
+	 fitParameterType = kCPPlus ;
+      }
+   }
+   else if( aMode == "D0(b)2Pi+Pi-" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 2. ;
+      fitParameterName = "BrD2Pi+Pi-" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 fitParameterType = kDUnflavored ;
+      }
+      else
+      {
+	 fitParameterType = kCPPlus ;
+      }
+   }
+   else if( aMode == "D0(b)2KlPi0" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 1. ;
+      fitParameterName = "BrD2KlPi0" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 fitParameterType = kDUnflavored ;
+      }
+      else
+      {
+	 fitParameterType = kCPPlus ;
+      }
+   }
+   else if( aMode == "D0(b)2KsPi0Pi0" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 2. ;
+      // PID is not applied to Kshort daughters.
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 0. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 4. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 2. ;
+      fitParameterName = "BrD2KsPi0Pi0" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 fitParameterType = kDUnflavored ;
+      }
+      else
+      {
+	 fitParameterType = kCPPlus ;
+      }
+   }
+   else if( aMode == "D0(b)2KsPi+Pi-CP+" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 4. ;
+      // PID is not applied to Kshort daughters.
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      fitParameterName = "BrD2KsPi+Pi-CP+" ;
+      fitParameterType = kCPPlus ;
+   }
+   else if( aMode == "D0(b)2KlPi+Pi-CP+" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 2. ;
+      // PID is not applied to Kshort daughters.
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 2. ;
+      fitParameterName = "BrD2KlPi+Pi-CP+" ;
+      fitParameterType = kCPPlus ;
+   }
+   else if( aMode == "D0(b)2KsEta" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 2. ;
+      // PID is not applied to Kshort daughters.
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 0. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kEtaToGammaGamma ] = 1. ;
+      fitParameterName = "BrD2KsEta" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 fitParameterType = kDUnflavored ;
+      }
+      else
+      {
+	 fitParameterType = kCPMinus ;
+      }
+   }
+   else if( aMode == "D0(b)2KsPhi" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 4. ;
+      // PID is not applied to Kshort daughters.
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 0. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      fitParameterName = "BrD2KsPhi" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 fitParameterType = kDUnflavored ;
+      }
+      else
+      {
+	 fitParameterType = kCPMinus ;
+      }
+   }
+   else if( aMode == "D0(b)2KsOmega" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 4. ;
+      // PID is not applied to Kshort daughters.
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 1. ;
+      fitParameterName = "BrD2KsOmega" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 fitParameterType = kDUnflavored ;
+      }
+      else
+      {
+	 fitParameterType = kCPMinus ;
+      }
+   }
+   else if( aMode == "D0(b)2KsPi0" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 2. ;
+      // PID is not applied to Kshort daughters.
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 0. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 1. ;
+      fitParameterName = "BrD2KsPi0" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 fitParameterType = kDUnflavored ;
+      }
+      else
+      {
+	 fitParameterType = kCPMinus ;
+      }
+   }
+   else if( aMode == "D0(b)2KlPi0Pi0" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 4. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 2. ;
+      fitParameterName = "BrD2KlPi0Pi0" ;
+
+      if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 fitParameterType = kDUnflavored ;
+      }
+      else
+      {
+	 fitParameterType = kCPMinus ;
+      }
+   }
+   else if( aMode == "D0(b)2KsPi+Pi-CP-" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 4. ;
+      // PID is not applied to Kshort daughters.
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      fitParameterName = "BrD2KsPi+Pi-CP-" ;
+      fitParameterType = kCPMinus ;
+   }
+   else if( aMode == "D0(b)2KlPi+Pi-CP-" && sampleTypeDNeutral )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 2. ;
+      // PID is not applied to Kshort daughters.
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 2. ;
+      fitParameterName = "BrD2KlPi+Pi-CP-" ;
+      fitParameterType = kCPMinus ;
+   }
+   // Charged modes
+   else if( ( aMode == "D+2K-Pi+Pi+" ||
+	      aMode == "D-2K+Pi-Pi-" ) &&
+	    sampleTypeDCharged )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 1. ;
+      fitParameterName = "BrD2KPiPi" ;
+      fitParameterType = aMode == "D+2K-Pi+Pi+" ? kDPlus : kDMinus ;
+   }
+   else if( ( aMode == "D+2K-Pi+Pi+Pi0" ||
+	      aMode == "D-2K+Pi-Pi-Pi0" ) &&
+	    sampleTypeDCharged )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 1. ;
+      fitParameterName = "BrD2KPiPiPi0" ;
+      fitParameterType = aMode == "D+2K-Pi+Pi+Pi0" ? kDPlus : kDMinus ;
+   }
+   else if( ( aMode == "D+2KsPi+" ||
+	      aMode == "D-2KsPi-" ) &&
+	    sampleTypeDCharged )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 3. ;
+      // PID is not applied to Kshort daughters.
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      fitParameterName = "BrD2KsPi" ;
+      fitParameterType = aMode == "D+2KsPi+" ? kDPlus : kDMinus ;
+   }
+   else if( ( aMode == "D+2KsPi+Pi0" ||
+	      aMode == "D-2KsPi-Pi0" ) &&
+	    sampleTypeDCharged )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 3. ;
+      // PID is not applied to Kshort daughters.
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 1. ;
+      fitParameterName = "BrD2KsPiPi0" ;
+      fitParameterType = aMode == "D+2KsPi+Pi0" ? kDPlus : kDMinus ;
+   }
+   else if( ( aMode == "D+2KsPi+Pi-Pi+" ||
+	      aMode == "D-2KsPi-Pi+Pi-" ) &&
+	    sampleTypeDCharged )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 5. ;
+      // PID is not applied to Kshort daughters.
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      fitParameterName = "BrD2KsPiPiPi" ;
+      fitParameterType = aMode == "D+2KsPi+Pi-Pi+" ? kDPlus : kDMinus ;
+   }
+   else if( ( aMode == "D+2K-K+Pi+" ||
+	      aMode == "D-2K+K-Pi-" ) &&
+	    sampleTypeDCharged )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 2. ;
+      fitParameterName = "BrD2KKPi" ;
+      fitParameterType = aMode == "D+2K-K+Pi+" ? kDPlus : kDMinus ;
+   }
+   // Ds modes
+   else if( ( aMode == "Ds+2KsK+" ||
+	      aMode == "Ds-2KsK-" ) &&
+	    sampleTypeDs )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      fitParameterName = "BrDs2KsK" ;
+      fitParameterType = aMode == "Ds+2KsK+" ? kDsPlus : kDsMinus ;
+   }
+   else if( ( aMode == "Ds+2K+K-Pi+" ||
+	      aMode == "Ds-2K-K+Pi-" ) &&
+	    sampleTypeDs )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 2. ;
+      fitParameterName = "BrDs2KKPi" ;
+      fitParameterType = aMode == "Ds+2K+K-Pi+" ? kDsPlus : kDsMinus ;
+   }
+   else if( ( aMode == "Ds+2KsK+Pi0" ||
+	      aMode == "Ds-2KsK-Pi0" ) &&
+	    sampleTypeDs )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 1. ;
+      fitParameterName = "BrDs2KsKPi0" ;
+      fitParameterType = aMode == "Ds+2KsK+Pi0" ? kDsPlus : kDsMinus ;
+   }
+   else if( ( aMode == "Ds+2KsKsPi+" ||
+	      aMode == "Ds-2KsKsPi-" ) &&
+	    sampleTypeDs )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 5. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 2. ;
+      fitParameterName = "BrDs2KsKsPi" ;
+      fitParameterType = aMode == "Ds+2KsKsPi+" ? kDsPlus : kDsMinus ;
+   }
+   else if( ( aMode == "Ds+2K+K-Pi+Pi0" ||
+	      aMode == "Ds-2K-K+Pi-Pi0" ) &&
+	    sampleTypeDs )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 1. ;
+      fitParameterName = "BrDs2KKPiPi0" ;
+      fitParameterType = aMode == "Ds+2K+K-Pi+Pi0" ? kDsPlus : kDsMinus ;
+   }
+   else if( ( aMode == "Ds+2KsK-Pi+Pi+" ||
+	      aMode == "Ds-2KsK+Pi-Pi-" ) &&
+	    sampleTypeDs )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 5. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      fitParameterName = "BrDs2KsKPiPiSame" ;
+      fitParameterType = aMode == "Ds+2KsK-Pi+Pi+" ? kDsPlus : kDsMinus ;
+   }
+   else if( ( aMode == "Ds+2KsK+Pi-Pi+" ||
+	      aMode == "Ds-2KsK-Pi+Pi-" ) &&
+	    sampleTypeDs )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 5. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kKshort ] = 1. ;
+      fitParameterName = "BrDs2KsKPiPiOpposite" ;
+      fitParameterType = aMode == "Ds+2KsK+Pi-Pi+" ? kDsPlus : kDsMinus ;
+   }
+   else if( ( aMode == "Ds+2K+K-Pi+Pi-Pi+" ||
+	      aMode == "Ds-2K-K+Pi-Pi+Pi-" ) &&
+	    sampleTypeDs )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 5. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedKaon ] = 2. ;
+      fitParameterName = "BrDs2KKPiPiPi" ;
+      fitParameterType = aMode == "Ds+2K+K-Pi+Pi-Pi+" ? kDsPlus : kDsMinus ;
+   }
+   else if( ( aMode == "Ds+2Pi+Pi0" ||
+	      aMode == "Ds-2Pi-Pi0" ) &&
+	    sampleTypeDs )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 1. ;
+      fitParameterName = "BrDs2PiPi0" ;
+      fitParameterType = aMode == "Ds+2Pi+Pi0" ? kDsPlus : kDsMinus ;
+   }
+   else if( ( aMode == "Ds+2Pi+Pi-Pi+" ||
+	      aMode == "Ds-2Pi-Pi+Pi-" ) &&
+	    sampleTypeDs )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 3. ;
+      fitParameterName = "BrDs2PiPiPi" ;
+      fitParameterType = aMode == "Ds+2Pi+Pi-Pi+" ? kDsPlus : kDsMinus ;
+   }
+   else if( ( aMode == "Ds+2Pi+Eta" ||
+	      aMode == "Ds-2Pi-Eta" ) &&
+	    sampleTypeDs )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kEtaToGammaGamma ] = 1. ;
+      fitParameterName = "BrDs2PiEta" ;
+      fitParameterType = aMode == "Ds+2Pi+Eta" ? kDsPlus : kDsMinus ;
+   }
+   else if( ( aMode == "Ds+2Pi+Pi0Eta" ||
+	      aMode == "Ds-2Pi-Pi0Eta" ) &&
+	    sampleTypeDs )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 4. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kEtaToGammaGamma ] = 1. ;
+      fitParameterName = "BrDs2PiPi0Eta" ;
+      fitParameterType = aMode == "Ds+2Pi+Pi0Eta" ? kDsPlus : kDsMinus ;
+   }
+   else if( ( aMode == "Ds+2Pi+EtaPrime" ||
+	      aMode == "Ds-2Pi-EtaPrime" ) &&
+	    sampleTypeDs )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 2. ;
+      aParticleContent[ HDBStandardFitInputFactory::kEtaToGammaGamma ] = 1. ;
+      fitParameterName = "BrDs2PiEtaPrime" ;
+      fitParameterType = aMode == "Ds+2Pi+EtaPrime" ? kDsPlus : kDsMinus ;
+   }
+   else if( ( aMode == "Ds+2Pi+Pi0EtaPrime" ||
+	      aMode == "Ds-2Pi-Pi0EtaPrime" ) &&
+	    sampleTypeDs )
+   {
+      aParticleContent[ HDBStandardFitInputFactory::kTrack ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kChargedPion ] = 3. ;
+      aParticleContent[ HDBStandardFitInputFactory::kShower ] = 4. ;
+      aParticleContent[ HDBStandardFitInputFactory::kPi0 ] = 1. ;
+      aParticleContent[ HDBStandardFitInputFactory::kEtaToGammaGamma ] = 1. ;
+      fitParameterName = "BrDs2PiPi0EtaPrime" ;
+      fitParameterType = aMode == "Ds+2Pi+Pi0EtaPrime" ? kDsPlus : kDsMinus ;
+   }
+   else
+   {
+      knownMode = false ;
+   }
+
+   int fitParameterNumber = 0 ;
+   if( knownMode )
+   {
+      // Check if NDDbar is in the list of free parameters.
+      // If not, add it.
+      if( aSampleType == kDPlusDMinus )
+      {
+	 if( m_nDPlusDMinusIndex < 0 )
+         {
+	    m_nDPlusDMinusIndex = aFitParameterNames.size() ;
+	    aFitParameterNames.push_back( "ND+D-" ) ;
+	 }
+      }
+      else if( aSampleType == kDsPlusDsMinus )
+      {
+	 if( m_nDsPlusDsMinusIndex < 0 )
+         {
+	    m_nDsPlusDsMinusIndex = aFitParameterNames.size() ;
+	    aFitParameterNames.push_back( "NDs+Ds-" ) ;
+	 }
+      }
+      else if( aSampleType == kD0D0BarUncorrelated )
+      {
+	 if( m_nD0D0BarIndex < 0 )
+         {
+	    m_nD0D0BarIndex = aFitParameterNames.size() ;
+	    aFitParameterNames.push_back( "ND0D0Bar" ) ;
+	 }
+      }
+      else
+      {
+	 if( aSampleType == kD0D0BarCOdd )
+	 {
+	    if( m_nD0D0BarCOddIndex < 0 )
+	    {
+	       m_nD0D0BarCOddIndex = aFitParameterNames.size() ;
+	       aFitParameterNames.push_back( "ND0D0BarC-" ) ;
+	    }
+	 }
+	 else if( aSampleType == kD0D0BarCOddWithEven )
+	 {
+	    if( m_nD0D0BarCOddIndex < 0 )
+	    {
+	       m_nD0D0BarCOddIndex = aFitParameterNames.size() ;
+	       aFitParameterNames.push_back( "ND0D0BarC-" ) ;
+	    }
+
+	    if( m_nD0D0BarCOddEvenFracIndex < 0 )
+	    {
+	       m_nD0D0BarCOddEvenFracIndex = aFitParameterNames.size() ;
+	       aFitParameterNames.push_back( "ND0D0BarC+/C-" ) ;
+	    }
+	 }
+	 else if( aSampleType == kD0D0BarCEven )
+	 {
+	    if( m_nD0D0BarCEvenIndex < 0 )
+	    {
+	       m_nD0D0BarCEvenIndex = aFitParameterNames.size() ;
+	       aFitParameterNames.push_back( "ND0D0BarC+" ) ;
+	    }
+	 }
+	 else if( aSampleType == kD0D0BarCEvenWithOdd )
+	 {
+	    if( m_nD0D0BarCEvenIndex < 0 )
+	    {
+	       m_nD0D0BarCEvenIndex = aFitParameterNames.size() ;
+	       aFitParameterNames.push_back( "ND0D0BarC+" ) ;
+	    }
+
+	    if( m_nD0D0BarCEvenOddFracIndex < 0 )
+	    {
+	       m_nD0D0BarCEvenOddFracIndex = aFitParameterNames.size() ;
+	       aFitParameterNames.push_back( "ND0D0BarC-/C+" ) ;
+	    }
+	 }
+
+	 if( m_yIndex < 0 )
+         {
+	    m_yIndex = aFitParameterNames.size() ;
+	    aFitParameterNames.push_back( "y" ) ;
+	 }
+
+	 if( m_r2Index < 0 )
+         {
+	    m_r2Index = aFitParameterNames.size() ;
+	    aFitParameterNames.push_back( "r2" ) ;
+	 }
+
+	 if( m_rzIndex < 0 )
+         {
+	    m_rzIndex = aFitParameterNames.size() ;
+	    aFitParameterNames.push_back( "rz" ) ;
+	 }
+
+// 	 if( aSampleType == kD0D0BarCOdd )
+// 	 {
+// 	    if( m_x2Index < 0 )
+// 	    {
+// 	       m_x2Index = aFitParameterNames.size() ;
+// 	       aFitParameterNames.push_back( "x2" ) ;
+// 	    }
+// 	 }
+// 	 else
+	 {
+	    if( m_x2Index < 0 )
+	    {
+	       m_x2Index = aFitParameterNames.size() ;
+	       aFitParameterNames.push_back( "x2" ) ;
+	    }
+	    if( m_rwxIndex < 0 )
+	    {
+	       m_rwxIndex = aFitParameterNames.size() ;
+	       aFitParameterNames.push_back( "rwx" ) ;
+	    }
+	 }
+      }
+
+      // Check if found mode is in the list of free parameters.
+      // If not, add it.
+      bool fitParameterInList = false ;
+      vector< string >::const_iterator fitParameterItr =
+	 aFitParameterNames.begin() ;
+      vector< string >::const_iterator fitParameterEnd =
+	 aFitParameterNames.end() ;
+
+      for( fitParameterNumber = 0 ;
+           fitParameterItr != fitParameterEnd ;
+           ++fitParameterItr, ++fitParameterNumber )
+      {
+         if( fitParameterName == *fitParameterItr )
+         {
+            fitParameterInList = true ;
+            break ;
+         }
+      }
+
+      if( !fitParameterInList )
+      {
+         aFitParameterNames.push_back( fitParameterName ) ;
+      }
+
+      aInputInfo.addFitParameterNumberAndType( fitParameterNumber,
+					       fitParameterType ) ;
+   }
+
+   return knownMode ;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+void
+HDBStandardFitInputFactory::setYieldsAndErrors(
+   const HepVector& aMeasuredYields,
+   const HepVector& aMeasuredYieldErrors )
+{
+   int nMeas = aMeasuredYields.num_row() ;
+   HDBVariableVector yieldVector( nMeas ) ;
+   vector< string > yieldParameterNames ;
+
+   // Constant vectors and power matrices for the HDBVariableVector.
+   for( int i = 0 ; i < nMeas ; ++i )
+   {
+      HDBVariableMatrixElement* element = yieldVector.element( i ) ;
+
+      // Constant vector = single element = 1
+      element->setConstantVector( HepVector( 1, 1 ) ) ;
+
+      HepMatrix powers( 1, nMeas, 0 ) ;
+      powers[ 0 ][ i ] = 1. ;
+      element->setPowerMatrix( powers ) ;
+
+      // Copy names and comments from m_fitPredictions.
+      yieldParameterNames.push_back(
+	 "Exclusive " + m_fitPredictions->element( i )->name() ) ;
+      element->setName( m_fitPredictions->element( i )->name() ) ;
+      element->setComment1( m_fitPredictions->element( i )->comment1() ) ;
+      element->setComment2( m_fitPredictions->element( i )->comment2() ) ;
+   }
+
+   if( !m_standardInputData->singleTagsExclusive() )
+   {
+      const vector< pair< int, int > >& doubleToSingleCrossReference =
+	 m_standardInputData->doubleToSingleCrossReference() ;
+
+      // Loop over all double tags and adjust power matrix.
+      for( int i = 0 ;
+	   i < doubleToSingleCrossReference.size() ;
+	   ++i )
+      {
+	 int doubleIndex = i + m_standardInputData->numberSingleTagYields() ;
+	 int singleIndex1 = doubleToSingleCrossReference[ i ].first ;
+	 int singleIndex2 = doubleToSingleCrossReference[ i ].second ;
+	
+	 // Add terms to first single tag matrix element.
+	 if( singleIndex1 >= 0 )
+	 {
+	    HDBVariableMatrixElement* element =
+	       yieldVector.element( singleIndex1 ) ;
+
+	    int nTerms = element->constantVector().num_row() + 1 ;
+	    element->setConstantVector( HepVector( nTerms, 1 ) ) ; // all ones
+
+	    HepMatrix newPowers1( nTerms, nMeas, 0 ) ;
+	    newPowers1.sub( 1, 1, element->powerMatrix() ) ;
+	    newPowers1[ nTerms - 1 ][ doubleIndex ] = 1. ;
+	    element->setPowerMatrix( newPowers1 ) ;
+	 }
+
+	 // Add terms to second single tag matrix element.
+	 if( singleIndex2 >= 0 )
+	 {
+	    HDBVariableMatrixElement* element =
+	       yieldVector.element( singleIndex2 ) ;
+
+	    int nTerms = element->constantVector().num_row() + 1 ;
+	    element->setConstantVector( HepVector( nTerms, 1 ) ) ;
+
+	    HepMatrix newPowers2( nTerms, nMeas, 0 ) ;
+	    newPowers2.sub( 1, 1, element->powerMatrix() ) ;
+	    newPowers2[ nTerms - 1 ][ doubleIndex ] = 1. ;
+	    element->setPowerMatrix( newPowers2 ) ;
+	 }
+      }
+   }
+
+   yieldVector.setParameterNames( yieldParameterNames ) ;
+   m_standardInputData->setYieldVector( yieldVector ) ;
+   m_standardInputData->setYieldParameters( aMeasuredYields ) ;
+   m_standardInputData->setYieldParameterErrors( aMeasuredYieldErrors ) ;
+}
+
+//
+// const member functions
+//
+
+//
+// static member functions
+//
