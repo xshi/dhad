@@ -1739,7 +1739,6 @@
     Change email, add mkdir for tmp, run ... done. 
 
 
-
 *** Compare yields with photos 2.15
   :LOGBOOK:
   CLOCK: [2009-02-24 Tue 17:19]--[2009-02-24 Tue 17:24] =>  0:05
@@ -1787,7 +1786,6 @@
   | Dm_to_Kspipipi |          -0.61 |
   | Dp_to_KKpi     |          -0.34 |
   | Dm_to_KKpi     |           1.56 |
-
 
 *** Check the source of three modes
    :LOGBOOK:

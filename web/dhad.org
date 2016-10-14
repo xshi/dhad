@@ -1,0 +1,125 @@
+#+TITLE: D-Hadronic Analysis 
+
+
+* CBX Management
+
+** Check out the CBX to local 
+
+   : cd ~/work/cleo/dhad
+   : cvs -d xs32@lnx235.lns.cornell.edu:/home/ryd/CVSROOT/dhadprd818 co dhadprd818
+   
+   Not work. 
+
+   <2013-02-18 Mon 23:02> 
+   Copy the file to local, got error in latex. 
+
+   Maitain just plain tex file! 
+   <2013-02-19 Tue 20:38> 
+   : hg clone ssh://xs32@lnx235.lns.cornell.edu/work/CLEO/analysis/DHad/doc 
+
+   OK. 
+
+   Noticed that should use the fig in the disk3. 
+
+   : cd ~/work/cleo/dhad/doc/cbx818
+   : scp xs32@lnx235.lns.cornell.edu:/home/xs32/disk/3/cleo/dhad/fig.gz .
+   : scp xs32@lnx235.lns.cornell.edu:/home/xs32/disk/3/cleo/dhad/tab.gz .
+
+   Still missing some tab files. 
+
+   Can reproduce with the command. 
+
+   Need to reproduce the misssing ones. 
+
+   <2013-02-25 Mon 21:45> 
+
+   : dhad-10.1.10 tab cbx compare_yields_data_double 281ipbv0,537ipbv7  
+   : dhad-10.1.10 tab cbx compare_yields_data_single 281ipbv0,537ipbv7.1 
+   : dhad-11.4 tab cbx datadoubletagyields 818ipbv12.2  
+   : dhad-11.4 tab cbx singletag_data_yield_widede 818ipbv12 
+   : dhad-11.4 tab cbx fitResultsMC 281ipbv0.2/generic 
+   : dhad-11.4 tab cbx correlationMatrixMC 281ipbv0.2/generic
+   : dhad-11.4 tab cbx yieldSTResidualsMC 281ipbv0.2/generic 
+   : dhad-11.4 tab cbx yieldDTResidualsMC 281ipbv0.2/generic
+   : dhad-11.4 tab cbx fitResultsData 818ipbv12.3
+   : dhad-11.4 tab cbx fitResultsRatiosData 818ipbv12.3
+   : dhad-11.4 tab cbx correlationMatrixData 818ipbv12.3
+   : dhad-11.4 tab cbx yieldSTResidualsData 818ipbv12.3
+   : dhad-11.4 tab cbx yieldDTResidualsData 818ipbv12.3
+   : dhad-10.1.10 tab cbx fitResultsDataVariations1 818ipbv7 
+   : dhad-10.1.10 tab cbx fitResultsDataVariations2 818ipbv7 
+   : dhad-11.4 tab cbx CPAsymmetrySystematics 818ipbv12 
+   : dhad-11.4 tab cbx singletag_data_yield 818ipbv12.2 
+   : dhad-11.4 tab cbx CPAsymmetries 818ipbv12 
+   : dhad-11.4 tab cbx singletag_data_yield 818ipbv12.2
+   : dhad-11.4 tab cbx crossSections 818ipbv12.3
+
+   Maitain only tex version: 
+   
+   Get the file compiled. 
+
+   <2013-02-26 Tue 22:48> Found the two functions for the KEDR table
+   if necessary: 
+
+   : tab/cbx.py:def vary_mass_single_kedr(opts, tabname, tabprefix):
+   : tab/cbx.py:def vary_mass_single_kedr_chisq(opts, tabname, tabprefix):
+   
+   Should move ahead to the questions, not to reproduce what I had! 
+
+   
+
+
+** Update the note on EDMS
+
+   <2013-01-10 Thu 13:26>  
+
+   Check with the twiki:
+   https://wiki.lepp.cornell.edu/lepp/bin/view/CLEO/DocumentDatabase#Submitting_or_Modifying_CBX_Note
+
+   Uploaded. 
+   
+* PRD Paper Draft
+** Respond to question from Roy
+   
+   <2013-02-18 Mon> Got comment [[https://mail.google.com/mail/u/0/#inbox/13c24838bdde8d56][mail]] from Roy. 
+
+   : p.3 (re: pi0 eff.)  change to "efficiencies *have*"  (it's "has" now...)
+   
+   done. 
+
+   : The paper mentioned PID correction efficiency corrections.
+   : I didn't see mention of the pi0 corrections, which are listed in the CBX...
+
+   
+   : In Fig 1 caption: these are NOT semilog plots !
+   : (are they the famous sqrt plots?)
+   
+   : p.5  Do we really ant to use terms like "data31-33" in a PRD ???
+   
+   : Ref [1]: page # is missing  (it's 652)
+   
+   : Ref [4]: add "Collaboration" after CLEO
+   
+   : Refs [7-10,13,15]
+   : NIM articles are referred to by Phys Rev as:
+   : Nucl. Instrum. Methods Phys. Res., Sect. A
+   
+   : Ref [17] has an erratum:  Phys. Rev. D 77, 019901(E) (2008)
+   
+   
+   <2013-03-04 Mon 21:45> 
+
+   Searched the [[file:~/bak/pro/dhadcbx818/dhadcbx818.tex::11%20in%20\cite{pi0eff},%20for%20``Standard%20Cuts'',%20the%20fitting%20parameters%20of][dhadcbx818.tex]], found the line in page36 of
+   dhadcbx818.pdf. 
+
+   Need to add the pi0 efficiency.
+
+   
+
+
+* COMMENT Setup
+#+STARTUP: hidestars entitiespretty
+#+SEQ_TODO: TODO STARTED WAITING | DONE CANCELED
+
+
+  

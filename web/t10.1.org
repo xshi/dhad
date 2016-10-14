@@ -1,207 +1,132 @@
 #+SETUPFILE: ./web/ver.org
-#+TITLE: D-Had Tables - 10.1
+#+TITLE: D-Hadronic Analysis  - 10.1 - Tables
 
 
-* Current
+* BFs compare
   :PROPERTIES:
-  :CUSTOM_ID: current
+  :CUSTOM_ID: overview
+  :END:
+  
+  - 281ipbv0: The original one (PRD 2007)
+  - 281ipbv5: Using the latest CLEO software release for data 281/pb
+  - 281ipbv6: Same as 281ipbv5, only consider two crossfeeds
+  - 281ipbv7: Based on 281ipbv6, use DSkimv1 cuts
+
+  - 537ipbv5: Using the latest CLEO software release for the new data 537/pb   
+  - 537ipbv6: Based on v5, only use Kpi crossfeeds, scale up bkgs
+  - 537ipbv7: Based on v6, use DSkimv1 cuts
+
+    
+  - 818ipbv5: Using the latest CLEO software for full data set 818/pb
+  - 818ipbv6: Based on v5, only use Kpi crossfeeds, scale up bkgs
+
+  | Label    | PDG2004 | 281ipbv0 |
+  |----------+---------+----------|
+  | 281ipbv0 | [[./10.1/tab/compare_data_results_pdg_281ipbv0.org][table]]   |          |
+  | 281ipbv5 | [[./10.1/tab/compare_data_results_pdg_281ipbv5.org][table]]   | [[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv5.org][table]]    |
+  | 281ipbv6 | [[./10.1/tab/compare_pdg2004_281ipbv6.org][table]]   | [[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv6.org][table]]    |
+  | 281ipbv7 |         | [[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv7.org][table]]    |
+  | 537ipbv5 | [[./10.1/tab/compare_data_results_pdg_537ipbv5.org][table]]   | [[./10.1/tab/compare_brf_data_results_281ipbv0_537ipbv5.org][table]]    |
+  | 537ipbv6 | [[./10.1/tab/compare_pdg2004_537ipbv6.org][table]]   | [[./10.1/tab/compare_brf_data_results_281ipbv0_537ipbv6.org][table]]    |
+  | 537ipbv7 |         | [[./10.1/tab/compare_brf_data_results_281ipbv0_537ipbv7.org][table]]    |
+  | 818ipbv5 | [[./10.1/tab/compare_data_results_pdg_818ipbv5.org][table]]   | [[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv5.org][table]]    |
+  | 818ipbv6 |         | [[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv6.org][table]]    |
+  | 818ipbv7 |         | [[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv7.org][table]]    |
+    
+  
+* 281ipbv0
+  :PROPERTIES:
+  :CUSTOM_ID: 281ipbv0
   :END:
 
-  Compare the Branching Fractions: 
+   1. The original one (7.06, PRD 2007): => [[./7.06/tables/cbx_data_results_pdg_K0S][table]]
 
-  | Label            | 281ipbv0     | 818ipbv7     | 818ipbv8     |
-  |------------------+--------------+--------------+--------------|
-  | 281ipbv7         | [[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv7.org][table]]        |              |              |
-  | 818ipbv7         | [[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv7.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv7.info][info]]) |              |              |
-  | noFSR            |              | [[./10.1/tab/compare_brf_data_results_818ipbv7_818ipbv7_nofsr.org][table]] ([[./10.1/tab/compare_brf_data_results_818ipbv7_818ipbv7_nofsr.info][info]]) |              |
-  | widede           |              | [[./10.1/tab/compare_brf_data_results_818ipbv7_818ipbv7_widede.org][table]] ([[./10.1/tab/compare_brf_data_results_818ipbv7_818ipbv7_widede.info][info]]) |              |
-  | Gamma = 22.7 MeV |              | [[./10.1/tab/compare_brf_data_results_818ipbv7_818ipbv7_gamma_0.0227.org][table]] ([[./10.1/tab/compare_brf_data_results_818ipbv7_818ipbv7_gamma_0.0227.info][info]]) |              |
-  | Gamma = 27.7 MeV |              | [[./10.1/tab/compare_brf_data_results_818ipbv7_818ipbv7_gamma_0.0277.org][table]] ([[./10.1/tab/compare_brf_data_results_818ipbv7_818ipbv7_gamma_0.0277.info][info]]) |              |
-  | P = 0.5          |              | [[./10.1/tab/compare_brf_data_results_818ipbv7_818ipbv7_p_0.5.org][table]] ([[./10.1/tab/compare_brf_data_results_818ipbv7_818ipbv7_p_0.5.info][info]]) |              |
-  | 818ipbv8         | [[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv8.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv8.info][info]]) | [[./10.1/tab/compare_brf_data_results_818ipbv7_818ipbv8.org][table]] ([[./10.1/tab/compare_brf_data_results_818ipbv7_818ipbv8.info][info]]) |              |
-  | 818ipbv9         | [[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv9.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv9.info][info]]) |              | [[./10.1/tab/compare_brf_data_results_818ipbv8_818ipbv9.org][table]] ([[./10.1/tab/compare_brf_data_results_818ipbv8_818ipbv9.info][info]]) |
-  | 818ipbv10        |              |              | [[./10.1/tab/compare_brf_data_results_818ipbv8_818ipbv10.org][table]] ([[./10.1/tab/compare_brf_data_results_818ipbv8_818ipbv10.info][info]]) |
-  | 818ipbv11        |              |              | [[./10.1/tab/compare_brf_data_results_818ipbv8_818ipbv11.org][table]] ([[./10.1/tab/compare_brf_data_results_818ipbv8_818ipbv11.info][info]]) |
+   2. 281ipbv0 : Branching Fraction: Using Peter's =yields_and_efficiencies= file  => [[./10.1/tab/compare_data_results_pdg_281ipbv0.org][table]] ([[./10.1/tab/compare_data_results_pdg_281ipbv0.info][info]])  
 
-  Misc:
+   3. 281ipbv0.1 : Using Peter's crossfeed evt file as input, fit with ROOT4.03, RooFitv1.92 => [[./10.1/tab/compare_data_results_pdg_281ipbv0.1.org][table]] ([[./10.1/tab/compare_data_results_pdg_281ipbv0.1.info][info]]) 
 
-  | Name                           | 818ipbv7     |
-  |--------------------------------+--------------|
-  | Momentum resolution parameters | [[./10.1/tab/para_momentum_resolution_818ipbv7.org][table]] ([[./10.1/tab/para_momentum_resolution_818ipbv7.info][info]]) |
-  | ARGUS parameter slope          | [[./10.1/tab/para_argus_slope_818ipbv7_desidebands.org][table]] ([[./10.1/tab/para_argus_slope_818ipbv7_desidebands.info][info]]) |
-  | ARGUS parameeter power         | [[./10.1/tab/para_argus_power_818ipbv7_desidebands.org][table]] ([[./10.1/tab/para_argus_power_818ipbv7_desidebands.info][info]]) |
-  | Delta E sidebnad low MC Truth  | [[./10.1/tab/mctruth_generic_single_818ipbv7_desideband_low.org][table]] ([[./10.1/tab/mctruth_generic_single_818ipbv7_desideband_low.info][info]]) |
-  | +---> Just backgrounds         | [[./10.1/tab/bkg_generic_single_p_818ipbv7_desideband_low.org][table]] ([[./10.1/tab/bkg_generic_single_p_818ipbv7_desideband_low.info][info]]) |
-  | Delta E sidebnad high MC Truth | [[./10.1/tab/mctruth_generic_single_818ipbv7_desideband_high.org][table]] ([[./10.1/tab/mctruth_generic_single_818ipbv7_desideband_high.info][info]]) |
-  | +---> Just backgrounds         | [[./10.1/tab/bkg_generic_single_p_818ipbv7_desideband_high.org][table]] ([[./10.1/tab/bkg_generic_single_p_818ipbv7_desideband_high.info][info]]) |
+      1. Compare with PRD 2007 (281ipbv0)  => [[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv0.1.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv0.1.info][info]])  
 
- 
+   4. 281ipbv0.2 : Using Peter's crossfeed evt file as input, fit with ROOT5.26, RooFitv3.12  => [[./10.1/tab/compare_data_results_pdg_281ipbv0.2.org][table]] ([[./10.1/tab/compare_data_results_pdg_281ipbv0.2.info][info]])
 
-* Labels
+      1. Compare with 281ipbv0.1 => [[./10.1/tab/compare_brf_data_results_281ipbv0.1_281ipbv0.2.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0.1_281ipbv0.2.info][info]])   
 
-  | Label     | Meaning                                                        |
-  |-----------+----------------------------------------------------------------|
-  | 281ipbv0  | The original one (PRD 2007)                                    |
-  | 281ipbv5  | Using the latest CLEO software release for data 281/pb         |
-  | 281ipbv6  | Same as 281ipbv5, only consider two crossfeeds                 |
-  | 281ipbv7  | Based on 281ipbv6, use DSkimv1 cuts                            |
-  | 281ipbv8  | Based on 281ipbv7, use old momentum resolution parameter       |
-  | 281ipbv9  | Fit old data in new env (old momentum para, new lineshape)     |
-  | 281ipbv10 | Fit old data in new env (old momentum para, old lineshape)     |
-  | 281ipbv11 | Fit new data in new env with old parameters                    |
-  |-----------+----------------------------------------------------------------|
-  | 537ipbv5  | Using the latest CLEO software release for the new data 537/pb |
-  | 537ipbv6  | Based on v5, only use Kpi crossfeeds, scale up bkgs            |
-  | 537ipbv7  | Based on v6, use DSkimv1 cuts                                  |
-  |-----------+----------------------------------------------------------------|
-  | 818ipbv5  | Using the latest CLEO software for full data set 818/pb        |
-  | 818ipbv6  | Based on v5, only use Kpi crossfeeds, scale up bkgs            |
-  | 818ipbv7  | Based on v6, use DSkimv1 cuts                                  |
+* 281ipbv5
+  :PROPERTIES:
+  :CUSTOM_ID: 281ipbv5
+  :END:
+
+     1. Momentum resolution parameters => [[./10.1/tab/para_momentum_resolution_281ipbv5.org][table]] ([[./10.1/tab/para_momentum_resolution_281ipbv5.info][info]])  
+
+	1. The original parameters => [[./7.06/tables/double_line_shape_paras.html][table]]
+
+	2. Compare the new momentum resolution parameters with original => [[./10.1/tab/compare_para_momentum_resolution.org][table]]
+
+     2. Compare the 281ipbv5 with the original - signal MC => [[./10.1/tab/compare_yields_signal_single_7.06_281ipb_281ipbv5.org][table]]
+
+     3. Compare the 281ipbv5 with the 281ipbv2 - signal MC => [[./10.1/tab/compare_yields_signal_single_281ipbv2_281ipbv5.org][table]]
+
+     4. Compare the 281ipbv5 with the original - data => [[./10.1/tab/compare_yields_data_single_7.06_281ipb_281ipbv5.org][table]]
+
+     5. Compare the 281ipbv5 with the 281ipb (Dskimv2) - data => [[./10.1/tab/compare_yields_data_single_281ipb_281ipbv5.org][table]]
+
+     6. BF fits compare the data results pdg 2004  => [[./10.1/tab/compare_data_results_pdg_281ipbv5.org][table]] ([[./10.1/tab/compare_data_results_pdg_281ipbv5.info][info]]) , PDG 2009 => [[./10.1/tab/compare_pdg2009_281ipbv5.org][table]] ([[./10.1/tab/compare_pdg2009_281ipbv5.info][info]])
+
+	1. Reproduce the original one (281ipbv0) compare with PDG 2004: => [[./10.1/tab/compare_data_results_pdg_281ipbv0.org][table]] ([[./10.1/tab/compare_data_results_pdg_281ipbv0.info][info]]), PDG 2009:  => [[./10.1/tab/compare_pdg2009_281ipbv0.org][table]] ([[./10.1/tab/compare_pdg2009_281ipbv0.info][info]])
+
+	2. New MC with same crossfeeds file (281ipbv5.0) compare with original => [[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv5.0.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv5.0.info][info]]) 
+
+	3. New MC with new crossfeeds file (281ipbv5) compare with original => [[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv5.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv5.info][info]])
+
+	4. 281ipbv5 compare with 281ipbv5.0: => [[./10.1/tab/compare_brf_data_results_281ipbv5.0_281ipbv5.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv5.0_281ipbv5.info][info]]) 
+
+	5. Compare with my own crossfeeds (281ipbv0.1): => [[./10.1/tab/compare_brf_data_results_281ipbv0.1_281ipbv5.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0.1_281ipbv5.info][info]]) 
 
 
- - Branching Fractions
+     7. Comparison of the D-mass between signal MC and data:
 
-    | Label    | PDG2004 | 281ipbv0 |
-    |----------+---------+----------|
-    | 281ipbv0 | [[./10.1/tab/compare_data_results_pdg_281ipbv0.org][table]]   |          |
-    | 281ipbv5 | [[./10.1/tab/compare_data_results_pdg_281ipbv5.org][table]]   | [[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv5.org][table]]    |
-    | 281ipbv6 | [[./10.1/tab/compare_pdg2004_281ipbv6.org][table]]   | [[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv6.org][table]]    |
-    | 281ipbv7 |         | [[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv7.org][table]]    |
-    | 537ipbv5 | [[./10.1/tab/compare_data_results_pdg_537ipbv5.org][table]]   | [[./10.1/tab/compare_brf_data_results_281ipbv0_537ipbv5.org][table]]    |
-    | 537ipbv6 | [[./10.1/tab/compare_pdg2004_537ipbv6.org][table]]   | [[./10.1/tab/compare_brf_data_results_281ipbv0_537ipbv6.org][table]]    |
-    | 537ipbv7 |         | [[./10.1/tab/compare_brf_data_results_281ipbv0_537ipbv7.org][table]]    |
-    | 818ipbv5 | [[./10.1/tab/compare_data_results_pdg_818ipbv5.org][table]]   | [[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv5.org][table]]    |
-    | 818ipbv6 |         | [[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv6.org][table]]    |
-    | 818ipbv7 |         | [[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv7.org][table]]    |
+	1. Original 281/pb => [[./10.1/tab/compare_para_md_7.06_regular3_d_7.06_regular_s.org][table]] ([[./10.1/tab/compare_para_md_7.06_regular3_d_7.06_regular_s.info][info]])
 
+	2. New 281/pb => [[./10.1/tab/compare_para_md_10.1_281ipbv5_d_10.1_281ipbv5_s.org][table]] ([[./10.1/tab/compare_para_md_10.1_281ipbv5_d_10.1_281ipbv5_s.info][info]])
 
-** 281ipbv0
+* 281ipbv6
 
-   :PROPERTIES:
-   :CUSTOM_ID: 281ipbv0
-   :END:
+  1. Compare the yields between 281ipbv0 and 281ipbv6 for 281/pb data  => [[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv6.org][table]] ([[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv6.info][info]])  
 
-    1. The original one (7.06, PRD 2007): => [[./7.06/tables/cbx_data_results_pdg_K0S][table]]
+  2. Compare the yields between 281ipbv0 and 281ipbv6 for 281/pb signal MC => [[./10.1/tab/compare_yields_signal_single_281ipbv0_281ipbv6.org][table]] ([[./10.1/tab/compare_yields_signal_single_281ipbv0_281ipbv6.info][info]])
 
-    2. The original momentum resolution parameters => [[./7.06/tables/double_line_shape_paras.html][table]]
+  3. Compare the diffs from the above two tables => [[./10.1/tab/compare_diff_yields_data_single_281ipbv0_281ipbv6_yields_signal_single_281ipbv0_281ipbv6.org][table]] ([[./10.1/tab/compare_diff_yields_data_single_281ipbv0_281ipbv6_yields_signal_single_281ipbv0_281ipbv6.info][info]])   
+* 281ipbv7
 
-    3. 281ipbv0 : Branching Fraction: Using Peter's =yields_and_efficiencies= file  => [[./10.1/tab/compare_data_results_pdg_281ipbv0.org][table]] ([[./10.1/tab/compare_data_results_pdg_281ipbv0.info][info]])  
+  1. Momentum resolution parameters  => [[./10.1/tab/para_momentum_resolution_281ipbv7.org][table]] ([[./10.1/tab/para_momentum_resolution_281ipbv7.info][info]]) 
 
-    4. 281ipbv0.1 : Using Peter's crossfeed evt file as input, fit with ROOT4.03, RooFitv1.92 => [[./10.1/tab/compare_data_results_pdg_281ipbv0.1.org][table]] ([[./10.1/tab/compare_data_results_pdg_281ipbv0.1.info][info]]) 
+  2. Compare the yields between 281ipbv0 and 281ipbv6 for 281/pb data  => [[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv7.org][table]] ([[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv7.info][info]]) 
 
-       1. Compare with PRD 2007 (281ipbv0)  => [[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv0.1.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv0.1.info][info]])  
+  3. Compare the yields between 281ipbv0 and 281ipbv6 for 281/pb signal MC => [[./10.1/tab/compare_yields_signal_single_281ipbv0_281ipbv7.org][table]] ([[./10.1/tab/compare_yields_signal_single_281ipbv0_281ipbv7.info][info]]) 
 
-    5. 281ipbv0.2 : Using Peter's crossfeed evt file as input, fit with ROOT5.26, RooFitv3.12  => [[./10.1/tab/compare_data_results_pdg_281ipbv0.2.org][table]] ([[./10.1/tab/compare_data_results_pdg_281ipbv0.2.info][info]])
+  4. Compare the diffs from the above two tables => [[./10.1/tab/compare_diff_yields_data_single_281ipbv0_281ipbv7_yields_signal_single_281ipbv0_281ipbv7.org][table]] ([[./10.1/tab/compare_diff_yields_data_single_281ipbv0_281ipbv7_yields_signal_single_281ipbv0_281ipbv7.info][info]])   
 
-       1. Compare with 281ipbv0.1 => [[./10.1/tab/compare_brf_data_results_281ipbv0.1_281ipbv0.2.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0.1_281ipbv0.2.info][info]])   
+* 537ipbv5
+  :PROPERTIES:
+  :CUSTOM_ID: 537ipbv5
+  :END:
+  1. Momentum resolution parameters => [[./10.1/tab/para_momentum_resolution_537ipbv5.org][table]] ([[./10.1/tab/para_momentum_resolution_537ipbv5.info][info]]) 
+  2. BF fits  compare with PDG 2004  => [[./10.1/tab/compare_data_results_pdg_537ipbv5.org][table]] ([[./10.1/tab/compare_data_results_pdg_537ipbv5.info][info]])
+  3. Compare the yields with 281/pb for data  => [[./10.1/tab/compare_yields_data_single_281ipbv0_537ipbv6.org][table]] ([[./10.1/tab/compare_yields_data_single_281ipbv0_537ipbv6.info][info]])    
 
-    6. Backgrounds in the generic MC ddbar => [[./10.1/tab/bkg_generic_ddbar_single_281ipbv0.org][table]] ([[./10.1/tab/bkg_generic_ddbar_single_281ipbv0.info][info]])   
+* 537ipbv7
+  1. Momentum resolution parameters => [[./10.1/tab/para_momentum_resolution_537ipbv7.org][table]] ([[./10.1/tab/para_momentum_resolution_537ipbv7.info][info]]) 
+  2. Compare BF with 281ipbv7 => [[./10.1/tab/compare_brf_data_results_281ipbv7_537ipbv7.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv7_537ipbv7.info][info]]) 
 
-
-** 281ipbv5
-   :PROPERTIES:
-   :CUSTOM_ID: 281ipbv5
-   :END:
-
-      1. Momentum resolution parameters => [[./10.1/tab/para_momentum_resolution_281ipbv5.org][table]] ([[./10.1/tab/para_momentum_resolution_281ipbv5.info][info]])  
-
-	 1. The original parameters => [[./7.06/tables/double_line_shape_paras.html][table]]
-
-	 2. Compare the new momentum resolution parameters with original => [[./10.1/tab/compare_para_momentum_resolution.org][table]]
-
-      2. Compare the 281ipbv5 with the original - signal MC => [[./10.1/tab/compare_yields_signal_single_7.06_281ipb_281ipbv5.org][table]]
-
-      3. Compare the 281ipbv5 with the 281ipbv2 - signal MC => [[./10.1/tab/compare_yields_signal_single_281ipbv2_281ipbv5.org][table]]
-
-      4. Compare the 281ipbv5 with the original - data => [[./10.1/tab/compare_yields_data_single_7.06_281ipb_281ipbv5.org][table]]
-
-      5. Compare the 281ipbv5 with the 281ipb (Dskimv2) - data => [[./10.1/tab/compare_yields_data_single_281ipb_281ipbv5.org][table]]
-
-      6. BF fits compare the data results pdg 2004  => [[./10.1/tab/compare_data_results_pdg_281ipbv5.org][table]] ([[./10.1/tab/compare_data_results_pdg_281ipbv5.info][info]]) , PDG 2009 => [[./10.1/tab/compare_pdg2009_281ipbv5.org][table]] ([[./10.1/tab/compare_pdg2009_281ipbv5.info][info]])
-
-	 1. Reproduce the original one (281ipbv0) compare with PDG 2004: => [[./10.1/tab/compare_data_results_pdg_281ipbv0.org][table]] ([[./10.1/tab/compare_data_results_pdg_281ipbv0.info][info]]), PDG 2009:  => [[./10.1/tab/compare_pdg2009_281ipbv0.org][table]] ([[./10.1/tab/compare_pdg2009_281ipbv0.info][info]])
-
-	 2. New MC with same crossfeeds file (281ipbv5.0) compare with original => [[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv5.0.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv5.0.info][info]]) 
-
-	 3. New MC with new crossfeeds file (281ipbv5) compare with original => [[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv5.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv5.info][info]])
-
-	 4. 281ipbv5 compare with 281ipbv5.0: => [[./10.1/tab/compare_brf_data_results_281ipbv5.0_281ipbv5.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv5.0_281ipbv5.info][info]]) 
-
-	 5. Compare with my own crossfeeds (281ipbv0.1): => [[./10.1/tab/compare_brf_data_results_281ipbv0.1_281ipbv5.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0.1_281ipbv5.info][info]]) 
-
-
-      7. Comparison of the D-mass between signal MC and data:
-
-	 1. Original 281/pb => [[./10.1/tab/compare_para_md_7.06_regular3_d_7.06_regular_s.org][table]] ([[./10.1/tab/compare_para_md_7.06_regular3_d_7.06_regular_s.info][info]])
-
-	 2. New 281/pb => [[./10.1/tab/compare_para_md_10.1_281ipbv5_d_10.1_281ipbv5_s.org][table]] ([[./10.1/tab/compare_para_md_10.1_281ipbv5_d_10.1_281ipbv5_s.info][info]])
-
-** 281ipbv6
-
-   1. Compare the yields between 281ipbv0 and 281ipbv6 for 281/pb data  => [[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv6.org][table]] ([[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv6.info][info]])  
-
-   2. Compare the yields between 281ipbv0 and 281ipbv6 for 281/pb signal MC => [[./10.1/tab/compare_yields_signal_single_281ipbv0_281ipbv6.org][table]] ([[./10.1/tab/compare_yields_signal_single_281ipbv0_281ipbv6.info][info]])
-
-   3. Compare the diffs from the above two tables => [[./10.1/tab/compare_diff_yields_data_single_281ipbv0_281ipbv6_yields_signal_single_281ipbv0_281ipbv6.org][table]] ([[./10.1/tab/compare_diff_yields_data_single_281ipbv0_281ipbv6_yields_signal_single_281ipbv0_281ipbv6.info][info]])   
-** 281ipbv7
-
-   1. Momentum resolution parameters  => [[./10.1/tab/para_momentum_resolution_281ipbv7.org][table]] ([[./10.1/tab/para_momentum_resolution_281ipbv7.info][info]]) 
-   2. Compare the entries between 281ipbv0 and 281ipbv7 for 281/pb data => [[./10.1/tab/compare_entries_data_single_281ipbv0_281ipbv7.org][table]] ([[./10.1/tab/compare_entries_data_single_281ipbv0_281ipbv7.info][info]]) 
-   3. Compare the entries between 281ipbv0 and 281ipbv7 for 281/pb signal MC => [[./10.1/tab/compare_entries_signal_single_281ipbv0_281ipbv7.org][table]] ([[./10.1/tab/compare_entries_signal_single_281ipbv0_281ipbv7.info][info]]) 
-   4. Compare the events between 281ipbv0 and 281ipbv7 for data => [[./10.1/tab/compare_events_data_single_281ipbv0_281ipbv7.org][table]] ([[./10.1/tab/compare_events_data_single_281ipbv0_281ipbv7.info][info]])
-   5. Compare the yields between 281ipbv0 and 281ipbv7 for 281/pb data  => [[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv7.org][table]] ([[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv7.info][info]]) 
-   6. Compare the yields between 281ipbv0 and 281ipbv7 for 281/pb signal MC => [[./10.1/tab/compare_yields_signal_single_281ipbv0_281ipbv7.org][table]] ([[./10.1/tab/compare_yields_signal_single_281ipbv0_281ipbv7.info][info]]) 
-   7. Compare the diffs from the above two tables => [[./10.1/tab/compare_diff_yields_data_single_281ipbv0_281ipbv7_yields_signal_single_281ipbv0_281ipbv7.org][table]] ([[./10.1/tab/compare_diff_yields_data_single_281ipbv0_281ipbv7_yields_signal_single_281ipbv0_281ipbv7.info][info]])   
-   8. Compare BFs with 281ipbv0 => [[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv7.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0_281ipbv7.info][info]]) 
-   9. List the unique events distribution across the datasets for 281ipbv7 data => [[./10.1/tab/parse_events_data_single_281ipbv7.org][table]] ([[./10.1/tab/parse_events_data_single_281ipbv7.info][info]])
-   10. List the unique events distribution across the runs for 281ipbv7 data  => [[./10.1/tab/parse_runs_data_single_281ipbv7.org][table]] ([[./10.1/tab/parse_runs_data_single_281ipbv7.info][info]]) 
-
-** 281ipbv8
-   1. Compare the yields between 281ipbv0 and 281ipbv8 for 281/pb data => [[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv8.org][table]] ([[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv8.info][info]]) 
-   2. Compare the yields between 281ipbv0 and 281ipbv8 for 281/pb singal MC => [[./10.1/tab/compare_yields_signal_single_281ipbv0_281ipbv8.org][table]] ([[./10.1/tab/compare_yields_signal_single_281ipbv0_281ipbv8.info][info]]) 
-   3. Compare the diffs from the above two tables => [[./10.1/tab/compare_diff_yields_data_single_281ipbv0_281ipbv8_yields_signal_single_281ipbv0_281ipbv8.org][table]] ([[./10.1/tab/compare_diff_yields_data_single_281ipbv0_281ipbv8_yields_signal_single_281ipbv0_281ipbv8.info][info]]) 
-
-** 281ipbv9
-   1. Compare the yields between 281ipbv0 and 281ipbv9 for 281/pb data => [[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv9.org][table]] ([[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv9.info][info]])   
-** 281ipbv10
-   1.  Compare the yields between 281ipbv0 and 281ipbv10 for 281/pb data => [[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv10.org][table]] ([[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv10.info][info]]) 
-   2. Backgrounds from the generic ddbar MC => [[./10.1/tab/bkg_generic_ddbar_single_p_281ipbv10.org][table]] ([[./10.1/tab/bkg_generic_ddbar_single_p_281ipbv10.info][info]]) 
-   3. Background from the generic continuum MC => [[./10.1/tab/bkg_generic_cont_single_281ipbv10.org][table]] ([[./10.1/tab/bkg_generic_cont_single_281ipbv10.info][info]])   
-   4. Normalized backgrounds from generic MC  => [[./10.1/tab/bkg_generic_single_281ipbv10.org][table]] ([[./10.1/tab/bkg_generic_single_281ipbv10.info][info]])
-   5. Backgrounds for the generic ddbar MC on mode 0 with mBC cuts 1.86-1.87 => [[./10.1/tab/bkg_names_peak_generic_ddbar_Single_D0_to_Kpi_281ipbv10.org][table]] ([[./10.1/tab/bkg_names_peak_generic_ddbar_Single_D0_to_Kpi_281ipbv10.info][info]])
-   6. Compare the \Chi^2/Ndof between default background fitting and without gaussian  => [[./10.1/tab/m_diff_chisq_default_nogaus_281ipbv10.org][table]]
-   7. Backgrounds from the generic ddbar MC with no crossfeeds => [[./10.1/tab/bkg_generic_ddbar_single_p_281ipbv10_noxfeed.org][table]] ([[./10.1/
-tab/bkg_generic_ddbar_single_p_281ipbv10_noxfeed.info][info]])  
-      
-** 281ipbv11
-   1. Compare the yields between 281ipbv0 and 281ipbv11 for 281/pb data => [[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv11.org][table]] ([[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv11.info][info]]) 
-
-** 537ipb
-
-    | Name                                    | 537ipbv5     | 537ipbv7     |
-    |-----------------------------------------+--------------+--------------|
-    | Momentum resolution parameters          | [[./10.1/tab/para_momentum_resolution_537ipbv5.org][table]] ([[./10.1/tab/para_momentum_resolution_537ipbv5.info][info]]) | [[./10.1/tab/para_momentum_resolution_537ipbv7.org][table]] ([[./10.1/tab/para_momentum_resolution_537ipbv7.info][info]]) |
-    | BF fits  compare with PDG 2004          | [[./10.1/tab/compare_data_results_pdg_537ipbv5.org][table]] ([[./10.1/tab/compare_data_results_pdg_537ipbv5.info][info]]) |              |
-    | Compare the yields with 281/pb for data | [[./10.1/tab/compare_yields_data_single_281ipbv0_537ipbv6.org][table]] ([[./10.1/tab/compare_yields_data_single_281ipbv0_537ipbv6.info][info]]) | [[./10.1/tab/compare_yields_data_single_281ipbv0_537ipbv7.org][table]] ([[./10.1/tab/compare_yields_data_single_281ipbv0_537ipbv7.info][info]]) |
-    | Compare BF with 281ipbv0                |              | [[./10.1/tab/compare_brf_data_results_281ipbv0_537ipbv7.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0_537ipbv7.info][info]]) |
-    | Compare BF with 281ipbv7                |              | [[./10.1/tab/compare_brf_data_results_281ipbv7_537ipbv7.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv7_537ipbv7.info][info]]) |
-
-
-** 818ipb
-   
-    | Name                            | 818ipbv5     | 818ipbv7     |
-    |---------------------------------+--------------+--------------|
-    | Momentum resolution parameters  | [[./10.1/tab/para_momentum_resolution_818ipbv5.org][table]] ([[./10.1/tab/para_momentum_resolution_818ipbv5.info][info]]) | [[./10.1/tab/para_momentum_resolution_818ipbv7.org][table]] ([[./10.1/tab/para_momentum_resolution_818ipbv7.info][info]]) |
-    | BF fits  compare with PDG 2004  | [[./10.1/tab/compare_data_results_pdg_818ipbv5.org][table]] ([[./10.1/tab/compare_data_results_pdg_818ipbv5.info][info]]) |              |
-    | Compare BF with 281ipbv7        |              | [[./10.1/tab/compare_brf_data_results_281ipbv7_818ipbv7.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv7_818ipbv7.info][info]]) |
-    | Comapre the parameter xi signal |              | [[./10.1/tab/compare_para_xi_signal_818ipbv7_818ipbv7_desideband.org][table]] ([[./10.1/tab/compare_para_xi_signal_818ipbv7_818ipbv7_desideband.info][info]]) |
-    | Compare the parameter xi data   |              | [[./10.1/tab/compare_para_xi_data_818ipbv7_818ipbv7_desideband.org][table]] ([[./10.1/tab/compare_para_xi_data_818ipbv7_818ipbv7_desideband.info][info]]) |
-    | Compare the parameter p signal  |              | [[./10.1/tab/compare_para_argus_p_signal_818ipbv7_818ipbv7_desideband.org][table]] ([[./10.1/tab/compare_para_argus_p_signal_818ipbv7_818ipbv7_desideband.info][info]]) |
-    | Compare the parameter p data    |              | [[./10.1/tab/compare_para_argus_p_data_818ipbv7_818ipbv7_desideband.org][table]] ([[./10.1/tab/compare_para_argus_p_data_818ipbv7_818ipbv7_desideband.info][info]]) |
-    | ARGUS parameter slope           |              | [[./10.1/tab/para_argus_slope_818ipbv7_desidebands.org][table]] ([[./10.1/tab/para_argus_slope_818ipbv7_desidebands.info][info]]) |
-    | ARGUS parameeter power          |              | [[./10.1/tab/para_argus_power_818ipbv7_desidebands.org][table]] ([[./10.1/tab/para_argus_power_818ipbv7_desidebands.info][info]]) |
-
-
+* 818ipbv5
+  :PROPERTIES:
+  :CUSTOM_ID: 818ipbv5
+  :END:
+  1. Momentum resolution parameters => [[./10.1/tab/para_momentum_resolution_818ipbv5.org][table]] ([[./10.1/tab/para_momentum_resolution_818ipbv5.info][info]])
+  2. BF fits  compare with PDG 2004 => [[./10.1/tab/compare_data_results_pdg_818ipbv5.org][table]] ([[./10.1/tab/compare_data_results_pdg_818ipbv5.info][info]])
+* 818ipbv7
+  1. Momentum resolution parameters  => [[./10.1/tab/para_momentum_resolution_818ipbv7.org][table]] ([[./10.1/tab/para_momentum_resolution_818ipbv7.info][info]]) 
+  2. Compare BF with 281ipbv7  => [[./10.1/tab/compare_brf_data_results_281ipbv7_818ipbv7.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv7_818ipbv7.info][info]])   
 * Misc
   :PROPERTIES:
   :CUSTOM_ID: misc
@@ -237,8 +162,6 @@ tab/bkg_generic_ddbar_single_p_281ipbv10_noxfeed.info][info]])
 
   12. Compare the yields for data 537/pb with new parameters in original env => [[./10.1/tab/compare_yields_data_single_7.06_537ipb_7.06_537ipbv5.org][table]]
 
-  13. Compare the unique events for SL4 and SL5 => [[./10.1/tab/compare_events_signal_Single_Dp_to_Kspipipi_281ipbv13_281ipbv14.org][table]] ([[./10.1/tab/compare_events_signal_Single_Dp_to_Kspipipi_281ipbv13_281ipbv1
-4.info][info]])     
 
 
 
@@ -270,5 +193,3 @@ tab/bkg_generic_ddbar_single_p_281ipbv10_noxfeed.info][info]])
 
 
 
-
-      

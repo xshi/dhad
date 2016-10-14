@@ -1,14 +1,11 @@
-
-#+SETUPFILE: ./web/ver.org
+#+STARTUP: hidestars entitiespretty
 #+TITLE: D-Hadronic Analysis  - 10.1 - Progress
-
 
 * 281/pb 
 
   - [[./src/10.1.7/dot/p281.png][diagram - 281/pb]]
 
 ** Generate Signal MC Samples (10.1.1) [100%]
-
 *** DONE Setup Env
     :LOGBOOK:
     CLOCK: [2010-01-08 Fri 08:39]--[2010-01-08 Fri 12:08] =>  3:29
@@ -595,7 +592,6 @@
     [[./10.1/tab/combine_compare_yields_data_signal_divide_537ipb.org][table]]
 
     : dhad-10.1.2 tab para md 281ipb 7.06/data 7.06/original default 
-
 
 ** Signal MC 537ipb sample with new run numbers and DSkimv2 (10.1.2) [100%]
 *** DONE Setup Env
@@ -2703,7 +2699,7 @@
 
     : used_crossfeeds = ['D0_to_Kpi fakes D0B_to_Kpi:', 'D0B_to_Kpi fakes D0_to_Kpi:']
     
-** BF fit with only tow crossfeeds (10.1.6)[100%]
+** BF fit with only two crossfeeds (10.1.6)[100%]
 *** DONE BF fit with only two crossfeeds for the original (281ipbv0.6)
     :LOGBOOK:
     CLOCK: [2010-05-03 Mon 13:50]--[2010-05-03 Mon 14:05] =>  0:15
@@ -3538,7 +3534,6 @@
      => [[./10.1/tab/compare_entries_data_single_281ipbv1_281ipbv7.org][table]] ([[./10.1/tab/compare_entries_data_single_281ipbv1_281ipbv7.info][info]])
      
      
-    
     Signal MC:
 
     : dhad-10.1.8 tab compare entries signal single 281ipbv0 281ipbv7
@@ -3855,9 +3850,6 @@
     : dhad-10.1.8 fit crossfeeds signal diag 281ipbv8  --test OK.
     : dhad-10.1.8 fit crossfeeds signal diag 281ipbv8 ... 
 
-
-
-
 ** Fit old data in new env (10.1.9) [100%]
    :LOGBOOK:
    CLOCK: [2010-07-12 Mon 10:46]--[2010-07-12 Mon 11:11] =>  0:25
@@ -3899,8 +3891,6 @@
    | Gamma     | 0.0286   | 0.0252   |
    | R         | 12.3     | 12.7     |
    | Mres      | 3.7718   | 3.7724   |
-
-   
 
 ** Fit old data in new env with old parameters (10.1.10) [100%]
    :LOGBOOK:
@@ -3957,8 +3947,7 @@
    : dhad-10.1.10 tab compare yields data single 281ipbv0 281ipbv11 
    => [[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv11.org][table]] ([[./10.1/tab/compare_yields_data_single_281ipbv0_281ipbv11.info][info]])  
 
-
-** Process 281/pb Generic MC (10.1.10) [95%]
+** Process 281/pb Generic MC Backgrounds (10.1.10) [100%]
 *** DONE Setup Env
     :LOGBOOK:
     CLOCK: [2010-07-14 Wed 10:48]--[2010-07-14 Wed 11:08] =>  0:20
@@ -4079,7 +4068,7 @@
     : dhad-10.1.10 gen ntuple generic mc-cont-dskim 5xlumi 281ipb -t -d ... OK.
     : dhad-10.1.10 gen ntuple generic mc-cont-dskim 5xlumi 281ipb  ... done. 
 
-*** DONE Run Yields
+*** CANCELED Run Yields (Moved to next section)
     :LOGBOOK:
     CLOCK: [2010-07-19 Mon 09:06]--[2010-07-19 Mon 09:08] =>  0:02
     CLOCK: [2010-07-16 Fri 15:23]--[2010-07-16 Fri 15:45] =>  0:22
@@ -4096,7 +4085,7 @@
     : mkdir $dhad/10.1/dat/generic
     : cd $dhad/10.1/dat/generic
     : mkdir 281ipbv0
-    : cd 281ipbv0if opts.test: 
+    : cd 281ipbv0
     : ln -s $dhad/dat/generic/10.1.10/*10xlumi*.root 
 
     : cd ..
@@ -4633,9 +4622,6 @@ eric_cont_single_281ipbv10.info][info]])
      
 
 
-
-
-
 *** DONE Fit the generic ddbar background with larger parameter
     :LOGBOOK:
     CLOCK: [2010-09-21 Tue 10:51]--[2010-09-21 Tue 11:50] =>  0:59
@@ -4679,7 +4665,6 @@ eric_cont_single_281ipbv10.info][info]])
     Check the components:
     : dhad-10.1.10 tab backgrounds names peak generic/ddbar Single_D0_to_Kpi 281ipbv10 
 
-    
 *** DONE Store the \chi^2 and parameters in the fitting 
     :LOGBOOK:
     CLOCK: [2010-09-23 Thu 10:49]--[2010-09-23 Thu 10:54] =>  0:05
@@ -4712,7 +4697,6 @@ eric_cont_single_281ipbv10.info][info]])
 
     Put the parameters list on the figure page:
     : dhad-10.1.10 fig backgrounds generic/ddbar single_p 281ipbv10  OK.
-
 
 *** DONE Fit the backgrounds without the gaussian
     :LOGBOOK:
@@ -4757,7 +4741,6 @@ eric_cont_single_281ipbv10.info][info]])
 
     : dhad-10.1.10 fit backgrounds generic/ddbar single_p 281ipbv10/nogaus ... done. 
 
-   
 *** DONE Fit with constant width from data fitting 
     :LOGBOOK:
     CLOCK: [2010-09-24 Fri 11:27]--[2010-09-24 Fri 11:37] =>  0:10
@@ -4793,16 +4776,87 @@ eric_cont_single_281ipbv10.info][info]])
     : dhad-10.1.10 fit backgrounds generic/ddbar single_p 281ipbv10/floatsigma ... done. 
     : dhad-10.1.10 fig backgrounds generic/ddbar single_p 281ipbv10/floatsigma done. 
 
- 
+*** DONE Add Crossfeed cuts
+    :LOGBOOK:
+    CLOCK: [2010-09-30 Thu 08:36]--[2010-09-30 Thu 08:56] =>  0:20
+    CLOCK: [2010-09-29 Wed 11:13]--[2010-09-29 Wed 12:07] =>  0:54
+    CLOCK: [2010-09-29 Wed 09:35]--[2010-09-29 Wed 10:06] =>  0:31
+    :END:
 
+    : dhad-10.1.10 yld backgrounds generic/ddbar Single_D0_to_Kpi 281ipbv10/noxfeed -s interact -t 
+
+    Tested 100,000 events, with crossfeeds: faked 8, without
+    crossfeeds: faked 5. This indicate the additional cuts is
+    working. 
+
+   : dhad-10.1.10 yld backgrounds generic/ddbar Single_D0_to_Kpi 281ipbv10/noxfeed ... done. 
+
+    Submit the rest:
+
+   : dhad-10.1.10 yld backgrounds generic/ddbar single/Single_D0_to_Kpi 281ipbv10/noxfeed ... done.
+
+    Fit mBC: 
+
+    Edit the input source ... done. 
+
+    Also increase the yld limit to 20,000.
+
+    : dhad-10.1.10 fit backgrounds generic/ddbar Single_D0_to_Kpi 281ipbv10/noxfeed -s interact -t OK.
+    
+    Fit all:
+    
+    : dhad-10.1.10 fit backgrounds generic/ddbar single_p 281ipbv10/noxfeed ... done. 
+    : dhad-10.1.10 fig backgrounds generic/ddbar single_p 281ipbv10/noxfeed OK.
+
+*** DONE Re-fit the standard one with large yld limit 
+    :LOGBOOK:
+    CLOCK: [2010-09-30 Thu 08:57]--[2010-09-30 Thu 09:43] =>  0:46
+    :END:
+
+    : dhad-10.1.10 fit backgrounds generic/ddbar single_p 281ipbv10 ... done. 
+
+    : dhad-10.1.10 fig backgrounds generic/ddbar single_p 281ipbv10 ... OK.
+
+    Ask Peter about the mcdmode ... send.
+
+    : I think my code is a little more exact than the ntuple mcdmode - you
+    : should take a closer look...
+    
+*** DONE Compare the \Chi^2 for between the non-gaussian and standard fit
+    :LOGBOOK:
+    CLOCK: [2010-09-30 Thu 09:43]--[2010-09-30 Thu 10:09] =>  0:26
+    :END:
+
+    Compare the \Chi^2/Ndof between default background fitting and
+    without gaussian  => [[./10.1/tab/m_diff_chisq_default_nogaus_281ipbv10.org][table]]
+
+*** DONE List the backgrounds with no crossfeeds
+    :LOGBOOK:
+    CLOCK: [2010-10-05 Tue 08:47]--[2010-10-05 Tue 09:33] =>  0:46
+    :END:
+
+    : dhad-10.1.10 tab backgrounds generic/ddbar single_p 281ipbv10/noxfeed OK.
+
+    : dhad-10.1.10 tab backgrounds names generic/ddbar single_p 281ipbv10/noxfeed 
     
 
-
-
-       
-
-*** WAITING Fit the continuum MC
+    
+*** DONE Fit the ddbar no crossfees all in one
     :LOGBOOK:
+    CLOCK: [2010-10-13 Wed 12:52]--[2010-10-13 Wed 13:21] =>  0:29
+    CLOCK: [2010-10-13 Wed 12:49]--[2010-10-13 Wed 12:51] =>  0:02
+    :END:
+
+    : dhad-10.1.10 fit backgrounds generic/ddbar single_p 281ipbv10/noxfeed -s allinone ... done. 
+    : dhad-10.1.10 fig backgrounds generic/ddbar single_p 281ipbv10/noxfeed -s allinone ... done. 
+
+
+*** DONE Fit the continuum MC
+    :LOGBOOK:
+    CLOCK: [2010-10-13 Wed 12:11]--[2010-10-13 Wed 12:11] =>  0:00
+    CLOCK: [2010-10-13 Wed 12:04]--[2010-10-13 Wed 12:11] =>  0:07
+    CLOCK: [2010-10-13 Wed 11:00]--[2010-10-13 Wed 11:52] =>  0:52
+    CLOCK: [2010-10-12 Tue 15:28]--[2010-10-12 Tue 15:30] =>  0:02
     CLOCK: [2010-09-13 Mon 14:11]--[2010-09-13 Mon 15:12] =>  1:01
     CLOCK: [2010-09-13 Mon 11:07]--[2010-09-13 Mon 12:04] =>  0:57
     CLOCK: [2010-09-13 Mon 09:40]--[2010-09-13 Mon 10:45] =>  1:05
@@ -4843,18 +4897,106 @@ eric_cont_single_281ipbv10.info][info]])
     : dhad-10.1.10 fit backgrounds generic/cont single 281ipbv10 -s interact -t -d OK.
     : dhad-10.1.10 fit backgrounds generic/cont single 281ipbv10 -t OK.
 
-    : dhad-10.1.10 fit backgrounds generic/cont single 281ipbv10 ... done. 
 
+    Use septerate method:
 
+    : dhad-10.1.10 yld backgrounds generic/cont Single_Dp_to_Kspipipi 281ipbv10 -s interact -t OK.
+
+    : dhad-10.1.10 yld backgrounds generic/cont Single_Dp_to_Kspipipi 281ipbv10 ... done. 
+    : dhad-10.1.10 fit backgrounds generic/cont single_p 281ipbv10 -s allinone ... done. 
+
+    : dhad-10.1.10 fig backgrounds generic/cont single_p 281ipbv10 -s allinone OK.
+
+*** DONE Fit the tau pair MC
+    :LOGBOOK:
+    CLOCK: [2010-10-13 Wed 11:52]--[2010-10-13 Wed 12:03] =>  0:11
+    CLOCK: [2010-10-13 Wed 08:50]--[2010-10-13 Wed 10:05] =>  1:15
+    CLOCK: [2010-10-12 Tue 16:11]--[2010-10-12 Tue 16:20] =>  0:09
+    CLOCK: [2010-10-12 Tue 15:32]--[2010-10-12 Tue 15:41] =>  0:09
+    :END:
+
+    Make the cont yld first:
     
+    : dhad-10.1.10 yld backgrounds generic/tau Single_Dp_to_Kspipipi 281ipbv10 -s interact -t -d OK. 
+     : dhad-10.1.10 yld backgrounds generic/tau single 281ipbv10 ... done.
+
+     : dhad-10.1.10 fit backgrounds generic/tau single_p 281ipbv10 -s interact,allinone  done. 
+
+    : dhad-10.1.10 fit backgrounds generic/tau single_p 281ipbv10 -s alliinone OK. 
+
+    : dhad-10.1.10 fig backgrounds generic/tau single_p 281ipbv10 -s allinone OK. with log. 
 
 
-
+*** DONE Fit the radret MC
+    :LOGBOOK:
+    CLOCK: [2010-10-13 Wed 10:52]--[2010-10-13 Wed 11:00] =>  0:08
+    CLOCK: [2010-10-12 Tue 15:42]--[2010-10-12 Tue 15:44] =>  0:02
+    :END:
     
+    Make the cont yld first:
+    
+    : dhad-10.1.10 yld backgrounds generic/radret Single_Dp_to_Kspipipi 281ipbv10 -s interact -t OK.
+
+    : dhad-10.1.10 yld backgrounds generic/radret single 281ipbv10 ... done.
+    
+    : dhad-10.1.10 fit backgrounds generic/radret single_p 281ipbv10 -s allinone...done.
+    
+    : dhad-10.1.10 fig backgrounds generic/radret single_p 281ipbv10 -s allinone ... OK with log. 
+
+** Process generic MC for normal yields (281ipbv7) [100%]
+*** DONE Run Yields
+    :LOGBOOK:
+    CLOCK: [2010-10-22 Fri 08:54]--[2010-10-22 Fri 09:05] =>  0:11
+    CLOCK: [2010-10-20 Wed 08:49]--[2010-10-20 Wed 09:31] =>  0:42
+    CLOCK: [2010-10-13 Wed 12:51]--[2010-10-13 Wed 12:51] =>  0:00
+    :END:
+    : cd $dhad/10.1/dat/generic/dbar
+    : ln -s 281ipbv10 281ipbv7
+    : dhad-10.1.10 yld generic Single_Dp_to_Kspipipi 281ipbv7 -s interact -t OK.
+    : dhad-10.1.10 yld generic Single_Dp_to_Kspipipi 281ipbv7 -t OK.
+    : dhad-10.1.10 yld generic Single_Dp_to_Kspipipi 281ipbv7 ... OK.
+    : dhad-10.1.10 yld generic single 281ipbv7  ... done. 
+
+
+    : dhad-10.1.10 yld generic Double_Dp_to_Kspipipi__Dm_to_Kspipipi 281ipbv7 -s interact -t OK.
+    : dhad-10.1.10 yld generic double 281ipbv7 ... done. 
+
+
+*** DONE mBC fitting
+    :LOGBOOK:
+    CLOCK: [2010-10-25 Mon 08:51]--[2010-10-25 Mon 08:53] =>  0:02
+    CLOCK: [2010-10-22 Fri 09:14]--[2010-10-22 Fri 09:50] =>  0:36
+    CLOCK: [2010-10-21 Thu 09:03]--[2010-10-21 Thu 09:07] =>  0:04
+    CLOCK: [2010-10-20 Wed 13:09]--[2010-10-20 Wed 14:35] =>  1:26
+    CLOCK: [2010-10-20 Wed 08:47]--[2010-10-20 Wed 08:49] =>  0:02
+    CLOCK: [2010-10-19 Tue 15:58]--[2010-10-19 Tue 16:21] =>  0:23
+    :END:
+    Fit for one mode:
+
+    : dhad-10.1.10 fit generic Single_Dp_to_Kspipipi 281ipbv7 -s interact -t OK.
+
+    Fit all:
+    : dhad-10.1.10 fit generic single 281ipbv7 ... 
+
+    Fig: 
+    : dhad-10.1.10 fig generic single 281ipbv7  
+
+    Compare the figures with :
+    http://www.lepp.cornell.edu/~xs32/private/DHad/6.09/plots/regular_generic.html
+
+    Need to use the mc lineshape to fit ...OK.
+
+    : dhad-10.1.10 fit generic Double_Dp_to_Kspipipi__Dm_to_Kspipipi 281ipbv7 -s interact -t OK.
+
+    : dhad-10.1.10 fit generic double 281ipbv7 ... done. 
+    : dhad-10.1.10 fig generic double 281ipbv7 ... done. 
+
+
+
+
 
 * 537/pb 
-
-  - [[./src/10.1.7/dot/p537.png][diagram - 537/pb]]
+ - [[./src/10.1.7/dot/p537.png][diagram - 537/pb]]
 
 ** Generate Diagonal Double Tag MC samples for 537/pb (10.1.5) [100%]
 *** DONE Run CLEOG
@@ -5203,9 +5345,6 @@ eric_cont_single_281ipbv10.info][info]])
 
     [[./10.1/fig/data_single_537ipbv5.org][figure]]
 
-
-    
-
 ** Process 537/pb double tags for Data (10.1.5) [100%]
 *** DONE Run Yields
     :LOGBOOK:
@@ -5321,9 +5460,6 @@ eric_cont_single_281ipbv10.info][info]])
 
     => [[./10.1/tab/compare_brf_data_results_281ipbv0_537ipbv5.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0_537ipbv5.info][info]])
 
-
-
-
 ** BF fit with Kpi crossfeeds only and scale up bkgs (10.1.6) [100%]
 
 *** DONE Scale up the backgrounds
@@ -5375,7 +5511,6 @@ eric_cont_single_281ipbv10.info][info]])
     : dhad-10.1.6 tab compare yields data single 281ipbv0 537ipbv6 --set diff=ratio:sign=0
 
     => [[./10.1/tab/compare_yields_data_single_281ipbv0_537ipbv6.org][table]] ([[./10.1/tab/compare_yields_data_single_281ipbv0_537ipbv6.info][info]])    
-
 
 ** DSkimv1 Cuts (10.1.7) [100%]
 *** DONE Run Ntuple
@@ -5590,12 +5725,7 @@ eric_cont_single_281ipbv10.info][info]])
 
 
 
-
-
-
-
-
-** Generic MC (10.1.10) [50%]
+** Generic Background MC (10.1.10) [100%]
 *** DONE Run NTuple
     :LOGBOOK:
     CLOCK: [2010-07-27 Tue 12:54]--[2010-07-27 Tue 13:15] =>  0:21
@@ -5624,8 +5754,7 @@ eric_cont_single_281ipbv10.info][info]])
 
     : dhad-10.1.10 gen ntuple generic mc-ddbar-dskim 20xlumi 537ipb -t -d ... done. 
 
-    
-*** STARTED Run ddbar generic background yields
+*** DONE Run ddbar generic background yields
     :LOGBOOK:
     CLOCK: [2010-08-02 Mon 10:02]--[2010-08-02 Mon 10:13] =>  0:11
     CLOCK: [2010-07-27 Tue 14:42]--[2010-07-27 Tue 14:42] =>  0:00
@@ -5931,8 +6060,9 @@ eric_cont_single_281ipbv10.info][info]])
 
 
 
-**** WAITING Run ddbar background yields
+**** DONE Run ddbar background yields
      :LOGBOOK:
+     CLOCK: [2010-10-04 Mon 13:58]--[2010-10-04 Mon 14:07] =>  0:09
      CLOCK: [2010-09-06 Mon 14:10]--[2010-09-06 Mon 14:58] =>  0:48
      :END:
 
@@ -5942,11 +6072,173 @@ eric_cont_single_281ipbv10.info][info]])
      : dhad-10.1.10 yld backgrounds generic/ddbar Single_Dp_to_Kspipipi 537ipbv10 -s interact -t ... OK.
 
      : dhad-10.1.10 yld backgrounds generic/ddbar single 537ipbv10 -t ... OK.
-     : dhad-10.1.10 yld backgrounds generic/ddbar single 537ipbv10 ... 
+     : dhad-10.1.10 yld backgrounds generic/ddbar single 537ipbv10 ... done. 
 
 
 
-3
+*** DONE Fit backgrounds with fixed width from data
+    :LOGBOOK:
+    CLOCK: [2010-10-05 Tue 09:33]--[2010-10-05 Tue 09:35] =>  0:02
+    CLOCK: [2010-10-05 Tue 08:27]--[2010-10-05 Tue 08:40] =>  0:13
+    CLOCK: [2010-10-04 Mon 15:44]--[2010-10-04 Mon 15:47] =>  0:03
+    CLOCK: [2010-10-04 Mon 14:07]--[2010-10-04 Mon 14:38] =>  0:31
+    :END:
+
+    : dhad-10.1.10 fit backgrounds generic/ddbar Single_D0_to_Kpi 537ipbv10 -s interact -t OK.
+
+    : dhad-10.1.10 fit backgrounds generic/ddbar single_p 537ipbv10 ... 
+
+    : dhad-10.1.10 fig backgrounds generic/ddbar single_p 537ipbv10 done. 
+
+
+*** DONE Run ddbar generic bkg ylds with no crossfeeds
+    :LOGBOOK:
+    CLOCK: [2010-10-05 Tue 09:35]--[2010-10-05 Tue 10:04] =>  0:29
+    CLOCK: [2010-10-05 Tue 08:40]--[2010-10-05 Tue 08:47] =>  0:07
+    CLOCK: [2010-10-04 Mon 14:38]--[2010-10-04 Mon 15:44] =>  1:06
+    :END:
+
+    : dhad-10.1.10 yld backgrounds generic/ddbar Single_D0_to_Kpi 537ipbv10/noxfeed -s interact -t OK.
+
+    : dhad-10.1.10 yld backgrounds generic/ddbar single 537ipbv10/noxfeed ...done. 
+
+    : dhad-10.1.10 fit backgrounds generic/ddbar single_p 537ipbv10/noxfeed ... done. 
+    : dhad-10.1.10 fig backgrounds generic/ddbar single_p 537ipbv10/noxfeed 
+
+*** DONE Generic DDbar bkg all in one
+    :LOGBOOK:
+    CLOCK: [2010-10-13 Wed 14:02]--[2010-10-13 Wed 14:10] =>  0:08
+    CLOCK: [2010-10-13 Wed 13:35]--[2010-10-13 Wed 13:37] =>  0:02
+    :END:
+
+    : dhad-10.1.10 fit backgrounds generic/ddbar single_p 537ipbv10/noxfeed -s allinone ... done.
+
+    : dhad-10.1.10 fig backgrounds generic/ddbar single_p 537ipbv10/noxfeed -s allinone  done. 
+
+*** DONE Continuum Bkgd
+    :LOGBOOK:
+    CLOCK: [2010-10-14 Thu 09:32]--[2010-10-14 Thu 09:49] =>  0:17
+    CLOCK: [2010-10-14 Thu 08:19]--[2010-10-14 Thu 08:32] =>  0:13
+    CLOCK: [2010-10-13 Wed 13:37]--[2010-10-13 Wed 14:02] =>  0:25
+    :END:
+    
+    Read link:
+
+    https://wiki.lepp.cornell.edu/lepp/bin/view/CLEO/Private/SW/CLEOcMCstatus
+
+    : dhad-10.1.10 gen ntuple generic mc-cont-dskim 5xlumi 537ipb -t -d OK. 
+    : dhad-10.1.10 gen ntuple generic mc-cont-dskim 5xlumi 537ipb ... done.
+    : dhad-10.1.10 chk ntuple generic mc-cont-dskim 5xlumi 537ipb ... OK.
+
+    Generate the yields:
+
+    : cd $dhad/10.1/dat/generic/cont/
+    : mkdir 537ipbv10
+    : cd 537ipbv10
+    : ln -s $dhad/dat/generic/10.1.10/*cont*data4*.root . 
+
+    Run for one mode:
+    : dhad-10.1.10 yld backgrounds generic/cont Single_Dp_to_Kspipipi 537ipbv10 -s interact -t OK.
+    : dhad-10.1.10 yld backgrounds generic/cont Single_Dp_to_Kspipipi 537ipbv10 -t ... OK. 
+
+    : dhad-10.1.10 yld backgrounds generic/cont single 537ipbv10 -t  OK.
+    : dhad-10.1.10 yld backgrounds generic/cont single 537ipbv10 ... done. 
+
+    Fit all in one:
+
+    : dhad-10.1.10 fit backgrounds generic/cont single_p 537ipbv10 -s allinone ... done. 
+
+    : dhad-10.1.10 fig backgrounds generic/cont single_p 537ipbv10 -s allinone 
+
+*** DONE Tau pair Bkgd
+    :LOGBOOK:
+    CLOCK: [2010-10-14 Thu 08:32]--[2010-10-14 Thu 08:59] =>  0:27
+    CLOCK: [2010-10-13 Wed 14:11]--[2010-10-13 Wed 14:13] =>  0:02
+    :END:
+
+    : dhad-10.1.10 gen ntuple generic mc-tau-dskim 5xlumi 537ipb -t -d OK.
+    : dhad-10.1.10 gen ntuple generic mc-tau-dskim 5xlumi 537ipb  ... done. 
+    : dhad-10.1.10 chk ntuple generic mc-tau-dskim 5xlumi 537ipb ... OK.
+
+    Generate the yields:
+
+    : cd $dhad/10.1/dat/generic/tau/
+    : mkdir 537ipbv10
+    : cd 537ipbv10
+    : ln -s $dhad/dat/generic/10.1.10/*tau*data4*.root .  
+    
+    Run yields:
+    : dhad-10.1.10 yld backgrounds generic/tau Single_Dp_to_Kspipipi 537ipbv10 -s interact -t  OK.
+    : dhad-10.1.10 yld backgrounds generic/tau single 537ipbv10 -t OK.
+    : dhad-10.1.10 yld backgrounds generic/tau single 537ipbv10 ... done.
+
+    : dhad-10.1.10 fit backgrounds generic/tau single_p 537ipbv10 -s allinone ... done. 
+
+    : dhad-10.1.10 fig backgrounds generic/tau single_p 537ipbv10 -s allinone ...done.  
+
+*** DONE Radret Bkgd
+    :LOGBOOK:
+    CLOCK: [2010-10-14 Thu 08:59]--[2010-10-14 Thu 09:13] =>  0:14
+    CLOCK: [2010-10-13 Wed 14:13]--[2010-10-13 Wed 14:14] =>  0:01
+    :END:
+
+    : dhad-10.1.10 gen ntuple generic mc-radret-dskim 5xlumi 537ipb -t -d OK.
+    : dhad-10.1.10 gen ntuple generic mc-radret-dskim 5xlumi 537ipb ... done. 
+    : dhad-10.1.10 chk ntuple generic mc-radret-dskim 5xlumi 537ipb ... OK.
+
+    Generate the yields:
+
+    : cd $dhad/10.1/dat/generic/radret/
+    : mkdir 537ipbv10
+    : cd 537ipbv10
+    : ln -s $dhad/dat/generic/10.1.10/*radret*data4*.root .  
+
+    Run yields:
+    : dhad-10.1.10 yld backgrounds generic/radret Single_Dp_to_Kspipipi 537ipbv10 -s interact -t  OK.
+    : dhad-10.1.10 yld backgrounds generic/radret single 537ipbv10 -t OK.
+    : dhad-10.1.10 yld backgrounds generic/radret single 537ipbv10 ... done. 
+
+    : dhad-10.1.10 fit backgrounds generic/radret single_p 537ipbv10 -s allinone ...done. 
+    : dhad-10.1.10 fig backgrounds generic/radret single_p 537ipbv10 -s allinone 
+
+** Generic MC for normal yields (537ipbv7) [100%]
+*** DONE Run Yields
+    :LOGBOOK:
+    CLOCK: [2010-10-22 Fri 09:05]--[2010-10-22 Fri 09:09] =>  0:04
+    CLOCK: [2010-10-20 Wed 09:31]--[2010-10-20 Wed 09:34] =>  0:03
+    :END:
+    : cd $dhad/10.1/dat/generic/dbar
+    : ln -s 537ipbv10 537ipbv7
+    
+    : dhad-10.1.10 yld generic Single_Dp_to_Kspipipi 537ipbv7 -s interact -t OK.
+    : dhad-10.1.10 yld generic Single_Dp_to_Kspipipi 537ipbv7 -t OK.
+    : dhad-10.1.10 yld generic single 537ipbv7 ... done. 
+
+    : dhad-10.1.10 yld generic Double_Dp_to_Kspipipi__Dm_to_Kspipipi 537ipbv7 -s interact -t OK.
+    : dhad-10.1.10 yld generic double 537ipbv7 ... done. 
+
+
+
+*** DONE fit mBC
+    :LOGBOOK:
+    CLOCK: [2010-10-25 Mon 09:15]--[2010-10-25 Mon 09:18] =>  0:03
+    CLOCK: [2010-10-25 Mon 08:54]--[2010-10-25 Mon 08:55] =>  0:01
+    CLOCK: [2010-10-21 Thu 09:28]--[2010-10-21 Thu 09:46] =>  0:18
+    CLOCK: [2010-10-21 Thu 09:08]--[2010-10-21 Thu 09:13] =>  0:05
+    :END:
+
+    : dhad-10.1.10 fit generic Single_Dp_to_Kspipipi 537ipbv7 -s interact -t OK.
+
+    : dhad-10.1.10 fit generic single 537ipbv7 ... done. 
+    : dhad-10.1.10 fig generic single 537ipbv7 ... done. 
+
+    : dhad-10.1.10 fit generic Double_Dp_to_Kspipipi__Dm_to_Kspipipi 537ipbv7 -s interact -t 
+
+    : dhad-10.1.10 fit generic double 537ipbv7 ... done. 
+    : dhad-10.1.10 fig generic double 537ipbv7 ... done. 
+
+
+
 * 818/pb 
   
   - [[./src/10.1.7/dot/p818.png][diagram - 818/pb]]
@@ -6547,7 +6839,6 @@ eric_cont_single_281ipbv10.info][info]])
 
     Quick comparison with the 281ipb, most of them has smaller error. 
 
-    
 *** DONE mBC fit double tag
     :LOGBOOK:
     CLOCK: [2010-04-23 Fri 14:14]--[2010-04-23 Fri 14:16] =>  0:02
@@ -6580,7 +6871,6 @@ eric_cont_single_281ipbv10.info][info]])
 
     
  
-
 
 *** DONE mBC fit single tag 
     :LOGBOOK:
@@ -6676,8 +6966,6 @@ eric_cont_single_281ipbv10.info][info]])
 
     => [[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv5.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv5.info][info]])
 
-
-
 ** BF fit with Kpi crossfeeds only and scale up bkgs (10.1.6) [100%]
 *** DONE Scale up the backgrounds
     :LOGBOOK:
@@ -6707,7 +6995,6 @@ eric_cont_single_281ipbv10.info][info]])
     : dhad-10.1.6 tab compare brf_data_results 281ipbv0 818ipbv6
     => [[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv6.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv0_818ipbv6.info][info]])
 
-
 ** DSkimv1 Cuts (10.1.7) [100%]
 *** DONE Fit Paras
     :LOGBOOK:
@@ -6729,7 +7016,6 @@ eric_cont_single_281ipbv10.info][info]])
 
     : dhad-10.1.7 tab para momentum resolution 818ipbv7
     => [[./10.1/tab/para_momentum_resolution_818ipbv7.org][table]] ([[./10.1/tab/para_momentum_resolution_818ipbv7.info][info]]) 
-
 
 *** DONE mBC fit
     :LOGBOOK:
@@ -6769,8 +7055,6 @@ eric_cont_single_281ipbv10.info][info]])
     : dhad-10.1.7 fit data double 818ipbv7  ... done. 
     : dhad-10.1.7 fig data double 818ipbv7 
     [[./10.1/fig/data_double_818ipbv7.org][figure]]
-
-
 
 *** DONE Crossfeeds
     :LOGBOOK:
@@ -6826,10 +7110,3875 @@ eric_cont_single_281ipbv10.info][info]])
    : dhad-10.1.7 tab compare brf_data_results 281ipbv7 818ipbv7
     => [[./10.1/tab/compare_brf_data_results_281ipbv7_818ipbv7.org][table]] ([[./10.1/tab/compare_brf_data_results_281ipbv7_818ipbv7.info][info]])              
 
-
 ** Trace the low BFs for the neutral Ds [100%]
 *** DONE Solved by restoring to the DSkimv1 cuts.
 
+** Generic Backgrounds (818ipbv10) [100%]
+*** DONE Generic ddbar backgrounds 
+    :LOGBOOK:
+    CLOCK: [2010-10-06 Wed 10:54]--[2010-10-06 Wed 11:03] =>  0:09
+    CLOCK: [2010-10-06 Wed 09:13]--[2010-10-06 Wed 09:44] =>  0:31
+    CLOCK: [2010-10-05 Tue 10:54]--[2010-10-05 Tue 11:00] =>  0:06
+    :END:
+
+    : setpyroot l
+    : dhad-10.1.10 fit backgrounds generic/ddbar Single_D0_to_Kpi 818ipbv10 -s interact -t OK.
+
+    : dhad-10.1.10 fit backgrounds generic/ddbar single_p 818ipbv10 ... done.
+
+    : dhad-10.1.10 fig backgrounds generic/ddbar single_p 818ipbv10 
+
+    Focus on the noxfeed one. 
+
+*** DONE Generic ddbar bkg with no crossfeed
+    :LOGBOOK:
+    CLOCK: [2010-10-06 Wed 11:03]--[2010-10-06 Wed 12:33] =>  1:30
+    CLOCK: [2010-10-06 Wed 09:44]--[2010-10-06 Wed 10:05] =>  0:21
+    :END:
+
+    : dhad-10.1.10 fit backgrounds generic/ddbar Single_D0_to_Kpi 818ipbv10/noxfeed -s interact -t OK.
+
+    : dhad-10.1.10 fit backgrounds generic/ddbar single_p 818ipbv10/noxfeed ... done. 
+    : dhad-10.1.10 fig backgrounds generic/ddbar single_p 818ipbv10/noxfeed 
+
+
+    Add the \Chi^2 value in the table ... 
+
+    Found the def of the chiSquare:
+
+    : $ROOTSYS/roofit/roofitcore/src/RooCurve.cxx
+
+    :     Double_t RooCurve::chiSquare(const RooHist& hist, Int_t nFitParam) const 
+    : {
+    :   // Calculate the chi^2/NDOF of this curve with respect to the histogram
+    :   // 'hist' accounting nFitParam floating parameters in case the curve
+    :   // was the result of a fit
+    : 
+    :   Int_t i,np = hist.GetN() ;
+    :   Double_t x,y,eyl,eyh,exl,exh ;
+    : 
+    :   // Find starting and ending bin of histogram based on range of RooCurve
+    :   Double_t xstart,xstop ;
+    : 
+    : #if ROOT_VERSION_CODE >= ROOT_VERSION(4,0,1)
+    :   GetPoint(0,xstart,y) ;
+    :   GetPoint(GetN()-1,xstop,y) ;
+    : #else
+    :   const_cast<RooCurve*>(this)->GetPoint(0,xstart,y) ;
+    :   const_cast<RooCurve*>(this)->GetPoint(GetN()-1,xstop,y) ;
+    : #endif
+    : 
+    :   Int_t nbin(0) ;
+    : 
+    :   Double_t chisq(0) ;
+    :   for (i=0 ; i<np ; i++) {   
+    : 
+    :     // Retrieve histogram contents
+    :     ((RooHist&)hist).GetPoint(i,x,y) ;
+    : 
+    :     // Check if point is in range of curve
+    :     if (x<xstart || x>xstop) continue ;
+    : 
+    :     nbin++ ;
+    :     eyl = hist.GetEYlow()[i] ;
+    :     eyh = hist.GetEYhigh()[i] ;
+    :     exl = hist.GetEXlow()[i] ;
+    :     exh = hist.GetEXhigh()[i] ;
+    : 
+    :     // Integrate function over this bin
+    :     Double_t avg = average(x-exl,x+exh) ;
+    : 
+    :     // Add pull^2 to chisq
+    :     if (y!=0) {      
+    :       Double_t pull = (y>avg) ? ((y-avg)/eyl) : ((y-avg)/eyh) ;
+    :       chisq += pull*pull ;
+    :     }
+    :   }
+    : 
+    :   // Return chisq/nDOF 
+    :   return chisq / (nbin-nFitParam) ;
+    : }
+
+
+    Edit the script:
+   
+    : dhad-10.1.10 fit backgrounds generic/ddbar Single_D0_to_Kpi 818ipbv10/noxfeed -s interact -t OK.
+
+    
+    : dhad-10.1.10 fit backgrounds generic/ddbar single_p 818ipbv10/noxfeed ... 
+    : dhad-10.1.10 fig backgrounds generic/ddbar single_p 818ipbv10/noxfeed 
+
+*** DONE Generic DDbar all in one fit
+    :LOGBOOK:
+    CLOCK: [2010-10-14 Thu 11:06]--[2010-10-14 Thu 11:07] =>  0:01
+    CLOCK: [2010-10-13 Wed 14:14]--[2010-10-13 Wed 14:17] =>  0:03
+    :END:
+
+    : dhad-10.1.10 fit backgrounds generic/ddbar single_p 818ipbv10/noxfeed -s allinone ... done. 
+
+    : dhad-10.1.10 fig backgrounds generic/ddbar single_p 818ipbv10/noxfeed -s allinone   
+
+*** DONE Continuum Backgrounds
+    :LOGBOOK:
+    CLOCK: [2010-10-14 Thu 09:58]--[2010-10-14 Thu 11:06] =>  1:08
+    :END:
+
+    : dhad-10.1.10 fit backgrounds generic/cont single_p 818ipbv10 -s allinone ... 
+    : dhad-10.1.10 fig backgrounds generic/tau single_p 818ipbv10 -s allinone 
+
+*** DONE Tau pair Backgrounds
+    :LOGBOOK:
+    CLOCK: [2010-10-14 Thu 11:07]--[2010-10-14 Thu 11:08] =>  0:01
+    :END:
+
+    : dhad-10.1.10 fit backgrounds generic/tau single_p 818ipbv10 -s allinone ...
+
+    : dhad-10.1.10 fig backgrounds generic/tau single_p 818ipbv10 -s allinone 
+
+*** DONE Radret bkgds
+    :LOGBOOK:
+    CLOCK: [2010-10-14 Thu 11:08]--[2010-10-14 Thu 11:16] =>  0:08
+    :END:
+
+    : dhad-10.1.10 fit backgrounds generic/radret single_p 818ipbv10 -s allinone ...
+    : dhad-10.1.10 fig backgrounds generic/radret single_p 818ipbv10 -s allinone 
+
+*** CANCELED Background Efficiencies
+    :LOGBOOK:
+    CLOCK: [2010-10-20 Wed 09:45]--[2010-10-20 Wed 09:46] =>  0:01
+    CLOCK: [2010-10-19 Tue 09:33]--[2010-10-19 Tue 09:38] =>  0:05
+    :END:
+
+    Goal: reproduce the table 14 in CBX281. 
+
+    Email Peter ... sent. 
+
+    Use the current eff and move on ... OK.
+
+** Generic MC for normal yields (818ipbv7) [100%]
+*** DONE fit mBC
+    :LOGBOOK:
+    CLOCK: [2010-10-27 Wed 09:00]--[2010-10-27 Wed 09:10] =>  0:10
+    CLOCK: [2010-10-26 Tue 11:06]--[2010-10-26 Tue 11:14] =>  0:08
+    CLOCK: [2010-10-25 Mon 10:44]--[2010-10-25 Mon 11:01] =>  0:17
+    CLOCK: [2010-10-25 Mon 08:55]--[2010-10-25 Mon 09:14] =>  0:19
+    CLOCK: [2010-10-21 Thu 15:08]--[2010-10-21 Thu 15:09] =>  0:01
+    :END:
+
+    : dhad-10.1.10 fit generic Single_Dp_to_Kspipipi 818ipbv7 -s interact -t OK. 
+    : dhad-10.1.10 fit generic single 818ipbv7 ... done. 
+
+    One more:
+    : dhad-10.1.10 fit generic Single_D0_to_Kpipi0 818ipbv7 ... done. 
+
+    Increase the limit for N1 and N2 ... OK. 
+    : dhad-10.1.10 fit generic single 818ipbv7 ... done. 
+
+    : dhad-10.1.10 fig generic single 818ipbv7 ... OK.
+
+
+    : dhad-10.1.10 fit generic Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7 -s interact -t  OK. 
+    : dhad-10.1.10 fit generic double 818ipbv7 ... done. 
+    : dhad-10.1.10 fig generic double 818ipbv7 ... OK.
+
+    Redo this one:
+    : dhad-10.1.10 fit generic Double_Dp_to_Kpipi__Dm_to_KKpi 818ipbv7 ... OK. Same. 
+   
+** BF fit with updated lumi (818ipbv7)[100%]
+*** DONE Get the lumi for 281/pb 
+    :LOGBOOK:
+    CLOCK: [2010-10-15 Fri 10:04]--[2010-10-15 Fri 10:26] =>  0:22
+    CLOCK: [2010-10-15 Fri 08:44]--[2010-10-15 Fri 09:54] =>  1:10
+    CLOCK: [2010-10-14 Thu 15:50]--[2010-10-14 Thu 16:23] =>  0:33
+    CLOCK: [2010-10-14 Thu 14:09]--[2010-10-14 Thu 15:34] =>  1:25
+    CLOCK: [2010-10-13 Wed 14:30]--[2010-10-13 Wed 14:38] =>  0:08
+    :END:
+    
+    : dhad-10.1.10 tab lumi data 281ipb 
+
+    Got larger than 281/pb .
+
+    Ask Peter... sent. 
+
+    Message from Brian: search the CBX and the factor. 
+
+    Still not match ... add cut for 1880 and 1892 ... OK.
+
+    Work on the error (2.8) ... 1.0% error from the CBX05-10. 
+
+    : Luminosity for 281ipb : (281.53 +- 2.82) /pb (cal err: 6.19) 
+
+*** DONE Get the lumi for 818/pb
+    :LOGBOOK:
+    CLOCK: [2010-10-15 Fri 10:26]--[2010-10-15 Fri 11:09] =>  0:43
+    :END:
+
+    : dhad-10.1.10 tab lumi data 281ipb 
+    : Luminosity for 281ipb : (281.53 +- 6.19) /pb
+    
+    : dhad-10.1.10 tab lumi data 537ipb
+    : Luminosity for 537ipb : (536.57 +- 1.88) /pb 
+
+    : dhad-10.1.10 tab lumi data 818ipb 
+    : Luminosity for 818ipb : (818.10 +- 6.47) /pb 
+
+    Ask on DHad HN ... cc to Brian ... sent. 
+
+    Message from Brian:
+
+    :  The systematic error is dominated by
+    : uncertainty in the MC total cross sections
+    : and modeling of higher order radiative effects,
+    : and is therefore completely correlated
+    : between all the datasets.
+    : 
+    :  Hence a 1% relative error should be quoted.
+    : 
+    :  The exception is psi2S datasets, which
+    : if I recall we decided that 2% was more appropriate.
+
+    OK. use 1% now. 
+
+*** DONE Use the 818.10 for BF fit
+    :LOGBOOK:
+    CLOCK: [2010-10-15 Fri 15:51]--[2010-10-15 Fri 17:18] =>  1:27
+    CLOCK: [2010-10-15 Fri 15:30]--[2010-10-15 Fri 15:39] =>  0:09
+    CLOCK: [2010-10-15 Fri 11:23]--[2010-10-15 Fri 12:11] =>  0:48
+    :END:
+
+    Backup the original files in to 818ipbv7/old. 
+
+    CVS add the needed files from the original 7.03. 
+    
+    Update the data_crossectionsdef and statonly to 818.10. 
+
+    : dhad-10.1.10 brf 818ipbv7  
+    : dhad-10.1.10 tab cbx crossSections 818ipbv7
+
+    Still get Nan Value in the fit. 
+
+    Ask Werner for the meaning in dat_corsssectionsdef ...OK.
+    
+    Message from Werner:
+
+    : /home/wsun/c3lib/HadronicDBrFitter.save/buildLnx/instructions20071011.txt
+
+    Fixed. 
+
+** BF fit with updated backgrounds (818ipbv7) [100%]
+*** DONE Generate the bkg_effs file
+    :LOGBOOK:
+    CLOCK: [2010-10-22 Fri 13:41]--[2010-10-22 Fri 16:50] =>  3:09
+    CLOCK: [2010-10-22 Fri 11:09]--[2010-10-22 Fri 11:54] =>  0:45
+    CLOCK: [2010-10-22 Fri 10:07]--[2010-10-22 Fri 10:55] =>  0:48
+    CLOCK: [2010-10-20 Wed 11:00]--[2010-10-20 Wed 12:43] =>  1:43
+    CLOCK: [2010-10-20 Wed 09:46]--[2010-10-20 Wed 10:50] =>  1:04
+    CLOCK: [2010-10-18 Mon 14:11]--[2010-10-18 Mon 15:10] =>  0:59
+    :END:
+
+    Start from Peter's file: bkgeffmatrix_generate_data.py
+
+    Update the branching fractions from PDG2010. 
+
+    Leave the "Data eficiency" as before. 
+
+    Still use the scaled up number for the exteranl backgrounds for
+    absolute subtractions. 
+    
+    : dhad-10.1.10 brf 818ipbv7  ... done.
+
+    Update the cbx tables: 
+
+    : dhad-10.1.10 tab cbx brf_results 818ipbv7 done. 
+
+    Need to discuss for the absolute numbers in bkg ... Use it for
+    now. 
+
+    Compare with 2818pbv0:
+
+    : dhad-10.1.10 tab compare brf_data_results 281ipbv0 818ipbv7 
+
+** Multipions backgroud (818ipbv7) [100%]
+*** DONE Get the Ks sidebands yield
+
+    Plot the Ks mass distribution to make sure the range is valid:
+
+    : dhad-10.1.10 fig var ksmass signal Single_Dp_to_Kspi 281ipbv7  OK. 
+    : dhad-10.1.10 fig var ksmass data Single_Dp_to_Kspi 281ipbv7  selected 9753 out of 7190388.
+
+    Have valid range to select sideband. 
+   
+    : dhad-10.1.10 sel kssideband signal Single_Dp_to_Kspi 818ipbv7 -s interact -t OK.
+
+    : dhad-10.1.10 sel kssideband signal single_ks 818ipbv7 ... done. 
+    : dhad-10.1.10 sel kssideband data single_ks 818ipbv7 ... done. 
+    : dhad-10.1.10 sel kssideband generic single_ks 818ipbv7 ... done. 
+
+
+    : dhad-10.1.10 fit signal Single_Dp_to_Kspi 818ipbv7/kssideband -s interact -t OK.
+
+    : dhad-10.1.10 fit signal single_ks_p 818ipbv7/kssideband ... done.
+    : dhad-10.1.10 fit data single_ks_p 818ipbv7/kssideband ... done.
+    : dhad-10.1.10 fit generic single_ks_p 818ipbv7/kssideband ... done. 
+
+    : dhad-10.1.10 fig signal single_ks_p 818ipbv7/kssideband ... OK.
+    : dhad-10.1.10 fig data single_ks_p 818ipbv7/kssideband ... OK. 
+    : dhad-10.1.10 fig generic single_ks_p 818ipbv7/kssideband ... OK.
+    
+*** DONE Create Efficiency Table kssidebandeff
+    
+    : dhad-10.1.10 tab cbx kssidebandeff 818ipbv7 OK.
+
+    Used yields from Data!!
+
+    Change to signal MC:
+
+    : dhad-10.1.10 tab cbx kssidebandeff 818ipbv7 ... OK.
+
+    Now consistent with previous results. 
+    
+*** DONE Select Bkg sample from generic MC for multipions
+    
+    : dhad-10.1.10 sel extlbkgs 818ipbv7 -t OK.
+    : dhad-10.1.10 sel extlbkgs 818ipbv7 --qsub ... done.
+
+    : more /home/xs32/work/CLEO/analysis/DHad/10.1/log/qsub/dhad-10.1.10_sel_extlbkgs_818ipbv7_.log 
+
+    :     dhad.sel.extlbkgs ... selected 119395 out of 88961658.
+    : Number of mcdmode: {'kkspibar': 243685, '5pi': 78170, 'kkspi': 347811, '3pipi0': 5124
+    : 70, 'kpipi0': 13868, '3pi': 143728, 'kpi': 7329, 'kskspi': 954699, 'k3pi': 12933}.  
+
+    Selected 3pi number:
+
+    : wc $dhad/10.1/dat/sel/818ipbv7/extlbkgs/singtag_bkg_3pi.evt 
+    : 2928
+
+    | Mode | Generated Numbers from Generic MC | Selected as signal |        E_sig |
+    |------+-----------------------------------+--------------------+-------------|
+    | 3pi  |                            143728 |               2928 | 0.020371813 |
+    #+TBLFM: @2$4=@2$3/@2$2
+
+*** CANCELED Generate the multipions sample
+
+    : dhad-10.1.10 gen cleog Single_Dp_to_pipipi task 3 -s interact -t ... 
+
+    Check the Dp to pipipi dec file:
+
+    : cd $dhad/lib/python
+    : python decparser-development.py 
+    : (Cmd) readfile  /nfs/cleo3/Offline/rel/20080624_MCGEN/data/DECAY.DEC
+    : (Cmd) explain
+    : Parent particle? D+
+    : Final state? pi+ pi+ pi-
+    :  Total 0.00331
+    : 0.00155 Chain: 
+    :         D+ -> pi+ pi+ pi-
+    : 0.0011 Chain: 
+    :         D+ -> pi+ rho0
+    :         rho0 -> pi+ pi-
+    : 0.000452 Chain: 
+    :         D+ -> f_2 pi+
+    :         f_2 -> pi+ pi-
+    : 0.000208 Chain: 
+    :         D+ -> f_0 pi+
+    :         f_0 -> pi+ pi-   
+
+    Manually found:
+    : 0.00155	pi+  pi+  pi-                   PHSP;
+    : 0.0011	rho0 pi+                        SVS;
+    : 0.0008	f_2 pi+				STS;
+    : 0.0004	f_0 pi+				PHSP;
+
+    No need to generate now, since the Effs are 1! (Discussed with
+    Don. )
+
+*** CANCELED Count mode numbers in Generic MC
+
+    : dhad-10.1.10 tab entries count_modes generic 818ipbv7 -t 
+
+    Pause for now, may use the result from extlbkgs.
+
+*** DONE Get the raw bkg yield from data
+
+    Count the kssideband bkg numbers from generic MC:
+
+    : dhad-10.1.10 sel extlbkgs 818ipbv7/kssideband -t 
+
+    Get mctruth info for generic MC: 
+
+    : dhad-10.1.10 tab mctruth names generic Single_Dp_to_Kspi 818ipbv7
+
+    : dhad-10.1.10 sel var mctruth generic Single_Dp_to_Kspipipi 818ipbv7 -s interact -t OK.
+
+    : dhad-10.1.10 sel var mctruth generic single 818ipbv7 ... done. 
+    
+    In retro: should use =single_ks_p= to save time. 
+
+    Use the desideband mctruth for testing, now on signal region:
+
+    : dhad-10.1.10 tab cbx extlabsbkg 818ipbv7 OK. 
+   
+    
+*** DONE Check the raw sideband yield difference
+
+    Compare the raw sideband yield from data for 281/pb and 818/pb:
+
+    | Mode        | 281/pb | 281/pb * 2.91 | 818/pb | Delta |
+    |-------------+--------+---------------+--------+-------|
+    | Ks pi       |    172 |           501 |    643 |  0.28 |
+    | Ks pi pi0   |    670 |          1950 |   2891 |  0.48 |
+    | Ks pi pi pi |    888 |          2584 |   2645 |  0.02 |
+    #+TBLFM: $3=$2*2.91;%.0f::$5=($4-$3)/$3;%.2f
+
+    Reproduce the original one for 281/pbv7:
+
+    : dhad-10.1.10 sel kssideband data Single_Dp_to_Kspi 281ipbv7 -s interact -t OK.
+
+    : dhad-10.1.10 sel kssideband data single_ks 281ipbv7 ... done.
+    : dhad-10.1.10 sel kssideband signal single_ks 281ipbv7 ...  done.
+
+    : dhad-10.1.10 sel kssideband generic Single_Dp_to_Kspi 281ipbv7 -s interact -t
+    : dhad-10.1.10 sel kssideband generic Single_Dp_to_Kspi 818ipbv7 -s interact -t
+
+    Generic MC are same. 
+
+    Fit mBC: 
+    : dhad-10.1.10 fit signal Single_Dp_to_Kspi 281ipbv7/kssideband -s interact -t OK.
+    
+    : dhad-10.1.10 fit signal single_ks_p 281ipbv7/kssideband ... done. 
+    : dhad-10.1.10 fit data single_ks_p 281ipbv7/kssideband ... done. 
+
+    : dhad-10.1.10 fig signal single_ks_p 281ipbv7/kssideband OK.
+    : dhad-10.1.10 fig data single_ks_p 281ipbv7/kssideband OK. 
+
+    Get the raw sideband yield:
+
+    : dhad-10.1.10 tab cbx extlabsbkg 281ipbv7 
+    | Mode        | 281ipbv0   | 281ipbv7     | Delta       |
+    |-------------+------------+--------------+-------------|
+    | Ks pi       | 172 +/- 14 | 404 +/- 36   | +135% (16\sigma) |
+    | Ks pi pi0   | 670 +/- 46 | 1096 +/- 125 | +64% (9\sigma)   |
+    | Ks pi pi pi | 888 +/- 62 | 864 +/- 78   | -3% (0.4\sigma)  |
+
+ 
+    Redo the 281ipbv0:
+
+    Plot the distribution for Ks mass:
+
+    : dhad-10.1.10 fig var ksmass data Single_Dp_to_Kspi 281ipbv0 ... selected 7633 out of 5146615. Cutted out!
+
+    : dhad-10.1.10 fig var ksmass signal Single_Dp_to_Kspi 281ipbv0 ... selected 36473 out of 79949.
+
+    There is no kssideband events. 
+
+    Talked to Werner, need to check the cut sequence, make sure the ks
+    mass cut is after the de cut to prevent multiple candidate event. 
+
+    Revisit Peter's =yieldskssideband.py=... no difference found. 
+
+    Ask Peter about the previous wideks sample ... sent. 
+
+    Message from Peter: I'll have to think about it.  For the meeting,
+    can you plot the momentum spectrum of the Ks daughter pions for
+    the v0 and v7, for each of the modes?  Also the impact parameter?
+    I suspect that the pions got filtered somehow in the "Steve"
+    sample.
+
+    : dhad-10.1.10 fig var momentum pi_KS data Single_Dp_to_Kspi 281ipbv0,281ipbv7 --qsub ... done. 
+
+    : dhad-10.1.10 fig var momentum pim_KS data Single_Dp_to_Kspi 281ipbv0,281ipbv7 --qsub ... 
+
+    : dhad-10.1.10 fig var momentum pi_KS data Single_Dp_to_Kspipi0 281ipbv0,281ipbv7 --qsub 
+
+    : dhad-10.1.10 fig var momentum pim_KS data Single_Dp_to_Kspipi0 281ipbv0,281ipbv7 --qsub 
+   
+    : dhad-10.1.10 fig var momentum pi_KS data Single_Dp_to_Kspipipi 281ipbv0,281ipbv7 --qsub 
+
+    : dhad-10.1.10 fig var momentum pim_KS data Single_Dp_to_Kspipipi 281ipbv0,281ipbv7 --qsub 
+
+    Impact parameter:
+    
+    FLOAT variable ksrad[nks]
+    "Ks vertex radius" 
+    
+    : dhad-10.1.10 fig var ksrad data Single_Dp_to_Kspi 281ipbv0,281ipbv7 --qsub 
+    : dhad-10.1.10 fig var ksrad data Single_Dp_to_Kspipi0 281ipbv0,281ipbv7 --qsub  
+    : dhad-10.1.10 fig var ksrad data Single_Dp_to_Kspipipi 281ipbv0,281ipbv7 --qsub
+
+    FLOAT variable trdb[ntrack]
+    "Signed DCA to beamspot" 
+    
+    Need to work on this ...
+
+    Message from Peter: Unfortunately I'm not able to find my ntuples
+    of Steve's files :-( I probably deleted them at some point, they
+    took a lot of space. 
+
+    Sent email to Steve.
+
+    - Message from Steve:
+      That's really taking me back!  No worries --
+      it's actually kind of fun to look through my old stuff.
+      
+      I'm not quite sure what exactly you need, but here are some
+      pointers that may or may not be helpful:
+      
+      It sounds like you're looking for the copy of
+      HadronicDNtupleProc that I ran?  If so, then you'll find it at:
+      /home/srs63/trkeff/src/HadronicDNtupleProc This is the code I
+      ran for the tracking and Ks efficiency systematics analysis.  I
+      think this was checked in to CVS, but maybe I made some edits
+      which I didn't check in.  Some of the other stuff in the src
+      directory is relevant -- I believe CWNFramework is required,
+      too.
+
+      The scripts that run this copy of HadronicDNtupleProc are here:
+      /home/srs63/trkeff/ntuple_scripts
+      
+      However, I don't know if this version of the code matches what
+      was done for the 281pb-1 D hadronic analysis -- I updated it
+      after that to do tracking and Ks efficiencies on the full
+      dataset.
+      
+      As I recall, the Ks sidebands were widened from +-3sigma to
+      +-7.5 sigma in DTag version 2.  However, due to a hard-coded
+      limit in the Ks producer, they don't actually extend out to 7.5
+      sigma in both directions (but they do reach at least 6.5 sigma
+      in both directions).  Specifically, I wrote in a CVS commit
+      message (which you'll find at the top of
+      HadronicDNtupleProc.cc): "Changed Ks mass sidebands to 3.5-6.5
+      sigma.  Previously they were 4.5-7.5 sigma.  However, due to a
+      hardcoded cut in the Ks producer, the low sideband was cut off
+      at 0.47 GeV.  The new sidebands are not affected by this cut."
+      These changes refer to the efficiency studies, though -- not the
+      D hadronic analysis.
+
+      If this information isn't really what you're looking for, please
+      let me know and I'll try to give you a better answer.  If you
+      can explain exactly what you're trying to do with Ks sidebands,
+      I may be able to provide something more useful.
+
+
+    Read CVS header: 
+    // Revision 1.38 2006/08/24 18:45:52 srs63 
+    // Changed Ks mass sidebands to 3.5-6.5 sigma.  Previously they were
+    4.5-7.5 sigma.  However, due to a hardcoded cut in the Ks
+    producer, the low sideband was cut off at 0.47 GeV.  The new
+    sidebands are not affected by this cut.
+    
+    Check out the 1.38 code:
+
+    : cd $dhad/src/10.1.10
+    : mkdir cleo
+    : export CVSROOT=/nfs/cleo3/cvsroot 
+    : cleo3cvs co HadronicDNtupleProc 
+
+    Compare the 1.38 and current ... 
+
+    In 1.38:
+
+    :     // Ks selectors
+    :     DChainBoolean tightKsSelector( CDKs& iKs ) {
+    : 
+    :     float pullM = ( iKs.mass() - 0.4977 ) / 0.004 ; // copied from TDKShortSelector.cc
+    :     if ( -3. < pullM && pullM < 3. ) return true;
+    :     else return false;
+    :     }
+    :     
+    :     DChainBoolean lowSidebandKsSelector( CDKs& iKs ) {
+    :     
+    :     float pullM = ( iKs.mass() - 0.4977 ) / 0.004 ; // copied from TDKShortSelector.cc
+    :     if ( -6.5 < pullM && pullM < -3.5 ) return true;
+    :     else return false;
+    :     }
+    :     
+    :     DChainBoolean highSidebandKsSelector( CDKs& iKs ) {
+    :     
+    :     float pullM = ( iKs.mass() - 0.4977 ) / 0.004 ; // copied from TDKShortSelector.cc
+    :     if ( 3.5 < pullM && pullM < 6.5 ) return true;
+    :     else return false;
+    :     }
+    :     ...
+    :     
+    :     } catch (const DAExceptionBase& e) { }
+    :     missingMassObjects.ksList = new CDKsList(tightKsSelector);
+
+
+    Current range: [0.47, 0.5254], sideband 0.4977+-0.0157: [0.47, 0.482]
+
+    7.5\sigma range: [0.4677, 0.5277]  
+
+    6.5\sigma range: [0.4717, 0.5237] 
+
+    Use 6.5\sigma to select 281ipbv7 data:
+
+    : dhad-10.1.10 sel kssideband data Single_Dp_to_Kspi 281ipbv7/srs -s interact -t OK.
+ 
+    : dhad-10.1.10 sel kssideband data single_ks 281ipbv7/srs ... done. 
+
+    fit mBC:
+    : dhad-10.1.10 fit data Single_Dp_to_Kspi 281ipbv7/srs/kssideband ... done.
+    : dhad-10.1.10 fit data Single_Dp_to_Kspipi0 281ipbv7/srs/kssideband ... done.
+    : dhad-10.1.10 fit data Single_Dp_to_Kspipipi 281ipbv7/srs/kssideband ... done.
+
+    Plot:
+    : dhad-10.1.10 fig data single_ks_p 281ipbv7/srs/kssideband  OK.
+
+    | Mode        | 281ipbv0   | 281ipbv7     | 281ipbv7/srs |
+    |-------------+------------+--------------+--------------|
+    | Ks pi       | 172 +/- 14 | 404 +/- 36   | 356 +/- 34   |
+    | Ks pi pi0   | 670 +/- 46 | 1096 +/- 125 | 864 +/- 108  |
+    | Ks pi pi pi | 888 +/- 62 | 864 +/- 78   | 759 +/- 76   |
+
+    Reply to Steve and cc to Peter ... sent. 
+
+    - Message from Steve: Let me guess again what you're looking
+      for...  I think you're trying to get DTags where the Ks mass cut
+      is wider, to see how the yields change when the cut is widened
+      (as a systematic check?).
+      
+      The Ks selectors you saw are, as you say, used only for the
+      missing mass quantities, and don't affect your analysis at all,
+      so you can safely ignore them.  The Ks candidates in the main
+      part of the HadronicDNtuple (what you're interested in) are
+      generated by:
+
+      FATable< NavKs > kstable;
+      extract( iFrame.record( Stream::kEvent ), kstable, "TagDKShort" );
+      
+      So these are using whatever selection criteria DTag uses.  (And of
+      course, the DTag candidates will use those same Ks candidates.)
+
+      As I recall (and this is going far back in my memory, so I may
+      be wrong), in DTag version 2 the default Ks mass cut is wide, at
+      something like 7.5 sigma, whereas in DTag version 1 it was
+      tight, at 3 sigma.  I believe 3 sigma is what we used in the
+      281pb-1 analysis (the CBX or paper should tell you).  I don't
+      recall whether we used DTag version 1 for that.  If we did use
+      v1, then we wouldn't have imposed any additional cut on Ks mass,
+      because that would already have been done in DTag (version 1).
+      The "wideks" sample you're looking for might have been one where
+      we reran DTag with a larger mass cut.
+
+      If this theory is right, then if you're running DTag version 2
+      there should be no need for a separate "wideks" sample.  The
+      standard Dskim and standard DTags should have a wide Ks mass
+      cut.  You'll need to apply the 3 sigma cut yourself - on all Ks
+      candidates that are part of D candidates - to match the
+      selection criteria used in the previous analysis.  And to get a
+      "wide Ks" sample, just widen that cut to 6 sigma or whatever you
+      like.  (For some reason I think we used six sigma as the wide
+      cut before.)
+
+      (BTW, "3 sigma" means: -3 < ( ksmass - 0.4977 ) / 0.004 < +3 as
+      you can see by looking at those missing mass Ks selectors.)
+
+      Hope that helps -- if not, please set me in the right direction.
+
+    Check Peter's script time ... Mar 15 2007. 
+    
+    Check the figures time:
+
+    : cd /nfs/cor/user/ponyisi/hadD/summerconf/eps/fits
+    : ls -trl ks* 
+    :  -rw-r--r-- 1 ponyisi cleo  54K Jun 16  2006 kssideband_data_Dp_to_Kspipi0.eps
+    : -rw-r--r-- 1 ponyisi cleo  56K Jun 21  2006 kssideband_data_Dp_to_Kspipipi.eps
+    : -rw-r--r-- 1 ponyisi cleo  55K Jun 26  2006 kssideband_signal_Dp_to_Kspi.eps
+    : -rw-r--r-- 1 ponyisi cleo  56K Jun 27  2006 kssideband_signal_Dp_to_Kspipi0.eps
+    : -rw-r--r-- 1 ponyisi cleo  54K Jun 27  2006 kssideband_generic_Dp_to_Kspi.eps
+    : -rw-r--r-- 1 ponyisi cleo  57K Jun 28  2006 kssideband_signal_Dp_to_Kspipipi.eps
+    : -rw-r--r-- 1 ponyisi cleo  54K Jun 28  2006 kssideband_generic_Dp_to_Kspipi0.eps
+    : -rw-r--r-- 1 ponyisi cleo  55K Jun 28  2006 kssideband_generic_Dp_to_Kspipipi.eps
+    : -rw-r--r-- 1 ponyisi cleo  53K Aug 30  2006 kssideband_data_Dp_to_Kspi.eps
+    : -rw-r--r-- 1 ponyisi cleo  57K Mar 15  2007 kssideband_signal_Dp_to_Kspipi0_UPDDALITZ2.eps                                                                               
+    : -rw-r--r-- 1 ponyisi cleo 8.8K Mar 15  2007 kssideband_signal_Dp_to_Kspipi0_UPDDALITZ2.root                                                                              
+    : -rw-r--r-- 1 ponyisi cleo  54K Mar 15  2007 kssideband_data_Dp_to_Kspipi0_UPDDALITZ.eps                                                                                  
+    : -rw-r--r-- 1 ponyisi cleo 8.9K Mar 15  2007 kssideband_data_Dp_to_Kspipi0_UPDDALITZ.root                                                                                 
+    Copy the files to my dir while preserve the timestamp:
+
+    : cp -p ks*.eps $dhad/tmp/eps
+
+    Convert to pdf:
+
+    : for f in *.eps; do esptopdf $f; done
+
+    Scp to local machine ... OK.
+
+    List the yields:
+
+    | Mode        | Sideband yield Data | Sideband yield MC |
+    |-------------+---------------------+-------------------|
+    | Ks pi       | 183 +/- 20          | 1337 +/- 54       |
+    | Ks pi pi0   | 686 +/- 64          | 7155 +/- 268      |
+    | Ks pi pi pi | 863 +/- 88          | 9615 +/- 148      |
+
+
+    Notice the fitting plots are different for Ks pi mode. 
+
+    Fit Peter's evt file for mode Ks pi:
+    : cd $dhad/10.1/dat/evt/281ipbv0/
+    : mkidr -p peter/kssideband
+    : cd peter/kssideband
+    : cp $dhad/peter/txt/kssideband*.evt . 
+    
+    Remove the kssideband ... OK. 
+
+    fit mBC:
+    : dhad-10.1.10 fit data Single_Dp_to_Kspi 281ipbv0/peter/kssideband -s interact -t OK. 
+
+    : dhad-10.1.10 fit data Single_Dp_to_Kspi 281ipbv0/peter/kssideband ... cancel.
+    : dhad-10.1.10 fit data Single_Dp_to_Kspipi0 281ipbv0/peter/kssideband ... cancel.
+    : dhad-10.1.10 fit data Single_Dp_to_Kspipipi 281ipbv0/peter/kssideband ...cancel. 
+    
+    Talked with Anders, the sigmap 1 is not fixed in Peter's case
+    ....!!!
+
+    Check the sigmap1 limit!!! -- 0.002, 0.040. Reached limit! 
+    
+    Use the fixed sigmap1 as in the Ks signal region: 
+ 
+    : dhad-10.1.10 fit data Single_Dp_to_Kspi 281ipbv7/kssideband/fix_sigmap1 -s interact -t OK. 
+
+    : dhad-10.1.10 fit data single_ks_p 281ipbv7/kssideband/fix_sigmap1 ... done. 
+
+
+    : dhad-10.1.10 fit data Single_Dp_to_Kspi 281ipbv0/peter/kssideband/fix_sigmap1 -s interact -t OK. 
+    
+    : dhad-10.1.10 fit data single_ks_p 281ipbv0/peter/kssideband/fix_sigmap1 ... done. 
+
+
+    : dhad-10.1.10 fig data single_ks_p 281ipbv7/kssideband/fix_sigmap1 OK.
+    : dhad-10.1.10 fig data single_ks_p 281ipbv0/peter/kssideband/fix_sigmap1 OK.
+
+
+    : dhad-10.1.10 fit data Single_Dp_to_Kspi 281ipbv0/peter/kssideband/fix_sigmap1 -s interact -t OK. 
+
+    
+    Compare data for 281/pb : 
+
+    v0: Peter's plot. 
+    v1: Peter's evt file with fixed sigmap1 from 281ipbv7
+    v2: Peter's evt file with fixed sigmap1 from 281ipbv0 ... hold. 
+    
+    | Mode        | v0         | v1         | 281ipbv7 data |
+    |-------------+------------+------------+---------------|
+    | Ks pi       | 183 +/- 20 | 213 +/- 22 | 183 +/- 20    |
+    | Ks pi pi0   | 686 +/- 64 | 737 +/- 67 | 705 +/- 74    |
+    | Ks pi pi pi | 863 +/- 88 | 847 +/- 80 | 805 +/- 69    |
+    
+    Continue the fitting for the full sample. 
+
+
+*** CANCELED Check the Ks pi pi0 mode
+    : dhad-10.1.10 tab cbx extlabsbkg 818ipbv7:
+
+    Print out modes larger than 800:
+    
+    | MCDmode         | MC Dbar mode   | Number |
+    |-----------------+----------------+--------|
+    | pi- pi+ pi+ pi0 | K0 pi- pi- pi+ |   1279 |
+    | pi- pi+ pi+ pi0 | K+ pi- pi- pi0 |   1006 |
+    | pi- pi+ pi+ pi0 | K0 pi- pi0 pi0 |   1317 |
+    | pi- pi+ pi+ pi0 | K0 pi- pi0     |   3380 |
+    | pi- pi+ pi+ pi0 | K0 l l         |   2314 |
+    | pi- pi+ pi+ pi0 | K+ pi- l l     |   1085 |
+    | pi- pi+ pi+ pi0 | K+ pi- pi-     |   1162 |
+    |-----------------+----------------+--------|
+    |                 | Total          |  11543 |
+    #+TBLFM: @9$3=vsum(@2$3..@8$3)
+
+    | Predicted Number       | Actual | Diff |
+    |------------------------+--------+------|
+    | 10998 +/- 520 +/- 1789 |  16958 | 5960 |
+
+    | Mode        | Predicted Number       | Actual |
+    |-------------+------------------------+--------|
+    | Ks pi       | 3021 +/- 140 +/- 338   |   3031 |
+    | Ks pi pi0   | 10998 +/- 520 +/- 1790 |  16958 |
+    | Ks pi pi pi | 8564 +/- 463 +/- 1392  |  13712 |
+
+
+    Get the MC truth for the Ks sideband from Generic MC:
+
+    : dhad-10.1.10 sel var mctruth generic Single_Dp_to_Kspipipi 818ipbv7/kssideband -s interact -t OK.
+
+    : dhad-10.1.10 sel var mctruth generic single 818ipbv7/kssideband ... done. 
+
+    Should use =single_ks_p=
+
+    Check the extlabsbkg in the kssideband from MC truth:
+
+    : dhad-10.1.10 tab cbx extlabsbkg_generic 818ipbv7 
+
+    Found the same output for the kssideband evt file, fix ... no
+    need. should only select modes with kshort in it!
+
+    : dhad-10.1.10 tab cbx extlabsbkg_generic 818ipbv7 
+
+    Get the correction factor: 
+
+    | Mode       | bkg in Ks signal | bkg in kssideband | correction factor |
+    |------------+------------------+-------------------+-------------------|
+    | pipipi     |             3031 |              2922 |             0.964 |
+    | pipipipi0  |            16958 |             14370 |             0.847 |
+    | pipipipipi |            13712 |             12165 |             0.887 |
+
+    Use these factor to re-calculat the bkg table:
+    
+    : dhad-10.1.10 tab cbx extlabsbkg 818ipbv7 ... not ideal. 
+
+    Get the correction for the signal yield:
+
+    : dhad-10.1.10 tab cbx extlabsbkg_generic 818ipbv7 
+   
+
+
+*** CANCELED Check the Ks pipipi mode
+
+    Print out modes larger than 800:
+    
+    | MCDmode             | MC Dbar mode   | Number |
+    |---------------------+----------------+--------|
+    | pi- pi- pi+ pi+ pi+ | K+ pi- pi-     |   1038 |
+    | pi- pi- pi+ pi+ pi+ | K0 pi- pi0 pi0 |    958 |
+    | pi- pi- pi+ pi+ pi+ | K+ pi- l l     |    998 |
+    | pi- pi- pi+ pi+ pi+ | K0 pi- pi- pi+ |   1579 |
+    | pi- pi- pi+ pi+ pi+ | K0 pi- pi0     |   1664 |
+    | pi- pi- pi+ pi+ pi+ | K0 l l         |   1960 |
+    |---------------------+----------------+--------|
+    |                     | Total          |   8197 |
+    #+TBLFM: @8$3=vsum(@2$3..@7$3)
+
+    | Predicted Number      | Actual | Diff |
+    |-----------------------+--------+------|
+    | 8563 +/- 463 +/- 1391 |  13712 | 5149 |
+
+    
+    
+*** DONE Fit the Ks sideband with fixed sigmap1
+
+    : dhad-10.1.10 fit signal Single_Dp_to_Kspi 818ipbv7/kssideband/fix_sigmap1 -s interact -t OK. 
+
+
+    : dhad-10.1.10 fit signal single_ks_p 818ipbv7/kssideband/fix_sigmap1 ... done. 
+    : dhad-10.1.10 fit data single_ks_p 818ipbv7/kssideband/fix_sigmap1 ... done. 
+    : dhad-10.1.10 fit generic single_ks_p 818ipbv7/kssideband/fix_sigmap1 ... done. 
+
+    : dhad-10.1.10 fig signal single_ks_p 818ipbv7/kssideband/fix_sigmap1 OK. 
+    : dhad-10.1.10 fig data single_ks_p 818ipbv7/kssideband/fix_sigmap1 OK.
+    : dhad-10.1.10 fig generic single_ks_p 818ipbv7/kssideband/fix_sigmap1 OK. 
+
+    Compare the yields:
+
+    | Mode        | 281/pb | 281/pb * 2.91 | 818/pb | Delta |
+    |-------------+--------+---------------+--------+-------|
+    | Ks pi       |    172 |           501 |    495 | -0.01 |
+    | Ks pi pi0   |    670 |          1950 |   2072 |  0.06 |
+    | Ks pi pi pi |    888 |          2584 |   2438 | -0.06 |
+    #+TBLFM: $3=$2*2.91;%.0f::$5=($4-$3)/$3;%.2f
+
+    Now it's very close. 
+
+    However, fixing the sigmap1 for signal or generic MC is not good. 
+    
+    Update the table: 
+    : dhad-10.1.10 tab cbx extlabsbkg 818ipbv7  OK. 
+
+
+
+
+** Full Generic MC for BF test (818ipbv10) [%]
+   
+*** TODO Run Ntuple for 281ipb
+
+    : dhad-10.1.10 gen ntuple generic mc-ddbar-generic 20xlumi data31 -t -d OK.
+    : dhad-10.1.10 gen ntuple generic mc-ddbar-generic 20xlumi 281ipb -t OK.
+
+    : dhad-10.1.10 gen ntuple generic mc-ddbar-generic 20xlumi 281ipb -s njobs=10 -t
+
+    Need to get the run range ... OK. 
+
+    Need to not use skim ...
+
+    : dhad-10.1.10 gen ntuple generic mc-ddbar-generic 20xlumi data33 -s njobs=2 ...
+
+    Runing with the skim local version:  
+
+    : if { $skim == "no" } {
+    :     run_file $env(USER_SRC)/HadronicDNtupleProc/Test/DTagDSkim.tcl
+
+    Confirm with Peter ... 
+
+    Use full directory (later...):
+
+    : dhad-10.1.10 gen ntuple generic/full mc-ddbar-generic 20xlumi data33 -s njobs=2 -t -d
+
+    : dhad-10.1.10 gen ntuple generic mc-ddbar-generic 20xlumi 281ipb -s njobs=20 
+    
+    : dhad-10.1.10 gen ntuple generic mc-ddbar-generic 20xlumi 537ipb -t -d 
+
+    : dhad-10.1.10 gen ntuple generic mc-ddbar-generic 20xlumi 537ipb -s njobs=10 -t
+
+    : dhad-10.1.10 gen ntuple generic mc-ddbar-dskim 20xlumi 281ipb -t -d 
+
+    : dhad-10.1.10 gen ntuple generic mc-ddbar-dskim 20xlumi 537ipb -t -d ... done. 
+
+
+
+** Systematics [100%]
+*** DONE Vary Width 
+    :LOGBOOK:
+    CLOCK: [2010-10-28 Thu 11:12]--[2010-10-28 Thu 11:15] =>  0:03
+    CLOCK: [2010-10-25 Mon 15:05]--[2010-10-25 Mon 15:10] =>  0:05
+    CLOCK: [2010-10-25 Mon 14:15]--[2010-10-25 Mon 14:55] =>  0:40
+    :END:
+
+    Default: 25.2 MeV, 0.0252 GeV +/- 2.5 MeV 
+
+    Less: 0.0227 GeV, More: 0.0277 GeV
+
+  
+    : dhad-10.1.10 fit data Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7/gamma/0.0227 -s interact -t  OK.
+
+    : dhad-10.1.10 fit data double 818ipbv7/gamma/0.0227 ... done. 
+    : dhad-10.1.10 fig data double 818ipbv7/gamma/0.0227 ... done. 
+
+    : dhad-10.1.10 fit data double 818ipbv7/gamma/0.0277 ... done. 
+    : dhad-10.1.10 fig data double 818ipbv7/gamma/0.0277 ... done. 
+
+    : dhad-10.1.10 fit data Single_Dp_to_Kspipipi 818ipbv7/gamma/0.0227 -s interact -t OK.
+    : dhad-10.1.10 fit data single 818ipbv7/gamma/0.0227 ... done. 
+    : dhad-10.1.10 fig data single 818ipbv7/gamma/0.0227 ... done. 
+
+
+    : dhad-10.1.10 fit data single 818ipbv7/gamma/0.0277 ... done. 
+    : dhad-10.1.10 fig data single 818ipbv7/gamma/0.0277 ... done. 
+
+    
+    Fix mode:
+
+    : dhad-10.1.10 fit data Single_Dp_to_Kpipi 818ipbv7/gamma/0.0277 ... done. 
+    : dhad-10.1.10 fit data Single_Dp_to_Kpipi 818ipbv7/gamma/0.0227 ... done. 
+
+    : dhad-10.1.10 fig data single 818ipbv7/gamma/0.0227 OK.
+    : dhad-10.1.10 fig data single 818ipbv7/gamma/0.0277 OK.
+
+    BF fit:
+
+    : dhad-10.1.10 brf 818ipbv7/gamma/0.0227  ... done.
+    : dhad-10.1.10 brf 818ipbv7/gamma/0.0277  ... done. 
+
+
+    Compare with 818ipbv7 :
+
+    : dhad-10.1.10 tab compare brf_data_results 818ipbv7 818ipbv7/gamma/0.0227 OK.
+    : dhad-10.1.10 tab compare brf_data_results 818ipbv7 818ipbv7/gamma/0.0277 OK.
+
+*** DONE Vary Mass
+    :LOGBOOK:
+    CLOCK: [2010-10-25 Mon 15:10]--[2010-10-25 Mon 15:12] =>  0:02
+    CLOCK: [2010-10-25 Mon 14:55]--[2010-10-25 Mon 15:00] =>  0:05
+    :END:
+
+    Mass default: 3.7724 GeV, +/- 0.5 MeV
+    
+    Less: 3.7719 GeV, More: 3.7729 GeV 
+    : dhad-10.1.10 fit data Single_Dp_to_Kspipipi 818ipbv7/mass/3.7719 -s interact OK.
+
+    : dhad-10.1.10 fit data single 818ipbv7/mass/3.7719 ... done.
+    : dhad-10.1.10 fit data single 818ipbv7/mass/3.7729 ... done. 
+    : dhad-10.1.10 fit data double 818ipbv7/mass/3.7719 ... done. 
+    : dhad-10.1.10 fit data double 818ipbv7/mass/3.7729 ... done.
+
+
+    : dhad-10.1.10 fig data double 818ipbv7/mass/3.7719 ... done. 
+    : dhad-10.1.10 fig data double 818ipbv7/mass/3.7729 ... done. 
+    : dhad-10.1.10 fig data single 818ipbv7/mass/3.7719 ... done.
+    : dhad-10.1.10 fig data single 818ipbv7/mass/3.7729 ... done.
+
+*** DONE Vary R
+    :LOGBOOK:
+    CLOCK: [2010-10-25 Mon 15:00]--[2010-10-25 Mon 15:04] =>  0:04
+    :END:
+
+    R default: 12.7, +/- 4
+    
+    Less: 8.7, More 16.7
+
+    : dhad-10.1.10 fit data Single_Dp_to_Kspipipi 818ipbv7/r/8.7 -s interact -t OK.
+
+    : dhad-10.1.10 fit data single 818ipbv7/r/8.7  ... done.
+    : dhad-10.1.10 fit data single 818ipbv7/r/16.7  ... done.
+    : dhad-10.1.10 fit data double 818ipbv7/r/8.7  ... done.
+    : dhad-10.1.10 fit data double 818ipbv7/r/16.7 ... done. 
+
+    : dhad-10.1.10 fig data single 818ipbv7/r/8.7  ... done. 
+    : dhad-10.1.10 fig data single 818ipbv7/r/16.7  ... done. 
+    : dhad-10.1.10 fig data double 818ipbv7/r/8.7  ... done.
+    : dhad-10.1.10 fig data double 818ipbv7/r/16.7 ... done. 
+
+*** DONE Wide delta E
+    :LOGBOOK:
+    CLOCK: [2010-10-28 Thu 11:00]--[2010-10-28 Thu 11:01] =>  0:01
+    CLOCK: [2010-10-28 Thu 10:48]--[2010-10-28 Thu 10:52] =>  0:04
+    CLOCK: [2010-10-26 Tue 13:42]--[2010-10-26 Tue 13:48] =>  0:06
+    CLOCK: [2010-10-26 Tue 09:40]--[2010-10-26 Tue 10:22] =>  0:42
+    CLOCK: [2010-10-26 Tue 08:13]--[2010-10-26 Tue 09:27] =>  1:14
+    :END:
+    
+    Get the yields:
+
+    : dhad-10.1.10 yld signal Single_Dp_to_Kspipipi 818ipbv7/widede -s interact -t OK.
+    : dhad-10.1.10 yld signal single 818ipbv7/widede ... done. 
+
+    : dhad-10.1.10 yld signal Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7/widede -s interact -t OK.
+
+    : dhad-10.1.10 yld signal double 818ipbv7/widede ... done. 
+
+    : dhad-10.1.10 yld data Single_Dp_to_Kspipipi 818ipbv7/widede -s interact -t OK.
+    : dhad-10.1.10 yld data single 818ipbv7/widede ... done. 
+
+    : dhad-10.1.10 yld data Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7/widede -s interact -t OK.
+    : dhad-10.1.10 yld data double 818ipbv7/widede ... done. 
+
+    
+
+    Fit mBC:
+
+    : dhad-10.1.10 fit signal Single_Dp_to_Kspipipi 818ipbv7/widede -s interact -t OK.
+
+    : dhad-10.1.10 fit signal Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7/widede -s interact -t OK.
+
+    : dhad-10.1.10 fit signal single 818ipbv7/widede ... done. 
+    : dhad-10.1.10 fig signal single 818ipbv7/widede ... done. 
+
+    : dhad-10.1.10 fit signal double 818ipbv7/widede ... done. 
+    : dhad-10.1.10 fig signal double 818ipbv7/widede ... done.
+
+    : dhad-10.1.10 fit data Single_Dp_to_Kspipipi 818ipbv7/widede -s interact -t OK.
+    : dhad-10.1.10 fit data single 818ipbv7/widede ... done.
+    : dhad-10.1.10 fig data single 818ipbv7/widede ... done.
+
+    
+    : dhad-10.1.10 fit data Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7/widede -s interact -t OK.
+
+    : dhad-10.1.10 fit data double 818ipbv7/widede ... done.
+    : dhad-10.1.10 fig data double 818ipbv7/widede ... done. 
+
+ 
+    BF fit:
+
+    : dhad-10.1.10 brf 818ipbv7/widede  ... done. 
+
+    Compare with 818ipbv7 :
+
+    : dhad-10.1.10 tab compare brf_data_results 818ipbv7 818ipbv7/widede ... done. 
+
+*** DONE No FSR
+    :LOGBOOK:
+    CLOCK: [2010-10-28 Thu 10:07]--[2010-10-28 Thu 10:47] =>  0:40
+    CLOCK: [2010-10-27 Wed 08:31]--[2010-10-27 Wed 09:00] =>  0:29
+    CLOCK: [2010-10-26 Tue 13:11]--[2010-10-26 Tue 13:42] =>  0:31
+    CLOCK: [2010-10-26 Tue 11:33]--[2010-10-26 Tue 12:15] =>  0:42
+    :END:
+    
+    Get the yields:
+
+    : dhad-10.1.10 yld signal Single_Dp_to_Kspipipi 818ipbv7/nofsr -s interact -t OK.
+    : dhad-10.1.10 yld signal single 818ipbv7/nofsr ... done. 
+
+    : dhad-10.1.10 yld signal Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7/nofsr -s interact -t  OK.
+    : dhad-10.1.10 yld signal double 818ipbv7/nofsr ... done. 
+
+    Check mode:
+    : dhad-10.1.10 yld signal Double_D0_to_Kpi__D0B_to_Kpipi0 818ipbv7/nofsr -s interact -t OK.
+
+    Fix the non_diag modes:
+
+    : dhad-10.1.10 yld signal nondiagdouble 818ipbv7/nofsr ... done.
+
+    Fit mBC:
+
+    : dhad-10.1.10 fit signal Single_Dp_to_Kspipipi 818ipbv7/nofsr -s interact -t OK.
+    : dhad-10.1.10 fit signal single 818ipbv7/nofsr ...
+
+    : dhad-10.1.10 fit signal Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7/nofsr -s interact -t  OK.
+
+    : dhad-10.1.10 fit signal double 818ipbv7/nofsr ... done. 
+    : dhad-10.1.10 fit signal nondiagdouble 818ipbv7/nofsr ... done. 
+  
+    : dhad-10.1.10 fig signal double 818ipbv7/nofsr ... done.  
+    : dhad-10.1.10 fig signal single 818ipbv7/nofsr ... done. 
+      
+
+    Get the evtlog for the normal yields:
+
+    : dhad-10.1.10 yld signal Single_Dp_to_Kspipipi 818ipbv7 -s interact -t OK.
+    : dhad-10.1.10 yld signal single 818ipbv7 ...  done.
+
+    : dhad-10.1.10 yld signal Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7 -s interact -t OK.
+    : dhad-10.1.10 yld signal double 818ipbv7 ... done. 
+
+    
+    Store the FSR info into the log for noFSR:
+
+    : dhad-10.1.10 yld signal single 818ipbv7/nofsr ... done. 
+    : dhad-10.1.10 yld signal double 818ipbv7/nofsr ... done. 
+   
+
+    BF fit:
+
+    : dhad-10.1.10 brf 818ipbv7/nofsr ... done.
+
+    Compare with 818ipbv7 :
+
+    : dhad-10.1.10 tab compare brf_data_results 818ipbv7 818ipbv7/nofsr ... done. 
+
+*** DONE P = 0.5
+    :LOGBOOK:
+    CLOCK: [2010-10-28 Thu 11:16]--[2010-10-28 Thu 11:56] =>  0:40
+    CLOCK: [2010-10-27 Wed 12:55]--[2010-10-27 Wed 13:07] =>  0:12
+    CLOCK: [2010-10-27 Wed 10:45]--[2010-10-27 Wed 10:54] =>  0:09
+    CLOCK: [2010-10-26 Tue 15:45]--[2010-10-26 Tue 15:48] =>  0:03
+    CLOCK: [2010-10-26 Tue 14:41]--[2010-10-26 Tue 14:55] =>  0:14
+    CLOCK: [2010-10-26 Tue 14:26]--[2010-10-26 Tue 14:32] =>  0:06
+    :END:
+
+    : dhad-10.1.10 fit signal Single_Dp_to_Kspipipi 818ipbv7/p/0.5 -s interact -t OK.
+    : dhad-10.1.10 fit signal Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7/p/0.5 -s interact -t  OK.
+
+    : dhad-10.1.10 fit signal single 818ipbv7/p/0.5 ... done.
+    : dhad-10.1.10 fit signal double 818ipbv7/p/0.5 ... done.
+
+    : dhad-10.1.10 fig signal single 818ipbv7/p/0.5 done.
+    : dhad-10.1.10 fig signal double 818ipbv7/p/0.5 done. 
+
+    : dhad-10.1.10 fit data Single_Dp_to_Kspipipi 818ipbv7/p/0.5 -s interact -t OK.
+    : dhad-10.1.10 fit data Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7/p/0.5 -s interact -t OK.
+
+    : dhad-10.1.10 fit data single 818ipbv7/p/0.5 ... done. 
+    : dhad-10.1.10 fit data double 818ipbv7/p/0.5 ... done. 
+
+    : dhad-10.1.10 fig data single 818ipbv7/p/0.5 OK.
+
+    : dhad-10.1.10 fig data double 818ipbv7/p/0.5 OK.
+
+
+    Add into CBX table ... done. 
+
+    BF fit:
+
+    : dhad-10.1.10 brf 818ipbv7/p/0.5 ... done. 
+
+    Compare with 818ipbv7 :
+
+    : dhad-10.1.10 tab compare brf_data_results 818ipbv7 818ipbv7/p/0.5 ... done.
+
+    Add the BF fits table in CBX ... done. 
+
+*** DONE Wide De and noFSR
+    :LOGBOOK:
+    CLOCK: [2010-10-27 Wed 10:06]--[2010-10-27 Wed 10:08] =>  0:02
+    CLOCK: [2010-10-27 Wed 09:54]--[2010-10-27 Wed 10:00] =>  0:06
+    :END:
+
+    Get the yields:
+
+    : dhad-10.1.10 yld signal Single_Dp_to_Kspipipi 818ipbv7/widede/nofsr -s interact -t OK.
+    : dhad-10.1.10 yld signal single 818ipbv7/widede/nofsr ...  done.
+    : dhad-10.1.10 yld signal double 818ipbv7/widede/nofsr ...  done. 
+
+
+
+    : dhad-10.1.10 fit signal Single_Dp_to_Kspipipi 818ipbv7/widede/nofsr -s interact -t OK.
+
+    : dhad-10.1.10 fit signal single 818ipbv7/widede/nofsr ... done. 
+
+    : dhad-10.1.10 fit signal Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7/widede/nofsr -s interact -t OK.
+
+    : dhad-10.1.10 fit signal double 818ipbv7/widede/nofsr ... done. 
+   
+    : dhad-10.1.10 fig signal single 818ipbv7/widede/nofsr ... done. 
+    : dhad-10.1.10 fig signal double 818ipbv7/widede/nofsr ... done. 
+
+*** DONE Evaluate the whole systematics
+    :LOGBOOK:
+    CLOCK: [2010-11-08 Mon 09:43]--[2010-11-08 Mon 10:44] =>  1:01
+    :END:
+
+    Done on the next sections. 
+
+*** DONE Signal shape (DT and ST). 
+
+      We gauge the sensitivity of the ST and DT yields to variations
+      in the M_{BC} fit functions by repeating the fits with
+      alternative fit functions. 
+
+      - We vary the parameter values of the signal line shape. 
+
+	1. Width of psi(3770): +/- 2.5 MeV
+	2. Mass of psi(3770): +/- 0.5 MeV/c^2
+	3. Blatt-Weisskopf radius: +/- 4 GeV^{-1}
+
+	Combine the changes in the yields in quadrature to obtain the
+	systematic uncertainty assigned in each mode. 
+     
+      - We also vary the resolution function parameters fa, fb, sa,
+        and sb. 
+
+      - We have also tried to alternative forms for the
+        parameterization of the line shape; in particular, we tried
+        using the form used by Mark II. The event yields we determine
+        are insensitive to the parameterization of the line shape. 
+
+	The change in this category will be small. 
+
+	ST signal: 
+	
+        | Mode | 281/pb | 818/pb | Diff |
+        |------+--------+--------+------|
+        |    0 |    0.3 |    0.4 | +0.1 |
+        |    1 |    0.5 |    0.5 |    0 |
+        |    3 |    0.7 |    0.5 | -0.2 |
+        |  200 |    0.3 |    0.3 |    0 |
+        |  201 |    1.3 |    0.5 | -0.8 |
+        |  202 |    0.4 |    0.4 |    0 |
+        |  203 |    0.5 |    0.5 |    0 |
+        |  204 |    0.6 |    0.5 | -0.1 |
+        |  205 |    0.6 |    0.5 | -0.1 |
+
+
+	DT signal shape:
+	
+	281/pb: 0.2 
+	818/pb: 0.2 (estimate)
+
+	Need to put into BF... OK.
+
+*** DONE Double DSCD interference
+    :LOGBOOK:
+    CLOCK: [2010-11-18 Thu 15:45]--[2010-11-18 Thu 16:19] =>  0:34
+    CLOCK: [2010-11-18 Thu 14:25]--[2010-11-18 Thu 15:33] =>  1:08
+    CLOCK: [2010-11-18 Thu 13:44]--[2010-11-18 Thu 14:11] =>  0:27
+    CLOCK: [2010-11-18 Thu 12:39]--[2010-11-18 Thu 13:01] =>  0:22
+    CLOCK: [2010-11-18 Thu 11:11]--[2010-11-18 Thu 12:11] =>  1:00
+    CLOCK: [2010-11-18 Thu 09:41]--[2010-11-18 Thu 10:58] =>  1:17
+    CLOCK: [2010-11-17 Wed 11:00]--[2010-11-17 Wed 11:55] =>  0:55
+    CLOCK: [2010-11-17 Wed 08:23]--[2010-11-17 Wed 10:01] =>  1:38
+    CLOCK: [2010-11-16 Tue 08:28]--[2010-11-16 Tue 11:59] =>  3:31
+    CLOCK: [2010-11-10 Wed 08:33]--[2010-11-10 Wed 09:59] =>  1:26
+    CLOCK: [2010-11-08 Mon 11:02]--[2010-11-08 Mon 12:12] =>  1:10
+    CLOCK: [2010-11-08 Mon 11:01]--[2010-11-08 Mon 11:01] =>  0:00
+    :END:
+
+    In the newtural DT modes, the CFD amplitudes can interfere with
+    amplitudes where both D^0 and D^0-bar undergo DCSD. This interfence
+    is controlled by the wrong sign DSCD/CFD rate ratios (R_{WS}) and
+    relative phases (\delta). If we assume common values of R_WS and
+    delta for the three D0 modes, then the relative size of the
+    interference effect if \Delta = 2R_WS cos(2\delta). R_WS = 0.004,
+    yield uncertainties 0.8% (2 \times 0.004 = 0.008). 
+
+    Talk to W. Sun for correction. TQCA
+
+    Read Werner's TQCA ...
+
+    From CBX 07-36 (The Quantum Correlation Analysis): cos δ =
+    1.03+0.31+0.06 ± 0.03.
+
+    From CBX 2010-014(TQCA-II): \delta = (0\pm 22 \pm 6)\deg.
+
+    Email to Werner and cc to Jim ... sent.
+
+    Message from Werner:
+
+    Quantum correlations formalism: arXiv:hep-ph/0507238.  The
+    relevant formula is f/f'bar in Table II (first column, 4th row).
+
+    Kpi: http://www.slac.stanford.edu/xorg/hfag/charm/FPCP10/results_mix+cpv.html
+    delta = delta_Kpi
+    R_D = r^2_Kpi
+    There will be an update to this global fit soon, including the new
+    TQCA-II preliminary results. 
+    
+    Kpipi0 and K3pi: http://arXiv.org/abs/0903.4853
+    For these two final states, you need to make the substitutions
+    cos(delta) --> R cos(delta)
+    sin(delta) --> R sin(delta)
+    where R is the coherence factor, also measured in this paper.
+    Also, note that there is a difference in phase convention between
+    TQCA and this UK paper.  When you have a double tag Kpi vs
+    {Kpipi0, K3pi}, you need to rotate either one of the two phases by
+    180 degrees. 
+
+    For r^2, use the PDG values for doubly-Cabibbo-suppressed branching
+    fractions:
+    http://pdg.lbl.gov/2010/listings/rpp2010-list-D-zero.pdf,
+    Gamma_214/Gamma_49 and Gamma_216/Gamma_61 on p. 60.  These ratios do
+    not take D0-D0bar mixing into account, but that would be a
+    second-order effect in your systematics. 
+
+    Calculate through dhad:
+
+    : dhad-10.1.10 tab cbx dcsd_correction 818ipb7 
+ 
+    Update the CBX ... done. 
+
+    Update the meeting page ... done. 
+
+    Email to Werner and Jim ... sent. 
+
+    Need to update based on Werner's new result ... OK.
+
+    Ask Werner about the input in the BF fitter ... sent.  
+    
+    Confirmed with Werner. Update the datayields.py, correct the
+    yields first. 
+    Update the BF fitter... done. 
+
+*** DONE Detector simulation - Tracking and Ks efficiencies
+    :LOGBOOK:
+    CLOCK: [2010-11-09 Tue 09:06]--[2010-11-09 Tue 09:51] =>  0:45
+    CLOCK: [2010-11-08 Mon 13:41]--[2010-11-08 Mon 14:42] =>  1:01
+    :END:
+    
+    We estimate uncertainties due to differences between efficiencies
+    in data and those estimated in Monte Carlo simulations using the
+    partial reconstruction technique. No significant biases are
+    found. 
+
+    A tracking efficiency systematic uncertainty e(charged) of 0.3% is
+    applied to each K candidate and each \pi candidate (including
+    those from Ks to pi pi decay). This uncertainty if fully
+    correlated among all charged tracks in the event. 
+
+    An additional 0.6% tracking systematic uncertainty is applied to
+    each K+- track; this uncertainty is not correlated with the 0.3%
+    uncertainty for all charged tracks, but it is correlated among all
+    charged kaons. This charged kaon systematic contribution arises
+    from a two-standard-deviation discrepancy between data and MC
+    simulations in the relative K+ and K- efficiencies. To be
+    conservative, we have assigned this additional uncertainty even
+    though we find no such discrepancy in the relative \pi^+ and \pi^-
+    efficiencies, or in the average K^+- and the average \pi^+-
+    efficiencies. 
+
+    A K_S^0 reconstruction efficiency systematic uncertainty of 1.8%
+    is applied to K_S^0 candidates, correlated among K_S^0
+    candidates. 
+
+    Check the new uncert ... 
+
+    From CBX 2008-040 (Determination of Tracking Efficiency
+    Systematics with Full 818 pb−1 Dataset), "We suggest, for pions, a
+    systematic of 0.3% per pion track. For kaons, if the momentum
+    spectrum averages to about 500 MeV, we suggest a systematic of
+    0.6% per kaon. "
+
+    From CBX 2008-041 (Determination of KS0 Efficiency Systematic with
+    Full 818 pb−1 Dataset): "We suggest using a 0.8% systematic
+    uncertainty for each KS0, in addition to track-finding systematics
+    for the two pion tracks." 
+
+    Check if the 0.3% for pion and 0.6% for kaon is correlated or not
+    ... Ask Anders by email ... sent.
+
+    Message from Anders:
+
+    I think that this is just stating that the conservative assumption
+    to make is that all tracking (K and pi) is correlated. Hence I
+    would think that you have to just add these errors linearly for
+    all charged particles in the final state.
+    
+*** DONE Detector simulation - \pi^0 efficiency
+    :LOGBOOK:
+    CLOCK: [2010-11-23 Tue 10:19]--[2010-11-23 Tue 11:10] =>  0:51
+    CLOCK: [2010-11-23 Tue 09:04]--[2010-11-23 Tue 10:06] =>  1:02
+    CLOCK: [2010-11-22 Mon 11:12]--[2010-11-22 Mon 11:15] =>  0:03
+    CLOCK: [2010-11-19 Fri 10:03]--[2010-11-19 Fri 11:12] =>  1:09
+    CLOCK: [2010-11-11 Thu 08:41]--[2010-11-11 Thu 09:42] =>  1:01
+    CLOCK: [2010-11-10 Wed 13:28]--[2010-11-10 Wed 14:44] =>  1:16
+    CLOCK: [2010-11-10 Wed 11:08]--[2010-11-10 Wed 12:04] =>  0:56
+    CLOCK: [2010-11-09 Tue 10:01]--[2010-11-09 Tue 10:51] =>  0:50
+    :END:
+
+    Possible differences in \pi^0 reconstruction efficiency between
+    data and Monte Carlo simulations are also investigated using the
+    partial reconstruction technique. 
+
+    We find a small bias and correct for it by multiplying the
+    efficiencies determined in Monte Carlo simulations by 0.961^n,
+    where n is the number of reconstructed \pi^0s in each final
+    state. 
+
+    We assign a correlated systematic uncertainty of 2.0% to each
+    \pi^0. 
+
+    From CBX 2008-029 (π0 Finding Efficiencies): "We have studied π0
+    finding efficiencies in data and Monte Carlo and recommend that
+    CLEO-c analyses which use the standard π0 cuts apply a εdata/εMC =
+    0.94 correction to their efficiencies. While this correction is
+    stable with π0 momentum, the uncertainty on the correction varies
+    from 2% at low momentum to 0.7% at 1 GeV. For modes considered by
+    the Dhadronic analysis, the uncertainty on the correction is 1.3%,
+    but the uncertainty that should be applied to a given analysis may
+    be larger or smaller than this number, depending on the π0
+    momentum spectrum of that analysis. "
+    
+    Todo: Check the \pi^0 momentum in D modes.
+
+    Plot the \pi^0 momentum spectra in Kpipi0: 
+
+    : dhad-10.1.10 fig var pi0 momentum signal Single_D0_to_Kpipi0 281ipbv7  --qsub
+
+    : dhad-10.1.10 fig var pi0 momentum data Single_D0_to_Kpipi0 281ipbv7  -t 
+
+    : dhad-10.1.10 fig var pi0 momentum data Single_D0_to_Kpipi0 281ipbv7 --qsub ...done.
+    : dhad-10.1.10 fig var pi0 momentum data Single_D0_to_Kpipi0 818ipbv7 -t OK.
+   
+    : dhad-10.1.10 fig var pi0 momentum data Single_D0_to_Kpipi0 818ipbv7 --qsub ... done. 
+
+
+    In Kpipipi0:
+    
+    : dhad-10.1.10 fig var pi0 momentum data Single_Dp_to_Kpipipi0 281ipbv7 --qsub ... done. 
+
+    : dhad-10.1.10 fig var pi0 momentum data Single_Dp_to_Kpipipi0 818ipbv7 --qsub ...
+
+    In Kspipi0:
+
+    : dhad-10.1.10 fig var pi0 momentum data Single_Dp_to_Kspipi0 281ipbv7 -t ... OK.
+    : dhad-10.1.10 fig var pi0 momentum data Single_Dp_to_Kspipi0 281ipbv7 --qsub ... done. 
+
+    : dhad-10.1.10 fig var pi0 momentum data Single_Dp_to_Kspipi0 818ipbv7 --qsub ...
+
+
+    Need to show the pictures in the DHad meeting ... OK.
+
+    Explain the two peaks in the \pi^0 momentum... 
+
+    In Kpipipi0:
+
+    About 70% decay mode is : D^0 \to K^{-} \rho^{+}, \rho^{+} \to
+    \pi{+} \pi{0}. 
+
+    Plot the momentum of D0, K-, pi+: 
+
+    : dhad-10.1.10 fig var momentum D0 signal Single_D0_to_Kpipi0 281ipbv7 
+    : dhad-10.1.10 fig var momentum K signal Single_D0_to_Kpipi0 281ipbv7 
+    : dhad-10.1.10 fig var momentum pi signal Single_D0_to_Kpipi0 281ipbv7 
+
+    Momentum in two body decay:
+
+    D0toKpi: 
+    : dhad-10.1.10 fig var momentum D0 signal Single_D0_to_Kpi 281ipbv7 
+    : dhad-10.1.10 fig var momentum K signal Single_D0_to_Kpi 281ipbv7 
+    
+
+    Explain of the two peaks in pi0 momentum:
+    
+    p(D0) = 250 MeV, p(K-) = 700 MeV, p(rho) = 450 MeV, p(pi) =
+    450-250 = 200 MeV, or 450+250 = 700 MeV. 
+
+    Weight the events for pi0 eff syst:
+
+    Read CBX 2008-029 (π0 Finding Efficiencies) ... 
+   
+    Create the pi0 corrrection table:
+
+    : dhad-10.1.10 tab cbx pi0_eff_correction 818ipbv7  
+
+    Update CBX ... done. 
+
+    Need to update BF fitter... OK. 
+
+*** DONE Detector simulation - Particle identification efficiencies
+    :LOGBOOK:
+    CLOCK: [2010-11-09 Tue 11:00]--[2010-11-09 Tue 11:08] =>  0:08
+    :END:
+
+    Particle identification efficiencies are studied by reconstructing
+    decays with unambiguous particle content, such as D^0 \to
+    K_S^0\pi^+\pi^- and \phi \to K^+ K^-. 
+
+    We also use D^0 \to K^- \pi^+ \pi^-, where the K^- and \pi^+ are
+    distinguished kinematically. The efficiencies in ata are well
+    modeled by the Monte Carlo simulation with small biases. 
+
+    We correct for these biases by multiplying the efficiencies
+    determined in Monte Carlo simulations by 0.995^l \times 0.990^m,
+    where l and m are the numbers of PID-identified \pi^{\pm}s and
+    PID-identified K^{\pm}s, respectively, in each final state. 
+
+    We assign correlatd uncertainties of 0.25% and 0.3% to each
+    \pi^{\pm} and K^{\pm}, respectively. 
+
+    We do not assign these corrections and uncertainties to K_S^0
+    daughters, because they are not subjected to the \pi^{\pm} PID
+    requirements. 
+
+    Keep as before. 
+
+    Updated the syst table. 
+
+*** DONE Lepton veto. 
+    :LOGBOOK:
+    CLOCK: [2010-11-09 Tue 11:08]--[2010-11-09 Tue 11:11] =>  0:03
+    :END:
+
+    In events with only two tracks we required D0->K- pi+ ST
+    candidates to pass additional requirements to eliminate e+e- -> e+
+    e- gamma gamma, e+ e- -> mu+ mu- gamma gamma, and cosmic ray muon
+    events. These requirements eliminate approximately 0.1% of the
+    real D0 -> K- pi+ candidates, and we include a systematic
+    uncertainty of 0.1% to D0 -> K- pi+ ST yields to account for the
+    effect of these additional requirements. 
+
+    No Change. 
+
+    Created the sys table. 
+
+*** DONE Trigger simulation.
+    :LOGBOOK:
+    CLOCK: [2010-12-03 Fri 11:19]--[2010-12-03 Fri 11:51] =>  0:32
+    CLOCK: [2010-12-03 Fri 10:13]--[2010-12-03 Fri 11:00] =>  0:47
+    CLOCK: [2010-12-03 Fri 08:57]--[2010-12-03 Fri 09:58] =>  1:01
+    CLOCK: [2010-11-22 Mon 11:15]--[2010-11-22 Mon 11:37] =>  0:22
+    CLOCK: [2010-11-22 Mon 08:39]--[2010-11-22 Mon 09:22] =>  0:43
+    CLOCK: [2010-11-19 Fri 15:02]--[2010-11-19 Fri 15:52] =>  0:50
+    CLOCK: [2010-11-19 Fri 14:17]--[2010-11-19 Fri 15:02] =>  0:45
+    CLOCK: [2010-11-19 Fri 11:31]--[2010-11-19 Fri 12:17] =>  0:46
+    CLOCK: [2010-11-19 Fri 08:39]--[2010-11-19 Fri 09:34] =>  0:55
+    CLOCK: [2010-11-12 Fri 13:48]--[2010-11-12 Fri 14:00] =>  0:12
+    CLOCK: [2010-11-12 Fri 11:31]--[2010-11-12 Fri 12:25] =>  0:54
+    CLOCK: [2010-11-12 Fri 11:00]--[2010-11-12 Fri 11:01] =>  0:01
+    CLOCK: [2010-11-12 Fri 09:47]--[2010-11-12 Fri 10:50] =>  1:03
+    CLOCK: [2010-11-12 Fri 08:34]--[2010-11-12 Fri 09:35] =>  1:01
+    CLOCK: [2010-11-11 Thu 11:23]--[2010-11-11 Thu 12:10] =>  0:47
+    CLOCK: [2010-11-11 Thu 10:05]--[2010-11-11 Thu 10:59] =>  0:54
+    CLOCK: [2010-11-09 Tue 11:11]--[2010-11-09 Tue 11:16] =>  0:05
+    :END:
+
+    Most modes are efficiently triggered by a two-track
+    trigger. However, in the modes D0 -> K- pi+ pi0 and D+ -> KS0 pi+,
+    Monte Carlo simulation predicts a small inefficiency (0.1% --
+    0.2%) because the track momenta may be too low to satisfy the
+    trigger or because the KS0 daughter tracks may be too far
+    displaced from the interaction region. 
+
+    For these two modes, we assign a relative uncertainty in the
+    detection efficiency of the size of the trigger inefficiency
+    predicted by the simulation.
+
+
+    Todo: Check the ntuple, Low Track for mode with \pi^0. 
+
+    Read the trigger info ... 
+
+    Read code: 
+    http://www.lepp.cornell.edu/restricted/webtools/cleo3/source/Offline/src/TriggerL1Data/TriggerL1Data/TriggerL1Data.h
+
+    Read Peter's code: trigger.py ...
+
+    : dhad-10.1.10 yld signal Single_Dp_to_Kspipipi 818ipbv7/trig -s interact -t OK.
+
+    : dhad-10.1.10 yld signal single 818ipbv7/trig ... done.
+    : dhad-10.1.10 yld signal double 818ipbv7/trig ... done.
+
+    Fit mBC:
+
+    : dhad-10.1.10 fit signal Single_Dp_to_Kspipipi 818ipbv7/trig -s interact OK.
+
+    : dhad-10.1.10 fit signal single 818ipbv7/trig ... done.
+    : dhad-10.1.10 fit signal double 818ipbv7/trig ... done. 
+
+    : dhad-10.1.10 fig signal single 818ipbv7/trig ... done. 
+    : dhad-10.1.10 fig signal double 818ipbv7/trig ... done. 
+
+    
+    Calculate the efficiency:
+
+    : dhad-10.1.10 tab cbx trigeffs 818ipbv7 ... done. 
+
+    Update CBX ...done. 
+
+    Need to use two tracks bit. 
+
+    bit 16: electron+track line in l1trig.
+    bit 2: two track in l1trig2.
+    
+    : dhad-10.1.10 yld signal Single_Dp_to_Kspipipi 818ipbv7/trig -s interact -t OK. 
+    : dhad-10.1.10 yld signal single 818ipbv7/trig ... done. 
+    : dhad-10.1.10 yld signal double 818ipbv7/trig ... done. 
+
+    : dhad-10.1.10 fit signal single 818ipbv7/trig ... done.
+    : dhad-10.1.10 fit signal double 818ipbv7/trig ... done. 
+
+    : dhad-10.1.10 fig signal single 818ipbv7/trig ... done.
+    : dhad-10.1.10 fig signal double 818ipbv7/trig ... done. 
+
+
+     Calculate the efficiency:
+
+    : dhad-10.1.10 tab cbx trigeffs 818ipbv7 ... still the same.
+
+
+     Reproduce the data281/pb numbers:
+
+     : dhad-10.1.10 yld signal Single_Dp_to_Kspipipi 281ipbv7/trig -s interact -t OK. 
+   
+     : dhad-10.1.10 yld signal single 281ipbv7/trig ... done.
+     
+     Test the rough effs without mbc fitting:
+
+     : dhad-10.1.10 tab cbx trigeffs_nofit 281ipbv7 ... done.
+
+     Try to use it same as Peter's logic ...
+     : dhad-10.1.10 yld signal single 281ipbv7/trig ... done. 
+     : dhad-10.1.10 tab cbx trigeffs_nofit 281ipbv7 ... same. 
+
+     Use only two-tracks line ... still the same. 
+
+     Send email to Peter ... done. 
+
+     Message from Peter:
+
+     Well, it is what it is, I guess.  Do you still have ntuples of the old
+     simulation to see if you can reproduce the numbers we had in the
+     original analysis?
+
+     Calculate the efficiency for original signal MC:
+
+     : dhad-10.1.10 yld signal Single_Dp_to_Kspipipi 281ipbv0/trig -s interact -t OK.
+     : dhad-10.1.10 yld signal single 281ipbv0/trig ... done.  
+     : dhad-10.1.10 fit signal single 281ipbv0/trig ... done. 
+
+
+     : dhad-10.1.10 tab cbx trigeffs 281ipbv0 ... 
+
+     | Mode          | Trigger efficiency (%) |
+     |---------------+------------------------|
+     | D0_to_Kpi      | 99.99 +/- 0.00         |
+     | D0_to_Kpipi0   | 100 - 0.00             |
+     | D0_to_Kpipipi  | 99.50 +/- 0.03         |
+     | Dp_to_Kpipi    | 99.48 +/- 0.03         |
+     | Dp_to_Kpipipi0 | 99.72 +/- 0.03         |
+     | Dp_to_Kspi     | 99.73 +/- 0.02         |
+     | Dp_to_Kspipi0  | 99.40 +/- 0.04         |
+     | Dp_to_Kspipipi | 99.32 +/- 0.04         |
+     | Dp_to_KKpi     | 98.92 +/- 0.08         |
+
+     Reply to Peter ... sent. 
+
+     Check the trigger bit meaning:
+
+     TriggerL1Data.h: v1.8: kElTrack = 0x10000, 
+                      v1.10: kElTrack = 0x054002,
+
+     Ask Peter ... sent. 
+
+     Send email to Mats Selen ... later. 
+
+     Treat as zero for now. 
+
+*** DONE |E| requirement.
+    :LOGBOOK:
+    CLOCK: [2010-11-15 Mon 11:24]--[2010-11-15 Mon 11:29] =>  0:05
+    CLOCK: [2010-11-15 Mon 10:09]--[2010-11-15 Mon 11:10] =>  1:01
+    CLOCK: [2010-11-15 Mon 09:01]--[2010-11-15 Mon 10:09] =>  1:08
+    CLOCK: [2010-11-12 Fri 11:01]--[2010-11-12 Fri 11:31] =>  0:30
+    CLOCK: [2010-11-09 Tue 11:16]--[2010-11-09 Tue 11:46] =>  0:30
+    :END:
+
+    \Delta E = E_{reco} - E_beam
+
+    Discrepancies in detector resolution between data and Monte Carlo
+    simulations can produce differences in the efficiencies of the
+    \Delta E requirement between data and Monte Carlo events. 
+
+    No evidence for such discrepancies has been found, and we include
+    systematic uncertainties of 1.0% for D^{+} \to K_{S} \pi^{+} \pi^0 and D^{+}\to
+    K^{+} K^{-} \pi^{+} decays, and 0.5% for all other modes.  
+
+    These uncertainties are taken to be correlated in \epsilon_i, \epsilon_{ij} and
+    \epsilon_{ii}. 
+
+    Deploy mode dependent errors. 
+
+    Choose the max from the charge conjugate. 
+
+    : dhad-10.1.10 tab cbx singletag_de_syst 818ipbv7 
+
+    Update the CBX ... done. 
+
+    Create the delta E cuts table for double tags:
+
+    : dhad-10.1.10 tab cbx doubletag_data_yield_widede 818ipbv7  
+
+    : dhad-10.1.10 tab cbx doubletag_de_syst 818ipbv7 
+
+    Need to discuss how to assign these uncertainty in the BF fitter.
+
+    Add background subtraction ... save this for the next round. Keep
+    the previous double tags uncertainties. 
+
+    Need to update the BF fitter ... OK. 
+   
+*** DONE Background shape
+    :LOGBOOK:
+    CLOCK: [2010-12-16 Thu 08:19]--[2010-12-16 Thu 09:21] =>  1:02
+    CLOCK: [2010-12-15 Wed 15:01]--[2010-12-15 Wed 15:50] =>  0:49
+    CLOCK: [2010-12-14 Tue 15:39]--[2010-12-14 Tue 16:20] =>  0:41
+    CLOCK: [2010-12-14 Tue 12:53]--[2010-12-14 Tue 15:39] =>  2:46
+    CLOCK: [2010-12-14 Tue 10:39]--[2010-12-14 Tue 12:03] =>  1:24
+    CLOCK: [2010-12-14 Tue 09:30]--[2010-12-14 Tue 10:28] =>  0:58
+    CLOCK: [2010-12-14 Tue 08:27]--[2010-12-14 Tue 09:18] =>  0:51
+    CLOCK: [2010-12-13 Mon 16:00]--[2010-12-13 Mon 16:53] =>  0:53
+    CLOCK: [2010-12-13 Mon 14:34]--[2010-12-13 Mon 15:33] =>  0:59
+    CLOCK: [2010-12-13 Mon 13:34]--[2010-12-13 Mon 14:25] =>  0:51
+    CLOCK: [2010-12-13 Mon 11:00]--[2010-12-13 Mon 12:50] =>  1:50
+    CLOCK: [2010-12-13 Mon 08:53]--[2010-12-13 Mon 10:49] =>  1:56
+    CLOCK: [2010-12-10 Fri 17:14]--[2010-12-10 Fri 17:29] =>  0:15
+    CLOCK: [2010-12-10 Fri 14:47]--[2010-12-10 Fri 15:50] =>  1:03
+    CLOCK: [2010-12-10 Fri 09:28]--[2010-12-10 Fri 12:00] =>  2:32
+    CLOCK: [2010-12-09 Thu 15:22]--[2010-12-09 Thu 15:50] =>  0:28
+    CLOCK: [2010-12-09 Thu 14:41]--[2010-12-09 Thu 14:52] =>  0:11
+    CLOCK: [2010-12-09 Thu 10:11]--[2010-12-09 Thu 12:30] =>  2:19
+    CLOCK: [2010-12-09 Thu 08:23]--[2010-12-09 Thu 08:40] =>  0:17
+    CLOCK: [2010-12-08 Wed 16:36]--[2010-12-08 Wed 17:00] =>  0:24
+    CLOCK: [2010-12-08 Wed 13:11]--[2010-12-08 Wed 14:54] =>  1:43
+    CLOCK: [2010-12-08 Wed 11:00]--[2010-12-08 Wed 12:06] =>  1:06
+    CLOCK: [2010-12-08 Wed 10:08]--[2010-12-08 Wed 10:50] =>  0:42
+    CLOCK: [2010-12-08 Wed 08:51]--[2010-12-08 Wed 09:41] =>  0:50
+    CLOCK: [2010-12-07 Tue 16:09]--[2010-12-07 Tue 16:36] =>  0:27
+    CLOCK: [2010-12-07 Tue 13:20]--[2010-12-07 Tue 13:59] =>  0:39
+    CLOCK: [2010-12-07 Tue 11:17]--[2010-12-07 Tue 12:04] =>  0:47
+    CLOCK: [2010-12-07 Tue 09:42]--[2010-12-07 Tue 09:47] =>  0:05
+    CLOCK: [2010-11-09 Tue 11:46]--[2010-11-09 Tue 11:56] =>  0:10
+    :END:
+ 
+    We estimate the uncertainty in ST yields due to the background
+    shape by repeating the ST fits with alternative background shape
+    parameters. These alternative parameters are determined from the
+    M_{BC} distributions of events in high and low \Delta E sidebands. For
+    each mode, we fit each sideband with an ARGUS function to
+    determine shape parameters and then repeat the ST yield fits with
+    the ARGUS parameters fixed to these values. The resulting shifts
+    in the ST yields are used to set the value of the systematic for
+    each mode. 
+
+**** DONE First try with overlapping sideband
+
+     Get yields for deltae sideband:
+
+     : dhad-10.1.10 yld signal Single_Dp_to_Kspipipi 818ipbv7/desideband -s interact -t OK. 
+
+
+     : dhad-10.1.10 yld signal single 818ipbv7/desideband ... done. 
+
+     : dhad-10.1.10 yld data Single_Dp_to_Kspipipi 818ipbv7/desideband -s interact -t OK.
+     : dhad-10.1.10 yld data single 818ipbv7/desideband ... done. 
+
+     
+     : dhad-10.1.10 fit desideband signal Single_Dp_to_Kspipipi 818ipbv7 -s interact -t ... OK. But no ARGUS parameters. 
+
+     Use the same script for the sidebands:
+
+     : dhad-10.1.10 fit signal Single_Dp_to_Kspipipi 818ipbv7/desideband -s interact -t OK.
+
+     : dhad-10.1.10 fit signal single 818ipbv7/desideband ... done. 
+
+     : dhad-10.1.10 fit data Single_Dp_to_Kspipipi 818ipbv7/desideband -s interact -t OK.
+  
+     : dhad-10.1.10 fit data single 818ipbv7/desideband ... done.
+
+
+     : dhad-10.1.10 fig signal single 818ipbv7/desideband 
+     : dhad-10.1.10 fig data single 818ipbv7/desideband 
+
+     Need to plot the detla E distribution for each mode, and determine
+     the sideband ... checked the plot in 6.09, it is OK to chose
+     sideband overlaps with the signal region as long as it avoids the
+     peak. 
+
+     : $dhad/6.09/fig/deltaE/data31_data_Single_D0_to_Kpipi0.eps 
+     
+     Proceed to compare the ARGUS parameters:
+
+     : dhad-10.1.10 tab compare para xi signal 818ipbv7 818ipbv7/desideband -s label=xi-std,sideband OK.
+
+     : dhad-10.1.10 tab compare para xi data 818ipbv7 818ipbv7/desideband -s label=xi-std,sideband OK.
+
+     : dhad-10.1.10 tab compare para argus_p signal 818ipbv7 818ipbv7/desideband -s label=ARGUS-p-std,sideband
+
+     : dhad-10.1.10 tab compare para argus_p data 818ipbv7 818ipbv7/desideband -s label=ARGUS-p-std,sideband
+
+**** DONE Use low and high sideband, fit data with ARGUS function
+
+     Talked with Peter, need to get the low and high delta E sideband
+     separately, also sideband shouldn't have any overlap with signal
+     region. Fit with data with ARGUS function only. 
+
+     Get the yield of low delta E sideband :
+
+     : dhad-10.1.10 yld data Single_Dp_to_Kspipipi 818ipbv7/desideband_low -s interact -t OK.
+
+     : dhad-10.1.10 yld data single 818ipbv7/desideband_low ... done.
+     : dhad-10.1.10 yld data single 818ipbv7/desideband_high ... done.
+
+     
+     Fit the sideband with just ARGUS function:
+
+     : dhad-10.1.10 fit sidebands data Single_Dp_to_Kspipipi 818ipbv7/desideband_low -s interact -t 
+
+     Start from the background.py fitting script, with tweek of adding
+     the power (p), need to test if it's going to work in the new
+     RooFit. This is a good opportunity to fully understand the ARGUS
+     fitting in RooFit. 
+
+     Need to add power term in the Argus bkg... OK.
+
+     Fit the charge conjugate modes together ... 
+
+     : dhad-10.1.10 fit sidebands data Single_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7/desideband_low -s interact -t OK.
+  
+     : dhad-10.1.10 fit sidebands data diagsingle 818ipbv7/desideband_low ...done.
+
+     : dhad-10.1.10 fig data single 818ipbv7/desideband_low 
+
+     Fix the ARGUS cutoff with Ebeam :
+
+     : dhad-10.1.10 fit sidebands data Single_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7/desideband_low/test -s interact -t OK.
+
+     : dhad-10.1.10 fit sidebands data diagsingle 818ipbv7/desideband_low ... done. 
+
+     : dhad-10.1.10 fit sidebands data Single_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv7/desideband_high/test -s interact -t OK.
+
+     : dhad-10.1.10 fit sidebands data diagsingle 818ipbv7/desideband_high ... done. 
+     : dhad-10.1.10 fig data single 818ipbv7/desideband_low OK.
+     : dhad-10.1.10 fig data single 818ipbv7/desideband_high OK.
+
+     Make the ARGUS parameters table:
+
+     : dhad-10.1.10 tab para argus slope 818ipbv7 desidebands  
+
+     : dhad-10.1.10 tab para argus power 818ipbv7 desidebands  
+
+     Found "NOT POSDEF" status for Kpipi desideband low.
+
+     Use far away sideband for this mode:
+
+     : dhad-10.1.10 yld data Single_Dp_to_Kpipi 818ipbv7/desideband_high -s interact -t OK.
+
+     : dhad-10.1.10 yld data Single_Dp_to_Kpipi 818ipbv7/desideband_high ... done.
+     : dhad-10.1.10 fit sidebands data Single_Dp_to_Kpipi__Dm_to_Kpipi 818ipbv7/desideband_high -s interact -t OK.
+
+     : dhad-10.1.10 fit sidebands data Single_Dp_to_Kpipi__Dm_to_Kpipi 818ipbv7/desideband_high ... done. 
+
+     : dhad-10.1.10 yld data Single_Dp_to_Kpipi 818ipbv7/desideband_low -s interact -t OK.
+     : dhad-10.1.10 yld data Single_Dp_to_Kpipi 818ipbv7/desideband_low ... done. 
+
+     : dhad-10.1.10 yld data Single_Dm_to_Kpipi 818ipbv7/desideband_low ... done. 
+
+     : dhad-10.1.10 fit sidebands data Single_Dp_to_Kpipi__Dm_to_Kpipi 818ipbv7/desideband_low ... done. 
+
+     : dhad-10.1.10 fig data single 818ipbv7/desideband_low  ... done. 
+
+     : dhad-10.1.10 tab para argus slope 818ipbv7 desidebands  ... OK. Still problem in the argus slope. Go on. 
+
+     
+     
+     Fit the yields with the desideband argus parameters:
+
+     : dhad-10.1.10 fit data Single_Dp_to_Kspipipi 818ipbv7/argus_low -s interact -t OK.
+
+     : dhad-10.1.10 fit data single 818ipbv7/argus_high ... done.
+     : dhad-10.1.10 fig data single 818ipbv7/argus_high OK.
+
+     : dhad-10.1.10 fit data single 818ipbv7/argus_low ... done. 
+     : dhad-10.1.10 fig data single 818ipbv7/argus_low OK.
+     
+     : dhad-10.1.10 tab cbx vary_argus_single 818ipbv7  ... OK.
+
+     
+**** DONE Plot the Detla E distribution:
+     
+     : dhad-10.1.10 fig var deltae signal diagsingle 818ipbv7 -t OK. 
+
+     : dhad-10.1.10 fig var deltae data diagsingle 818ipbv7 ... done. 
+
+     
+     Get the yld first:
+   
+     : dhad-10.1.10 yld var deltae data Single_Dp_to_Kspipipi 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 yld var deltae data single_p 818ipbv7 ... done. 
+
+**** DONE Use the same lineshape function to fit sideband
+     :LOGBOOK:
+     CLOCK: [2010-12-16 Thu 10:30]--[2010-12-16 Thu 10:55] =>  0:25
+     CLOCK: [2010-12-16 Thu 09:30]--[2010-12-16 Thu 10:21] =>  0:51
+     :END:
+
+     Use the lineshape to fit:
+
+     Restore the same sideband def for mode 200:
+     
+     Wait for the qsystem up ... OK.
+
+     : dhad-10.1.10 yld data Single_Dp_to_Kpipi 818ipbv7/desideband_low ...done.
+     : dhad-10.1.10 yld data Single_Dm_to_Kpipi 818ipbv7/desideband_low ...done.
+
+     : dhad-10.1.10 yld data Single_Dp_to_Kpipi 818ipbv7/desideband_high ...done.
+     : dhad-10.1.10 yld data Single_Dm_to_Kpipi 818ipbv7/desideband_high ...done.
+
+     
+     Use the lineshapes to fit:
+
+     : dhad-10.1.10 fit data Single_D0_to_Kpi 818ipbv7/desideband_low -s interact -t OK.
+
+     : dhad-10.1.10 fit data single 818ipbv7/desideband_low ... done.
+     : dhad-10.1.10 fit data single 818ipbv7/desideband_high ... done. 
+     
+     
+     : dhad-10.1.10 fig data single 818ipbv7/desideband_low  ... done. 
+     : dhad-10.1.10 fig data single 818ipbv7/desideband_high ... done. 
+
+     Make the Argus parameters comparison table:
+     
+     : dhad-10.1.10 tab para argus slope 818ipbv7 desidebands
+
+     Notice the argus slope is at -0.1 limit for DtoKpi. 
+
+     Increase the limit to -0.01 (not work) and refit:
+     
+     : dhad-10.1.10 fit data Single_D0_to_Kpi 818ipbv7/desideband_low ... done.
+     : dhad-10.1.10 fit data Single_D0_to_Kpi 818ipbv7/desideband_high ... done. 
+  
+     Increase argus slope to 10, md min to 1.860  ...
+
+     : dhad-10.1.10 fit data Single_D0_to_Kpi 818ipbv7/desideband_low ... done.
+     : dhad-10.1.10 fit data Single_D0_to_Kpi 818ipbv7/desideband_high ... done. 
+
+     
+     : dhad-10.1.10 fig data single 818ipbv7/desideband_low ... done. 
+     : dhad-10.1.10 fig data single 818ipbv7/desideband_high ... done. 
+
+     The fitting looks OK, but the argus slope is still at the limit
+     about 10. 
+
+     Make the comparison table:
+     : dhad-10.1.10 tab para argus slope 818ipbv7 desidebands  ... done. 
+
+     Proceed with this new parameters and get the shifts on fit:
+
+     : dhad-10.1.10 fit data Single_Dp_to_Kspipipi 818ipbv7/argus_low -s interact -t OK.
+
+     : dhad-10.1.10 fit data single 818ipbv7/argus_low ... done.
+     : dhad-10.1.10 fit data single 818ipbv7/argus_high ... done.
+
+
+     : dhad-10.1.10 fig data single 818ipbv7/argus_low ... OK.
+     : dhad-10.1.10 fig data single 818ipbv7/argus_high ... OK.
+     
+     : dhad-10.1.10 tab cbx vary_argus_single 818ipbv7 ... OK.
+
+     Noticed large decrease (-73%) for D0barto K+ pi- pi0 for ARGUS
+     low, check the plot ... recall the mistaken overwite on the
+     regular evt file. 
+
+     Recover the standard yld file for this mode:
+
+     : cd $dhad/10.1/dat/evt/818ipbv7/desideband_low
+     : rm data_Single_D0_to_Kpipi0.evt
+     : rm data_Single_D0B_to_Kpipi0.evt
+     : rm data_Single_D0_to_Kpipi0__D0B_to_Kpipi0.evt
+
+     Need to fix the above error ...
+
+     Fix the 818ipbv7 evt file:
+     : cd $dhad/10.1/dat/evt/818ipbv7
+     : ll data_Single_D0*_to_Kpipi0*.evt
+
+     : -rw-r--r-- 1 xs32 cms 4.0M May 29  2010 data_Single_D0B_to_Kpipi0.evt
+     : -rw-r--r-- 1 xs32 cms 7.7M Dec 16 09:54 data_Single_D0_to_Kpipi0__D0B_to_Kpipi0.evt
+     : -rw-r--r-- 1 xs32 cms 3.8M May 29  2010 data_Single_D0_to_Kpipi0.evt
+
+     : mkdir .bak
+     : mv data_Single_D0*_to_Kpipi0*.evt .bak 
+     
+     : dhad-10.1.10 fit data Single_D0_to_Kpipi0 818ipbv7 -s interact -t OK.
+
+     Recover the desidebandlow yld error:
+
+     : dhad-10.1.10 yld data Single_D0_to_Kpipi0 818ipbv7/desideband_low ... done. 
+      : dhad-10.1.10 yld data Single_D0B_to_Kpipi0 818ipbv7/desideband_low ... done.
+
+     Re-fit the arguslow for Kpipi0:
+
+     : dhad-10.1.10 fit data Single_D0_to_Kpipi0 818ipbv7/argus_low -s interact -t OK.
+     : dhad-10.1.10 fit data Single_D0_to_Kpipi0 818ipbv7/argus_low ... done. 
+     : dhad-10.1.10 fig data single 818ipbv7/argus_low ... OK.
+
+     Re-create the table:
+
+     : dhad-10.1.10 tab cbx vary_argus_single 818ipbv7 OK.
+
+     Compare with previous uncertainties:
+
+     | Mode     | 281/pb | 818/pb |
+     |----------+--------+--------|
+     | Kpi      |    0.4 |   0.59 |
+     | Kpipi0   |    1.0 |   1.05 |
+     | Kpipipi  |    0.4 |   0.64 |
+     | Kpipi    |    0.4 |   0.41 |
+     | Kpipipi0 |    1.5 |   3.32 |
+     | Kspi     |    0.4 |   0.91 |
+     | Kspipi0  |    1.0 |   1.48 |
+     | Kspipipi |    1.0 |   1.26 |
+     | KKpi     |    1.0 |   0.80 |
+
+     So, the most trouble one is the Kpipipi0 mode. 
+
+     
+
+**** CANCELED Fix Kpipipi0 mode
+     :LOGBOOK:
+     CLOCK: [2010-12-21 Tue 08:53]--[2010-12-21 Tue 08:54] =>  0:01
+     CLOCK: [2010-12-20 Mon 08:44]--[2010-12-20 Mon 10:21] =>  1:37
+     CLOCK: [2010-12-17 Fri 14:14]--[2010-12-17 Fri 14:24] =>  0:10
+     CLOCK: [2010-12-17 Fri 08:33]--[2010-12-17 Fri 08:46] =>  0:13
+     CLOCK: [2010-12-16 Thu 16:57]--[2010-12-16 Thu 17:03] =>  0:06
+     CLOCK: [2010-12-16 Thu 14:27]--[2010-12-16 Thu 15:07] =>  0:40
+     CLOCK: [2010-12-16 Thu 11:25]--[2010-12-16 Thu 11:54] =>  0:29
+     :END:
+
+     Notice the fitting for the sideband low have limit of sigmap1. 
+
+     Noticed the fitting for sideband high have limit first
+     derivative. 
+
+     Noticed both cases have large errors on the signal. 
+
+     Fix the sigmap1 value as in the data for both case:
+
+     : dhad-10.1.10 fit data Single_Dp_to_Kpipipi0 818ipbv7/desideband_low/fix_sigmap1 -s interact -t OK.
+     : dhad-10.1.10 fit data Single_Dp_to_Kpipipi0 818ipbv7/desideband_low/fix_sigmap1 ... done. 
+
+     : dhad-10.1.10 fit data Single_Dp_to_Kpipipi0 818ipbv7/desideband_high/fix_sigmap1 -s interact -t OK.
+
+     : dhad-10.1.10 fit data Single_Dp_to_Kpipipi0 818ipbv7/desideband_high/fix_sigmap1 ... done. 
+     
+     : dhad-10.1.10 fig data Single_Dp_to_Kpipipi0 818ipbv7/desideband_low/fix_sigmap1 OK.
+     : dhad-10.1.10 fig data Single_Dp_to_Kpipipi0 818ipbv7/desideband_high/fix_sigmap1 OK.
+
+     Notice the yields are almost 0. 
+
+     Fix the yields to 1:
+
+     : dhad-10.1.10 fit data Single_Dp_to_Kpipipi0 818ipbv7/desideband_low/fix_n1n2 -s interact -t OK.
+ 
+     : dhad-10.1.10 fit data Single_Dp_to_Kpipipi0 818ipbv7/desideband_low/fix_n1n2 ... done. 
+
+     : dhad-10.1.10 fit data Single_Dp_to_Kpipipi0 818ipbv7/desideband_high/fix_n1n2 -s interact -t 
+     : dhad-10.1.10 fit data Single_Dp_to_Kpipipi0 818ipbv7/desideband_high/fix_n1n2 ... done. 
+
+     : dhad-10.1.10 fig data Single_Dp_to_Kpipipi0 818ipbv7/desideband_low/fix_n1n2 
+
+     : dhad-10.1.10 fig data Single_Dp_to_Kpipipi0 818ipbv7/desideband_high/fix_n1n2 
+
+     Fits are OK. 
+
+     Use these parameters to fit:
+
+     : dhad-10.1.10 fit data Single_Dp_to_Kpipipi0 818ipbv7/argus_low/fix_n1n2 -s interact -t OK.
+
+     : dhad-10.1.10 fit data Single_Dp_to_Kpipipi0 818ipbv7/argus_low/fix_n1n2 ... done. 
+
+     : dhad-10.1.10 fit data Single_Dp_to_Kpipipi0 818ipbv7/argus_high/fix_n1n2 -s interact -t OK.
+     
+     : dhad-10.1.10 fit data Single_Dp_to_Kpipipi0 818ipbv7/argus_high/fix_n1n2 ... done. 
+
+     : dhad-10.1.10 fig data Single_Dp_to_Kpipipi0 818ipbv7/argus_low/fix_n1n2  OK. 
+
+     : dhad-10.1.10 fig data Single_Dp_to_Kpipipi0 818ipbv7/argus_high/fix_n1n2 OK.
+
+     Compare the yields:
+     
+     : dhad-10.1.10 tab web vary_argus_single 818ipbv7/fix_n1n2 
+     
+     Still around 3.9% difference. 
+
+     
+**** DONE Plot the pi0 mass distribution of sideband and signal
+     :LOGBOOK:
+     CLOCK: [2010-12-23 Thu 11:14]--[2010-12-23 Thu 12:16] =>  1:02
+     CLOCK: [2010-12-23 Thu 09:35]--[2010-12-23 Thu 11:01] =>  1:26
+     CLOCK: [2010-12-22 Wed 16:00]--[2010-12-22 Wed 16:31] =>  0:31
+     CLOCK: [2010-12-22 Wed 14:59]--[2010-12-22 Wed 15:53] =>  0:54
+     CLOCK: [2010-12-22 Wed 14:15]--[2010-12-22 Wed 14:50] =>  0:35
+     CLOCK: [2010-12-22 Wed 10:10]--[2010-12-22 Wed 11:25] =>  1:15
+     CLOCK: [2010-12-22 Wed 09:13]--[2010-12-22 Wed 10:01] =>  0:48
+     CLOCK: [2010-12-21 Tue 10:11]--[2010-12-21 Tue 12:01] =>  1:50
+     CLOCK: [2010-12-21 Tue 08:54]--[2010-12-21 Tue 09:57] =>  1:03
+     :END:
+
+     : dhad-10.1.10 fig var mass pi0 data Single_Dp_to_Kpipipi0 818ipbv7 --qsub 
+
+     Save the raw evt first:
+
+     : dhad-10.1.10 sel var pi0mass data Single_Dp_to_Kpipipi0 818ipbv7/desideband_low -s interact -t  OK.
+
+     : dhad-10.1.10 sel var pi0mass data Single_Dp_to_Kpipipi0 818ipbv7/desideband_low ... done.
+
+     : dhad-10.1.10 sel var pi0mass data Single_Dp_to_Kpipipi0 818ipbv7 ...  done. 
+
+     : dhad-10.1.10 sel var pi0mass data Single_Dp_to_Kpipipi0 818ipbv7/desideband_high ...  done. 
+
+
+     : dhad-10.1.10 fig var pi0mass data Single_Dp_to_Kpipipi0 818ipbv7/desideband_low OK.
+
+     : dhad-10.1.10 fig var pi0mass data Single_Dp_to_Kpipipi0 818ipbv7/desideband_high  ...  OK.
+
+     : dhad-10.1.10 fig var pi0mass data Single_Dp_to_Kpipipi0 818ipbv7 OK.
+
+     Make the plot on one canvas:
+
+     : dhad-10.1.10 fig var pi0mass data Single_Dp_to_Kpipipi0 818ipbv7,818ipbv7/desideband_low,818ipbv7/desideband_high -s legend=standard,desideband_low,desideband_high OK.
+**** CANCELED Plot mBC vs delta E
+    
+**** CANCELED Re-plot the sideband figures 
+
+     : dhad-10.1.10 fig trim data Single_D0_to_Kpi 818ipbv7/desideband_low  
+    
+
+
+**** DONE Plot the ARGUS function with different parameters
+     
+     : dhad-10.1.10 fig fun argus -s m0=1.864,p=0.7,xi=-34 -t OK.
+
+     Stored in the figure page. 
+
+
+
+**** DONE Process Generic MC 
+     :LOGBOOK:
+     CLOCK: [2011-01-07 Fri 09:28]--[2011-01-07 Fri 10:23] =>  0:55
+     CLOCK: [2011-01-06 Thu 15:18]--[2011-01-06 Thu 15:31] =>  0:13
+     CLOCK: [2011-01-06 Thu 14:23]--[2011-01-06 Thu 14:31] =>  0:08
+     CLOCK: [2011-01-06 Thu 10:40]--[2011-01-06 Thu 11:58] =>  1:18
+     CLOCK: [2011-01-05 Wed 15:06]--[2011-01-05 Wed 15:52] =>  0:46
+     CLOCK: [2011-01-05 Wed 14:07]--[2011-01-05 Wed 14:57] =>  0:50
+     CLOCK: [2011-01-05 Wed 12:56]--[2011-01-05 Wed 13:53] =>  0:57
+     CLOCK: [2011-01-05 Wed 11:01]--[2011-01-05 Wed 11:48] =>  0:47
+     CLOCK: [2011-01-05 Wed 09:50]--[2011-01-05 Wed 10:49] =>  0:59
+     CLOCK: [2011-01-05 Wed 08:44]--[2011-01-05 Wed 09:40] =>  0:56
+     CLOCK: [2011-01-04 Tue 13:19]--[2011-01-04 Tue 13:40] =>  0:21
+     CLOCK: [2011-01-04 Tue 11:20]--[2011-01-04 Tue 12:42] =>  1:22
+     CLOCK: [2011-01-04 Tue 10:20]--[2011-01-04 Tue 11:10] =>  0:50
+     CLOCK: [2011-01-04 Tue 09:24]--[2011-01-04 Tue 10:08] =>  0:44
+     CLOCK: [2011-01-04 Tue 08:15]--[2011-01-04 Tue 09:15] =>  1:00
+     CLOCK: [2011-01-03 Mon 16:00]--[2011-01-03 Mon 16:40] =>  0:40
+     CLOCK: [2011-01-03 Mon 15:01]--[2011-01-03 Mon 15:54] =>  0:53
+     CLOCK: [2011-01-03 Mon 14:31]--[2011-01-03 Mon 14:57] =>  0:26
+     CLOCK: [2011-01-03 Mon 12:43]--[2011-01-03 Mon 14:22] =>  1:39
+     CLOCK: [2011-01-03 Mon 10:54]--[2011-01-03 Mon 12:04] =>  1:10
+     CLOCK: [2011-01-03 Mon 09:39]--[2011-01-03 Mon 10:29] =>  0:50
+     CLOCK: [2011-01-03 Mon 08:34]--[2011-01-03 Mon 09:30] =>  0:56
+     CLOCK: [2010-12-23 Thu 09:12]--[2010-12-23 Thu 09:23] =>  0:11
+     CLOCK: [2010-12-22 Wed 08:51]--[2010-12-22 Wed 09:13] =>  0:22
+     :END:     
+
+     Get the yields for delta E sideband:
+     
+     : dhad-10.1.10 yld generic Single_Dp_to_Kpipi 818ipbv7/desideband_low -s interact -t OK.
+     
+     : dhad-10.1.10 yld generic single 818ipbv7/desideband_low ... done.
+     : dhad-10.1.10 yld generic single 818ipbv7/desideband_high ... done.
+     
+     
+     : dhad-10.1.10 fit generic Single_Dp_to_Kpipi 818ipbv7/desideband_low -s interact -t OK.
+     
+     : dhad-10.1.10 fit generic diagsingle 818ipbv7/desideband_low ... done.
+     : dhad-10.1.10 fit generic diagsingle 818ipbv7/desideband_high ... done.
+
+     : dhad-10.1.10 fig generic diagsingle 818ipbv7/desideband_low  ... done.
+     : dhad-10.1.10 fig generic diagsingle 818ipbv7/desideband_high ... done. 
+
+     View the square root plot for Kpipipi0:
+
+     : dhad-10.1.10 fig generic Single_Dp_to_Kpipipi0__Dm_to_Kpipipi0 818ipbv7 -s sqrt -t 
+
+     Complie ROOT 5.28 ... done. 
+
+     Patch the diffs ... done.
+    
+     Fit the mBC with PyROOT:
+     
+     : dhad-10.1.10 fit signal Single_Dp_to_KKpi 281ipbv7 -s interact -t OK.
+
+     Working but the result are not same. 
+
+     Try the .C file by tweaking the fitTo line ... same fitting
+     result.
+
+     This indicate that the main difference lies in the ROOT or
+     RooFit, mostly in the RooDLineShape code. 
+
+     
+     Try the fig method:
+
+     : dhad-10.1.10 fig generic Single_Dp_to_Kpipipi0__Dm_to_Kpipipi0 818ipbv7 -s sqrt -t 
+
+     Still not working. :
+
+     : Traceback (most recent call last):
+     :   File "translate_to_root5.py", line 1, in <module>
+     :     import ROOT
+     :   File "/nfs/cor/user/ponyisi/root5/lib/ROOT.py", line 88, in <module>
+     :     import libPyROOT as _root
+     : ImportError: libpython2.4.so.1.0: cannot open shared object file: No such file or dir
+     : ectory                                                                              
+     Save the current PDF of 281ipbv7 in the meeting page ... done. 
+
+     Restore the original plots for 281ipbv7 ... done. 
+
+     : dhad-10.1.10 fit signal Single_Dp_to_KKpi 281ipbv7 -s interact -t OK.
+     : dhad-10.1.10 fit signal Single_Dp_to_KKpi 281ipbv7 ... done. 
+
+     Save the PDF on mtg page for comparison ... done.
+     
+     Fit the signal region with the delta E sideband parameters ...
+
+     : dhad-10.1.10 fit generic Single_Dp_to_Kspipipi 818ipbv7/argus_low -s interact -t OK.
+
+     : dhad-10.1.10 fit generic diagsingle 818ipbv7/argus_low ... done. 
+
+     : dhad-10.1.10 fit generic diagsingle 818ipbv7/argus_high ... done.
+
+     : dhad-10.1.10 fig generic diagsingle 818ipbv7/argus_low ... one figure: 
+
+     Figure not shown in D0toKpipipi mode:
+
+     : Traceback (most recent call last):
+     :   File "./generic-single-m3-818ipbv7/argus_low.py", line 5, in ?
+     :     fit.single_tag_mode("generic", 3, "818ipbv7/argus_low")
+     :   File "/a/lnx112/nfs/cor/user/xs32/local/work/CLEO/analysis/DHad/src/10.1.10/python/fit/__init__.py", line 159, in single_tag_mode
+     :     tools.eps2png(epsfile)
+     :   File "/a/lnx112/nfs/cor/user/xs32/local/work/CLEO/analysis/DHad/src/10.1.10/python/tools/__init__.py", line 578, in eps2png
+     :     process = subprocess.Popen(args, shell=True)
+     :   File "/nfs/cleo3/Offline/other_sources/pkg/python/Python-2.4/install/lib/python2.4/subprocess.py", line 554, in __init__
+     :     errread, errwrite)
+     :   File "/nfs/cleo3/Offline/other_sources/pkg/python/Python-2.4/install/lib/python2.4/subprocess.py", line 914, in _execute_child
+     :     self.pid = os.fork()
+     : OSError: [Errno 12] Cannot allocate memory
+
+     Manual fix ... OK. 
+
+     : dhad-10.1.10 fig generic diagsingle 818ipbv7/argus_high ... OK.
+
+
+     Create the yields comparison table:
+
+     : dhad-10.1.10 tab cbx vary_argus_single_generic 818ipbv7  OK. 
+
+     Save the table on the mtg2011 page ... done. 
+    
+**** DONE Get the MC truth info for Generic MC
+     :LOGBOOK:
+     CLOCK: [2011-01-10 Mon 11:50]--[2011-01-10 Mon 12:03] =>  0:13
+     CLOCK: [2011-01-10 Mon 10:50]--[2011-01-10 Mon 11:45] =>  0:55
+     CLOCK: [2011-01-10 Mon 09:53]--[2011-01-10 Mon 10:39] =>  0:46
+     CLOCK: [2011-01-10 Mon 08:57]--[2011-01-10 Mon 09:47] =>  0:50
+     CLOCK: [2011-01-07 Fri 12:33]--[2011-01-07 Fri 13:22] =>  0:49
+     CLOCK: [2011-01-07 Fri 10:41]--[2011-01-07 Fri 11:32] =>  0:51
+     :END:
+     
+     : dhad-10.1.10 sel var mctruth generic Single_Dp_to_Kspipipi 818ipbv7/desideband_low -s interact -t  OK.
+
+     : dhad-10.1.10 sel var mctruth generic single 818ipbv7/desideband_low ... done.
+     : dhad-10.1.10 sel var mctruth generic single 818ipbv7/desideband_high ... done. 
+
+     : dhad-10.1.10 tab mctruth generic single 818ipbv7/desideband_low ... done. 
+   
+     Need to inport the mctruth as int ... OK.
+     
+     : dhad-10.1.10 tab mctruth names generic single 818ipbv7/desideband_low ... done.
+    
+     : dhad-10.1.10 tab mctruth generic single 818ipbv7/desideband_high ... done. 
+     : dhad-10.1.10 tab mctruth names generic single 818ipbv7/desideband_high ... done. 
+     
+**** DONE Get the background MC truth 
+     :LOGBOOK:
+     CLOCK: [2011-01-11 Tue 08:35]--[2011-01-11 Tue 09:15] =>  0:40
+     CLOCK: [2011-01-10 Mon 14:01]--[2011-01-10 Mon 14:05] =>  0:04
+     :END:
+
+     : dhad-10.1.10 yld backgrounds generic Single_Dp_to_Kspipipi 818ipbv7/desideband_low -s interact -t OK.
+
+     : dhad-10.1.10 yld backgrounds generic single 818ipbv7/desideband_low ... done.
+
+     : dhad-10.1.10 yld backgrounds generic single 818ipbv7/desideband_high ... done.
+
+     : dhad-10.1.10 tab backgrounds generic single_p 818ipbv7/desideband_low done. 
+     : dhad-10.1.10 tab backgrounds names generic single_p 818ipbv7/desideband_low 
+
+     : dhad-10.1.10 tab backgrounds generic single_p 818ipbv7/desideband_high done. 
+     : dhad-10.1.10 tab backgrounds names generic single_p 818ipbv7/desideband_high done.  
+
+     Put link on mtg page ... done. 
+
+*** DONE Final-state radiation.
+    :LOGBOOK:
+    CLOCK: [2011-01-11 Tue 09:27]--[2011-01-11 Tue 09:32] =>  0:05
+    CLOCK: [2011-01-10 Mon 14:37]--[2011-01-10 Mon 16:32] =>  1:55
+    CLOCK: [2010-11-09 Tue 11:56]--[2010-11-09 Tue 11:59] =>  0:03
+    :END:
+
+    In Monte Carlo simulations, the reduction of DT efficiencies due
+    to FSR is approximately a factor of 2 larger than the reduction of
+    ST efficiencies due to FSR. This leads to branching fraction
+    values larger by 0.5% to 3% than they would be without including
+    FSR in the Monte Carlo simulations. We assign conservative
+    uncertainties of \pm 30% of the FSR correction to the efficiency as
+    the uncertainty in each mode. This uncertainty is correlated
+    across all modes. 
+
+    - Check the Heavy Flavor Average Group: Lorrence's approach for FSR. 
+
+
+    Webpage:
+    http://www.slac.stanford.edu/xorg/hfag/index.html
+
+    DHad and FSR:
+    http://www.slac.stanford.edu/xorg/hfag/charm/hadronic/dhad_15sep09.html
+
+    Used 25%.
+
+    Reproduce the table 18 in old CBX ... not able to find. 
+
+    Reproduce the table VII in PRD for FSR only ... 
+   
+    : dhad-10.1.10 tab web fsr_syst 818ipbv7 
+    
+    Talked with Lawrence, confirmed using the noFSR shift as the base,
+    will use the pre-print on 2010 as the citation for 25%. 
+
+    Save the txt from the noFSR:
+
+    : dhad-10.1.10 tab cbx singletag_sigmc_eff_nofsr 818ipbv7 OK. 
+
+    : dhad-10.1.10 tab cbx mode_dependent_syst 818ipbv7 done. 
+
+*** DONE Resonant substructure
+    :LOGBOOK:
+    CLOCK: [2010-11-09 Tue 11:59]--[2010-11-09 Tue 12:03] =>  0:04
+    :END:
+
+    The observed resonant substructures of three- and four-body decay
+    modes in our simulations are found not to provide a perfect
+    description of the data. Such disagreements can lead to wrong
+    estimates of the efficiency in the simulation. We estimate
+    systematic uncertainties for the three- and four-body modes from
+    the observed discrepancies. The uncertainties in efficiency are
+    not correlated between modes, but the correlations in systematic
+    uncertainties for the efficiency of mode i are taken into account
+    in \epsilon_i, \epsilon_{ij}, and \epsilon_{ii}. 
+
+    - Repeat the Resonant substructure
+
+**** DONE Fisrt try for kpipi0
+
+     Repeat figure 4 for mode D0 to K- pi+ pi0:
+
+     Start from Peter's kpipi0eff.py :
+
+     : dhad-10.1.10 sel trkmtm signal Single_D0_to_Kpipi0 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm signal Single_D0_to_Kpipi0 818ipbv7 ...  done.
+     : dhad-10.1.10 sel trkmtm signal Single_D0B_to_Kpipi0 818ipbv7 ... done. 
+
+     : dhad-10.1.10 fig trkmtm signal Single_D0_to_Kpipi0 818ipbv7 OK.
+     
+     Include with the CC mode:
+     
+     : dhad-10.1.10 sel trkmtm signal Single_D0AndD0B_to_Kpipi0 818ipbv7 -s interact -t OK.
+
+     : dhad-10.1.10 sel trkmtm signal Single_D0AndD0B_to_Kpipi0 818ipbv7 ... done. 
+
+     : dhad-10.1.10 sel trkmtm generic Single_D0AndD0B_to_Kpipi0 818ipbv7 -s interact -t OK.
+
+     : dhad-10.1.10 sel trkmtm generic Single_D0AndD0B_to_Kpipi0 818ipbv7 ... no need for generic MC.  
+
+     Start with kpipi0.py:
+     
+     Need to store the efficiency in the trkmtm process:
+     : dhad-10.1.10 sel trkmtm signal Single_D0_to_Kpipi0 818ipbv7 -s interact -t  OK.
+
+     : dhad-10.1.10 sel trkmtm signal Single_D0_to_Kpipi0 818ipbv7 ... done. 
+
+     : dhad-10.1.10 fig trkmtm signal Single_D0_to_Kpipi0 818ipbv7  OK.
+
+     : dhad-10.1.10 sel trkmtm2 signal Single_D0_to_Kpipi0 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm2 signal Single_D0_to_Kpipi0 818ipbv7 ... not saved.
+
+     Fix the f create bug : 
+     : dhad-10.1.10 sel trkmtm2 signal Single_D0_to_Kpipi0 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm2 signal Single_D0_to_Kpipi0 818ipbv7 ... done.
+
+     Run on data:
+     : dhad-10.1.10 sel trkmtm2 data Single_D0_to_Kpipi0 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm2 data Single_D0_to_Kpipi0 818ipbv7 ... done.
+    
+     Run on generic MC:
+     : dhad-10.1.10 sel trkmtm2 generic Single_D0_to_Kpipi0 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm2 generic Single_D0_to_Kpipi0 818ipbv7 ... done. 
+
+     Plot the cc modes:
+
+     : dhad-10.1.10 fig trkmtm signal Single_D0AndD0B_to_Kpipi0 818ipbv7 OK.
+
+     Need to compare the eff plots between signal MC and generic MC
+     ... no need anymore. Should be the same. 
+    
+     Stage 2 with data and generic MC for CC mode:
+     
+     : dhad-10.1.10 sel trkmtm2 signal Single_D0AndD0B_to_Kpipi0 818ipbv7 -s interact -t  OK.
+     : dhad-10.1.10 sel trkmtm2 signal Single_D0AndD0B_to_Kpipi0 818ipbv7 ... done.
+
+     : dhad-10.1.10 sel trkmtm2 data Single_D0AndD0B_to_Kpipi0 818ipbv7 ... done. 
+    
+     : dhad-10.1.10 sel trkmtm2 generic Single_D0AndD0B_to_Kpipi0 818ipbv7 -s interact -t OK.
+
+     : dhad-10.1.10 sel trkmtm2 generic Single_D0AndD0B_to_Kpipi0 818ipbv7 ... 
+
+
+     Unweight the observed momentum distribution in generic MC:
+
+     Test on the signal MC while waiting for the job to finish:
+     : dhad-10.1.10 fig trkmtm2 signal/data Single_D0AndD0B_to_Kpipi0 818ipbv7 OK.
+
+     Save the effective overall efficiency to file: 
+     : dhad-10.1.10 fig trkmtm2 signal/data Single_D0AndD0B_to_Kpipi0 818ipbv7  OK.
+
+     Waiting for the generic to finish ...
+
+     Ask Peter about the procedure ... sent. 
+
+     Figured with Don. 
+
+     Noticed that the code did not deal with the CC mode. 
+
+
+**** DONE kpipi0 
+
+     Get efficiency from signal MC:
+
+     : dhad-10.1.10 sel trkmtm signal Single_D0_to_Kpipi0 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm signal Single_D0_to_Kpipi0 818ipbv7 ... done. 
+
+     Make the efficiency plot and store the effs: 
+
+     : dhad-10.1.10 fig trkmtm signal Single_D0_to_Kpipi0 818ipbv7 ... done. 
+
+     Get the momentum for data and generic MC:
+
+     : dhad-10.1.10 sel trkmtm2 data Single_D0_to_Kpipi0 818ipbv7 -s interact -t OK.
+
+     : dhad-10.1.10 sel trkmtm2 data Single_D0_to_Kpipi0 818ipbv7 ... done. 
+    
+     : dhad-10.1.10 sel trkmtm2 generic Single_D0_to_Kpipi0 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm2 generic Single_D0_to_Kpipi0 818ipbv7 ... done. 
+
+     Plot the momentum and save the effective overall efficiency to file: 
+     : dhad-10.1.10 fig trkmtm2 generic/data Single_D0_to_Kpipi0 818ipbv7 OK.   
+
+
+**** DONE k3pi
+
+     Get efficiency from signal MC:
+
+     : dhad-10.1.10 sel trkmtm signal Single_D0_to_Kpipipi 818ipbv7 -s interact -t OK.  
+     : dhad-10.1.10 sel trkmtm signal Single_D0_to_Kpipipi 818ipbv7 ... done. 
+
+     Make the efficiency plot and store the effs: 
+
+     : dhad-10.1.10 fig trkmtm signal Single_D0_to_Kpipipi 818ipbv7  OK.
+
+     Get the momentum for data and generic MC:
+
+     : dhad-10.1.10 sel trkmtm2 data Single_D0_to_Kpipipi 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm2 data Single_D0_to_Kpipipi 818ipbv7 ... done. 
+
+     : dhad-10.1.10 sel trkmtm2 generic Single_D0_to_Kpipipi 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm2 generic Single_D0_to_Kpipipi 818ipbv7 ... done. 
+
+     Plot the momentum and save the effective overall efficiency to file: 
+     : dhad-10.1.10 fig trkmtm2 generic/data Single_D0_to_Kpipipi 818ipbv7 OK.
+
+    
+**** DONE kpipi
+ 
+     Get efficiency from signal MC:
+
+     : dhad-10.1.10 sel trkmtm signal Single_Dp_to_Kpipi 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm signal Single_Dp_to_Kpipi 818ipbv7 ... done. 
+
+     Make the efficiency plot and store the effs: 
+
+     : dhad-10.1.10 fig trkmtm signal Single_Dp_to_Kpipi 818ipbv7  OK.
+
+     Get the momentum for data and generic MC:
+
+     : dhad-10.1.10 sel trkmtm2 data Single_Dp_to_Kpipi 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm2 data Single_Dp_to_Kpipi 818ipbv7 ... done. 
+     : dhad-10.1.10 sel trkmtm2 generic Single_Dp_to_Kpipi 818ipbv7 -s interact -t
+     : dhad-10.1.10 sel trkmtm2 generic Single_Dp_to_Kpipi 818ipbv7 ... done.
+
+     Plot the momentum and save the effective overall efficiency to file: 
+     : dhad-10.1.10 fig trkmtm2 generic/data Single_Dp_to_Kpipi 818ipbv7 OK.
+
+
+**** DONE kpipipi0
+
+     Get efficiency from signal MC:
+
+     : dhad-10.1.10 sel trkmtm signal Single_Dp_to_Kpipipi0 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm signal Single_Dp_to_Kpipipi0 818ipbv7 ... done.
+
+     Make the efficiency plot and store the effs: 
+     : dhad-10.1.10 fig trkmtm signal Single_Dp_to_Kpipipi0 818ipbv7 OK.
+
+     Get the momentum for data and generic MC:
+
+     : dhad-10.1.10 sel trkmtm2 data Single_Dp_to_Kpipipi0 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm2 data Single_Dp_to_Kpipipi0 818ipbv7 ... done.
+
+     : dhad-10.1.10 sel trkmtm2 generic Single_Dp_to_Kpipipi0 818ipbv7 -s interact -t OK.
+
+     : dhad-10.1.10 sel trkmtm2 generic Single_Dp_to_Kpipipi0 818ipbv7 ... done.
+
+     Plot the momentum and save the effective overall efficiency to file: 
+     : dhad-10.1.10 fig trkmtm2 generic/data Single_Dp_to_Kpipipi0 818ipbv7 OK.
+
+
+**** DONE kspipi0
+     Get efficiency from signal MC:
+
+     : dhad-10.1.10 sel trkmtm signal Single_Dp_to_Kspipi0 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm signal Single_Dp_to_Kspipi0 818ipbv7 ... done. 
+
+     Make the efficiency plot and store the effs: 
+     : dhad-10.1.10 fig trkmtm signal Single_Dp_to_Kspipi0 818ipbv7 OK.
+     
+     Get the momentum for data and generic MC:
+
+     : dhad-10.1.10 sel trkmtm2 data Single_Dp_to_Kspipi0 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm2 generic Single_Dp_to_Kspipi0 818ipbv7 -s interact -t OK.  
+     : dhad-10.1.10 sel trkmtm2 data Single_Dp_to_Kspipi0 818ipbv7 ... done.
+     : dhad-10.1.10 sel trkmtm2 generic Single_Dp_to_Kspipi0 818ipbv7 ... done.
+
+     Fix the bug in IndexError:
+     : dhad-10.1.10 sel trkmtm2 data Single_Dp_to_Kspipi0 818ipbv7 ... done.
+     : dhad-10.1.10 sel trkmtm2 generic Single_Dp_to_Kspipi0 818ipbv7 ... done. 
+     
+     Plot the momentum and save the effective overall efficiency to file: 
+     : dhad-10.1.10 fig trkmtm2 generic/data Single_Dp_to_Kspipi0 818ipbv7 
+
+
+**** DONE ks3pi
+     Get efficiency from signal MC:
+
+     : dhad-10.1.10 sel trkmtm signal Single_Dp_to_Kspipipi 818ipbv7 -s interact -t OK
+     : dhad-10.1.10 sel trkmtm signal Single_Dp_to_Kspipipi 818ipbv7 ... done. 
+
+     Make the efficiency plot and store the effs: 
+     : dhad-10.1.10 fig trkmtm signal Single_Dp_to_Kspipipi 818ipbv7 OK.
+
+     Get the momentum for data and generic MC:
+
+     : dhad-10.1.10 sel trkmtm2 data Single_Dp_to_Kspipipi 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm2 generic Single_Dp_to_Kspipipi 818ipbv7 -s interact -t OK.
+
+     : dhad-10.1.10 sel trkmtm2 data Single_Dp_to_Kspipipi 818ipbv7 ... done.
+     : dhad-10.1.10 sel trkmtm2 generic Single_Dp_to_Kspipipi 818ipbv7 ... done.
+
+     Plot the momentum and save the effective overall efficiency to file: 
+     : dhad-10.1.10 fig trkmtm2 generic/data Single_Dp_to_Kspipipi 818ipbv7 OK.
+
+
+**** DONE kkpi
+
+     Get efficiency from signal MC:
+
+     : dhad-10.1.10 sel trkmtm signal Single_Dp_to_KKpi 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm signal Single_Dp_to_KKpi 818ipbv7 ... done. 
+
+     Make the efficiency plot and store the effs: 
+     : dhad-10.1.10 fig trkmtm signal Single_Dp_to_KKpi 818ipbv7 OK.
+
+     Get the momentum for data and generic MC:
+
+     : dhad-10.1.10 sel trkmtm2 data Single_Dp_to_KKpi 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel trkmtm2 generic Single_Dp_to_KKpi 818ipbv7 -s interact -t OK.
+
+     : dhad-10.1.10 sel trkmtm2 data Single_Dp_to_KKpi 818ipbv7 ... done.
+     : dhad-10.1.10 sel trkmtm2 generic Single_Dp_to_KKpi 818ipbv7 ... done.
+
+     Plot the momentum and save the effective overall efficiency to file: 
+     : dhad-10.1.10 fig trkmtm2 generic/data Single_Dp_to_KKpi 818ipbv7 OK.
+
+
+**** DONE Make the summary table
+
+     : dhad-10.1.10 tab cbx resonant_syst 818ipbv7 OK.
+
+     Notice the large difference in Kpipipi and KKpi. 
+
+
+**** DONE Get the decay info for k3pi 
+
+     Print out the D+ decay in the =20050525_MCGEN= release:
+
+     : cd $dhad/lib/python
+     : python decparser.py	
+     : (Cmd) readfile  /nfs/cleo3/Offline/rel/20050525_MCGEN/data/DECAY.DEC
+     : (Cmd) explain
+     : Parent particle? D0
+     : Final state? K- pi+ pi+ pi-
+     : 0.035916 Chain: 
+     :         D0 -> a_1+ K-
+     :         a_1+ -> pi+ rho0
+     :         rho0 -> pi+ pi-
+     : 0.01497825 Chain: 
+     :         D0 -> anti-K*0 pi+ pi-
+     :         anti-K*0 -> K- pi+
+     : 0.00971922 Chain: 
+     :         D0 -> anti-K*0 rho0
+     :         anti-K*0 -> K- pi+
+     :         rho0 -> pi+ pi-
+     : 0.0074 Chain: 
+     :         D0 -> K- pi+ pi+ pi-
+     : 0.006 Chain: 
+     :         D0 -> K- pi+ rho0
+     :         rho0 -> pi+ pi-
+     : 0.00154508 Chain: 
+     :         D0 -> K_1- pi+
+     :         K_1- -> K- pi+ pi-
+     : 0.001498 Chain: 
+     :         D0 -> K_1- pi+
+     :         K_1- -> K- rho0
+     :         rho0 -> pi+ pi-
+     : 0.000760023033 Chain: 
+     :         D0 -> K_1- pi+
+     :         K_1- -> anti-K*0 pi-
+     :         anti-K*0 -> K- pi+
+     : 0.00066963 Chain: 
+     :         D0 -> K- omega pi+
+     :         omega -> pi+ pi-
+     : 0.00016183167 Chain: 
+     :         D0 -> anti-K*0 omega
+     :         anti-K*0 -> K- pi+
+     :         omega -> pi+ pi-
+     : 2.60117e-05 Chain: 
+     :         D0 -> K_1- pi+
+     :         K_1- -> K- omega
+     :         omega -> pi+ pi-               
+
+     
+     Explain the new release:
+
+     : python decparser-development.py 
+     : (Cmd) readfile  /nfs/cleo3/Offline/rel/20080624_MCGEN/data/DECAY.DEC
+     : (Cmd) explain
+     : Parent particle? D0
+     : Final state? K- pi+ pi+ pi-
+     : Total 0.077048600879
+     : 0.0369 Chain: 
+     :         D0 -> a_1+ K-
+     :         a_1+ -> pi+ rho0
+     :         rho0 -> pi+ pi-
+     : 0.0159 Chain: 
+     :         D0 -> K- pi+ rho0
+     :         rho0 -> pi+ pi-
+     : 0.0099855 Chain: 
+     :         D0 -> anti-K*0 rho0
+     :         anti-K*0 -> K- pi+
+     :         rho0 -> pi+ pi-
+     : 0.0055 Chain: 
+     :         D0 -> K- pi+ pi+ pi-
+     : 0.00412734 Chain: 
+     :         D0 -> anti-K*0 pi+ pi-
+     :         anti-K*0 -> K- pi+
+     : 0.00160284 Chain: 
+     :         D0 -> K_1- pi+
+     :         K_1- -> K- pi+ pi-
+     : 0.001554 Chain: 
+     :         D0 -> K_1- pi+
+     :         K_1- -> K- rho0
+     :         rho0 -> pi+ pi-
+     : 0.000788435109 Chain: 
+     :         D0 -> K_1- pi+
+     :         K_1- -> anti-K*0 pi-
+     :         anti-K*0 -> K- pi+
+     : 0.00050167 Chain: 
+     :         D0 -> K- omega pi+
+     :         omega -> pi+ pi-
+     : 0.00016183167 Chain: 
+     :         D0 -> anti-K*0 omega
+     :         anti-K*0 -> K- pi+
+     :         omega -> pi+ pi-
+     : 2.69841e-05 Chain: 
+     :         D0 -> K_1- pi+
+     :         K_1- -> K- omega
+     :         omega -> pi+ pi-                  
+
+
+     Check the mass of a1:
+
+     : /nfs/cleo3/Offline/rel/20050525_MCGEN/data/evt.pdl
+     : type name id  mass/GeV width/GeV max_Dm/GeV 3*charge 2*spin lifetime*c/mm Lund-KC
+     : add  p Meson   a_1+  20213  1.23   0.4   0.6     3       2       0 181
+     
+     : /nfs/cleo3/Offline/rel/20080624_MCGEN/data/evt.pdl
+
+     : add  p Meson   a_1+  20213  1.23   0.4    0.6    3       2       0 181
+
+     a1+ is not changed. 
+
+     rho0 has changed its madd from 0.7685 to 0.7755 (0.91%). 
+
+     This account for a lower momentum for K-.  
+
+     May plot the CC mode ...
+
+     
+**** DONE Get the decay info for kkpi
+ 
+     281/pb: 
+
+     : cd $dhad/lib/python
+     : python decparser.py	
+     : (Cmd) readfile  /nfs/cleo3/Offline/rel/20050525_MCGEN/data/DECAY.DEC
+     : (Cmd) explain
+     : Parent particle? D+ 
+     : Final state? K+ K- pi+
+     : 0.0087 Chain: 
+     :         D+ -> K+ K- pi+
+     : 0.003437 Chain: 
+     :         D+ -> phi pi+
+     :         phi -> K+ K-
+     : 0.00279594 Chain: 
+     :         D+ -> K+ anti-K*0
+     :         anti-K*0 -> K- pi+
+
+     818/pb:
+
+     : python decparser-development.py 
+     : (Cmd) readfile  /nfs/cleo3/Offline/rel/20080624_MCGEN/data/DECAY.DEC
+     : (Cmd) explain
+     : Parent particle? D+
+     : Final state? K+ K- pi+
+     : Total 0.0100164
+     : 0.00366685 Chain: 
+     :         D+ -> anti-K_0*0 K+
+     :         anti-K_0*0 -> K- pi+
+     : 0.0031915 Chain: 
+     :         D+ -> phi pi+
+     :         phi -> K+ K-
+     : 0.00299565 Chain: 
+     :         D+ -> K+ anti-K*0
+     :         anti-K*0 -> K- pi+
+     : 0.0001 Chain: 
+     :         D+ -> K+ K- pi+
+     : 4.4e-05 Chain: 
+     :         D+ -> f_0 pi+
+     :         f_0 -> K+ K-
+     : 1.84e-05 Chain: 
+     :         D+ -> f_2 pi+
+     :         f_2 -> K+ K-              
+
+     Check the anti-K_0*0 particle: 
+     :  add  p Meson anti-K_0*0  -10311  1.414   0.290   0.6  0   0   0 0
+     
+     Pause here. 
+
+
+**** DONE Fix the problem for k3pi
+
+     Prepare for the meeting page ... OK.
+
+     Check the decay models ... composition. 
+
+     Re-sign the mass and run for.
+
+     Find the K spectrum. 
+
+     Check the correction, pi+ ... 
+
+     Check the symmetry and corrections. 
+
+     Found the problem in the trkmtm2 stage. 
+
+     Get the momentum for data and generic MC:
+
+     : dhad-10.1.10 sel trkmtm2 data Single_D0_to_Kpipipi 818ipbv7 -s interact -t OK.     : dhad-10.1.10 sel trkmtm2 generic Single_D0_to_Kpipipi 818ipbv7 -s interact -t OK. 
+     : dhad-10.1.10 sel trkmtm2 data Single_D0_to_Kpipipi 818ipbv7 ... done.
+     : dhad-10.1.10 sel trkmtm2 generic Single_D0_to_Kpipipi 818ipbv7 ... done.
+
+     Plot the momentum and save the effective overall efficiency to file: 
+     : dhad-10.1.10 fig trkmtm2 generic/data Single_D0_to_Kpipipi 818ipbv7 OK.
+
+     Re-make the summary table:
+     : dhad-10.1.10 tab cbx resonant_syst 818ipbv7 
+
+     Now the syst are the same level as before. 
+
+     | Mode    | 281/pb | 818/pb (old) | 818/pb (new) |
+     |---------+--------+--------------+--------------|
+     | Kpipipi |    1.2 |         5.96 |         1.21 |
+
+     Update the figures and tables in the cbx ... done. 
+
+     
+
+
+
+
+**** CANCELED Check the KKpi
+
+     Make sure KKpi name correct in the first place ... OK.
+
+     Check the names in the trkmtm2 stage... no obvious problem
+     found. 
+
+     Pause here for later inspection. 
+
+     Ask Ed to release CBX ... sent. 
+
+     OK from Qing, I'll just upload it. 
+
+     Upload the ps fila and the CBX number is : CBX2011-002. 
+
+*** DONE Multiple candidates
+    :LOGBOOK:
+    CLOCK: [2010-11-09 Tue 12:03]--[2010-11-09 Tue 12:10] =>  0:07
+    :END:
+
+    In our event selection, we chose a single candidate per event per
+    mode. So, in general, because the correct candidate was not always
+    chosen, our signal efficiencies depend on the rate at which events
+    with multiple candidates occur.  Using signal Monte Carlo samples,
+    we estimate the probability of choosing the wrong candidate,
+    P,  when there are multiple candidates present. 
+
+    We also study the accuracy with which the Monte Carlo simulations
+    model the multiple candidate rate, R, in data. If P is nonzero and
+    if R differs between data and Monte Carlo events, then the signal
+    efficiencies measured in Monte Carlo simulations are
+    systematically biased; if only one of these conditions is true,
+    then there is no eficiency bias.
+
+    Based on the measured values of P(R_data/R_MC - 1), we assign the
+    systematic uncertainties to ST effieiencies. For each decay mode
+    the multiple candidate systemtic is correlated between the D and
+    \bar{D} decay for single tags. 
+
+    Repeat. 
+
+**** DONE Multiplicity 
+     Ask the "multiplicity shifts are designed to be about three times
+     larger than the observed discrepancies", and why O(0.2%) is not
+     chosen as a systematic uncertainty? 
+
+     Produce the "Table 21: Reweighting ratios":
+
+     Check Qing's CBX ... not able to find the "3\sigma" discrepancy, ask on
+     meeting. 
+
+     Talked with Chul Su, need to ask Qing ... sent. 
+
+     Uploaded Qing's report. 
+
+     Understand Table 21 ... 
+
+     Proceed after table 21:
+
+     Read Peter's code =mult_spect5.py=, 
+
+     : dhad-10.1.10 sel multspec inc signal Single_D0_to_Kpipi0 818ipbv7 -s interact -t OK.
+
+     : dhad-10.1.10 sel multspec inc signal Single_D0_to_Kpipi0 818ipbv7  ... OK.
+
+     Keep it for the previous for now.
+
+     Continue ... done with Lake Louise reports. 
+
+     Keep using the table 21, and proceed. 
+
+     Recall message from Jim:
+
+     "3 sigma" is really ' 3 "sigma" ' .... that is, the quotation
+     marks are indicating that, as with so many systematic
+     uncertainties, the connection to an actual sigma is a bit weak.
+     It is just a number taken to be representative of the scale of
+     possible mistakes.  The "3", on the other hand, is exact, and is
+     just there because the effect is so small that they had to scale
+     it up by a factor of 3 to see anything; then they scale it back
+     down by 3 at the end.  This means that the 0.6% effect is really a
+     0.2% systematic error, which they then dismiss.
+
+     Sent email to Peter. 
+
+     Accept table 21 and move on.
+
+     : dhad-10.1.10 sel multspec inc signal Single_D0_to_Kpipi0 818ipbv7 -s interact -t  
+     : dhad-10.1.10 sel multspec inc signal Single_D0_to_Kpipi0 818ipbv7  -t OK. 
+     : dhad-10.1.10 sel multspec inc signal single_p 818ipbv7 ... done. 
+
+     : dhad-10.1.10 sel multspec dec signal Single_D0_to_Kpipi0 818ipbv7 -s interact -t OK. 
+     : dhad-10.1.10 sel multspec dec signal single_p 818ipbv7 ... done. 
+
+     Get the efficiency table:
+     
+     : dhad-10.1.10 tab cbx reweight_results 818ipbv7 OK. 
+
+     Update the CBX ... OK. 
+
+     
+
+**** DONE Multiple candidate rate 
+     Consider the effect of the multiple candidate rate. 
+
+     Split the samples: 
+
+     : dhad-10.1.10 sel multcand signal Single_D0_to_Kpi 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel multcand signal Single_D0_to_Kpi 818ipbv7 OK.
+
+     : dhad-10.1.10 sel multcand signal single 818ipbv7 ... 
+
+     : dhad-10.1.10 sel multcand data Single_D0_to_Kpi 818ipbv7 -s interact OK. 
+
+     : dhad-10.1.10 sel multcand data single 818ipbv7 ...  
+
+     
+     Fit mBC:
+
+     : dhad-10.1.10 fit signal Single_D0_to_Kpi 818ipbv7/single_candidate -s interact -t OK.
+
+     : dhad-10.1.10 fit signal Single_D0_to_Kpi 818ipbv7/multiple_candidate -s interact -t OK.
+
+     : dhad-10.1.10 fit signal single_p 818ipbv7/single_candidate ... done. 
+     : dhad-10.1.10 fit signal single_p 818ipbv7/multiple_candidate ... done. 
+
+     : dhad-10.1.10 fit data Single_D0_to_Kpi 818ipbv7/multiple_candidate -s interact -t  OK.
+
+     : dhad-10.1.10 fit data single_p 818ipbv7/single_candidate ... done.
+     : dhad-10.1.10 fit data single_p 818ipbv7/multiple_candidate ... done.
+
+     Store the figures:
+
+     : dhad-10.1.10 fig signal single_p 818ipbv7/single_candidate  ...
+     Skipped mode 1.
+     
+     : dhad-10.1.10 fig signal single_p 818ipbv7/multiple_candidate  ...
+
+     Skipped mode 3, 201. 
+
+     : dhad-10.1.10 fig data single_p 818ipbv7/single_candidate  ... OK.
+     : dhad-10.1.10 fig data single_p 818ipbv7/multiple_candidate  ... OK.
+
+
+     Miss the Kpipi0 mode in signal MC single candidate: 
+     : dhad-10.1.10 fit signal Single_D0_to_Kpipi0 818ipbv7/single_candidate -s interact -t 
+     
+     Error message:
+
+     : x, m_xmin, m_xmax:1.83 1.83 1.885
+     : x-m_xmin:-3.1471e-07
+     : python: RooParmFcn.cc:129: double RooParmFcn::getVal(double): Assertion `x>=m_xmin' failed.      
+
+     Check the log... not fit. Selection log ... OK.
+     
+     Check the fitting script for this mode... 
+
+     Check the normal fitting log: 
+
+     Noticec 11,486 ignored out of 469,319 (2.4%).
+
+     Check the 281/pb fitting log: 0 ignored for 7.06. 
+
+     Check the 281/pb fitting using the new MC: ignored 3817 out of
+     156429 (2.4%). This comes from the D-Tagging requirement. (Peter).
+
+     So, there is something wrong with the new MC for this mode. -- Not
+     the case. 
+
+     Re-select events, get rid off less than 1.83 events:
+     
+     : dhad-10.1.10 sel multcand signal Single_D0_to_Kpipi0 818ipbv7 ... done.
+
+     : dhad-10.1.10 fit signal Single_D0_to_Kpipi0 818ipbv7/single_candidate -s interact OK.
+
+     : dhad-10.1.10 fit signal Single_D0_to_Kpipi0 818ipbv7/single_candidate ... 
+
+
+     Miss the Kpipipi, Kpipipi0 in multiple candidate:
+
+     : dhad-10.1.10 sel multcand signal Single_D0_to_Kpipipi 818ipbv7 ... done.
+     : dhad-10.1.10 sel multcand signal Single_D0B_to_Kpipipi 818ipbv7 ... done. 
+     
+     : dhad-10.1.10 sel multcand signal Single_Dp_to_Kpipipi0 818ipbv7 ... done.
+     : dhad-10.1.10 sel multcand signal Single_Dm_to_Kpipipi0 818ipbv7 ... done.
+
+
+     : dhad-10.1.10 fit signal Single_D0_to_Kpipipi 818ipbv7/multiple_candidate -s interact OK.
+     : dhad-10.1.10 fit signal Single_D0_to_Kpipipi 818ipbv7/multiple_candidate ...
+
+     : dhad-10.1.10 fit signal Single_Dp_to_Kpipipi0 818ipbv7/multiple_candidate -s interact OK.
+     : dhad-10.1.10 fit signal Single_Dp_to_Kpipipi0 818ipbv7/multiple_candidate ...
+
+
+     Store the figures:
+
+     : dhad-10.1.10 fig signal single_p 818ipbv7/single_candidate  ... OK.
+    
+     : dhad-10.1.10 fig signal single_p 818ipbv7/multiple_candidate  ... OK.
+
+     
+     Double tag MC samples.
+
+     Split the samples: 
+
+     : dhad-10.1.10 sel multcand signal Double_D0_to_Kpi__D0B_to_Kpi 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel multcand signal Double_D0_to_Kpi__D0B_to_Kpi 818ipbv7 -t OK. 
+
+     : dhad-10.1.10 sel multcand signal Double_D0_to_Kpi__D0B_to_Kpipipi 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel multcand signal Double_D0_to_Kpipi0__D0B_to_Kpi 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel multcand signal Double_D0_to_Kpipi0__D0B_to_Kpipipi 818ipbv7 -s interact -t  OK. 
+
+     : dhad-10.1.10 sel multcand signal Double_Dp_to_Kpipipi0__Dm_to_Kpipi 818ipbv7 -s interact -t OK.
+
+     : dhad-10.1.10 sel multcand signal cleandouble 818ipbv7 ... done. 
+
+     Fit mBC:
+     : dhad-10.1.10 fit signal Single_D0_to_Kpipipi 818ipbv7/multiple_candidate/cleandouble -s interact -t OK.
+
+     : dhad-10.1.10 fit signal Single_Dp_to_Kpipi 818ipbv7/single_candidate/cleandouble -s interact -t OK.
+
+     : dhad-10.1.10 fit signal single_p 818ipbv7/single_candidate/cleandouble ... done.
+     : dhad-10.1.10 fit signal single_p 818ipbv7/multiple_candidate/cleandouble ... done.
+
+     : dhad-10.1.10 fig signal single_p 818ipbv7/single_candidate/cleandouble ... problem in the ref mode. 
+     
+    : dhad-10.1.10 fig signal single_p 818ipbv7/multiple_candidate/cleandouble ... problem in the ref mode. 
+
+     Fix the ref mode in selection: 
+     : dhad-10.1.10 sel multcand signal Double_D0_to_Kpi__D0B_to_Kpi 818ipbv7 -s interact -t OK.
+
+     : dhad-10.1.10 sel multcand signal Double_D0_to_Kpi__D0B_to_Kpi 818ipbv7 ... done. 
+
+     Fix the double counting in the fitting ... OK.
+
+
+     : dhad-10.1.10 fit signal Single_D0_to_Kpi 818ipbv7/single_candidate/cleandouble ... done.
+
+     : dhad-10.1.10 fit signal Single_D0_to_Kpi 818ipbv7/multiple_candidate/cleandouble ... done.
+
+     
+     : dhad-10.1.10 sel multcand signal Double_Dp_to_Kpipi__Dm_to_Kpipi 818ipbv7 -s interact -t OK.
+     : dhad-10.1.10 sel multcand signal Double_Dp_to_Kpipi__Dm_to_Kpipi 818ipbv7 ... done.
+
+     : dhad-10.1.10 fit signal Single_Dp_to_Kpipi 818ipbv7/single_candidate/cleandouble  ... done.
+     : dhad-10.1.10 fit signal Single_Dp_to_Kpipi 818ipbv7/multiple_candidate/cleandouble ... done.
+
+     Store the figures again: 
+     : dhad-10.1.10 fig signal single_p 818ipbv7/single_candidate/cleandouble ... OK.
+     
+    : dhad-10.1.10 fig signal single_p 818ipbv7/multiple_candidate/cleandouble ... OK.
+
+     Create table for CBX:
+
+     : dhad-10.1.10 tab cbx syst_multcand 818ipbv7 OK.
+
+
+
+**** DONE Check the F_MC process
+     No error found. 
+     
+**** DONE Use Generic MC for F_MC
+     Split samples for generic MC:
+     
+     : dhad-10.1.10 sel multcand generic Single_D0_to_Kpi 818ipbv7 -s interact -t OK.
+
+     : dhad-10.1.10 sel multcand generic single 818ipbv7 ... done. 
+
+     Fit mBC:
+     : dhad-10.1.10 fit generic Single_D0_to_Kpi 818ipbv7/multiple_candidate -s interact -t OK.
+
+     : dhad-10.1.10 fit generic single_p 818ipbv7/single_candidate ... done. 
+     : dhad-10.1.10 fit generic single_p 818ipbv7/multiple_candidate ... done. 
+
+     Save figures:
+     : dhad-10.1.10 fig generic single_p 818ipbv7/single_candidate OK.
+     : dhad-10.1.10 fig generic single_p 818ipbv7/multiple_candidate OK.
+
+     Re-make the table:
+
+     : dhad-10.1.10 tab cbx syst_multcand 818ipbv7 OK. 
+ 
+*** DONE Luminosity.
+    :LOGBOOK:
+    CLOCK: [2010-11-09 Tue 12:10]--[2010-11-09 Tue 12:11] =>  0:01
+    :END:
+
+    For the e^{+} e^{-} \to D \bar{D} peak cross section measurements, we
+    include additional uncertainties from the luminosity measurement
+    (1.0%). 
+
+    Use the same 1.0%. 
+
+
+** Results [44%]
+*** STARTED Results for Generic MC (818ipbv7)
+   
+**** DONE Get the BFs in the generic MC:
+
+     : cd $dhad/lib/python
+     : python decparser-development.py 
+     : (Cmd) readfile  /nfs/cleo3/Offline/rel/20080624_MCGEN/data/DECAY.DEC
+     : (Cmd) explain
+     : Parent particle? D0
+     : Final state? K- pi+ 
+     : Total 0.0382
+     
+     : Parent particle? D0
+     : Final state? K- pi+  pi0 
+     : Total 0.135
+
+     : Parent particle? D0
+     : Final state? K- pi+ pi- pi+ 
+     : Total 0.0770
+
+     : Parent particle? D+ 
+     : Final state? K- pi+ pi+ 
+     : Total 0.0951
+
+     : Parent particle? D+ 
+     : Final state? K- pi+ pi+ pi0  
+     : Total 0.0599
+
+     : Parent particle? D+ 
+     : Final state? K_S0 pi+ 
+     : Total 0.0147
+
+     : Parent particle? D+ 
+     : Final state? K_S0 pi+ pi0 
+     : Total 0.0700
+
+     : Parent particle? D+ 
+     : Final state? K_S0 pi+ pi+ pi-  
+     : Total 0.0310
+
+     : Parent particle? D+ 
+     : Final state? K+ K- pi+ 
+     : Total 0.0100
+
+     Run the fitter:
+     : dhad-10.1.10 brf 818ipbv7/generic  ... done. 
+
+     Fit failed! 
+
+     Checked the data external bkg file, not this problem. 
+
+     Talked with Werner, change the data seeds:
+
+     : dhad-10.1.10 brf 818ipbv7/generic ... OK. 
+
+     Extract the BFs:
+
+     : dhad-10.1.10 tab cbx fitResultsMC 818ipbv7/generic 
+
+     Ask Peter how to get the "Generated Value" for generic MC, reply:
+     " I counted using the MC truth information.  You need to get ntuples
+     based on the full MC generation though, not just the D skim."
+
+     Count the number of ddbars:
+
+     Read Peter's code =count_events_in_generic.py= ...
+
+     : dhad-10.1.10 tab entries ddbars generic 818ipbv7 -t 
+
+     Ask Peter about the full MC ntuple ... sent. 
+
+     Create the table for events:
+
+     | Data set | Events Generated | D0D0bar ( 0.5574) | DpDm (0.4426) |
+     |----------+------------------+-------------------+---------------|
+     | data31   |          2463457 |         1373130.9 |     1090326.1 |
+     | data32   |          3933747 |         2192670.6 |     1741076.4 |
+     | data33   |           794417 |         442808.04 |     351608.96 |
+     | data35   |          6161207 |         3434256.8 |     2726950.2 |
+     | data36   |          8843871 |         4929573.7 |     3914297.3 |
+     | data37   |         14060233 |         7837173.9 |     6223059.1 |
+     |----------+------------------+-------------------+---------------|
+     | data43   |         15031566 |         8378594.9 |     6652971.1 |
+     | data44   |         21707102 |         12099539. |     9607563.3 |
+     | data45   |         14007481 |         7807769.9 |     6199711.1 |
+     | data46   |         17749619 |         9893637.6 |     7855981.4 |
+     |----------+------------------+-------------------+---------------|
+     | Total    |        104752700 |         58389155. |     46363545. |
+     #+TBLFM: $3=$2*0.5574::$4=$2*0.4426::@12$2=vsum(@2$2..@11$2)
+
+     Need to get the BFs for generic MC based on the dec file of
+     =20080215_MCGEN= ... same as before. 
+   
+     : dhad-10.1.10 tab cbx fitResultsMC 818ipbv7/generic 
+  
+     Made other talbes into CBX ... done. 
+
+     Noticed 0 probablility in the fitting. 
+
+     Talked with Werner, noticed the residuals are wrong in the
+     mode 1. Need to check the yields, effs, and bkgs.
+
+     Talked with Chul Su, there are numbers from DTag page. 
+
+     Check the backgrounds:
+
+     Look at files in Peter's =werner_scripts= dir. 
+
+     Update the bfs for other modes:
+
+     : cd $dhad/lib/python
+     : python decparser-development.py 
+     : (Cmd) readfile  /nfs/cleo3/Offline/rel/20080215_MCGEN/data/DECAY.DEC
+     : explain
+     
+     : Parent particle? D0
+     : Final state? K+ pi-
+     : Total 0.00014
+     : 
+     : Parent particle? D0
+     : Final state? K+ pi- pi0
+     : Total 0.0003
+     :     
+     : Parent particle? D0
+     : Final state? K+ pi- pi- pi+
+     : Total 0.00025
+     : 
+     : Parent particle? D0
+     : Final state? K- K_S0 pi+                                                             
+     : Total 0.00343148
+     : 
+     : Parent particle? D0
+     : Final state? K+ K_S0 pi-
+     : Total 0.00263274
+     : 
+     : Parent particle? D+
+     : Final state? K_S0 K_S0 pi+
+     : Total 0.0062092
+
+     Update BFs: 
+     : dhad-10.1.10 brf 818ipbv7/generic ... done. 
+
+     Still have large chi2 for Residuals: 
+
+     Residuals:
+     D02K-Pi+Pi0: 20496.5 +- 5192.24, chi2 = 15.583
+     D0b2K+Pi-Pi0: -18633.8 +- 5140.25, chi2 = 13.1412
+     D02K-Pi+Pi+Pi-: -8428.17 +- 3319.71, chi2 = 6.44566
+     D0b2K+Pi-Pi-Pi+: 8450.72 +- 3314.42, chi2 = 6.50087
+     D+2K-Pi+Pi+: 6766.37 +- 2911.57, chi2 = 5.40078
+     D-2K+Pi-Pi-: -6570.52 +- 2887.29, chi2 = 5.17868
+     D+2KsPi+Pi0: 11672.5 +- 4368.03, chi2 = 7.14091
+     D-2KsPi-Pi0: -12502 +- 4328.73, chi2 = 8.34144
+
+     Ask Peter ahead of meeting ... sent. 
+     
+     Reply from Peter: "Some of the double tag residuals are very
+     large - can you double check that the yields you extract make
+     sense for those modes?" 
+
+     D02K-Pi+Pi0/D0b2K+Pi-Pi-Pi+: 6767.62 +- 1937.31, chi2 = 12.2032
+     D02K-Pi+Pi+Pi-/D0b2K+Pi-: -2491.56 +- 739.442, chi2 = 11.3536
+     D02K-Pi+Pi+Pi-/D0b2K+Pi-Pi0: -15389.6 +- 1892.29, chi2 = 66.142
+     D02K-Pi+Pi+Pi-/D0b2K+Pi-Pi-Pi+: 4687.55 +- 1292.14, chi2 = 13.1606
+
+     Check D02K-Pi+Pi+Pi-/D0b2K+Pi-Pi0 ... status OK. 
+
+**** STARTED Count the number of generated modes 
+     
+     Start the proc: 
+
+     Try the plain proc first:
+
+     : cd $src/proc
+     : mkproc PlainProc
+     
+     Try proc with mc:
+
+     : mkproc -mc MCProc ... with DecayTree info. 
+
+     Try proc with tuple:
+
+     : mkproc -tuple TupleProc 
+
+     Use mc and tuple together:
+     : mkproc -mc -tuple MCDecayProc ... failed to complie with tuple. 
+
+     Just use mc for now.
+
+     : mkproc -mc MCDecayProc ... compile OK.
+     
+     Read page:
+     
+     https://www.lepp.cornell.edu/~cleo3/development/src/MCInfo/Doc/decaytree_info.htm
+
+     
+
+     
+
+     
+     
+*** DONE Results for Lake Louise (818ipbv8)
+    
+    Update the signal line shape syst:
+
+    : dhad-10.1.10 tab cbx vary_mass_single 818ipbv7 OK.
+    : dhad-10.1.10 tab cbx vary_width_single 818ipbv7 OK.
+    : dhad-10.1.10 tab cbx vary_R_single 818ipbv7 OK.
+    : dhad-10.1.10 tab cbx singletag_sigmc_eff 818ipbv7 OK.  
+    : dhad-10.1.10 tab cbx singletag_de_syst 818ipbv7 OK.
+    : dhad-10.1.10 tab cbx signal_line_shape_syst 818ipbv7 OK.
+    : dhad-10.1.10 tab cbx resonant_syst 818ipbv7 OK. 
+
+    : dhad-10.1.10 tab cbx mode_dependent_syst 818ipbv7 OK.
+
+    Update the table 18 in the 281/pb CBX ... OK.
+
+    : dhad-10.1.10 tab cbx mode_dependent_syst 818ipbv7  
+
+    Update the DCSD:
+    http://www.slac.stanford.edu/xorg/hfag/charm/CHARM10/results_mix+cpv.html
+
+    : dhad-10.1.10 tab cbx dcsd_correction 818ipb7 OK.
+
+    The updated items:
+    
+    1. ST Background modeling 
+    2. Delta E requirement
+    3. Signal lineshape
+    4. FSR
+    5. Trigger
+    6. K/pi tracking
+    7. pi0 efficiency ( 1.5% for all pi0 modes. )
+    8. DCSD corrections 
+
+    : dhad-10.1.10 brf 818ipbv8  
+
+    Compare with 2818pbv0:
+
+    : dhad-10.1.10 tab compare brf_data_results 281ipbv0 818ipbv8 
+
+    : dhad-10.1.10 tab compare brf_data_results 818ipbv7 818ipbv8 
+
+    Plot the BF comparison:
+
+    From dir:
+    : /nfs/cor/user/wsun/cleo-c/dhad/pdgCompare/
+
+    : cd $src/mnf
+    : mn_fit brs.mnf
+
+    Create command:
+    
+    : dhad-10.1.10 fig brs pdg2004 281ipbv0 818ipbv8 OK.
+
+    Compare with PDG2010:
+
+    : dhad-10.1.10 fig brs pdg2010 281ipbv0 818ipbv8 OK. 
+
+*** DONE Resulst with imaginary best senario (818ipbv9)
+
+    Improve all of the syst in 'ST Background modeling'.
+    | Mode     | 281/pb | 818ipbv8 | 818ipbv9 |
+    |----------+--------+----------+----------|
+    | Kpi      |    0.4 |     0.59 |      0.4 |
+    | Kpipi0   |    1.0 |      1.2 |      1.0 |
+    | Kpipipi  |    0.4 |     0.64 |      0.4 |
+    | Kpipi    |    0.4 |     0.41 |     0.41 |
+    | Kpipipi0 |    1.5 |     3.31 |      1.0 |
+    | Kspi     |    0.4 |     0.91 |      0.3 |
+    | Kspipi0  |    1.0 |     1.46 |      1.0 |
+    | Kspipipi |    1.0 |     1.24 |      1.0 |
+    | KKpi     |    1.0 |     0.80 |      0.8 |
+
+    : dhad-10.1.10 brf 818ipbv9   
+
+    : dhad-10.1.10 tab compare brf_data_results 281ipbv0 818ipbv9 
+
+    : dhad-10.1.10 tab compare brf_data_results 818ipbv8 818ipbv9 
+    
+*** DONE Results with first completed syst and bkgs (818ipbv10)
+    Use updated syst and bkgs:
+
+    : dhad-10.1.10 tab cbx mode_dependent_syst 818ipbv7 OK. 
+
+    Update the BFs:
+    : dhad-10.1.10 brf 818ipbv10 done.
+
+    Compare with the Lake Louise Result (818ipbv8):
+
+    : dhad-10.1.10 tab compare brf_data_results 818ipbv8 818ipbv10 
+    
+    Need to complete the rest of the tables... done. 
+    
+*** DONE Results with updated multipion backgrounds (818ipbv11)
+
+    Update the BFs:
+    : dhad-10.1.10 brf 818ipbv11 ... done. 
+
+    Compare with the Lake Louise Result (818ipbv8):
+
+    : dhad-10.1.10 tab compare brf_data_results 818ipbv8 818ipbv11 
+    
+    Compare with the last one (818ipbv10)
+
+    : dhad-10.1.10 tab compare brf_data_results 818ipbv10 818ipbv11 
+
+    Update the CBX ... done. 
+    
+
+
+    
+
+*** STARTED Update the DEC file for signal MC (818ipbv12)
+**** DONE Generate Signal MC with new DEC file 
+***** First check
+      Check one file:
+      : Single_D0_to_Kpipipi.dec
+      
+      From the parser:
+      
+      : cd $dhad/lib/python
+      : python decparser-development.py 
+      : (Cmd) readfile  /nfs/cleo3/Offline/rel/20080624_MCGEN/data/DECAY.DEC
+      : (Cmd) explain
+      : Parent particle? D0
+      : Final state? K- pi+ pi+ pi-   
+      : Total 0.077048600879
+      : 0.0369 Chain: 
+      :         D0 -> a_1+ K-
+      :         a_1+ -> pi+ rho0
+      :         rho0 -> pi+ pi-
+      : 0.0159 Chain: 
+      :         D0 -> K- pi+ rho0
+      :         rho0 -> pi+ pi-
+      : 0.0099855 Chain: 
+      :         D0 -> anti-K*0 rho0
+      :         anti-K*0 -> K- pi+
+      :         rho0 -> pi+ pi-
+      : 0.0055 Chain: 
+      :         D0 -> K- pi+ pi+ pi-
+      : 0.00412734 Chain: 
+      :         D0 -> anti-K*0 pi+ pi-
+      :         anti-K*0 -> K- pi+
+      : 0.00160284 Chain: 
+      :         D0 -> K_1- pi+
+      :         K_1- -> K- pi+ pi-
+      : 0.001554 Chain: 
+      :         D0 -> K_1- pi+
+      :         K_1- -> K- rho0
+      :         rho0 -> pi+ pi-
+      : 0.000788435109 Chain: 
+      :         D0 -> K_1- pi+
+      :         K_1- -> anti-K*0 pi-
+      :         anti-K*0 -> K- pi+
+      : 0.00050167 Chain: 
+      :         D0 -> K- omega pi+
+      :         omega -> pi+ pi-
+      : 0.00016183167 Chain: 
+      :         D0 -> anti-K*0 omega
+      :         anti-K*0 -> K- pi+
+      :         omega -> pi+ pi-
+      : 2.69841e-05 Chain: 
+      :         D0 -> K_1- pi+
+      :         K_1- -> K- omega
+      :         omega -> pi+ pi-
+      
+***** Setup src 11.4 
+      Tag the 10.1.10 ... done. 
+
+      : setdhad 11.4 OK.
+
+***** Parse the Kpipipi dec
+
+      : dhad-11.4 tab parse dec 20080624_MCGEN explain D0 to K- pi+ pi+ pi- OK.
+
+      List the details:
+
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D0 to K- pi+ pi+ pi- OK.
+
+      Edit the fragment file... done. 
+
+      : dhad-11.4 tab parse dec 20080624_MCGEN details anti-D0 to K+ pi- pi- pi+ ... OK.
+
+      Email Peter to confirm ... sent. 
+
+***** Parse the rest of the modes
+      Mode 0:
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D0 to K- pi+ OK. no change.
+      : dhad-11.4 tab parse dec 20080624_MCGEN details anti-D0 to K+ pi- OK.
+
+      Mode 1: 
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D0 to K- pi+ pi0  no change. 
+
+      Mode 200:
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D+ to K- pi+ pi+ no change.
+
+      Mode 201:
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D+ to K- pi+ pi+ pi0 ... update OK.
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D- to K+ pi- pi- pi0  ... update OK. 
+      
+      Mode 202:
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D+ to K_S0 pi+ ... update OK.
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D- to K_S0 pi- ... update OK.
+
+      Mode 203:
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D+ to K_S0 pi+ pi0 ... update OK.
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D- to K_S0 pi- pi0 ... update OK.
+
+      Mode 204:
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D+ to K_S0 pi+ pi+ pi- ... update OK.
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D- to K_S0 pi- pi- pi+ ... update OK.
+
+      Mode 205:
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D+ to K+ K- pi+ ... update OK.
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D- to K- K+ pi- ... update OK.
+
+      Since only two modes (0, 1, 200) don't change, generate all the signal
+      MC again. 
+
+***** Reset the BFs to match the total. 
+      Mode 3:
+      : dhad-11.4 tab parse dec 20080624_MCGEN details D0 to K- pi+ pi+ pi-  ... OK.
+      
+      : dhad-11.4 tab parse dec 20080624_MCGEN explain D0 to K- pi+ pi+ pi-  ... OK.
+
+      Batch output:
+
+      Add header file ... OK.
+
+      Fix my my bug ... OK.
+
+      Fix sci bfs ... OK. 
+
+      : dhad-11.4 tab parse tag_fragments 818ipbv12 ... OK. 
+
+***** Test run with CLEOG
+      Test the one run:
+      : dhad-11.4 gen cleog Single_Dp_to_Kspipipi 818ipbv12 task 1 -s interact  
+
+      Error:
+      : EvtGen:In readDecayFile, reading:/home/xs32/work/CLEO/analysis/DHad/dat/signal/818ipb
+      : v12/src/tag_decfiles/Single_Dp_to_Kspipipi.dec                                      
+      : EvtGen:Redefined decay of vpho
+      : EvtGen:No default probmax for (VPHOTOVISR) vpho -> psi(3770) gamma 
+      : This is fine for development, but must be provided for production.
+      : EvtGen:Never fear though - the decay will use the 
+      : EvtGen:500 iterations to build up a good probmax 
+      : EvtGen:before accepting a decay. 
+      : EvtGen:Redefined decay of psi(3770)
+      : EvtGen:Warning, sum of branching fractions for myD+ is 0.13276
+      : EvtGen:rescaled to one! 
+      : EvtGen:VVS_PWAVE did not get the correct daughter spin d=0
+      : myanti-K'_10p -> myanti-K0p rho0  (VVS_PWAVE):
+      : EvtGen:Will terminate execution!
+
+
+      Need to check the relative ratios for the BFs. ... done.
+
+      : dhad-11.4 gen cleog Single_Dp_to_Kspipipi 818ipbv12 task 1 -s interact -t OK.
+      : dhad-11.4 gen cleog Single_Dp_to_Kspipipi 818ipbv12 task 1 -s interact OK. 
+
+      Found bug : myanti-myK0pp
+
+      Fix ... done. 
+
+      Found another bug: EvtGen:Expected to find a branching fraction
+      or Enddecay but found:4.42e-05 on line 27 fix ... done. 
+
+      DEC file OK now. 
+
+
+
+**** STARTED Generate 281/pb MC (281ipbv12)
+ 
+***** DONE Test Single Tags 5 events
+      Generate DEC fragment files ... later need automatic. OK. 
+      : dhad-11.4 tab parse tag_fragments 281ipbv12  ... done. 
+
+      Test the one run:
+      : dhad-11.4 gen cleog Single_Dp_to_Kspipipi 281ipbv12 task 1 -s interact -t OK. 
+
+      Test batch for 5 events:
+      : dhad-11.4 gen cleog Single_Dp_to_Kspipipi 281ipbv12 task 1 ... OK. 
+
+      Test all tasks:
+      : dhad-11.4 gen cleog Single_Dp_to_Kspipipi 281ipbv12 OK.
+
+      : dhad-11.4 chk cleog Single_Dp_to_Kspipipi 281ipbv12 OK.
+
+      Test all modes 5 events. : 
+      : dhad-11.4 gen cleog single 281ipbv12 ... done. 
+      : dhad-11.4 chk cleog single 281ipbv12 OK.
+
+      Test for pass2:
+      : dhad-11.4 gen pass2 Single_Dp_to_Kspipipi 281ipbv12 task 1 -s interact OK.
+      : dhad-11.4 gen pass2 Single_Dp_to_Kspipipi 281ipbv12 task 1 ... done. 
+
+      : dhad-11.4 chk pass2 Single_Dp_to_Kspipipi 281ipbv12 task 1 OK.
+
+      : dhad-11.4 gen pass2 single 281ipbv12 ... done. 
+      : dhad-11.4 chk pass2 single 281ipbv12 ... OK.
+
+      Test for dskim:
+      : dhad-11.4 gen dskim Single_Dp_to_Kspipipi 281ipbv12 task 1 -s interact OK.
+      : dhad-11.4 gen dskim Single_Dp_to_Kspipipi 281ipbv12 task 1 ... done. 
+      : dhad-11.4 chk dskim Single_Dp_to_Kspipipi 281ipbv12 task 1 ... OK.
+
+      : dhad-11.4 gen dskim single 281ipbv12 ... done.
+      : dhad-11.4 chk dskim single 281ipbv12 OK.
+
+      Test for ntuple: 
+      : dhad-11.4 gen ntuple Single_Dp_to_Kspipipi 281ipbv12 task 1 -s interact OK.
+      : dhad-11.4 gen ntuple Single_Dp_to_Kspipipi 281ipbv12 task 1 done.  
+      : dhad-11.4 chk ntuple Single_Dp_to_Kspipipi 281ipbv12 OK.
+      
+      : dhad-11.4 gen ntuple single 281ipbv12 ... done.
+      : dhad-11.4 chk ntuple single 281ipbv12 ... OK.
+
+      
+
+***** DONE Test for Double tags 5 events. 
+      CLEOG:
+
+      : dhad-11.4 gen cleog Double_Dp_to_Kspipipi__Dm_to_KKpi 281ipbv12 task 1  -s interact -t OK.
+
+      : dhad-11.4 gen cleog Double_Dp_to_Kspipipi__Dm_to_KKpi 281ipbv12 task 1  -s interact OK.
+
+      Test all modes 5 events. : 
+      : dhad-11.4 gen cleog diagdouble 281ipbv12 ... done. 
+      : dhad-11.4 chk cleog diagdouble 281ipbv12 ... OK.
+      
+      Pass2:
+      : dhad-11.4 gen pass2 Double_Dp_to_KKpi__Dm_to_KKpi 281ipbv12 task 1  -s interact OK. 
+
+      : dhad-11.4 gen pass2 diagdouble 281ipbv12 ... done.
+      : dhad-11.4 chk pass2 diagdouble 281ipbv12 OK. 
+
+      Should be OK in the rest. 
+
+
+***** DONE Generate 281/pb Diag Double 
+      Change the 5 events back to normal ... OK. 
+
+      CLEOG:
+
+      : dhad-11.4 gen cleog diagdouble 281ipbv12 ... done. 
+      : dhad-11.4 chk cleog diagdouble 281ipbv12 ... mode 0 task 1 only 5 events. 
+      
+      : dhad-11.4 gen cleog Double_D0_to_Kpi__D0B_to_Kpi 281ipbv12 task 1  -s interact -t OK. 
+      : dhad-11.4 gen cleog Double_D0_to_Kpi__D0B_to_Kpi 281ipbv12 task 1 ... done. 
+
+      : dhad-11.4 chk cleog diagdouble 281ipbv12 OK. 
+
+      Pass2:
+
+      : dhad-11.4 gen pass2 diagdouble 281ipbv12 ... done. 
+      : dhad-11.4 chk pass2 diagdouble 281ipbv12 OK. 
+
+      DSkim: 
+
+      : dhad-11.4 gen dskim diagdouble 281ipbv12 ... done. 
+      : dhad-11.4 chk dskim diagdouble 281ipbv12 ... OK.
+      
+      NTuple
+
+      : dhad-11.4 gen ntuple diagdouble 281ipbv12 ... done. 
+      : dhad-11.4 chk ntuple diagdouble 281ipbv12 ... OK.
+
+      Clean the cleog files
+      
+      : dhad-11.4 cln cleog diagdouble 281ipbv12 ... 90 cleaned. 
+
+***** DONE Generate 281/pb Non Diag Double
+
+      CLEOG:
+
+      : dhad-11.4 gen cleog nondiagdouble 281ipbv12 ... done. 
+      : dhad-11.4 chk cleog nondiagdouble 281ipbv12 ... 2 problems.
+
+      : dhad-11.4 gen cleog Double_Dp_to_Kspi__Dm_to_Kpipi 281ipbv12 task 8 ... done.
+      : dhad-11.4 gen cleog Double_Dp_to_KKpi__Dm_to_Kpipipi0 281ipbv12 task 6 ... done.
+
+      : dhad-11.4 chk cleog Double_Dp_to_Kspi__Dm_to_Kpipi 281ipbv12 task 8 ... OK.
+      : dhad-11.4 chk cleog Double_Dp_to_KKpi__Dm_to_Kpipipi0 281ipbv12 task 6 ... OK.
+
+      Pass2:
+
+      : dhad-11.4 gen pass2 nondiagdouble 281ipbv12 ... done. 
+      : dhad-11.4 chk pass2 nondiagdouble 281ipbv12 ... OK.
+
+      Dskim:
+      : dhad-11.4 gen dskim nondiagdouble 281ipbv12 ... done. 
+
+      : qmod -c 2182711
+      : qmod -c 2182700 
+
+      : dhad-11.4 chk dskim nondiagdouble 281ipbv12 ... OK.
+
+      Ntuple:
+      : dhad-11.4 gen ntuple nondiagdouble 281ipbv12 ... done. 
+      : dhad-11.4 chk ntuple nondiagdouble 281ipbv12 ... OK. 
+
+      Clean CLEOG:
+      : dhad-11.4 cln cleog nondiagdouble 281ipbv12  ... 360 cleaned. 
+
+      
+***** WAITING Generate 281/pb Single Tag
+
+      CLEOG:
+      : dhad-11.4 gen cleog single 281ipbv12 ... done. 
+      : dhad-11.4 chk cleog single 281ipbv12 ... some with 5 events:
+     
+      : dhad-11.4 gen cleog Single_Dm_to_Kspi 281ipbv12 task 5,8,9,10 ... done. 
+
+      : dhad-11.4 gen cleog  Single_Dp_to_Kspipi0 281ipbv12 ... done. 
+      : dhad-11.4 gen cleog  Single_Dm_to_Kspipi0 281ipbv12 ... done. 
+
+      : dhad-11.4 gen cleog  Single_Dp_to_Kspipipi 281ipbv12 ... done.
+      : dhad-11.4 gen cleog  Single_Dm_to_Kspipipi 281ipbv12 ... done.
+
+      : dhad-11.4 gen cleog  Single_Dp_to_KKpi 281ipbv12 ... done.
+      : dhad-11.4 gen cleog  Single_Dm_to_KKpi 281ipbv12 ... done. 
+
+      
+      : qmod -c 2184669
+      : qmod -c 2184670
+      : qmod -c 2184671
+
+      : dhad-11.4 chk cleog Single_Dm_to_Kspi 281ipbv12 ... still 5 events!
+
+      : dhad-11.4 gen cleog Single_Dm_to_Kspi 281ipbv12 task 5 -t 
+
+      Check the log file:
+      
+      : >> Sun Apr 17 14:20:05 2011 Run:  206937 Event:    4736 Stop: event << 
+      :  %% NOTICE-Processor.MCRunEvtNumberProc:  RandomGenerator seeds=1913143133, 467737263
+      :  %% NOTICE-Processor.RunEventNumberProc: Run: 206937 Event: 4736
+      : EDT: 04/17/2011 14:20:06.257678 | /nfs/cleo3/Common/rel/20080624_MCGEN/include/ConstantsUtility/DBConstants.hxx:1093: **ERROR** (C) Could not get validity range from VersionManager server.
+      : 
+      : Exception: IDL:omg.org/CORBA/COMM_FAILURE:1.0
+      : Status: COMPLETED_NO
+
+      Check the diskspace ... OK.
+
+      The Constants server may be down. Sent email ... done. 
+
+      Re-submitted... done. 
+      : dhad-11.4 chk cleog single 281ipbv12 ... done.
+
+      Pass2:
+      : dhad-11.4 gen pass2 single 281ipbv12 ... done. 
+      : dhad-11.4 chk pass2 single 281ipbv12 ... with less events. 
+
+      : dhad-11.4 gen pass2 Single_D0B_to_Kpipi0 281ipbv12 task 1,2,8,9,10 ... 
+
+      : dhad-11.4 gen pass2 Single_Dm_to_Kpipi 281ipbv12 task 7,9,10 ...
+
+      : dhad-11.4 gen pass2 Single_Dp_to_Kpipipi0 281ipbv12 task 1,2,4,6,7,9,10 ...
+
+      : dhad-11.4 gen pass2 Single_Dm_to_Kpipipi0 281ipbv12 ... 
+
+      : dhad-11.4 gen pass2 Single_Dp_to_Kspi 281ipbv12 ...
+
+      : dhad-11.4 gen pass2 Single_Dm_to_Kspi 281ipbv12 task 1,2,3,4,6,7 ...
+
+
+
+      
+
+**** WAITING 
+
+     Use Daemon ... on Monday ...
+
+     : dhad-11.4 gen signal start nondiagdouble 281ipbv12 -t 
+     : dhad-11.4 gen signal stop nondiagdouble 281ipbv12 -t 
+
+*** STARTED Compare 281/pb with 537/pb
+    : dhad-10.1.10 tab cbx compare_yields_data_single 281ipbv0,537ipbv7 
+    : dhad-10.1.10 tab cbx compare_yields_data_double 281ipbv0,537ipbv7 
+    
+    Fit the 537/pb data using the 281/pb resolution parameters:
+
+    : dhad-10.1.10 fit data Single_D0_to_Kpipi0 537ipbv7.1 -t -s interact OK.
+    : dhad-10.1.10 fit data single_p 537ipbv7.1 ... done. 
+    : dhad-10.1.10 fig data single_p 537ipbv7.1 OK.
+
+    Compare the yields:
+    : dhad-10.1.10 tab cbx compare_yields_data_single 281ipbv0,537ipbv7.1 
+    
+
+    Noticed the 2.4% out of range events for the new signal MC in mode
+    Kpipi0 (while doing the multiple candidate study).  
+
+*** TODO Diagnose signal MC for D0 to Kpipi0 
+   
+    Plot the mBC distribution for 281ipbv0 and 281ipbv7:
+
+    : dhad-10.1.10 fig var mbc signal Single_D0_to_Kpipi0 281ipbv0 -s SetLogy=1
+
+    Selected 78642 out of 197217. (Eff: 38.88%) 
+
+   : dhad-10.1.10 fig var mbc signal Single_D0_to_Kpipi0 281ipbv7 -s SetLogy=1 
+
+    Selected 79717 out of 197217. (Eff: 40.42%)
+
+
+    For comparison, see the Kpi mode: 
+    : dhad-10.1.10 fig var mbc signal Single_D0_to_Kpi 281ipbv0 -s SetLogy=1
+    Selected 41052 out of 62702. (Eff: 65.47%)
+
+    : dhad-10.1.10 fig var mbc signal Single_D0_to_Kpi 281ipbv7 -s SetLogy=1
+    Selected 40782 out of 62702. (Eff: 65.04%)
+
+    Can not find the 1.83 cuts for mBC in the selection stage, it must
+    be imposed during the generation stage. Since the mBC fitting
+    ignores less than 1.83 events, we can just move on to compare the
+    children of the decay. 
+
+    Overlap the mBC distribution of 281ipbv0 and 281ipbv7:
+    : dhad-10.1.10 fig super var mbc signal Single_D0_to_Kpipi0 281ipbv0,281ipbv7 -s SetLogy=1 
+
+    : dhad-10.1.10 fig var mbc signal Single_D0_to_Kpipi0 281ipbv0,281ipbv7 -s SetLogy=1 
+   
+    Check the other mode:
+    : dhad-10.1.10 fig var mbc signal Single_D0_to_Kpi 281ipbv0,281ipbv7 -s SetLogy=1 
+    Noticed the same shift. 
+
+    Count the selection numbers: 
+
+    
+
+    Stack these two:
+
+
+
+
+
+*** TODO Questions from Committee
+
+    
 
 * Misc
 ** Response to Chul Su's question on mBC shift in MC or data (10.1.5) [100%]
@@ -6868,7 +11017,7 @@ eric_cont_single_281ipbv10.info][info]])
     :  o dMbc is a plain [E_beam^2 - p^2_D]^(1/2) - M_D+(PDG, 1869.62GeV),
     :    w/o crossing angle consideration.
     :  o MC is normalized by integrated luminosity and cross sections of
-    :    ddbar(3.66 nb), continuum (13.92 nb), tau-pair (3 nb), and
+    :    ddbar(3.66 /pb), continuum (13.92 nb), tau-pair (3 nb), and
     :    radiative return (3.2 nb).
     :  o step in data inside dMbc +-5MeV is due to the fact that I blinded
     :    delta E and Mbc signal region (box +-20MeV and +-5MeV) in real data
@@ -6915,7 +11064,7 @@ eric_cont_single_281ipbv10.info][info]])
 
     Respond to Chul Su and DHad HN ... [[https://hypernews.lepp.cornell.edu/HyperNews/get/DHadGroup/242/2.html][post]] sent. 
 
-** Square root scale plot (10.1.2) [50%]
+** Square root scale plot (10.1.10) [100%]
 *** DONE First Test
     :LOGBOOK:
     CLOCK: [2010-02-01 Mon 11:26]--[2010-02-01 Mon 12:04] =>  0:38
@@ -6945,8 +11094,9 @@ eric_cont_single_281ipbv10.info][info]])
 
     Noticed the change. 
 
-*** STARTED Own env
+*** DONE Own env
     :LOGBOOK:
+    CLOCK: [2011-01-11 Tue 15:31]--[2011-01-11 Tue 15:43] =>  0:12
     CLOCK: [2010-02-01 Mon 13:33]--[2010-02-01 Mon 15:52] =>  2:19
     :END:
 
@@ -6956,11 +11106,103 @@ eric_cont_single_281ipbv10.info][info]])
 
     Fit for one mode:
 
-    : dhad-10.1.2 fig signal Single_Dp_to_Kspipipi 537ipbv2 --set sqarerootscale
+    : setpyroot l (Python 2.6.5, ROOT 5.28)
+    : dhad-10.1.10 fig generic Single_Dp_to_Kpipipi0__Dm_to_Kpipipi0 818ipbv7 -s sqrt -t 
+    
+    This one cause trouble:
+    : f = ROOT.TFile(rootfile)
+
+
+    :     /home/xs32/work/CLEO/analysis/DHad/10.1/fig/818ipbv7/generic_Single_Dp_to_Kpipipi0__D
+    : m_to_Kpipipi0.root                                                                  
+    : <ROOT.TFile object at 0xae04d10>
+    : 
+    : RooFit v3.14 -- Developed by Wouter Verkerke and David Kirkby 
+    :                 Copyright (C) 2000-2010 NIKHEF, University of California & Stanford U
+    : niversity                                                                           
+    :                 All rights reserved, please read http://roofit.sourceforge.net/licens
+    : e.txt                                                                               
+    : 
+    : Error in <TBufferFile::ReadClassBuffer>: Could not find the StreamerInfo for version 
+    : 4 of the class RooRefCountList, object skipped at offset 11942                      
+    : Error in <TBufferFile::CheckByteCount>: object of class RooRefCountList read too few 
+    : bytes: 2 instead of 71                                                              
+    : Error in <TBufferFile::ReadClassBuffer>: class: RooRefCountList, attempting to access
+    :  a wrong version: 257, object skipped at offset 12013                               
+    : Error in <TBufferFile::ReadVersion>: Could not find the StreamerInfo with a checksum 
+    : of 0 for the class "RooRefCountList" in /home/xs32/work/CLEO/analysis/DHad/10.1/fig/8
+    : 18ipbv7/generic_Single_Dp_to_Kpipipi0__Dm_to_Kpipipi0.root.                         
+    : Error in <TBufferFile::ReadClassBuffer>: Could not find the StreamerInfo for version 
+    : 0 of the class RooRefCountList, object skipped at offset 12019                      
+    : Error in <TBufferFile::ReadVersion>: Could not find the StreamerInfo with a checksum 
+    : of 0 for the class "RooRefCountList" in /home/xs32/work/CLEO/analysis/DHad/10.1/fig/8
+    : 18ipbv7/generic_Single_Dp_to_Kpipipi0__Dm_to_Kpipipi0.root.                         
+    : Error in <TBufferFile::ReadClassBuffer>: Could not find the StreamerInfo for version 
+    : 0 of the class RooRefCountList, object skipped at offset 12025                      
+    : Error in <TBufferFile::ReadVersion>: Could not find the StreamerInfo with a checksum 
+    : of 100 for the class "deque<RooAbsCache*>" in /home/xs32/work/CLEO/analysis/DHad/10.1
+    : /fig/818ipbv7/generic_Single_Dp_to_Kpipipi0__Dm_to_Kpipipi0.root.  
+
+    Send to Peter ... Sent. 
+
+    Worked on my own RooFit. But there are too many changes underlying
+    the RooFi so that the fitting results changed in certain
+    modes. So, we decided to not using the square root scale.
+
+*** CANCELED Patch ROOT4 for root sqrt
+
+    : cd ~/local/share/root
+    : cp -r /a/lnx134/cdat/rd5/cleo3/Offline/other_sources/pkg/Root/Root-4.03.04/root 4.03 
+    Compile on lnx234 ... done. 
 
 
 
-** WAITING Test the SL5 (10.1.12)
+*** DONE Use Peter's ROOT5
+    
+    : dhad-10.1.10 fig trim data Single_D0_to_Kpi__D0B_to_Kpi 818ipbv7 
+
+    : dhad-10.1.10 fig trim data Single_D0_to_Kpi__D0B_to_Kpi 818ipbv7 -s SetLogy=0 OK. 
+    : . ~ponyisi/bin/root5switch
+
+    : dhad-10.1.10 fig trim data Single_D0_to_Kpi__D0B_to_Kpi 818ipbv7 -s SetLogy=2 
+
+    Error:
+    : Traceback (most recent call last):
+    :   File "/home/xs32/work/CLEO/analysis/DHad/bin/dhad-10.1.10", line 58, in ?
+    :     main()
+    :   File "/home/xs32/work/CLEO/analysis/DHad/bin/dhad-10.1.10", line 54, in main
+    :     module = __import__(module_name)
+    :   File "/a/lnx112/nfs/cor/user/xs32/local/work/CLEO/analysis/DHad/src/10.1.10/python/
+    : fig/__init__.py", line 8, in ?                                                      
+    :     import tools
+    :   File "/a/lnx112/nfs/cor/user/xs32/local/work/CLEO/analysis/DHad/src/10.1.10/python/
+    : tools/__init__.py", line 17, in ?                                                   
+    :     import ROOT
+    :   File "/nfs/cleo3/Offline/rel/20080228_FULL/other_sources/Root/lib/ROOT.py", line 40
+    : , in ?                                                                              
+    :     from libPyROOT import *
+    : ImportError: /nfs/cor/user/ponyisi/root5//lib/libTree.so: undefined symbol: _ZN4TKey6
+    : BrowseEP8TBrowser                                                                   
+    Clean up the ROOT settings... still not work. 
+
+    Asked Peter... 
+
+    Use the oldroot5switch:
+    : dhad-10.1.10 fig trim data Single_D0_to_Kpi__D0B_to_Kpi 818ipbv7 -s SetLogy=0 OK.
+
+    : dhad-10.1.10 fig trim data Single_D0_to_Kpi__D0B_to_Kpi 818ipbv7 -s SetLogy=2 OK.
+
+    
+    
+    
+  
+
+    
+
+    
+    
+    
+** Test the SL5 (10.1.12-13-14) [100%]
    :LOGBOOK:
    CLOCK: [2010-09-21 Tue 15:57]--[2010-09-21 Tue 16:23] =>  0:26
    CLOCK: [2010-09-21 Tue 13:00]--[2010-09-21 Tue 13:53] =>  0:53
@@ -7000,8 +11242,16 @@ eric_cont_single_281ipbv10.info][info]])
     Need to debug ... done. 
 
     Waiting for the job to finish ... done. 
-*** WAITING Test one Single Tag mode
+*** DONE Test one Single Tag mode
     :LOGBOOK:
+    CLOCK: [2010-10-01 Fri 08:57]--[2010-10-01 Fri 09:13] =>  0:16
+    CLOCK: [2010-09-30 Thu 15:15]--[2010-09-30 Thu 16:09] =>  0:54
+    CLOCK: [2010-09-30 Thu 14:12]--[2010-09-30 Thu 15:03] =>  0:51
+    CLOCK: [2010-09-29 Wed 19:36]--[2010-09-29 Wed 19:47] =>  0:11
+    CLOCK: [2010-09-29 Wed 13:04]--[2010-09-29 Wed 13:20] =>  0:16
+    CLOCK: [2010-09-29 Wed 09:27]--[2010-09-29 Wed 09:35] =>  0:08
+    CLOCK: [2010-09-29 Wed 08:57]--[2010-09-29 Wed 09:03] =>  0:06
+    CLOCK: [2010-09-28 Tue 16:17]--[2010-09-28 Tue 16:30] =>  0:13
     CLOCK: [2010-09-28 Tue 11:10]--[2010-09-28 Tue 12:34] =>  1:24
     CLOCK: [2010-09-28 Tue 10:02]--[2010-09-28 Tue 10:55] =>  0:53
     CLOCK: [2010-09-28 Tue 08:38]--[2010-09-28 Tue 09:44] =>  1:06
@@ -7038,7 +11288,6 @@ eric_cont_single_281ipbv10.info][info]])
 
     : dhad-10.1.12 chk cleog Single_Dp_to_Kspipipi task 4-6 ... OK.
 
-    
     : dhad-10.1.12 gen cleog Single_Dp_to_Kspipipi task 7 -s bg  & ... done.
     : dhad-10.1.12 gen cleog Single_Dp_to_Kspipipi task 8 -s bg  & ... done. 
     : dhad-10.1.12 gen cleog Single_Dp_to_Kspipipi task 9 -s bg  & ... done. 
@@ -7051,12 +11300,10 @@ eric_cont_single_281ipbv10.info][info]])
     : dhad-10.1.12 gen cleog Single_Dm_to_Kspipipi task 1 -s interact -t OK.
 
     : dhad-10.1.12 gen cleog Single_Dm_to_Kspipipi task 1 -s bg & ...
-    ....
-    :  dhad-10.1.12 gen cleog Single_Dm_to_Kspipipi task 10 -s bg & ...
 
-    :  dhad-10.1.12 chk cleog Single_Dm_to_Kspipipi 281ipb OK.
+    : dhad-10.1.12 gen cleog Single_Dm_to_Kspipipi task 10 -s bg & ...
 
-
+    : dhad-10.1.12 chk cleog Single_Dm_to_Kspipipi 281ipb OK.
 
     Pass2:
 
@@ -7079,11 +11326,10 @@ eric_cont_single_281ipbv10.info][info]])
     For Dm: 
     : dhad-10.1.12 gen pass2 Single_Dm_to_Kspipipi task 1 -s interact -t 
 
-    : dhad-10.1.12 gen pass2 Single_Dm_to_Kspipipi task 1 -s bg & to 10 ... 
+    : dhad-10.1.12 gen pass2 Single_Dm_to_Kspipipi task 1 -s bg & to 10 ... done. 
 
-    : dhad-10.1.12 chk pass2 Single_Dm_to_Kspipipi 281ipb ... 
+    : dhad-10.1.12 chk pass2 Single_Dm_to_Kspipipi 281ipb ... OK.
 
-    
     DSkim:
 
     : dhad-10.1.12 gen dskim Single_Dp_to_Kspipipi task 1 -s interact -t OK.
@@ -7092,14 +11338,403 @@ eric_cont_single_281ipbv10.info][info]])
 
     : dhad-10.1.12 chk dskim Single_Dp_to_Kspipipi 281ipb OK.
       
+    For Dm:
     
+    : dhad-10.1.12 gen dskim Single_Dm_to_Kspipipi task 1 -s bg & ... to 10 ...done. 
+ 
+    : dhad-10.1.12 chk dskim Single_Dm_to_Kspipipi 281ipb OK.
+
+
+    Clean the cleog:
+
+    : dhad-10.1.12 cln cleog Single_Dp_to_Kspipipi 281ipb OK.
+    : dhad-10.1.12 cln cleog Single_Dm_to_Kspipipi 281ipb OK.
+
 
     NTuple:
 
     : dhad-10.1.12 gen ntuple Single_Dp_to_Kspipipi 281ipb -s interact -t OK.
+
     : dhad-10.1.12 gen ntuple Single_Dp_to_Kspipipi 281ipb -s bg & ...
 
+    : dhad-10.1.12 chk ntuple Single_Dp_to_Kspipipi 281ipb ... N/A
     
+    Need to check the log for the ntuple, run the Dm ...
+    
+    : dhad-10.1.12 gen ntuple Single_Dp_to_Kspipipi 281ipb -s bg -t OK.
+    : dhad-10.1.12 gen ntuple Single_Dp_to_Kspipipi 281ipb -s bg & ...
+    
+
+    : dhad-10.1.12 gen ntuple Single_Dm_to_Kspipipi 281ipb -s bg -t OK.
+    : dhad-10.1.12 gen ntuple Single_Dm_to_Kspipipi 281ipb -s bg & ... 
+
+
+    : dhad-10.1.12 chk ntuple Single_Dp_to_Kspipipi 281ipb OK.
+    : dhad-10.1.12 chk ntuple Single_Dm_to_Kspipipi 281ipb OK.
+
+
+    Yield:
+
+    : cd $dhad/10.1/dat/signal
+
+    Remove the previous link to v4. OK.
+
+    : ln -s $dhad/dat/signal/10.1.12/dtuple_20080624_MCGEN_20071023_MCP2_A/281ipb 281ipbv12
+    
+    Run for one mode:
+
+    : dhad-10.1.12 yld signal Single_Dp_to_Kspipipi 281ipbv12 -s interact -t OK.
+    : dhad-10.1.12 yld signal Single_Dp_to_Kspipipi 281ipbv12 -s interact ... selected 14239 out of 39289.
+
+    : dhad-10.1.12 yld signal Single_Dm_to_Kspipipi 281ipbv12 -s interact ... selected 14382 out of 39289.
+
+    Compare this with v7: ...
+    
+    : dhad-10.1.7 yld signal Single_Dp_to_Kspipipi 281ipbv7 --set interact... selected 14446 out of 39289 
+    : dhad-10.1.7 yld signal Single_Dm_to_Kspipipi 281ipbv7 --set interact... selected 14435 out of 39289.  
+
+    Try v7 on SL5 ... same. 
+
+    Try 10.1.12 on v7 ... same. 
+
+    So, the selection program is the same, difference is from the
+    Ntuple. 
+
+    | Mode Dp to Kspipipi                     |   SL4 |   SL5 |
+    |-----------------------------------------+-------+-------|
+    | Numbers to generate                     | 39310 | 39310 |
+    | Numbers generated (CLEOG, Pass2, DSkim) | 39289 | 39289 |
+    | Numbers of D candidates                 | 14446 | 14239 |
+
+    There is a 1.5% decrease after selection. 
+
+    Ask David ... sent. 
+
+    Reply from David:
+
+    :     I think Brian Heltsley knows how to initialize the random number
+    :     generator and I think it would be useful to do this.  This is the
+    :     first report I’ve had of any difference, but it is perfectly
+    :     explicable if the random numbers were different.  The plan is to
+    :     convert the first of the nodes to SL-5 early next week, so it
+    :     would be good to have an answer soon.
+
+*** DONE Generate controlled MC on regular (10.1.13)
+    :LOGBOOK:
+    CLOCK: [2010-10-04 Mon 09:19]--[2010-10-04 Mon 10:03] =>  0:44
+    CLOCK: [2010-10-03 Sun 11:50]--[2010-10-03 Sun 12:38] =>  0:48
+    CLOCK: [2010-10-03 Sun 10:15]--[2010-10-03 Sun 11:21] =>  1:06
+    CLOCK: [2010-10-02 Sat 09:54]--[2010-10-02 Sat 10:06] =>  0:12
+    CLOCK: [2010-10-01 Fri 15:04]--[2010-10-01 Fri 15:56] =>  0:52
+    CLOCK: [2010-10-01 Fri 11:36]--[2010-10-01 Fri 12:29] =>  0:53
+    CLOCK: [2010-10-01 Fri 10:12]--[2010-10-01 Fri 11:00] =>  0:48
+    CLOCK: [2010-10-01 Fri 09:13]--[2010-10-01 Fri 09:17] =>  0:04
+    :END:
+
+    Message from Brian:
+
+    : First,
+    : 
+    :     module sel RandomModule
+    : 
+    : then one or more "random" commands:
+    : 
+    :     random status   (can be issued any time)
+    : 
+    :     random create       (default random seeds=1,0)
+    : 
+    : You will get
+    : 
+    :  RandomModule Status:  Engine = RanecuEngine, seeds = 1299961164, 253987020
+    : 
+    : (where those 2 numbers are the true "seeds" for known-good-sequence #1)
+    : 
+    : or
+    : 
+    :     random seeds n 0    (where n=0-214, second arg always 0)
+    :     random create
+    : 
+    : 
+    : (if the second seed is zero, the first seed is taken as an index
+    :  of one of 215 "known good random sequences", each of which
+    :  has a pair of nonzero seeds)
+    : 
+    : for "random seeds 19 0" you will get
+    : 
+    :  RandomModule Status:  Engine = RanecuEngine, seeds = 309164507, 2126677523
+    : 
+    : 
+    : or
+    : 
+    :     random randomInit   (uses time of day to choose pseudorandom seed)
+    :     <you don't need a "create" for this one,
+    :      in fact it won't let you>
+    : 
+    : or
+    : 
+    :     random seeds 1234567 987653   (or whatever)
+    :     random create
+    : 
+    : sets the random seeds to exactly what you typed.
+    : Not guaranteed to be in a "good" random sequence.
+    : This one is most useful if you have a particular
+    : event for which you know the seed and don't want to
+    : generate the 500 or 5000 events that come before it
+    : in some "good random sequence".
+    : 
+    : Hope that is enough for you. Let me know if you have problems
+    : or questions.
+
+    
+    Freeze the 10.1.12: ... OK.
+
+    : cd $dhad/src/10.1.12
+    : cvs tag V10-01-12
+
+    Setup 10.1.13:
+
+    : setdhad 10.1.13 OK.
+
+    CLEOG:
+    
+    : dhad-10.1.13 gen cleog Single_Dp_to_Kspipipi task 1 -s interact,seeds=6 -t ...
+
+
+    Try 6, 0 on the seeds:
+
+    : seeds = 489854550, 582847132 
+    
+    Repeated 3 times, got the same answer. 
+
+    Need to work on the qsub mode ... 
+
+    : dhad-10.1.13 gen cleog Single_Dp_to_Kspipipi task 1 -s seeds=6 -t ...
+    
+    Need to change the tcl command at the cleog.tcl ...
+
+    : setdhad 10.1.13
+    : cd $src/gen
+    : cp $C3_SCRIPTS/cleog_command.tcl .
+    : cp $C3_SCRIPTS/cleog.tcl . 
+    : chmod u+w cleog_command.tcl cleog.tcl 
+   
+    Ran the job again:
+
+    : dhad-10.1.13 gen cleog Single_Dp_to_Kspipipi task 1 -s seeds=6 -t ...
+    
+    Still see different seeds... 
+
+    From the qsub:
+
+    : >> Sun Oct  3 11:19:14 2010 Run:  201911 Event:       1 Stop: event << 
+    :  %% NOTICE-Processor.MCRunEvtNumberProc:  RandomGenerator seeds=175638676, 1920619163
+    :  >> Sun Oct  3 11:19:25 2010 Run:  201911 Event:       2 Stop: event << 
+    : %% NOTICE-Processor.MCRunEvtNumberProc:  RandomGenerator seeds=901349388, 1797494096
+    : >> Sun Oct  3 11:19:25 2010 Run:  201911 Event:       3 Stop: event << 
+    :  %% NOTICE-Processor.MCRunEvtNumberProc:  RandomGenerator seeds=984340085, 899983608
+
+    From the interact job:
+
+    :  >> Sun Oct  3 11:16:02 2010 Run:  201911 Event:       1 Stop: event << 
+    :  %% NOTICE-Processor.MCRunEvtNumberProc:  RandomGenerator seeds=985439860, 1265785507
+
+    Goal:
+
+    : RandomModule Status:  Engine = RanecuEngine, seeds = 489854550, 582847132
+    
+    Create the cleog-geneirc-array.sh ... done. 
+
+    Submit the job for task 1:
+   
+    : dhad-10.1.13 gen cleog Single_Dp_to_Kspipipi task 1 -s seeds=1 ... done. 
+
+    : dhad-10.1.13 chk cleog Single_Dp_to_Kspipipi task 1 OK. 
+    
+    Pass2:
+    : dhad-10.1.13 gen pass2 Single_Dp_to_Kspipipi task 1 ... done. 
+    : dhad-10.1.13 chk pass2 Single_Dp_to_Kspipipi task 1 OK.
+
+    DSkim:
+    : dhad-10.1.13 gen dskim Single_Dp_to_Kspipipi task 1 ... done.
+    : dhad-10.1.13 chk dskim Single_Dp_to_Kspipipi task 1 OK.
+
+    Ntuple:
+    : dhad-10.1.13 gen ntuple Single_Dp_to_Kspipipi task 1 ... done. 
+    : dhad-10.1.13 chk ntuple Single_Dp_to_Kspipipi OK.
+
+    Yield:
+
+    : cd $dhad/10.1/dat/signal
+    : ln -s $dhad/dat/signal/10.1.13/dtuple_20080624_MCGEN_20071023_MCP2_A/ 281ipbv13
+    
+    Run for one mode:
+
+    : dhad-10.1.13 yld signal Single_Dp_to_Kspipipi 281ipbv13 -s interact 
+    : selected 1475 out of 3931
+
+*** DONE Generate the controlled MC on SL5 (10.1.14)
+    :LOGBOOK:
+    CLOCK: [2010-10-04 Mon 08:42]--[2010-10-04 Mon 08:51] =>  0:09
+    CLOCK: [2010-10-03 Sun 12:39]--[2010-10-03 Sun 12:46] =>  0:07
+    :END:
+   
+    : cd $dhad/src/10.1.13
+    : cvs tag V10-01-13
+    : setdhad 10.1.14
+
+    
+    : dhad-10.1.14 gen cleog Single_Dp_to_Kspipipi task 1 -s interact,seeds=1 -t ... OK.
+
+    : dhad-10.1.14 gen cleog Single_Dp_to_Kspipipi task 1 -s bg,seeds=1 -t OK.
+
+    : dhad-10.1.14 gen cleog Single_Dp_to_Kspipipi task 1 -s bg,seeds=1  & 
+
+    : dhad-10.1.14 chk cleog Single_Dp_to_Kspipipi task 1 OK. 
+
+    Compare the log files ... same seeds! 
+
+    Pass2:
+    : dhad-10.1.14 gen pass2 Single_Dp_to_Kspipipi task 1 -s bg &
+
+    : dhad-10.1.14 chk pass2 Single_Dp_to_Kspipipi task 1 OK.
+
+    DSkim:
+    : dhad-10.1.14 gen dskim Single_Dp_to_Kspipipi task 1 -s bg & 
+    : dhad-10.1.14 chk dskim Single_Dp_to_Kspipipi task 1 OK. 
+    
+    NTuple: 
+
+    : dhad-10.1.14 gen ntuple Single_Dp_to_Kspipipi task 1 -s interact OK. 
+    : dhad-10.1.14 gen ntuple Single_Dp_to_Kspipipi task 1 -s bg & ... 
+
+    : dhad-10.1.14 chk ntuple Single_Dp_to_Kspipipi OK. 
+
+    Yield:
+
+    : cd $dhad/10.1/dat/signal
+    : ln -s $dhad/dat/signal/10.1.14/dtuple_20080624_MCGEN_20071023_MCP2_A/ 281ipbv14
+    
+    Run for one mode:
+
+    : dhad-10.1.14 yld signal Single_Dp_to_Kspipipi 281ipbv14 -s interact 
+    : selected 1471 out of 3931.
+
+    Found 4 events decrease!
+
+    Need to find the events list. 
+
+*** DONE Find out the 4 events 
+    :LOGBOOK:
+    CLOCK: [2010-10-05 Tue 13:20]--[2010-10-05 Tue 13:58] =>  0:38
+    CLOCK: [2010-10-05 Tue 11:25]--[2010-10-05 Tue 12:01] =>  0:36
+    CLOCK: [2010-10-05 Tue 11:25]--[2010-10-05 Tue 11:25] =>  0:00
+    :END:
+
+    
+    Store the run and event number when selecting:
+
+    : dhad-10.1.13 yld events signal Single_Dp_to_Kspipipi 281ipbv13 -s interact OK.
+    : dhad-10.1.13 yld events signal Single_Dp_to_Kspipipi 281ipbv14 -s interact OK.
+
+    : dhad-10.1.13 tab diff events signal Single_Dp_to_Kspipipi 281ipbv13 281ipbv14
+
+    : dhad-10.1.13 tab compare events signal Single_Dp_to_Kspipipi 281ipbv13  281ipbv14 
+
+
+
+    
+   
+
+*** DONE Control the Pass2 Random on SL4 (10.1.13)
+    :LOGBOOK:
+    CLOCK: [2010-10-06 Wed 08:47]--[2010-10-06 Wed 09:04] =>  0:17
+    CLOCK: [2010-10-05 Tue 15:30]--[2010-10-05 Tue 15:48] =>  0:18
+    :END:3
+
+    Found info from pass2 log:
+
+    :  %% INFO-RandomModule.RandomModule: 
+    :   RandomModule Status:  Engine = RanecuEngine, seeds = 1134217766, 1766838261
+    
+    Backup the previous pass2, dtuple log ... OK.
+
+    Copy the pass2 tcl file to local:
+    : setdhad 10.1.13
+    : cd $src/gen
+    : cp $C3_SCRIPTS/mcpass2_command.tcl mcpass2_command_local.tcl
+    : cp $C3_SCRIPTS/mcpass2/mcpass2.tcl mcpass2_local.tcl 
+    : chmod u+w mcpass2*.tcl
+
+    Edit the mcp2.tcl to use local ... done. 
+
+    Edit the mcpass2_command_local.tcl ... done. 
+
+    Edit the mcpass2_local.tcl ... use seeds 1 0 ... done. 
+
+    : dhad-10.1.13 gen pass2 Single_Dp_to_Kspipipi task 1 done. 
+
+    DSkim:
+    : dhad-10.1.13 gen dskim Single_Dp_to_Kspipipi task 1 ... done.  
+    : dhad-10.1.13 chk dskim Single_Dp_to_Kspipipi task 1 OK.
+
+    Ntuple:
+    : dhad-10.1.13 gen ntuple Single_Dp_to_Kspipipi task 1 ... done. 
+    : dhad-10.1.13 chk ntuple Single_Dp_to_Kspipipi OK.
+
+    Yield:
+    : dhad-10.1.13 yld signal Single_Dp_to_Kspipipi 281ipbv13 -s interact 
+    : selected 1475 out of 3931.
+
+*** DONE Control the Pass2 Random on SL5 (10.1.14)
+    :LOGBOOK:
+    CLOCK: [2010-10-05 Tue 15:48]--[2010-10-05 Tue 16:02] =>  0:14
+    :END:
+
+    Copy the related tcl files:
+
+    : setdhad 10.1.14 
+    : cd $src/gen
+    : cp $dhad/src/10.1.13/gen/mcp2.tcl . 
+    : cp $dhad/src/10.1.13/gen/mcpass2_command_local.tcl . 
+    : cp $dhad/src/10.1.13/gen/mcpass2_local.tcl . 
+
+    : dhad-10.1.14 gen pass2 Single_Dp_to_Kspipipi task 1 -s bg & ... done.
+
+    Checked have the same seeds. 
+
+    DSkim:
+    : dhad-10.1.14 gen dskim Single_Dp_to_Kspipipi task 1 -s interact OK. 
+   
+    NTuple: 
+
+    : dhad-10.1.14 gen ntuple Single_Dp_to_Kspipipi task 1 -s interact done. 
+
+    Yield:
+    : dhad-10.1.14 yld signal Single_Dp_to_Kspipipi 281ipbv14 -s interact 
+    : selected 1475 out of 3931.
+
+    Same number now!
+
+    Send email to David ... done. 
+
+
+
+
 
     
     
+    
+
+
+
+* COMMENT Setup
+#+LINK_HOME: http://www.lepp.cornell.edu/~xs32/
+#+LINK_UP: ./
+#+STYLE: <link rel="stylesheet" type="text/css" href="web/main.css" />
+#+STYLE: <link rel="shortcut icon" href="web/cleo.ico"/>
+#+INFOJS_OPT: view:info path:web/org-info.js tdepth:1 ftoc:t 
+#+OPTIONS: author:nil creator:nil num:nil toc:nil todo:nil H:4 
+#+SEQ_TODO: TODO STARTED WAITING | DONE CANCELED
+#+PROPERTY: Effort_ALL 0:15 0:30 1:00 1:30 2:00 2:30 3:00 4:00 5:00 6:00 7:00 8:00
+#+COLUMNS: %40ITEM(Task) %5Effort(Estimated Effort){:} %CLOCKSUM
+

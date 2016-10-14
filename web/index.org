@@ -1,17 +1,17 @@
+#+STARTUP: hidestars 
+#+LINK_HOME: http://www.lepp.cornell.edu/~xs32
+#+STYLE: <link rel="stylesheet" type="text/css" href="web/index.css" />
+#+STYLE: <link rel="shortcut icon" href="web/cleo.ico"/>
 #+TITLE: D-Hadronic Analysis
+#+INFOJS_OPT: view:plain path:cfg/org-info.js ftoc:t toc:nil ltoc:nil
+#+OPTIONS: author:nil creator:nil num:nil toc:nil
+
+
 
 * Documentation
-
-** Notes
-
-   - 818/pb : CBX 2011-003 ([[https://edms.classe.cornell.edu/record/2200/files/dhadcbx818.pdf][PDF]] , [[./doc/cbx818/dhadcbx818.pdf][local version]]), PRD-RC draft ([[./doc/dhadprd818/dhadprd818.pdf][PDF]])
-   - 281/pb : CBX 2009-003 ([[https://edms.classe.cornell.edu/record/1965/files/dhadcbx.pdf][PDF]]), PRD 76-112001 ([[./doc/prd/PhysRevD_76_112001.pdf][PDF]])
-     
 ** Releases
 
- - [[./v11.4.org][Version 11.4]] ([[./f11.4.org][Figures]], [[./t11.4.org][Tables]])
-
- - [[./v10.1][Version 10.1]] 
+ - [[./v10.1][Version 10.1]] ([[./f10.1][Figures]], [[./t10.1][Tables]], [[./p10.1][Progress]])
 
  - [[./rel-9.03][Version 9.03]]
 
@@ -20,21 +20,27 @@
  - [[./versions][Earlier Versions]]
 
 ** Talks
-   - My DHad Group Meeting ([[./mtg2011][2011]] , [[./meetings][2009-2010]])
-   - CLEO PTA Talk - April 2011 ([[./doc/pta201104/xshi-pta-20110422.pdf][PDF]])
-   - Lake Louise Winter Institute - February 2011 ([[./doc/lwi2011/xshi-lwi-20110224.pdf][PDF]])
-   - CU Group Meeting Talk - December 2010 ([[./doc/cug201012/xshi-cug-20101216.pdf][PDF]])
-   - CLEO PTA Talk - November 2010 ([[./doc/pta201011/xshi-pta-20101105.pdf][PDF]])
-   - CLEO PTA Talk - May 2010 ([[./doc/pta201005/dhadbf818.pdf][PDF]])
-   - CLEO PTA Talk - March 2007 ([[./doc/pta200703/dhadbf281.pdf][PDF]])
-   - APS Talk - April 2007 ([[./doc/aps07/aps07.pdf][PDF]])
-   - IHEP Talk - December 2007 ([[./doc/ihep07/ihep07.pdf][PDF]])
+
+  - CLEO PTA Talk - May 2010 ([[./doc/pta201005/dhadbf818.pdf][PDF]])
+  - CLEO PTA Talk - March 2007 ([[./doc/pta200703/dhadbf281.pdf][PDF]])
+  - APS Talk - April 2007 ([[./doc/aps07/aps07.pdf][PDF]])
+  - IHEP Talk - December 2007 ([[./doc/ihep07/ihep07.pdf][PDF]])
+  - [[./meetings][My DHad Meetings Page]]
+
+** Notes
+
+  - Phys. Rev. D 76, 112001 (2007) ([[./doc/prd/PhysRevD_76_112001.pdf][PDF]], [[./doc/prd/PhysRevD_76_112001.ps][PS]],  [[http://scitation.aip.org/getabs/servlet/GetabsServlet?prog=normal&id=PRVDAQ000076000011112001000001&idtype=cvips&gifs=yes][APS Link]])
+  - arXiv: (http://arxiv.org/abs/0709.3783)
+  - CBX 2009-056 ([[./doc/dhadcbx281/dhadcbx.pdf][PDF]]) [[https://redms.classe.cornell.edu/record/1965][CLASSE Record]]
+  - PRD Draft ([[./doc/dhadprd281/dhadprd281.pdf][PDF]])
+  - [[./manuals][Manuals]]
+  - [[./archives][Archives]]
+  - [[./process][Process]] 
 ** References
 
-   - CLEO-c D Tagging ([[https://wiki.lepp.cornell.edu/lepp/bin/view/CLEO/Private/SW/CLEOcDTags][LINK]])
-   - CBX 06-11 Developments in D(s)-Tagging ([[./doc/ref/cbx06-11.pdf][PDF]]) 
+   - [[https://wiki.lepp.cornell.edu/lepp/bin/view/CLEO/Private/SW/CLEOcDTags][CLEO-c D Tagging]] 
+   - CBX 06-11 Developments in D(s)-Tagging ([[./doc/ref/cbx06-11.pdf][PDF]]) [[https://edms.classe.cornell.edu/record/1813][CLASSE Record]]
    - CBX 07-30 DTag v1 ([[./doc/ref/cbx07-30_dskim_v1.pdf][PDF]])
-
 
 * Links
  - [[https://wiki.lepp.cornell.edu/lepp/bin/view/CLEO/DHadGroupMeeting][DHad Group Meeting]]
@@ -43,13 +49,4 @@
  - [[https://hypernews.lepp.cornell.edu/HyperNews/get/DHadGroup.html][HyperNews]]
  - [[http://www.lepp.cornell.edu/restricted/webtools/cleo3/][Software Cross-Ref]]
  - [[https://www.lepp.cornell.edu/~ponyisi/private/DNT_doc.html][D Ntuple Meaning]]
-
-
-* COMMENT Setup
-#+STARTUP: hidestars 
-#+LINK_HOME: http://www.lepp.cornell.edu/~xs32
-#+STYLE: <link rel="stylesheet" type="text/css" href="web/index.css" />
-#+STYLE: <link rel="shortcut icon" href="web/cleo.ico"/>
-#+INFOJS_OPT: view:plain path:cfg/org-info.js ftoc:t toc:nil ltoc:nil
-#+OPTIONS: author:nil creator:nil num:nil toc:nil
 

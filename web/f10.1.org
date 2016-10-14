@@ -1,113 +1,35 @@
 #+SETUPFILE: ./web/ver.org
-#+TITLE: D-Had Figures - 10.1
+#+TITLE: D-Hadronic Analysis  - 10.1 - Figures
 
 
-* Current
+* Overview
   :PROPERTIES:
-  :CUSTOM_ID: current
+  :CUSTOM_ID: overview
   :END:
 
+ - v5
 
- - Signal
+  | Type                  | 281ipbv5 | 537ipbv5 | 818ipbv5 |
+  |-----------------------+----------+----------+----------|
+  | Resolution parameters | [[./10.1/fig/signal_diagdouble_281ipbv5_resolution.org][figure]]   | [[./10.1/fig/signal_diagdouble_537ipbv5_resolution.org][figure]]   | [[./10.1/fig/signal_diagdouble_818ipbv5_resolution.org][figure]]   |
+  | Signal MC single tags | [[./10.1/fig/signal_single_281ipbv5.org][figure]]   | [[./10.1/fig/signal_single_537ipbv5.org][figure]]   | [[./10.1/fig/signal_single_818ipbv5.org][figure]]   |
+  | Signal MC double tags | [[./10.1/fig/signal_double_281ipbv5.org][figure]]   | [[./10.1/fig/signal_double_537ipbv5.org][figure]]   | [[./10.1/fig/signal_double_818ipbv5.org][figure]]   |
+  | Data single tags      | [[./10.1/fig/data_single_281ipbv5.org][figure]]   | [[./10.1/fig/data_single_537ipbv5.org][figure]]   | [[./10.1/fig/data_single_818ipbv5.org][figure]]   |
+  | Data double tags      | [[./10.1/fig/data_double_281ipbv5.org][figure]]   | [[./10.1/fig/data_double_281ipbv5.org][figure]]   | [[./10.1/fig/data_double_818ipbv5.org][figure]]   |
+  | Crossfeeds - diagonal | [[./10.1/fig/crossfeeds_signal_diag_281ipbv5.org][figure]]   | [[./10.1/fig/crossfeeds_signal_diag_537ipbv5.org][figure]]   | [[./10.1/fig/crossfeeds_signal_diag_818ipbv5.org][figure]]   |
+  | Crossfeeds - non-diag | [[./10.1/fig/crossfeeds_signal_nondiag_281ipbv5.org][figure]]   | [[./10.1/fig/crossfeeds_signal_nondiag_537ipbv5.org][figure]]   | [[./10.1/fig/crossfeeds_signal_nondiag_818ipbv5.org][figure]]   |
 
-   | Type                   | 281ipbv7 | 537ipbv7 | 818ipbv7 |
-   |------------------------+----------+----------+----------|
-   | Resolution parameters  | [[./10.1/fig/signal_diagdouble_281ipbv7_resolution.org][figure]]   | [[./10.1/fig/signal_diagdouble_537ipbv7_resolution.org][figure]]   | [[./10.1/fig/signal_diagdouble_818ipbv7_resolution.org][figure]]   |
-   | Signal MC single tags  | [[./10.1/fig/signal_single_281ipbv7.org][figure]]   | [[./10.1/fig/signal_single_537ipbv7.org][figure]]   | [[./10.1/fig/signal_single_818ipbv7.org][figure]]   |
-   | Signal MC double tags  | [[./10.1/fig/signal_double_281ipbv7.org][figure]]   | [[./10.1/fig/signal_double_537ipbv7.org][figure]]   | [[./10.1/fig/signal_double_818ipbv7.org][figure]]   |
-   | Data single tags       | [[./10.1/fig/data_single_281ipbv7.org][figure]]   | [[./10.1/fig/data_single_537ipbv7.org][figure]]   | [[./10.1/fig/data_single_818ipbv7.org][figure]]   |
-   | Data double tags       | [[./10.1/fig/data_double_281ipbv7.org][figure]]   | [[./10.1/fig/data_double_537ipbv7.org][figure]]   | [[./10.1/fig/data_double_818ipbv7.org][figure]]   |
-   | Crossfeeds - diagonal  | [[./10.1/fig/crossfeeds_signal_diag_281ipbv7.org][figure]]   | [[./10.1/fig/crossfeeds_signal_diag_537ipbv7.org][figure]]   | [[./10.1/fig/crossfeeds_signal_diag_818ipbv7.org][figure]]   |
-   | Crossfeeds - non-diag  | [[./10.1/fig/crossfeeds_signal_nondiag_281ipbv7.org][figure]]   | [[./10.1/fig/crossfeeds_signal_nondiag_537ipbv7.org][figure]]   | [[./10.1/fig/crossfeeds_signal_nondiag_818ipbv7.org][figure]]   |
-   | Generic MC single tags | [[./10.1/fig/generic_single_281ipbv7.org][figure]]   | [[./10.1/fig/generic_single_537ipbv7.org][figure]]   | [[./10.1/fig/generic_single_818ipbv7.org][figure]]   |
-   | Generic MC double tags | [[./10.1/fig/generic_double_281ipbv7.org][figure]]   | [[./10.1/fig/generic_double_537ipbv7.org][figure]]   | [[./10.1/fig/generic_double_818ipbv7.org][figure]]   |
+ - v7
 
- - Backgrounds
-
-   | Type                 | 281ipbv10 | 537ipbv10 | 818ipbv10 |
-   |----------------------+-----------+-----------+-----------|
-   | Generic DDbar Bkg    | [[./10.1/fig/generic_ddbar_single_p_281ipbv10_noxfeed.org][figure]]    | [[./10.1/fig/generic_ddbar_single_p_537ipbv10_noxfeed.org][figure]]    | [[./10.1/fig/generic_ddbar_single_p_818ipbv10_noxfeed.org][figure]]    |
-   | Continuum Background | [[./10.1/fig/generic_cont_single_p_281ipbv10.org][figure]]    | [[./10.1/fig/generic_cont_single_p_537ipbv10.org][figure]]    | [[./10.1/fig/generic_tau_single_p_818ipbv10.org][figure]]    |
-   | Tau pair Background  | [[./10.1/fig/generic_tau_single_p_281ipbv10.org][figure]]    | [[./10.1/fig/generic_tau_single_p_537ipbv10.org][figure]]    | [[./10.1/fig/generic_tau_single_p_818ipbv10.org][figure]]    |
-   | Raditive Return Bkgd | [[./10.1/fig/generic_radret_single_p_281ipbv10.org][figure]]    | [[./10.1/fig/generic_radret_single_p_537ipbv10.org][figure]]    | [[./10.1/fig/generic_radret_single_p_818ipbv10.org][figure]]    |
-
- - Systmatics
-
-   | Data type  | Tag    | Type                          | 818ipbv7 |
-   |------------+--------+-------------------------------+----------|
-   | Data       | single | Gamma = 0.0227 GeV            | [[./10.1/fig/data_single_818ipbv7_gamma_0.0227.org][figure]]   |
-   |            |        | Gamma = 0.0277 GeV            | [[./10.1/fig/data_single_818ipbv7_gamma_0.0277.org][figure]]   |
-   |            |        | Mass = 3.7719 GeV             | [[./10.1/fig/data_single_818ipbv7_mass_3.7719.org][figure]]   |
-   |            |        | Mass = 3.7729 GeV             | [[./10.1/fig/data_single_818ipbv7_mass_3.7729.org][figure]]   |
-   |            |        | R = 8.7                       | [[./10.1/fig/data_single_818ipbv7_r_8.7.org][figure]]   |
-   |            |        | R = 16.7                      | [[./10.1/fig/data_single_818ipbv7_r_16.7.org][figure]]   |
-   |            |        | Wide Delta E                  | [[./10.1/fig/data_single_818ipbv7_widede.org][figure]]   |
-   |            |        | P = 0.5                       | [[./10.1/fig/data_single_818ipbv7_p_0.5.org][figure]]   |
-   |            |        | \pi^0 momentum :              |          |
-   |            |        | +-->D0 \to K\pi\pi^0          | [[./10.1/fig/var_pi0_momentum_data_Single_D0_to_Kpipi0_818ipbv7.org][figure]]   |
-   |            |        | +-->Dp \to K\pi\pi\pi^0       | [[./10.1/fig/var_pi0_momentum_data_Single_Dp_to_Kpipipi0_818ipbv7.org][figure]]   |
-   |            |        | +-->Dp \to Ks\pi\pi^0         | [[./10.1/fig/var_pi0_momentum_data_Single_Dp_to_Kspipi0_818ipbv7.org][figure]]   |
-   |            |        | \pi^0 mass:                   |          |
-   |            |        | +--> D0 \to K\pi\pi^0         | [[./10.1/fig/var_pi0mass_data_Single_Dp_to_Kpipipi0_818ipbv7.org][figure]]   |
-   |            |        | +-----> Delta E sideband low  | [[./10.1/fig/var_pi0mass_data_Single_Dp_to_Kpipipi0_818ipbv7_desideband_low.org][figure]]   |
-   |            |        | +-----> Delta E sideband high | [[./10.1/fig/var_pi0mass_data_Single_Dp_to_Kpipipi0_818ipbv7_desideband_high.org][figure]]   |
-   |            |        | +-----> Combined              | [[./10.1/fig/var_pi0mass_data_Single_Dp_to_Kpipipi0_818ipbv7_desideband_low_high.org][figure]]   |
-   |            |        | Delta E distribution          | [[./10.1/fig/var_deltae_data_diagsingle_818ipbv7.org][figure]]   |
-   |            |        | Delta E sideband low          | [[./10.1/fig/data_single_818ipbv7_desideband_low.org][figure]]   |
-   |            |        | +--> fix sigmap1              | [[./10.1/fig/data_Single_Dp_to_Kpipipi0_818ipbv7_desideband_low_fix_sigmap1.org][figure]]   |
-   |            |        | +--> fix N1, N2               | [[./10.1/fig/data_Single_Dp_to_Kpipipi0_818ipbv7_desideband_low_fix_n1n2.org][figure]]   |
-   |            |        | Detla E sideband high         | [[./10.1/fig/data_single_818ipbv7_desideband_high.org][figure]]   |
-   |            |        | +--> fix sigmap1              | [[./10.1/fig/data_Single_Dp_to_Kpipipi0_818ipbv7_desideband_high_fix_sigmap1.org][figure]]   |
-   |            |        | +--> fix N1, N2               | [[./10.1/fig/data_Single_Dp_to_Kpipipi0_818ipbv7_desideband_high_fix_n1n2.org][figure]]   |
-   |            |        | ARGUS para low                | [[./10.1/fig/data_single_818ipbv7_argus_low.org][figure]]   |
-   |            |        | +--> fix N1, N2               | [[./10.1/fig/data_Single_Dp_to_Kpipipi0_818ipbv7_argus_low_fix_n1n2.org][figure]]   |
-   |            |        | ARGUS para high               | [[./10.1/fig/data_single_818ipbv7_argus_high.org][figure]]   |
-   |            |        | +--> fix N1, N2               | [[./10.1/fig/data_Single_Dp_to_Kpipipi0_818ipbv7_argus_high_fix_n1n2.org][figure]]   |
-   |            |        | single candidate              | [[./10.1/fig/data_single_p_818ipbv7_single_candidate.org][figure]]   |
-   |            |        | multiple candidate            | [[./10.1/fig/data_single_p_818ipbv7_multiple_candidate.org][figure]]   |
-   |            |        | Ks sideband                   | [[./10.1/fig/data_single_ks_p_818ipbv7_kssideband.org][figure]]   |
-   |            |        | +--> fix sigmap1              | [[./10.1/fig/data_single_ks_p_818ipbv7_kssideband_fix_sigmap1.org][figure]]   |
-   |            | double | Gamma = 0.0227 GeV            | [[./10.1/fig/data_double_818ipbv7_gamma_0.0227.org][figure]]   |
-   |            |        | Gamma = 0.0277 GeV            | [[./10.1/fig/data_double_818ipbv7_gamma_0.0277.org][figure]]   |
-   |            |        | Mass = 3.7719 GeV             | [[./10.1/fig/data_double_818ipbv7_mass_3.7719.org][figure]]   |
-   |            |        | Mass = 3.7729 GeV             | [[./10.1/fig/data_double_818ipbv7_mass_3.7729.org][figure]]   |
-   |            |        | R = 8.7                       | [[./10.1/fig/data_double_818ipbv7_r_8.7.org][figure]]   |
-   |            |        | R = 16.7                      | [[./10.1/fig/data_double_818ipbv7_r_16.7.org][figure]]   |
-   |            |        | Wide Delta E                  | [[./10.1/fig/data_double_818ipbv7_widede.org][figure]]   |
-   |            |        | P = 0.5                       | [[./10.1/fig/data_double_818ipbv7_p_0.5.org][figure]]   |
-   |------------+--------+-------------------------------+----------|
-   | Signal MC  | single | Wide Delta E                  | [[./10.1/fig/signal_single_818ipbv7_widede.org][figure]]   |
-   |            |        | no FSR                        | [[./10.1/fig/signal_single_818ipbv7_nofsr.org][figure]]   |
-   |            |        | P = 0.5                       | [[./10.1/fig/signal_single_818ipbv7_p_0.5.org][figure]]   |
-   |            |        | Wide Delta E, noFSR           | [[./10.1/fig/signal_single_818ipbv7_widede_nofsr.org][figure]]   |
-   |            |        | Triggered                     | [[./10.1/fig/signal_single_818ipbv7_trig.org][figure]]   |
-   |            |        | Delta E sideband              | [[./10.1/fig/signal_single_818ipbv7_desideband.org][figure]]   |
-   |            |        | single candidate              | [[./10.1/fig/signal_single_p_818ipbv7_single_candidate.org][figure]]   |
-   |            |        | multiple candidate            | [[./10.1/fig/signal_single_p_818ipbv7_multiple_candidate.org][figure]]   |
-   |            |        | Ks sideband                   | [[./10.1/fig/signal_single_ks_p_818ipbv7_kssideband.org][figure]]   |
-   |            |        | +--> fix sigmap1              | [[./10.1/fig/signal_single_ks_p_818ipbv7_kssideband_fix_sigmap1.org][figure]]   |
-   |            | double | Wide Delta E                  | [[./10.1/fig/signal_double_818ipbv7_widede.org][figure]]   |
-   |            |        | no FSR                        | [[./10.1/fig/signal_double_818ipbv7_nofsr.org][figure]]   |
-   |            |        | P = 0.5                       | [[./10.1/fig/signal_double_818ipbv7_p_0.5.org][figure]]   |
-   |            |        | Wide Delta E, noFSR           | [[./10.1/fig/signal_double_818ipbv7_widede_nofsr.org][figure]]   |
-   |            |        | Triggered                     | [[./10.1/fig/signal_double_818ipbv7_trig.org][figure]]   |
-   |            |        | single candidate              | [[./10.1/fig/signal_single_p_818ipbv7_single_candidate_cleandouble.org][figure]]   |
-   |            |        | multiple candidate            | [[./10.1/fig/signal_single_p_818ipbv7_multiple_candidate_cleandouble.org][figure]]   |
-   |------------+--------+-------------------------------+----------|
-   | Generic MC | single | Delta E sideband low          | [[./10.1/fig/generic_diagsingle_818ipbv7_desideband_low.org][figure]]   |
-   |            |        | Delta E sideband high         | [[./10.1/fig/generic_diagsingle_818ipbv7_desideband_high.org][figure]]   |
-   |            |        | ARGUS para low                | [[./10.1/fig/generic_diagsingle_818ipbv7_argus_low.org][figure]]   |
-   |            |        | ARGUS para high               | [[./10.1/fig/generic_diagsingle_818ipbv7_argus_high.org][figure]]   |
-   |            |        | Ks sideband                   | [[./10.1/fig/generic_single_ks_p_818ipbv7_kssideband.org][figure]]   |
-   |            |        | +--> fix sigmap1              | [[./10.1/fig/generic_single_ks_p_818ipbv7_kssideband_fix_sigmap1.org][figure]]   |
-   |            |        | single candidate              | [[./10.1/fig/generic_single_p_818ipbv7_single_candidate.org][figure]]   |
-   |            |        | multiple candidate            | [[./10.1/fig/generic_single_p_818ipbv7_multiple_candidate.org][figure]]   |
-
-
-
-
-
-
+   | Type                  | 281ipbv7 | 537ipbv7 | 818ipbv7 |
+   |-----------------------+----------+----------+----------|
+   | Resolution parameters | [[./10.1/fig/signal_diagdouble_281ipbv7_resolution.org][figure]]   | [[./10.1/fig/signal_diagdouble_537ipbv7_resolution.org][figure]]   | [[./10.1/fig/signal_diagdouble_818ipbv7_resolution.org][figure]]   |
+   | Signal MC single tags | [[./10.1/fig/signal_single_281ipbv7.org][figure]]   | [[./10.1/fig/signal_single_537ipbv7.org][figure]]   | [[./10.1/fig/signal_single_818ipbv7.org][figure]]   |
+   | Signal MC double tags | [[./10.1/fig/signal_double_281ipbv7.org][figure]]   | [[./10.1/fig/signal_double_537ipbv7.org][figure]]   | [[./10.1/fig/signal_double_818ipbv7.org][figure]]   |
+   | Data single tags      | [[./10.1/fig/data_single_281ipbv7.org][figure]]   | [[./10.1/fig/data_single_537ipbv7.org][figure]]   | [[./10.1/fig/data_single_818ipbv7.org][figure]]   |
+   | Data double tags      | [[./10.1/fig/data_double_281ipbv7.org][figure]]   | [[./10.1/fig/data_double_537ipbv7.org][figure]]   | [[./10.1/fig/data_double_818ipbv7.org][figure]]   |
+   | Crossfeeds - diagonal | [[./10.1/fig/crossfeeds_signal_diag_281ipbv7.org][figure]]   | [[./10.1/fig/crossfeeds_signal_diag_537ipbv7.org][figure]]   | [[./10.1/fig/crossfeeds_signal_diag_818ipbv7.org][figure]]   |
+   | Crossfeeds - non-diag | [[./10.1/fig/crossfeeds_signal_nondiag_281ipbv7.org][figure]]   | [[./10.1/fig/crossfeeds_signal_nondiag_537ipbv7.org][figure]]   | [[./10.1/fig/crossfeeds_signal_nondiag_818ipbv7.org][figure]]   |
 
 * Misc 
 ** DSkimv2
@@ -124,114 +46,20 @@
    2. v0.1 : Fit crossfeeds for diagonal ROOT4.03, RooFit1.92 with Peter's input evt file 
    3. v0.3 : Fit with old MARKIII lineshape 
    4. v0.4 : Fit with my bkg files
-      
-      | Type                  | v0.0   | v0.1   | v0.3   | v0.4   |
-      |-----------------------+--------+--------+--------+--------|
-      | Crossfeeds - diagonal | [[./10.1/fig/crossfeeds_signal_diag_281ipbv0.org][figure]] | [[./10.1/fig/crossfeeds_signal_diag_281ipbv0.1.org][figure]] | [[./10.1/fig/crossfeeds_signal_diag_281ipbv0.3.org][figure]] | [[./10.1/fig/crossfeeds_signal_diag_281ipbv0.4.org][figure]] |
-      | Crossfeeds - non-diag | [[./10.1/fig/crossfeeds_signal_nondiag_281ipbv0.org][figure]] | [[./10.1/fig/crossfeeds_signal_nondiag_281ipbv0.1.org][figure]] | [[./10.1/fig/crossfeeds_signal_nondiag_281ipbv0.3.org][figure]] | [[./10.1/fig/crossfeeds_signal_nondiag_281ipbv0.4.org][figure]] |
-   5. mBC distribution D0 to Kpipi0: [[./10.1/fig/var_mbc_signal_Single_D0_to_Kpipi0_281ipbv0.org][figure]]
-   6. mBC distribution D0 to Kpi: [[./10.1/fig/var_mbc_signal_Single_D0_to_Kpi_281ipbv0.org][figure]]
-   7. Ksmass for data: [[./10.1/fig/var_ksmass_data_Single_Dp_to_Kspi_281ipbv0.org][figure]], signal MC [[./10.1/fig/var_ksmass_signal_Single_Dp_to_Kspi_281ipbv0.org][figure]]
-   8. Ks daughter momentum: data [[./10.1/fig/var_momentum_pi_KS_data_Single_Dp_to_Kspi_281ipbv0.org][figure]], compare with 281ipbv7
-   9. mBC fit for Ks sideband using Peter's evt file: [[./10.1/fig/data_single_ks_p_281ipbv0_peter_kssideband_fix_sigmap1.org][figure]]
+   
+
+   | Type                  | v0.0   | v0.1   | v0.3   | v0.4   |
+   |-----------------------+--------+--------+--------+--------|
+   | Crossfeeds - diagonal | [[./10.1/fig/crossfeeds_signal_diag_281ipbv0.org][figure]] | [[./10.1/fig/crossfeeds_signal_diag_281ipbv0.1.org][figure]] | [[./10.1/fig/crossfeeds_signal_diag_281ipbv0.3.org][figure]] | [[./10.1/fig/crossfeeds_signal_diag_281ipbv0.4.org][figure]] |
+   | Crossfeeds - non-diag | [[./10.1/fig/crossfeeds_signal_nondiag_281ipbv0.org][figure]] | [[./10.1/fig/crossfeeds_signal_nondiag_281ipbv0.1.org][figure]] | [[./10.1/fig/crossfeeds_signal_nondiag_281ipbv0.3.org][figure]] | [[./10.1/fig/crossfeeds_signal_nondiag_281ipbv0.4.org][figure]] |
 
 ** 281ipbv5 
-   
-  | Type                  | 281ipbv5 | 537ipbv5 | 818ipbv5 |
-  |-----------------------+----------+----------+----------|
-  | Resolution parameters | [[./10.1/fig/signal_diagdouble_281ipbv5_resolution.org][figure]]   | [[./10.1/fig/signal_diagdouble_537ipbv5_resolution.org][figure]]   | [[./10.1/fig/signal_diagdouble_818ipbv5_resolution.org][figure]]   |
-  | Signal MC single tags | [[./10.1/fig/signal_single_281ipbv5.org][figure]]   | [[./10.1/fig/signal_single_537ipbv5.org][figure]]   | [[./10.1/fig/signal_single_818ipbv5.org][figure]]   |
-  | Signal MC double tags | [[./10.1/fig/signal_double_281ipbv5.org][figure]]   | [[./10.1/fig/signal_double_537ipbv5.org][figure]]   | [[./10.1/fig/signal_double_818ipbv5.org][figure]]   |
-  | Data single tags      | [[./10.1/fig/data_single_281ipbv5.org][figure]]   | [[./10.1/fig/data_single_537ipbv5.org][figure]]   | [[./10.1/fig/data_single_818ipbv5.org][figure]]   |
-  | Data double tags      | [[./10.1/fig/data_double_281ipbv5.org][figure]]   | [[./10.1/fig/data_double_281ipbv5.org][figure]]   | [[./10.1/fig/data_double_818ipbv5.org][figure]]   |
-  | Crossfeeds - diagonal | [[./10.1/fig/crossfeeds_signal_diag_281ipbv5.org][figure]]   | [[./10.1/fig/crossfeeds_signal_diag_537ipbv5.org][figure]]   | [[./10.1/fig/crossfeeds_signal_diag_818ipbv5.org][figure]]   |
-  | Crossfeeds - non-diag | [[./10.1/fig/crossfeeds_signal_nondiag_281ipbv5.org][figure]]   | [[./10.1/fig/crossfeeds_signal_nondiag_537ipbv5.org][figure]]   | [[./10.1/fig/crossfeeds_signal_nondiag_818ipbv5.org][figure]]   |
-
-
-
     1. Fit diagonal double tags floating momentum resolution parameters => [[./10.1/fig/signal_diagdouble_281ipbv5_resolution.org][figure]]
     2. Fit signal MC single tags => [[./10.1/fig/signal_single_281ipbv5.org][figure]]  
     3. Fit signal MC double tags => [[./10.1/fig/signal_double_281ipbv5.org][figure]]
     4. Fit data single tag => [[./10.1/fig/data_single_281ipbv5.org][figure]]
     5. Fit data double tag => [[./10.1/fig/data_double_281ipbv5.org][figure]]
     6. Fit crossfeeds => diag:  [[./10.1/fig/crossfeeds_signal_diag_281ipbv5.org][figure]], nondiag: [[./10.1/fig/crossfeeds_signal_nondiag_281ipbv5.org][figure]]
-
-** 281ipbv7
-   1. mBC distribution for all of the unique events in data 281/pb => [[./10.1/fig/var_mbc_data_single_281ipbv7_skim.org][figure]] 
-   2. mBC distribution for mode D0toKpi in data => [[./10.1/fig/var_mbc_data_Single_D0_to_Kpi_281ipbv7_skim.org][figure]]
-   3. mBC distribution for signal MC 
-      - D0 to Kpipi0: [[./10.1/fig/var_mbc_signal_Single_D0_to_Kpipi0_281ipbv0_281ipbv7.org][figure]]
-      - D0 to Kpi: [[./10.1/fig/var_mbc_signal_Single_D0_to_Kpi_281ipbv0_281ipbv7.org][figure]]
-   4. Ksmass: data: [[./10.1/fig/var_ksmass_data_Single_Dp_to_Kspi_281ipbv7.org][figure]], signal MC [[./10.1/fig/var_ksmass_signal_Single_Dp_to_Kspi_281ipbv7.org][figure]]
-   5. mBC distribution for signal MC (D0 to Kpi): [[./10.1/fig/var_mbc_signal_Single_D0_to_Kpi_281ipbv7.org][figure]]
-   6. pi0 momentum:
-      - D0toKpipi0 signal => [[./10.1/fig/var_pi0_momentum_signal_Single_D0_to_Kpipi0_281ipbv7.org][figure]],   data => [[./10.1/fig/var_pi0_momentum_data_Single_D0_to_Kpipi0_281ipbv7.org][figure]]
-	- D0 momentum [[./10.1/fig/var_momentum_D0_signal_Single_D0_to_Kpipi0_281ipbv7.org][figure]]
-	- K- momentum [[./10.1/fig/var_momentum_K_signal_Single_D0_to_Kpipi0_281ipbv7.org][figure]]
-	- pi+ momentum [[./10.1/fig/var_momentum_pi_signal_Single_D0_to_Kpipi0_281ipbv7.org][figure]]
-      - DptoKpipipi0 data => [[./10.1/fig/var_pi0_momentum_data_Single_Dp_to_Kpipipi0_281ipbv7.org][figure]]
-      - DptoKspipi0 data => [[./10.1/fig/var_pi0_momentum_data_Single_Dp_to_Kspipi0_281ipbv7.org][figure]]
-      - D0toKpi:
-	- D0 momentum [[./10.1/fig/var_momentum_D0_signal_Single_D0_to_Kpi_281ipbv7.org][figure]]
-	- K momentum [[./10.1/fig/var_momentum_K_signal_Single_D0_to_Kpi_281ipbv7.org][figure]]
-   7. mBC for Kssideband
-      - signal MC: [[./10.1/fig/signal_single_ks_p_281ipbv7_kssideband.org][figure]]
-      - data: [[./10.1/fig/data_single_ks_p_281ipbv7_kssideband.org][figure]]
-      - data with 6.5 \sigma cut: [[./10.1/fig/data_single_ks_p_281ipbv7_srs_kssideband.org][figure]]
-      - data with fixed sigmap1: [[./10.1/fig/data_single_ks_p_281ipbv7_kssideband_fix_sigmap1.org][figure]]
-
-   8. pi momentum in Ks: compare with 281ipbv0 data
-      - Ks pi: [[./10.1/fig/var_momentum_pi_KS_data_Single_Dp_to_Kspi_281ipbv0_281ipbv7.org][figure]] (pi+), [[./10.1/fig/var_momentum_pim_KS_data_Single_Dp_to_Kspi_281ipbv0_281ipbv7.org][figure]] (pi-)
-      - Ks pi pi0: [[./10.1/fig/var_momentum_pi_KS_data_Single_Dp_to_Kspipi0_281ipbv0_281ipbv7.org][figure]] (pi+), [[./10.1/fig/var_momentum_pim_KS_data_Single_Dp_to_Kspipi0_281ipbv0_281ipbv7.org][figure]] (pi-)
-      - Ks pi pi pi: [[./10.1/fig/var_momentum_pi_KS_data_Single_Dp_to_Kspipipi_281ipbv0_281ipbv7.org][figure]] (\pi^{+})
-   9. Ks vertex radius:
-      - Ks pi: [[./10.1/fig/var_ksrad_data_Single_Dp_to_Kspi_281ipbv0_281ipbv7.org][figure]]
-      - Ks pi pi0: [[./10.1/fig/var_ksrad_data_Single_Dp_to_Kspipi0_281ipbv0_281ipbv7.org][figure]]
-      - Ks pi pi pi: [[./10.1/fig/var_ksrad_data_Single_Dp_to_Kspipipi_281ipbv0_281ipbv7.org][figure]]
-
-
-
-	
-** 281ipbv8
-
- - v8 (use the old parameters)
-
-   | Type                  | 281ipbv8 |
-   |-----------------------+----------|
-   | Signal MC single tags | [[./10.1/fig/signal_single_281ipbv8.org][figure]]   |
-   | Signal MC double tags | [[./10.1/fig/signal_double_281ipbv8.org][figure]]   |
-   | Data single tags      | [[./10.1/fig/data_single_281ipbv8.org][figure]]   |
-   | Data double tags      | [[./10.1/fig/data_double_281ipbv8.org][figure]]   |
-** 281ipbv9
- - v9 (new env fit old data)
-
-   | Type             | 281ipbv9 |
-   |------------------+----------|
-   | Data single tags | [[./10.1/fig/data_single_281ipbv9.org][figure]]   |
-
-** 281ipbv10
-   v10 (new env fit old data with old parameters)
-
-   | Type                 | 281ipbv10 | 537ipbv10 | 818ipbv10 |
-   |----------------------+-----------+-----------+-----------|
-   | Data single tags     | [[./10.1/fig/data_single_281ipbv10.org][figure]]    |           |           |
-   | Generic Background   | [[./10.1/fig/generic_ddbar_single_p_281ipbv10.org][figure]]    | [[./10.1/fig/generic_ddbar_single_p_537ipbv10.org][figure]]    | [[./10.1/fig/generic_ddbar_single_p_818ipbv10.org][figure]]    |
-   | -- all in one        | [[./10.1/fig/generic_ddbar_background_single_281ipbv10.org][figure]]    |           |           |
-   | -- no Gaussian       | [[./10.1/fig/generic_ddbar_single_p_281ipbv10_nogaus.org][figure]]    |           |           |
-   | -- float sigma       | [[./10.1/fig/generic_ddbar_single_p_281ipbv10_floatsigma.org][figure]]    |           |           |
-   | -- no crossfeeds     | [[./10.1/fig/generic_ddbar_single_p_281ipbv10_noxfeed.org][figure]]    | [[./10.1/fig/generic_ddbar_single_p_537ipbv10_noxfeed.org][figure]]    | [[./10.1/fig/generic_ddbar_single_p_818ipbv10_noxfeed.org][figure]]    |
-   | Generic DDbar Bkg    | [[./10.1/fig/generic_ddbar_single_p_281ipbv10_noxfeed.org][figure]]    | [[./10.1/fig/generic_ddbar_single_p_537ipbv10_noxfeed.org][figure]]    |           |
-   | Continuum Background | [[./10.1/fig/generic_cont_single_p_281ipbv10.org][figure]]    |           |           |
-   | Tau pair Background  | [[./10.1/fig/generic_tau_single_p_281ipbv10.org][figure]]    |           |           |
-   | Raditive Return Bkgd | [[./10.1/fig/generic_radret_single_p_281ipbv10.org][figure]]    |           |           |
-
-** 281ipbv11
-
- - v11 (new env fit new data with old paras)
-   | Type             | 281ipbv11 |
-   |------------------+-----------|
-   | Data single tags | [[./10.1/fig/data_single_281ipbv11.org][figure]]    |
-
 
 ** 537ipbv5 
    1. Fit diagonal double tags floating momentum resolution parameters => [[./10.1/fig/signal_diagdouble_537ipbv5_resolution.org][figure]]
@@ -241,14 +69,4 @@
    5. Fit data double tags => [[./10.1/fig/data_double_537ipbv5.org][figure]]
    6. Fit crossfeeds => diag: [[./10.1/fig/crossfeeds_signal_diag_537ipbv5.org][figure]], nondiag: [[./10.1/fig/crossfeeds_signal_nondiag_537ipbv5.org][figure]] 
 
-
-** 537ipbv7.1 
-   Use the momentum resolution parameters from 281/pb. 
-
-   1. Fit data single tags => [[./10.1/fig/data_single_p_537ipbv7.1.org][figure]]
-
-
-** ARGUS function
-
-   [[.10.1/fig/fun_argus.pdf][./10.1/fig/fun_argus.png]]
 
