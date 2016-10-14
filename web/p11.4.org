@@ -1,0 +1,2628 @@
+#+TITLE: D-Hadronic Analysis Progress - 11.4
+
+* 281/pb 
+
+** DONE Generate Signal MC Samples (281ipbv12) 
+*** DONE Generate Signal MC with new DEC file 
+**** First check
+     Check one file:
+     : Single_D0_to_Kpipipi.dec
+     
+     From the parser:
+     
+     : cd $dhad/lib/python
+     : python decparser-development.py 
+     : (Cmd) readfile  /nfs/cleo3/Offline/rel/20080624_MCGEN/data/DECAY.DEC
+     : (Cmd) explain
+     : Parent particle? D0
+     : Final state? K- pi+ pi+ pi-   
+     : Total 0.077048600879
+     : 0.0369 Chain: 
+     :         D0 -> a_1+ K-
+     :         a_1+ -> pi+ rho0
+     :         rho0 -> pi+ pi-
+     : 0.0159 Chain: 
+     :         D0 -> K- pi+ rho0
+     :         rho0 -> pi+ pi-
+     : 0.0099855 Chain: 
+     :         D0 -> anti-K*0 rho0
+     :         anti-K*0 -> K- pi+
+     :         rho0 -> pi+ pi-
+     : 0.0055 Chain: 
+     :         D0 -> K- pi+ pi+ pi-
+     : 0.00412734 Chain: 
+     :         D0 -> anti-K*0 pi+ pi-
+     :         anti-K*0 -> K- pi+
+     : 0.00160284 Chain: 
+     :         D0 -> K_1- pi+
+     :         K_1- -> K- pi+ pi-
+     : 0.001554 Chain: 
+     :         D0 -> K_1- pi+
+     :         K_1- -> K- rho0
+     :         rho0 -> pi+ pi-
+     : 0.000788435109 Chain: 
+     :         D0 -> K_1- pi+
+     :         K_1- -> anti-K*0 pi-
+     :         anti-K*0 -> K- pi+
+     : 0.00050167 Chain: 
+     :         D0 -> K- omega pi+
+     :         omega -> pi+ pi-
+     : 0.00016183167 Chain: 
+     :         D0 -> anti-K*0 omega
+     :         anti-K*0 -> K- pi+
+     :         omega -> pi+ pi-
+     : 2.69841e-05 Chain: 
+     :         D0 -> K_1- pi+
+     :         K_1- -> K- omega
+     :         omega -> pi+ pi-
+     
+**** Setup src 11.4 
+     Tag the 10.1.10 ... done. 
+
+     : setdhad 11.4 OK.
+
+**** Parse the Kpipipi dec
+
+     : dhad-11.4 tab parse dec 20080624_MCGEN explain D0 to K- pi+ pi+ pi- OK.
+
+     List the details:
+
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D0 to K- pi+ pi+ pi- OK.
+
+     Edit the fragment file... done. 
+
+     : dhad-11.4 tab parse dec 20080624_MCGEN details anti-D0 to K+ pi- pi- pi+ ... OK.
+
+     Email Peter to confirm ... sent. 
+
+**** Parse the rest of the modes
+     Mode 0:
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D0 to K- pi+ OK. no change.
+     : dhad-11.4 tab parse dec 20080624_MCGEN details anti-D0 to K+ pi- OK.
+
+     Mode 1: 
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D0 to K- pi+ pi0  no change. 
+
+     Mode 200:
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D+ to K- pi+ pi+ no change.
+
+     Mode 201:
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D+ to K- pi+ pi+ pi0 ... update OK.
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D- to K+ pi- pi- pi0  ... update OK. 
+     
+     Mode 202:
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D+ to K_S0 pi+ ... update OK.
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D- to K_S0 pi- ... update OK.
+
+     Mode 203:
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D+ to K_S0 pi+ pi0 ... update OK.
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D- to K_S0 pi- pi0 ... update OK.
+
+     Mode 204:
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D+ to K_S0 pi+ pi+ pi- ... update OK.
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D- to K_S0 pi- pi- pi+ ... update OK.
+
+     Mode 205:
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D+ to K+ K- pi+ ... update OK.
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D- to K- K+ pi- ... update OK.
+
+     Since only two modes (0, 1, 200) don't change, generate all the signal
+     MC again. 
+
+**** Reset the BFs to match the total. 
+     Mode 3:
+     : dhad-11.4 tab parse dec 20080624_MCGEN details D0 to K- pi+ pi+ pi-  ... OK.
+     
+     : dhad-11.4 tab parse dec 20080624_MCGEN explain D0 to K- pi+ pi+ pi-  ... OK.
+
+     Batch output:
+
+     Add header file ... OK.
+
+     Fix my my bug ... OK.
+
+     Fix sci bfs ... OK. 
+
+     : dhad-11.4 tab parse tag_fragments 818ipbv12 ... OK. 
+
+**** Test run with CLEOG
+     Test the one run:
+     : dhad-11.4 gen cleog Single_Dp_to_Kspipipi 818ipbv12 task 1 -s interact  
+
+     Error:
+     : EvtGen:In readDecayFile, reading:/home/xs32/work/CLEO/analysis/DHad/dat/signal/818ipb
+     : v12/src/tag_decfiles/Single_Dp_to_Kspipipi.dec                                      
+     : EvtGen:Redefined decay of vpho
+     : EvtGen:No default probmax for (VPHOTOVISR) vpho -> psi(3770) gamma 
+     : This is fine for development, but must be provided for production.
+     : EvtGen:Never fear though - the decay will use the 
+     : EvtGen:500 iterations to build up a good probmax 
+     : EvtGen:before accepting a decay. 
+     : EvtGen:Redefined decay of psi(3770)
+     : EvtGen:Warning, sum of branching fractions for myD+ is 0.13276
+     : EvtGen:rescaled to one! 
+     : EvtGen:VVS_PWAVE did not get the correct daughter spin d=0
+     : myanti-K'_10p -> myanti-K0p rho0  (VVS_PWAVE):
+     : EvtGen:Will terminate execution!
+
+
+     Need to check the relative ratios for the BFs. ... done.
+
+     : dhad-11.4 gen cleog Single_Dp_to_Kspipipi 818ipbv12 task 1 -s interact -t OK.
+     : dhad-11.4 gen cleog Single_Dp_to_Kspipipi 818ipbv12 task 1 -s interact OK. 
+
+     Found bug : myanti-myK0pp
+
+     Fix ... done. 
+
+     Found another bug: EvtGen:Expected to find a branching fraction
+     or Enddecay but found:4.42e-05 on line 27 fix ... done. 
+
+     DEC file OK now. 
+
+*** DONE Test Single Tags 5 events
+    Generate DEC fragment files ... later need automatic. OK. 
+    : dhad-11.4 tab parse tag_fragments 281ipbv12  ... done. 
+
+    Test the one run:
+    : dhad-11.4 gen cleog Single_Dp_to_Kspipipi 281ipbv12 task 1 -s interact -t OK. 
+
+    Test batch for 5 events:
+    : dhad-11.4 gen cleog Single_Dp_to_Kspipipi 281ipbv12 task 1 ... OK. 
+
+    Test all tasks:
+    : dhad-11.4 gen cleog Single_Dp_to_Kspipipi 281ipbv12 OK.
+
+    : dhad-11.4 chk cleog Single_Dp_to_Kspipipi 281ipbv12 OK.
+
+    Test all modes 5 events. : 
+    : dhad-11.4 gen cleog single 281ipbv12 ... done. 
+    : dhad-11.4 chk cleog single 281ipbv12 OK.
+
+    Test for pass2:
+    : dhad-11.4 gen pass2 Single_Dp_to_Kspipipi 281ipbv12 task 1 -s interact OK.
+    : dhad-11.4 gen pass2 Single_Dp_to_Kspipipi 281ipbv12 task 1 ... done. 
+
+    : dhad-11.4 chk pass2 Single_Dp_to_Kspipipi 281ipbv12 task 1 OK.
+
+    : dhad-11.4 gen pass2 single 281ipbv12 ... done. 
+    : dhad-11.4 chk pass2 single 281ipbv12 ... OK.
+
+    Test for dskim:
+    : dhad-11.4 gen dskim Single_Dp_to_Kspipipi 281ipbv12 task 1 -s interact OK.
+    : dhad-11.4 gen dskim Single_Dp_to_Kspipipi 281ipbv12 task 1 ... done. 
+    : dhad-11.4 chk dskim Single_Dp_to_Kspipipi 281ipbv12 task 1 ... OK.
+
+    : dhad-11.4 gen dskim single 281ipbv12 ... done.
+    : dhad-11.4 chk dskim single 281ipbv12 OK.
+
+    Test for ntuple: 
+    : dhad-11.4 gen ntuple Single_Dp_to_Kspipipi 281ipbv12 task 1 -s interact OK.
+    : dhad-11.4 gen ntuple Single_Dp_to_Kspipipi 281ipbv12 task 1 done.  
+    : dhad-11.4 chk ntuple Single_Dp_to_Kspipipi 281ipbv12 OK.
+    
+    : dhad-11.4 gen ntuple single 281ipbv12 ... done.
+    : dhad-11.4 chk ntuple single 281ipbv12 ... OK.
+
+*** DONE Test for Double tags 5 events. 
+    CLEOG:
+
+    : dhad-11.4 gen cleog Double_Dp_to_Kspipipi__Dm_to_KKpi 281ipbv12 task 1  -s interact -t OK.
+
+    : dhad-11.4 gen cleog Double_Dp_to_Kspipipi__Dm_to_KKpi 281ipbv12 task 1  -s interact OK.
+
+    Test all modes 5 events. : 
+    : dhad-11.4 gen cleog diagdouble 281ipbv12 ... done. 
+    : dhad-11.4 chk cleog diagdouble 281ipbv12 ... OK.
+    
+    Pass2:
+    : dhad-11.4 gen pass2 Double_Dp_to_KKpi__Dm_to_KKpi 281ipbv12 task 1  -s interact OK. 
+
+    : dhad-11.4 gen pass2 diagdouble 281ipbv12 ... done.
+    : dhad-11.4 chk pass2 diagdouble 281ipbv12 OK. 
+
+    Should be OK in the rest. 
+
+*** DONE Generate 281/pb Diag Double 
+    Change the 5 events back to normal ... OK. 
+
+    CLEOG:
+
+    : dhad-11.4 gen cleog diagdouble 281ipbv12 ... done. 
+    : dhad-11.4 chk cleog diagdouble 281ipbv12 ... mode 0 task 1 only 5 events. 
+    
+    : dhad-11.4 gen cleog Double_D0_to_Kpi__D0B_to_Kpi 281ipbv12 task 1  -s interact -t OK. 
+    : dhad-11.4 gen cleog Double_D0_to_Kpi__D0B_to_Kpi 281ipbv12 task 1 ... done. 
+
+    : dhad-11.4 chk cleog diagdouble 281ipbv12 OK. 
+
+    Pass2:
+
+    : dhad-11.4 gen pass2 diagdouble 281ipbv12 ... done. 
+    : dhad-11.4 chk pass2 diagdouble 281ipbv12 OK. 
+
+    DSkim: 
+
+    : dhad-11.4 gen dskim diagdouble 281ipbv12 ... done. 
+    : dhad-11.4 chk dskim diagdouble 281ipbv12 ... OK.
+    
+    NTuple
+
+    : dhad-11.4 gen ntuple diagdouble 281ipbv12 ... done. 
+    : dhad-11.4 chk ntuple diagdouble 281ipbv12 ... OK.
+
+    Clean the cleog files
+    
+    : dhad-11.4 cln cleog diagdouble 281ipbv12 ... 90 cleaned. 
+
+*** DONE Generate 281/pb Non Diag Double
+
+    CLEOG:
+
+    : dhad-11.4 gen cleog nondiagdouble 281ipbv12 ... done. 
+    : dhad-11.4 chk cleog nondiagdouble 281ipbv12 ... 2 problems.
+
+    : dhad-11.4 gen cleog Double_Dp_to_Kspi__Dm_to_Kpipi 281ipbv12 task 8 ... done.
+    : dhad-11.4 gen cleog Double_Dp_to_KKpi__Dm_to_Kpipipi0 281ipbv12 task 6 ... done.
+
+    : dhad-11.4 chk cleog Double_Dp_to_Kspi__Dm_to_Kpipi 281ipbv12 task 8 ... OK.
+    : dhad-11.4 chk cleog Double_Dp_to_KKpi__Dm_to_Kpipipi0 281ipbv12 task 6 ... OK.
+
+    Pass2:
+
+    : dhad-11.4 gen pass2 nondiagdouble 281ipbv12 ... done. 
+    : dhad-11.4 chk pass2 nondiagdouble 281ipbv12 ... OK.
+
+    Dskim:
+    : dhad-11.4 gen dskim nondiagdouble 281ipbv12 ... done. 
+
+    : qmod -c 2182711
+    : qmod -c 2182700 
+
+    : dhad-11.4 chk dskim nondiagdouble 281ipbv12 ... OK.
+
+    Ntuple:
+    : dhad-11.4 gen ntuple nondiagdouble 281ipbv12 ... done. 
+    : dhad-11.4 chk ntuple nondiagdouble 281ipbv12 ... OK. 
+
+    Clean CLEOG:
+    : dhad-11.4 cln cleog nondiagdouble 281ipbv12  ... 360 cleaned. 
+
+*** DONE Generate 281/pb Single Tag
+
+    CLEOG:
+    : dhad-11.4 gen cleog single 281ipbv12 ... done. 
+    : dhad-11.4 chk cleog single 281ipbv12 ... some with 5 events:
+   
+    : dhad-11.4 gen cleog Single_Dm_to_Kspi 281ipbv12 task 5,8,9,10 ... done. 
+
+    : dhad-11.4 gen cleog  Single_Dp_to_Kspipi0 281ipbv12 ... done. 
+    : dhad-11.4 gen cleog  Single_Dm_to_Kspipi0 281ipbv12 ... done. 
+
+    : dhad-11.4 gen cleog  Single_Dp_to_Kspipipi 281ipbv12 ... done.
+    : dhad-11.4 gen cleog  Single_Dm_to_Kspipipi 281ipbv12 ... done.
+
+    : dhad-11.4 gen cleog  Single_Dp_to_KKpi 281ipbv12 ... done.
+    : dhad-11.4 gen cleog  Single_Dm_to_KKpi 281ipbv12 ... done. 
+
+    
+    : qmod -c 2184669
+    : qmod -c 2184670
+    : qmod -c 2184671
+
+    : dhad-11.4 chk cleog Single_Dm_to_Kspi 281ipbv12 ... still 5 events!
+
+    : dhad-11.4 gen cleog Single_Dm_to_Kspi 281ipbv12 task 5 -t 
+
+    Check the log file:
+    
+    : >> Sun Apr 17 14:20:05 2011 Run:  206937 Event:    4736 Stop: event << 
+    :  %% NOTICE-Processor.MCRunEvtNumberProc:  RandomGenerator seeds=1913143133, 467737263
+    :  %% NOTICE-Processor.RunEventNumberProc: Run: 206937 Event: 4736
+    : EDT: 04/17/2011 14:20:06.257678 | /nfs/cleo3/Common/rel/20080624_MCGEN/include/ConstantsUtility/DBConstants.hxx:1093: **ERROR** (C) Could not get validity range from VersionManager server.
+    : 
+    : Exception: IDL:omg.org/CORBA/COMM_FAILURE:1.0
+    : Status: COMPLETED_NO
+
+    Check the diskspace ... OK.
+
+    The Constants server may be down. Sent email ... done. 
+
+    Re-submitted... done. 
+    : dhad-11.4 chk cleog single 281ipbv12 ... done.
+
+    Pass2:
+    : dhad-11.4 gen pass2 single 281ipbv12 ... done. 
+    : dhad-11.4 chk pass2 single 281ipbv12 ... with less events. 
+
+    : dhad-11.4 chk cleog Single_D0B_to_Kpipi0 281ipbv12 ...OK.
+    : dhad-11.4 gen pass2 Single_D0B_to_Kpipi0 281ipbv12 task 1,2,8,9,10 ...done.
+    : dhad-11.4 chk pass2 Single_D0B_to_Kpipi0 281ipbv12  still problem. 
+    : dhad-11.4 gen cleog Single_D0B_to_Kpipi0 281ipbv12 task 1,2,8,9,10 ... done. 
+    
+    : dhad-11.4 chk cleog Single_D0B_to_Kpipi0 281ipbv12 ... one problem.
+    : dhad-11.4 gen cleog Single_D0B_to_Kpipi0 281ipbv12 task 9 ... done. 
+    : dhad-11.4 gen pass2 Single_D0B_to_Kpipi0 281ipbv12 task 1,2,8,10 ... done.
+    : dhad-11.4 chk cleog Single_D0B_to_Kpipi0 281ipbv12 OK. 
+    : dhad-11.4 gen pass2 Single_D0B_to_Kpipi0 281ipbv12 task 9 ... done. 
+    : dhad-11.4 chk pass2 Single_D0B_to_Kpipi0 281ipbv12 OK.
+
+
+
+    : dhad-11.4 gen pass2 Single_Dm_to_Kpipi 281ipbv12 task 7,9,10 ...done.
+    : dhad-11.4 chk cleog Single_Dm_to_Kpipi 281ipbv12 ... OK. 
+    : dhad-11.4 chk pass2 Single_Dm_to_Kpipi 281ipbv12 ... still the same problem.
+    : dhad-11.4 chk cleog Single_Dm_to_Kpipi 281ipbv12 OK.
+    : dhad-11.4 gen pass2 Single_Dm_to_Kpipi 281ipbv12 task 7,9,10 ... done. 
+    : dhad-11.4 chk cleog Single_Dm_to_Kpipi 281ipbv12 ... done. 
+    : dhad-11.4 gen pass2 Single_Dm_to_Kpipi 281ipbv12 task 7,9,10 ... done.
+    : dhad-11.4 chk pass2 Single_Dm_to_Kpipi 281ipbv12 OK.
+
+
+    
+    : dhad-11.4 gen pass2 Single_Dp_to_Kpipipi0 281ipbv12 task 1,2,4,6,7,9,10 ... done. 
+    : dhad-11.4 chk cleog Single_Dp_to_Kpipipi0 281ipbv12 OK. 
+    : dhad-11.4 chk pass2 Single_Dp_to_Kpipipi0 281ipbv12 ... same problem.
+    : dhad-11.4 gen cleog Single_Dp_to_Kpipipi0 281ipbv12 task 1,2,4,6,7,9,10 ... done.
+    : dhad-11.4 chk cleog Single_Dp_to_Kpipipi0 281ipbv12 OK.
+    : dhad-11.4 gen pass2 Single_Dp_to_Kpipipi0 281ipbv12 task 1,2,4,6,7,9,10 ...done. 
+    : dhad-11.4 chk pass2 Single_Dp_to_Kpipipi0 281ipbv12 OK.
+    
+
+    : dhad-11.4 chk cleog Single_Dm_to_Kpipipi0 281ipbv12 ... OK.
+    : dhad-11.4 gen pass2 Single_Dm_to_Kpipipi0 281ipbv12 ... done. 
+    : dhad-11.4 chk pass2 Single_Dm_to_Kpipipi0 281ipbv12 ... same problem. 
+    : dhad-11.4 gen cleog Single_Dm_to_Kpipipi0 281ipbv12 ... done.
+    : dhad-11.4 chk cleog Single_Dm_to_Kpipipi0 281ipbv12 ... one problem.
+    : dhad-11.4 gen cleog Single_Dm_to_Kpipipi0 281ipbv12 task 8 ... done.
+    : dhad-11.4 gen pass2 Single_Dm_to_Kpipipi0 281ipbv12 task 1,2,3,4,5,6,7,9,10 ...done. 
+
+    : dhad-11.4 chk cleog Single_Dm_to_Kpipipi0 281ipbv12 OK.
+
+
+
+    : dhad-11.4 chk cleog Single_Dp_to_Kspi 281ipbv12 ... OK.
+    : dhad-11.4 gen pass2 Single_Dp_to_Kspi 281ipbv12 ... done.
+    : dhad-11.4 chk pass2 Single_Dp_to_Kspi 281ipbv12 ... same problem. 
+    : dhad-11.4 gen cleog Single_Dp_to_Kspi 281ipbv12 ... done. 
+    : dhad-11.4 chk cleog Single_Dp_to_Kspi 281ipbv12 ... OK.
+    : dhad-11.4 gen pass2 Single_Dp_to_Kspi 281ipbv12 ... done. 
+    : dhad-11.4 chk pass2 Single_Dp_to_Kspi 281ipbv12 ... OK.
+
+
+    : dhad-11.4 chk cleog Single_Dm_to_Kspi 281ipbv12 ... OK. 
+    : dhad-11.4 gen pass2 Single_Dm_to_Kspi 281ipbv12 task 1,2,3,4,6,7 ... done. 
+    : dhad-11.4 chk pass2 Single_Dm_to_Kspi 281ipbv12 ... same problem. 
+    : dhad-11.4 gen cleog Single_Dm_to_Kspi 281ipbv12 task 1,2,3,4,6,7 ... done.
+    : dhad-11.4 chk cleog Single_Dm_to_Kspi 281ipbv12 OK.
+    : dhad-11.4 gen pass2 Single_Dm_to_Kspi 281ipbv12 task 1,2,3,4,6,7 ... done. 
+    : dhad-11.4 chk pass2 Single_Dm_to_Kspi 281ipbv12 
+
+    Overall Check for pass2:
+    : dhad-11.4 chk pass2 single 281ipbv12 OK.
+
+    DSkim:
+
+    : dhad-11.4 gen dskim single 281ipbv12 ... done.
+    : dhad-11.4 chk dskim single 281ipbv12 OK.
+
+    Clean CLEOG
+
+    : dhad-11.4 cln cleog single 281ipbv12 ...  180 cleaned. 
+
+
+    Ntuple:
+    : dhad-11.4 gen ntuple single 281ipbv12  ... done. 
+    : dhad-11.4 chk ntuple single 281ipbv12 ... some channels need check:
+
+    | Channel             | Designed | Generated |       Diff (%) |
+    |---------------------+----------+-----------+----------------|
+    | Single_D0_to_Kpipi0   | 197350.0 |    192448 | -2.48391183177 |
+    | Single_Dm_to_Kpipipi0 |  73380.0 |     71171 | -3.01035704552 |
+
+    CLEOG:
+
+    : dhad-11.4 chk cleog Single_D0_to_Kpipi0 281ipbv12 ... OK.
+    : dhad-11.4 chk cleog Single_Dm_to_Kpipipi0 281ipbv12 ... OK.
+
+
+    : dhad-11.4 gen cleog Single_D0_to_Kpipi0 281ipbv12 task 10 ... done.  
+    : dhad-11.4 chk cleog Single_D0_to_Kpipi0 281ipbv12 task 10 OK.
+
+    : dhad-11.4 gen cleog Single_Dm_to_Kpipipi0 281ipbv12 task 8 ... done.
+    : dhad-11.4 chk cleog Single_Dm_to_Kpipipi0 281ipbv12 task 8 OK. 
+
+    Pass2:
+
+    : dhad-11.4 chk pass2 Single_D0_to_Kpipi0 281ipbv12 ... problem:
+
+    | 10 | 19735 | 14961 | -24.1905244489 |
+    
+    : dhad-11.4 chk pass2 Single_Dm_to_Kpipipi0 281ipbv12 ... one:
+    | 8 | 7338 | 5172 | -29.517579722 |
+
+    : dhad-11.4 gen pass2 Single_D0_to_Kpipi0 281ipbv12 task 10 ... done. 
+    : dhad-11.4 chk pass2 Single_D0_to_Kpipi0 281ipbv12 task 10 OK.
+
+    : dhad-11.4 gen pass2 Single_Dm_to_Kpipipi0 281ipbv12 task 8 ... done.
+    : dhad-11.4 chk pass2 Single_Dm_to_Kpipipi0 281ipbv12 task 8 OK.
+
+
+    Dskim:
+
+    : dhad-11.4 chk dskim Single_D0_to_Kpipi0 281ipbv12  only task 10. 
+    : dhad-11.4 chk dskim Single_Dm_to_Kpipipi0 281ipbv12  only task 8. 
+    
+    : dhad-11.4 gen dskim Single_D0_to_Kpipi0 281ipbv12 task 10 ... done. 
+    : dhad-11.4 gen dskim Single_Dm_to_Kpipipi0 281ipbv12 task 8 ... done.
+    
+    : dhad-11.4 chk dskim Single_Dm_to_Kpipipi0 281ipbv12 OK. 
+    : dhad-11.4 chk dskim Single_D0_to_Kpipi0 281ipbv12 OK.
+
+    Ntuple:
+    
+    : dhad-11.4 gen ntuple Single_Dm_to_Kpipipi0 281ipbv12 ... done. 
+    : dhad-11.4 gen ntuple Single_D0_to_Kpipi0 281ipbv12 ... done. 
+
+    : dhad-11.4 chk ntuple Single_Dm_to_Kpipipi0 281ipbv12 ... OK.  
+    : dhad-11.4 chk ntuple Single_D0_to_Kpipi0 281ipbv12 ... OK.
+
+    Re-check ... all OK.
+
+    Clean cleog:
+
+    : dhad-11.4 cln cleog single 281ipbv12 ... 2 cleaned. 
+
+
+** DONE Fit mBC (281ipbv12) 
+
+*** DONE Extract yields for diag double
+    Run for one mode:
+
+    : dhad-11.4 yld signal Double_Dp_to_KKpi__Dm_to_KKpi 281ipbv12 -s interact -t OK.
+    : dhad-11.4 yld signal Double_Dp_to_KKpi__Dm_to_KKpi 281ipbv12 -t OK.
+    : dhad-11.4 yld signal Double_Dp_to_KKpi__Dm_to_KKpi 281ipbv12 ... OK.
+
+    Use mBC cut:
+
+    : dhad-11.4 yld signal Double_Dp_to_Kpipipi0__Dm_to_Kpipipi0 281ipbv12 OK.
+
+    Run for diagonal double:
+
+    : dhad-11.4 yld signal diagdouble 281ipbv12 -t OK.
+    : dhad-11.4 yld signal diagdouble 281ipbv12  ... done. 
+
+    : dhad-11.4 yld generic diagdouble 281ipbv12 ... done.
+
+*** DONE Extract yields for nondiag double
+    Run for one mode:
+
+    : dhad-11.4 yld signal Double_Dp_to_KKpi__Dm_to_Kpipi 281ipbv12 -s interact -t OK.
+    : dhad-11.4 yld generic Double_Dp_to_KKpi__Dm_to_Kpipi 281ipbv12 -s interact -t OK.
+
+    Run for nondiagonal double:
+
+    : dhad-11.4 yld signal nondiagdouble 281ipbv12 -t OK.
+    : dhad-11.4 yld signal nondiagdouble 281ipbv12 ... done. 
+
+    Use mBC cut:
+    : dhad-11.4 yld signal nondiagdouble 281ipbv12 ... done. 
+    : dhad-11.4 yld generic nondiagdouble 281ipbv12 ... done. 
+
+*** DONE Extract yields for single tag (remove additional mBC)
+    
+    Run for one mode:
+
+    : dhad-11.4 yld signal Single_Dp_to_KKpi 281ipbv12 -s interact -t OK.
+
+    Run for single :
+    : dhad-11.4 yld signal single 281ipbv12 -t OK. 
+    : dhad-11.4 yld signal single 281ipbv12 ... done.
+    : dhad-11.4 yld generic single 281ipbv12 ... done. 
+    
+*** DONE Fit mBC
+
+    - Diag Double 
+    : dhad-11.4 fit signal Double_Dp_to_KKpi__Dm_to_KKpi 281ipbv12/resolution -s interact -t OK. 
+
+    : dhad-11.4 fit signal Double_Dp_to_KKpi__Dm_to_KKpi 281ipbv12/resolution OK.
+
+    : dhad-11.4 fit signal diagdouble 281ipbv12/resolution ... done. 
+    : dhad-11.4 fig signal diagdouble 281ipbv12/resolution OK.  
+
+    - Make parameters table
+      
+    : dhad-11.4 tab para momentum resolution 281ipbv12 
+    
+    Make a comparison table with previous ... by eye ... for now... OK.
+    
+    - Data single tag 
+      : dhad-11.4 fit data Single_Dp_to_KKpi 281ipbv12 -s interact -t OK.
+      : dhad-11.4 fit data single_p 281ipbv12 ... done. 
+      : dhad-11.4 fig data single_p 281ipbv12 OK.
+
+    - Signal MC single tag
+      : dhad-11.4 fit signal Single_Dp_to_KKpi 281ipbv12 -s interact OK. 
+      : dhad-11.4 fit signal single_p 281ipbv12 ... doen. 
+      : dhad-11.4 fig signal single_p 281ipbv12 OK.
+
+    - Data double tag
+      : dhad-11.4 fit data Double_Dp_to_KKpi__Dm_to_KKpi 281ipbv12 -s interact OK.
+      : dhad-11.4 fit data double 281ipbv12 ... done. 
+      : dhad-11.4 fig data double 281ipbv12 OK.
+
+    - Singal MC double tag
+      : dhad-11.4 fit signal Double_Dp_to_KKpi__Dm_to_KKpi 281ipbv12 -s interact OK.
+      : dhad-11.4 fit signal double 281ipbv12 ... done.  
+      : dhad-11.4 fig signal double 281ipbv12 OK. 
+
+    - Compare yields
+      : dhad-11.4 tab compare yields data single 281ipbv0 281ipbv12 OK. 
+      : dhad-11.4 tab compare yields data single 281ipbv0 281ipbv7 OK.  
+
+      : dhad-11.4 tab compare yields signal single 281ipbv0 281ipbv12 OK. 
+      : dhad-11.4 tab compare yields signal single 281ipbv0 281ipbv7 OK.  
+
+
+** DONE Fit Crossfeed (281ipbv12) 
+*** DONE Extract Crossfeed yields
+    
+    Test on one mode: 
+    
+    : dhad-11.4 yld crossfeeds signal Single_Dp_to_Kspipipi 281ipbv12 -s interact -t OK.
+
+    For single:
+
+    : dhad-11.4 yld crossfeeds signal single 281ipbv12 -t OK. 
+    : dhad-11.4 yld crossfeeds signal single 281ipbv12 ... done. 
+
+*** DONE Corssfeed fits
+    Fit crossfeeds diagnoal:
+
+    : dhad-11.4 fit crossfeeds signal diag 281ipbv12  -s interact:mode=1:sign=-1  OK. 
+    : dhad-11.4 fit crossfeeds signal diag 281ipbv12 -t OK.
+    : dhad-11.4 fit crossfeeds signal diag 281ipbv12 ... done. 
+    : dhad-11.4 fig crossfeeds signal diag 281ipbv12 OK. 
+
+    
+    Fit crossfeeds nondiagnoal: (need the above as input...done.)
+
+    : dhad-11.4 fit crossfeeds signal nondiag 281ipbv12  -s interact:mode=0,3 OK.
+    : dhad-11.4 fit crossfeeds signal nondiag 281ipbv12 -t  OK. 
+    : dhad-11.4 fit crossfeeds signal nondiag 281ipbv12 ... done. 
+    : dhad-11.4 fig crossfeeds signal nondiag 281ipbv12 OK. 
+
+
+** DONE BFs with original syserr (281ipbv12.0)
+   
+   : dhad-11.4 brf 281ipbv12.0 ... done. 
+
+   Compare with 281ipbv0 (PRD 2007):
+
+   : dhad-11.4 tab compare brf_data_results 281ipbv0 281ipbv12.0  OK.  
+
+
+** DONE BFs for generic MC (281ipbv12.0)
+
+   FitmBC: 
+
+   Generic MC single tag
+   : dhad-11.4 fit generic Single_Dp_to_KKpi 281ipbv12 -s interact OK. 
+   : dhad-11.4 fit generic single_p 281ipbv12 ... done. 
+   : dhad-11.4 fig generic single_p 281ipbv12 OK. 
+
+   Generic MC double tag
+
+   : dhad-11.4 fit generic Double_Dp_to_KKpi__Dm_to_KKpi 281ipbv12 -s interact OK. 
+   : dhad-11.4 fit generic double 281ipbv12 ... done.
+   : dhad-11.4 fig generic double 281ipbv12 OK. 
+
+   BFs:
+
+   Found the generic BFs in Peter's original code, check the DECAY
+   file:
+
+   : dhad-11.4 tab parse dec 20050525_MCGEN explain D0 to K- pi+ OK. 
+   : dhad-11.4 tab parse dec 20050525_MCGEN explain D0 to K- pi+ pi0 OK.
+   : dhad-11.4 tab parse dec 20050525_MCGEN explain D0 to K- pi+ pi- pi+ OK.
+   : dhad-11.4 tab parse dec 20050525_MCGEN explain D+ to K- pi+ pi+ OK. 
+   : dhad-11.4 tab parse dec 20050525_MCGEN explain D+ to K- pi+ pi+ pi0 OK.
+   : dhad-11.4 tab parse dec 20050525_MCGEN explain D+ to K_S0 pi+ OK.
+   : dhad-11.4 tab parse dec 20050525_MCGEN explain D+ to K_S0 pi+ pi0 OK.
+   : dhad-11.4 tab parse dec 20050525_MCGEN explain D+ to K_S0 pi+ pi+ pi- OK. 
+   : dhad-11.4 tab parse dec 20050525_MCGEN explain D+ to K+ K- pi+ OK. 
+
+   Fit BFs:
+   : dhad-11.4 brf 281ipbv12.0/generic ...  prob 0. 
+
+   Make the comparison table: 
+
+   : dhad-11.4 tab web fitResultsMC 281ipbv12.0/generic OK. 
+
+
+
+** DONE Understand the KKpi (281ipbv12) -- Continue on 818ipbv12 
+
+   Compare the raw yields for KKpi:
+
+   |            | 281ipbv0    | 281ipbv12   |
+   |------------+-------------+-------------|
+   | Dp to KKpi | 9446 (0.47) | 8678 (0.43) |
+   | Dm to KKpi | 9564 (0.48) | 8628 (0.43) |
+   
+   Plot the KKpi momentum:
+
+   : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 281ipbv12 -s interact -t OK. 
+   : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 281ipbv12 -t OK.
+   : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 281ipbv12 ... done. 
+
+   : dhad-11.4 fig trkmtm signal Single_Dp_to_KKpi 281ipbv12 OK. 
+
+   Check the particle def change:
+
+   | Name      | Mass (ori) |   New | Diff (%) | Width (Ori) |   New | Diff (%) |
+   |-----------+------------+-------+----------+-------------+-------+----------|
+   | anti-K0*0 |      1.429 | 1.414 |    -1.05 |       0.287 | 0.290 |     1.05 |
+   
+   Small change. 
+   
+   Document on the mtg page ... done. 
+
+   Email to DHad HN and cc to Peter ... OK.  
+
+   Reply from Peter:
+
+   : Actually the big reason for the efficiency difference is almost
+   : certainly the large increase in the number of K+ at low momentum that
+   : you show on your plots.  This is "good" news as in the old 281
+   : analysis the MC underestimated the number of low momentum K+, so the
+   : change is at least in the right direction (although it probably goes
+   : too far, sigh...)  Could you find and post a link to your resonant
+   : substructure studies for K- K+ pi+ with the new MC?
+
+
+*** DONE Update the resonant substructure studies for KKpi (818ipbv12)
+   
+    : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 818ipbv12 -s interact -t OK. 
+    : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 818ipbv12 -t OK. 
+    : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 818ipbv12 ... done. 
+
+    : dhad-11.4 fig trkmtm signal Single_Dp_to_KKpi 818ipbv12 OK. 
+
+
+    Get the momentum for data and generic MC:
+
+    : dhad-11.4 sel trkmtm2 data Single_Dp_to_KKpi 818ipbv12 -s interact -t OK. 
+    : dhad-11.4 sel trkmtm2 generic Single_Dp_to_KKpi 818ipbv12 -s interact -t OK. 
+
+    : dhad-11.4 sel trkmtm2 data Single_Dp_to_KKpi 818ipbv12 ... done. 
+    : dhad-11.4 sel trkmtm2 generic Single_Dp_to_KKpi 818ipbv12 ... done. 
+    
+    : dhad-11.4 fig trkmtm2 generic/data Single_Dp_to_KKpi 818ipbv12 OK. 
+
+    : dhad-11.4 tab cbx resonant_syst 818ipbv12 OK for KKpi. 
+
+
+
+*** DONE Understand Peter's Ds method to determine syst
+
+    Read Peter's thesis 6.7.2 KKpi ... 
+
+    Ask for details for procedure ... hold. Try it first. 
+
+    Plot the background-subtracted mass distributions:
+
+    : dhad-11.4 fig var mass kk signal Single_Dp_to_KKpi 281ipbv12 OK. 
+
+    : dhad-11.4 fig var mass kk data Single_Dp_to_KKpi 281ipbv12 -t ... too long. 
+
+    Select first:
+
+    : dhad-11.4 sel var mass_kk signal Single_Dp_to_KKpi 281ipbv12 -s interact -t OK. 
+    : dhad-11.4 sel var mass_kk signal Single_Dp_to_KKpi 281ipbv12 -t OK. 
+    : dhad-11.4 sel var mass_kk signal Single_Dp_to_KKpi 281ipbv12 ... done. 
+
+    : dhad-11.4 sel var mass_kk data Single_Dp_to_KKpi 281ipbv12 -t OK. 
+    : dhad-11.4 sel var mass_kk data Single_Dp_to_KKpi 281ipbv12 ... done. 
+
+    Plot the KK mass:
+
+    : dhad-11.4 fig evt mass_kk signal Single_Dp_to_KKpi 281ipbv12 OK. 
+    : dhad-11.4 fig evt mass_kk data Single_Dp_to_KKpi 281ipbv12 OK. 
+
+    Plot together:
+
+    : dhad-11.4 fig evt mass_kk signal,data Single_Dp_to_KKpi 281ipbv12 OK.
+
+    Ask Peter how to subtract backgroundds ... sent. 
+
+    Reply from Peter: I did this for fig 6.3 by fitting the D_s
+    invariant mass distribution in bins of M(KK) or M(Kpi).  The later
+    figures that follow I think come from a strict sideband
+    subtraction (sideband in D_s invariant mass).  For D0/D+ you
+    probably want to use m_bc.
+
+    Couldn't see the sideband subtraction, ask about sideband details
+    ... sent. 
+
+    Answered by Jim: the yields from the fitting are already
+    background-subtracted. 
+
+    
+*** DONE Make one bin for KK mass 
+
+    : dhad-11.4 sel kkmass signal Single_Dp_to_KKpi 281ipbv12 -s interact -t OK. 
+    : dhad-11.4 sel kkmass signal Single_Dp_to_KKpi 281ipbv12 -t OK. 
+    : dhad-11.4 sel kkmass signal Single_Dp_to_KKpi 281ipbv12 ... OK.
+    : dhad-11.4 sel kkmass signal Single_Dm_to_KKpi 281ipbv12 ... done. 
+
+    : dhad-11.4 sel kkmass data Single_Dp_to_KKpi 281ipbv12 -s interact -t OK. 
+    : dhad-11.4 sel kkmass data Single_Dp_to_KKpi 281ipbv12 ... done. 
+    : dhad-11.4 sel kkmass data Single_Dm_to_KKpi 281ipbv12 ... done. 
+
+    : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 281ipbv12 -s interact -t 
+
+    : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 281ipbv12 -s interact2 -t 
+
+    Slice the evtfile into bins and use the standard fit ... OK. 
+
+    : dhad-11.4 sel kkmass signal Single_Dp_to_KKpi 281ipbv12 -s interact,kkmass_min=0.987,kkmass_max=0.9895,binwidth=0.0025 -t OK. 
+
+    : dhad-11.4 sel kkmass signal Single_Dp_to_KKpi 281ipbv12 -s kkmass_min=0.987,kkmass_max=0.9895,binwidth=0.0025 -t OK. 
+
+    : dhad-11.4 sel kkmass signal Single_Dp_to_KKpi 281ipbv12 -s interact,binbase=0.987,binwidth=0.0025,numbins=1 -t OK.
+
+    : dhad-11.4 sel kkmass signal Single_Dp_to_KKpi 281ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=1 OK.
+    
+    Not a good idea, revert to the non-binned case. 
+
+    Fit one bin for KK mass: 
+    
+    : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 281ipbv12 -s interact,binbase=0.9795,binwidth=0.0025,numbins=1 -t 
+
+    : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 281ipbv12 -s interact,binbase=0.987,binwidth=0.0025,numbins=1 -t 
+
+    Problem in plotting, ask on HyperNews ... sent. 
+
+    Reply from Peter: Usually this error in PyROOT happens because one
+    of the objects you create in the function call is a temporary
+    object which gets deleted by the garbage collection before the
+    call is executed (the object is null so you get a segmentation
+    fault).  You can work around it by assigning the arguments to the
+    call to variables and then using the variables in the function
+    call, e.g. instead of function(object1()) do obj = object1()
+    function(obj)
+
+    Change ... Works ! 
+
+    Ask about the 0.6 in LineWidth ... sent. 
+    
+    Reply from Peter: Probably CINT is silently casting the float 0.6
+    to an integer before calling LineWidth.
+
+
+    Interact :
+    : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 281ipbv12 -s interact,binbase=0.9795,binwidth=0.0025,numbins=1 -t OK. 
+
+    Batch: 
+    : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 281ipbv12 -s binbase=0.9795,binwidth=0.0025,numbins=1 -t OK. 
+
+    : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 281ipbv12 -s binbase=0.9795,binwidth=0.0025,numbins=1 ... OK. 
+
+    Real fitting: 
+    : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 281ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=1 ... done. 
+
+    Fig:
+    
+    : dhad-11.4 fig kkmass signal Single_Dp_to_KKpi 281ipbv12 -s binbase=0.9795,binwidth=0.0025,numbins=1  -t OK. 
+
+    : dhad-11.4 fig kkmass signal Single_Dp_to_KKpi 281ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=1 ... OK. 
+    
+
+*** DONE Fit 10 bins
+    : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 281ipbv12 -s binbase=0.9795,binwidth=0.0025,numbins=10  ... done. 
+
+    : dhad-11.4 fig kkmass signal Single_Dp_to_KKpi 281ipbv12 -s binbase=0.9795,binwidth=0.0025,numbins=10  ... problem. 
+
+    Must create seperate python file for each fit, bash file can
+    share, but for save, create both. 
+
+    : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 281ipbv12 -s binbase=0.9795,binwidth=0.0025,numbins=3  -t  OK.
+
+    : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 281ipbv12 -s binbase=0.9795,binwidth=0.0025,numbins=10 ... done. 
+
+    : dhad-11.4 fit kkmass data Single_Dp_to_KKpi 281ipbv12 -s binbase=0.9795,binwidth=0.0025,numbins=10 ... done. 
+
+    : dhad-11.4 fig kkmass signal Single_Dp_to_KKpi 281ipbv12 -s binbase=0.9795,binwidth=0.0025,numbins=10 OK. 
+
+
+    : dhad-11.4 fig kkmass data Single_Dp_to_KKpi 281ipbv12 -s binbase=0.9795,binwidth=0.0025,numbins=10 OK. 
+
+    Now go on with 818pb case. 
+
+** DONE BFs for orginal generic MC 10xlumi (281ipbv0)
+   
+   Extract yields:
+   : dhad-11.4 yld generic Double_Dp_to_KKpi__Dm_to_KKpi 281ipbv0 -s interact -t  OK.
+   : dhad-11.4 yld generic double 281ipbv0 ... done. 
+   : dhad-11.4 yld generic Single_Dp_to_KKpi 281ipbv0 -s interact -t OK.
+   : dhad-11.4 yld generic single 281ipbv0 ... done. 
+
+   Fit mBC:
+
+   Generic MC single tag
+   : dhad-11.4 fit generic Single_Dp_to_KKpi 281ipbv0 -s interact OK. 
+   : dhad-11.4 fit generic single_p 281ipbv0 ... done. 
+   : dhad-11.4 fig generic single_p 281ipbv0 OK. 
+
+   Generic MC double tag
+   
+   : dhad-11.4 fit generic Double_Dp_to_KKpi__Dm_to_KKpi 281ipbv0 -s interact OK. 
+   : dhad-11.4 fit generic double 281ipbv0 ... done. 
+   : dhad-11.4 fig generic double 281ipbv0 OK. 
+
+    Fit BFs:
+    : dhad-11.4 brf 281ipbv0/generic ... done. 
+
+    Make the comparison table: 
+
+    : dhad-11.4 tab web fitResultsMC 281ipbv0/generic OK. 
+
+    Email to Peter ... hold. Found the original 7.03 generic fitting
+    plots. 
+
+    Reproduce the original plots:
+
+    : dhad-11.4 fit generic Single_Dp_to_KKpi 281ipbv0 -s interact OK. 
+
+
+** DONE BFs for generic MC original 10xlumi Reproduce (281ipbv0.0)
+   
+   Fit BFs: 
+   : dhad-11.4 brf 281ipbv0.0/generic  OK. 
+   : dhad-11.4 tab web fitResultsMC 281ipbv0.0/generic OK. 
+
+
+
+** DONE BFs for generic MC original 10xlumi My Input same Fitter (281ipbv0.1)
+   
+   Use orignal generic MC fit (Version 6.09):
+
+   Fit BFs:
+   : dhad-11.4 brf 281ipbv0.1/generic ... done. 
+
+   Make the comparison table: 
+   
+   : dhad-11.4 tab web fitResultsMC 281ipbv0.1/generic problem. 
+
+   Email to Peter ... sent. 
+   
+   Peter's reply:
+   You can take a look at this and see how it matches your fitter input file:
+   : /nfs/cor/user/ponyisi/daf9/hadD/summerconf/werner_scripts/newfit-generic.sh
+   
+   Check the inputs:
+
+   YLDFILE ... OK.
+   BKGBRS ... OK. 
+   BKGEFFS ... OK. 
+   SIGSINGEFFS ... fix the tot-gen in the file. Generated only half in
+   the mode 0.  very close now. 
+
+   SIGSINGERRS ... fix the tot-gen bug. 
+
+   SIGDOUBEFFS ... fixed. 
+
+   Fit BFs: 
+   : dhad-11.4 brf 281ipbv0.1/generic  OK. 
+   : dhad-11.4 tab web fitResultsMC 281ipbv0.1/generic OK. 
+
+
+** DONE BFs for generic MC 10xlumi old input new Fitter (281ipbv0.2)
+   
+   Original posting by Werner on 25 Jun, 2007:
+
+   https://hypernews.lepp.cornell.edu/HyperNews/get/DHadGroup/165.html
+
+   Instructions: 
+   
+   http://www.lns.cornell.edu/restricted/hypernews/wsun/20070625/instructions20070611.txt
+   
+   
+   : dhad-11.4 brf 281ipbv0.2/generic  ... OK. (Add more lines in the systerrors)
+
+   : dhad-11.4 tab web fitResultsMC 281ipbv0.2/generic OK. 
+
+
+
+
+** DONE BFs for generic MC 20xlumi same old Fitter (281ipbv12.0)
+   
+   : dhad-11.4 brf 281ipbv12.0/generic OK.
+   : dhad-11.4 tab web fitResultsMC 281ipbv12.0/generic  OK. 
+
+
+** DONE BFs for generic MC 20xlumi with new Fitter (281ipbv12.1)
+   
+   : dhad-11.4 brf 281ipbv12.1/generic OK. 
+   : dhad-11.4 tab web fitResultsMC 281ipbv12.1/generic OK. 
+
+   Same results as the old fitter. 
+
+   3.8 sigma for Kpipipi mode and ND+D-. 
+
+   Post on HN ... sent. 
+
+ 
+** DONE Understand the asymmetry of yields (281ipbv12)
+   
+   Check the yields in Generic MC:
+
+   | Mode   |      D |   Dbar | Diff (%) |
+   |--------+--------+--------+----------|
+   | Kpipi0 | 973050 | 980784 |     0.79 |
+   | Kpipi  | 836152 | 846878 |     1.28 |
+   #+TBLFM: $4=($3-$2)*100/$2;%.2f
+
+   Check yields in data 281/pb: 
+
+   | Mode   |     D |  Dbar | Diff (%) |
+   |--------+-------+-------+----------|
+   | Kpipi0 | 50276 | 50537 |     0.52 |
+   | Kpipi  | 40248 | 40734 |     1.21 |
+   #+TBLFM: $4=($3-$2)*100/$2;%.2f
+   
+   Very close to the generic MC. So, the asymmetry should not be the
+   reason. 
+
+   Document on mtg page ... done. 
+
+   
+
+   
+
+
+
+   
+** CANCELED Generate Signal MC for different component in the KKpi (281ipbv12/components)
+
+   : dhad-11.4 gen cleog Single_Dp_to_KKpi 281ipbv12/k0star0 task 1 -s interact -t 
+
+   : dhad-11.4 gen cleog single 537ipbv12 ... done.
+   
+   Paused for now. 
+
+** DONE Get the component of KKpi signal MC (281ipbv12)
+
+   Check Peter's =subsets_kkpi.py= ... OK. 
+
+   : dhad-11.4 gen subset signal Single_Dp_to_KKpi 281ipbv12/phipi -s interact ... selected 5851 out of 19988. 
+
+   : dhad-11.4 gen subset signal Single_Dm_to_KKpi 281ipbv12/phipi -s interact ... selected 5838 out of 19988.
+
+   : dhad-11.4 gen subset signal Single_Dp_to_KKpi 281ipbv12/k0star -s interact ... selected 5849 out of 19988.
+
+   : dhad-11.4 gen subset signal Single_Dm_to_KKpi 281ipbv12/k0star -s interact ... selected 5795 out of 19988. 
+
+   : dhad-11.4 gen subset signal Single_Dp_to_KKpi 281ipbv12/phsp -s interact ... selected 7420 out of 19988. 
+
+   : dhad-11.4 gen subset signal Single_Dm_to_KKpi 281ipbv12/phsp -s interact selected 7504 out of 19988.
+
+   Only less than 5% events left. 
+
+   
+
+** DONE BFs for generic MC 20xlumi new fitter scaled done backgrounds (281ipbv12.2)
+   Get the MC truth events for 818ipbv12: 
+   
+   : dhad-11.4 tab cbx extlabsbkg 818ipbv12 ... OK. 
+
+   3031
+   16958
+   13712
+   
+   Scale down with 2.91: 
+   1042
+   5827
+   4712 
+
+
+   : dhad-11.4 brf 281ipbv12.2/generic 
+   : dhad-11.4 tab web fitResultsMC 281ipbv12.2/generic ... still not change. 
+
+   Trace the abs file used ... not get into the exteranl bkg bfs file!
+
+   Fix by adding 281ipbv12.2 file ... done. 
+
+   Update the webtables... changed, but NchargedD are still 3.8 sigma
+   away. 
+
+   
+* 537/pb
+
+** DONE Generate Signal MC Samples (537ipbv12) 
+*** DONE Generate 537/pb Diag Double 
+    CLEOG:
+
+    : dhad-11.4 gen cleog Double_D0_to_Kpi__D0B_to_Kpi 537ipbv12 task 1  -s interact -t OK. 
+    : dhad-11.4 gen cleog diagdouble 537ipbv12 ... done.
+    : dhad-11.4 chk cleog diagdouble 537ipbv12 ... with problem.
+   
+    : dhad-11.4 gen cleog Double_Dp_to_Kspipipi__Dm_to_Kspipipi 537ipbv12 task 15,27 ... done. 
+    : dhad-11.4 chk cleog Double_Dp_to_Kspipipi__Dm_to_Kspipipi 537ipbv12 OK. 
+   
+    Pass2:
+    : dhad-11.4 gen pass2 Double_D0_to_Kpi__D0B_to_Kpi 537ipbv12 task 1  -s interact -t OK.
+    : dhad-11.4 gen pass2 diagdouble 537ipbv12 ... done. 
+    : dhad-11.4 chk pass2 diagdouble 537ipbv12  OK.
+    
+    DSkim:
+    : dhad-11.4 gen dskim Double_D0_to_Kpi__D0B_to_Kpi 537ipbv12 task 1  -s interact -t OK.
+    : dhad-11.4 gen dskim diagdouble 537ipbv12 ... done. 
+    : dhad-11.4 chk dskim diagdouble 537ipbv12 OK. 
+
+    Ntuple:
+
+    : dhad-11.4 gen ntuple Double_D0_to_Kpi__D0B_to_Kpi 537ipbv12 -s interact OK.
+    : dhad-11.4 gen ntuple diagdouble 537ipbv12 ... done. 
+    : dhad-11.4 chk ntuple diagdouble 537ipbv12 OK.
+
+    Clean CLEOG:
+
+    : dhad-11.4 cln cleog diagdouble 537ipbv12 ... 180 cleaned. 
+
+ 
+*** DONE Generate 537/pb Non-diag Double tag
+    
+    CLEOG:
+    : dhad-11.4 gen cleog nondiagdouble 537ipbv12 ... done. 
+    : dhad-11.4 chk cleog nondiagdouble 537ipbv12 ... some problems.
+    
+    : dhad-11.4 gen cleog Double_Dp_to_Kspi__Dm_to_KKpi 537ipbv12 task 23 ... done. 
+    : dhad-11.4 gen cleog Double_Dp_to_Kspipipi__Dm_to_Kspi 537ipbv12 task 14 ... done.
+    : dhad-11.4 gen cleog Double_Dp_to_Kspipipi__Dm_to_Kspipi0 537ipbv12 task 20 ... done. 
+    : dhad-11.4 gen cleog Double_Dp_to_KKpi__Dm_to_Kspipipi 537ipbv12 task 21 ... done.
+    
+    : dhad-11.4 chk cleog Double_Dp_to_Kspi__Dm_to_KKpi 537ipbv12 task 23 OK.
+    : dhad-11.4 chk cleog Double_Dp_to_Kspipipi__Dm_to_Kspi 537ipbv12 task 14 OK. 
+    : dhad-11.4 chk cleog Double_Dp_to_Kspipipi__Dm_to_Kspipi0 537ipbv12 task 20 OK.
+    : dhad-11.4 chk cleog Double_Dp_to_KKpi__Dm_to_Kspipipi 537ipbv12 task 21 OK.
+
+    Pass2:
+    : dhad-11.4 gen pass2 nondiagdouble 537ipbv12 ... done. 
+    : dhad-11.4 chk pass2 nondiagdouble 537ipbv12 ... some problems.
+
+    : dhad-11.4 gen pass2 Double_Dp_to_Kspipipi__Dm_to_Kpipipi0 537ipbv12 task 14,15,25 
+    : dhad-11.4 gen pass2 Double_Dp_to_Kspipipi__Dm_to_Kspi 537ipbv12 task 11,20 
+    : dhad-11.4 gen pass2 Double_Dp_to_Kspipipi__Dm_to_Kspipi0 537ipbv12 task 11,15 
+    : dhad-11.4 gen pass2 Double_Dp_to_Kspipipi__Dm_to_KKpi 537ipbv12 task 17,23 
+    : 
+    : dhad-11.4 chk pass2 Double_Dp_to_Kspipipi__Dm_to_Kpipipi0 537ipbv12 task 14,15,25 
+    : dhad-11.4 chk pass2 Double_Dp_to_Kspipipi__Dm_to_Kspi 537ipbv12 task 11,20 
+    : dhad-11.4 chk pass2 Double_Dp_to_Kspipipi__Dm_to_Kspipi0 537ipbv12 task 11,15 
+    : dhad-11.4 chk pass2 Double_Dp_to_Kspipipi__Dm_to_KKpi 537ipbv12 task 17,23 
+
+    All OK. 
+
+    DSkim:
+    : dhad-11.4 gen dskim nondiagdouble 537ipbv12 ... done. 
+    : dhad-11.4 chk dskim nondiagdouble 537ipbv12 ... still hold for bad jobs. 
+
+    Bypass the hold jobs:
+
+    : dhad-11.4 gen dskim Double_D0_to_Kpi__D0B_to_Kpipi0 537ipbv12 task 11 stopped.
+    : dhad-11.4 chk dskim Double_D0_to_Kpi__D0B_to_Kpipi0 537ipbv12 task 11 -v 1 ... pass2 file not OK. 
+
+    Wait for the clean up ... OK.
+
+    Wait for the cleog for single to finish ... done. 
+
+    : dhad-11.4 gen dskim Double_D0_to_Kpi__D0B_to_Kpipi0 537ipbv12 task 11  ... done. 
+    : dhad-11.4 gen dskim Double_Dp_to_Kspipipi__Dm_to_Kpipipi0 537ipbv12 ... done.
+    : dhad-11.4 gen dskim Double_Dp_to_Kspipipi__Dm_to_Kspi 537ipbv12 ...done.
+    : dhad-11.4 gen dskim Double_Dp_to_Kspipipi__Dm_to_Kspipi0 537ipbv12 ...done.
+    : dhad-11.4 gen dskim Double_Dp_to_Kspipipi__Dm_to_KKpi 537ipbv12 ... done.
+    
+
+    : dhad-11.4 chk dskim Double_D0_to_Kpi__D0B_to_Kpipi0 537ipbv12 task 11  ... no pass2 file. 
+    : dhad-11.4 chk dskim Double_Dp_to_Kspipipi__Dm_to_Kpipipi0 537ipbv12 ... OK.
+    : dhad-11.4 chk dskim Double_Dp_to_Kspipipi__Dm_to_Kspi 537ipbv12 ... OK.
+    : dhad-11.4 chk dskim Double_Dp_to_Kspipipi__Dm_to_Kspipi0 537ipbv12 ... OK.
+    : dhad-11.4 chk dskim Double_Dp_to_Kspipipi__Dm_to_KKpi 537ipbv12 ... OK. 
+
+    Redo the cleog for the task:
+    : dhad-11.4 gen cleog Double_D0_to_Kpi__D0B_to_Kpipi0 537ipbv12 task 11 ... done.    : dhad-11.4 chk cleog Double_D0_to_Kpi__D0B_to_Kpipi0 537ipbv12 task 11 OK.
+
+    Wait for Single tag jobs finish ... done. 
+    
+    : dhad-11.4 gen pass2 Double_D0_to_Kpi__D0B_to_Kpipi0 537ipbv12 task 11 ... done.
+    : dhad-11.4 chk pass2 Double_D0_to_Kpi__D0B_to_Kpipi0 537ipbv12 task 11 ... pds file is OK.
+
+    : dhad-11.4 gen dskim Double_D0_to_Kpi__D0B_to_Kpipi0 537ipbv12 task 11 ... done.
+    : dhad-11.4 chk dskim Double_D0_to_Kpi__D0B_to_Kpipi0 537ipbv12 task 11 ... OK.
+
+    
+    : dhad-11.4 chk dskim nondiagdouble 537ipbv12 OK.
+
+    Ntuple:
+
+    : dhad-11.4 gen ntuple nondiagdouble 537ipbv12 ... done.
+    : dhad-11.4 chk ntuple nondiagdouble 537ipbv12 OK.
+
+    Clean CLEOG:
+  
+    : dhad-11.4 cln cleog nondiagdouble 537ipbv12 ... 720 cleaned. 
+
+
+*** DONE Generate 537/pb Single Tag
+    CLEOG:
+    : dhad-11.4 gen cleog single 537ipbv12 ... done.
+    : dhad-11.4 chk cleog single 537ipbv12 ... ploblems:
+
+    : dhad-11.4 gen cleog Single_D0B_to_Kpipi0 537ipbv12 task 13  ... done. 
+    : dhad-11.4 gen cleog Single_D0_to_Kpipipi 537ipbv12 task 23 ... done. 
+    : dhad-11.4 gen cleog Single_Dm_to_Kpipi 537ipbv12 task 17 ... done.
+    : dhad-11.4 gen cleog Single_Dm_to_Kpipipi0 537ipbv12 task 19 ... done.
+    : dhad-11.4 gen cleog Single_Dp_to_Kspipi0 537ipbv12 task 12 ... done. 
+    : dhad-11.4 gen cleog Single_Dm_to_Kspipipi 537ipbv12 task 30 ... done.
+
+    : dhad-11.4 chk cleog Single_D0B_to_Kpipi0 537ipbv12 task 13  ... OK.
+    : dhad-11.4 chk cleog Single_D0_to_Kpipipi 537ipbv12 task 23 ... OK.
+    : dhad-11.4 chk cleog Single_Dm_to_Kpipi 537ipbv12 task 17 ... not OK.
+    : dhad-11.4 chk cleog Single_Dm_to_Kpipipi0 537ipbv12 task 19 ...OK.
+    : dhad-11.4 chk cleog Single_Dp_to_Kspipi0 537ipbv12 task 12 ... OK.
+    : dhad-11.4 chk cleog Single_Dm_to_Kspipipi 537ipbv12 task 30 ... OK.
+
+    : dhad-11.4 gen cleog Single_Dm_to_Kpipi 537ipbv12 task 17 ... done.
+    : dhad-11.4 chk cleog Single_Dm_to_Kpipi 537ipbv12 task 17 ... OK.
+
+
+    dhad-11.4 chk cleog single 537ipbv12 
+
+    Pass2:
+    : dhad-11.4 gen pass2 single 537ipbv12 ... done. 
+    : dhad-11.4 chk pass2 single 537ipbv12 ... some problem. 
+   
+    : dhad-11.4 gen pass2 Single_Dp_to_Kpipi 537ipbv12 task 25 ... done.
+    : dhad-11.4 chk pass2 Single_Dp_to_Kpipi 537ipbv12 task 25 ... OK.
+
+    Also for task 17:
+    : dhad-11.4 gen pass2 Single_Dm_to_Kpipi 537ipbv12 task 17 ...  done.
+    : dhad-11.4 chk pass2 Single_Dm_to_Kpipi 537ipbv12 task 17 ...  done.
+    
+    Need to compare with the generated number, calculate the
+    percentage difference ... OK.
+
+    Re-check CLEOG:
+    : dhad-11.4 chk cleog single 537ipbv12 ... OK.
+
+    Re-check Pass2:
+    : dhad-11.4 chk pass2 single 537ipbv12 ... OK.
+
+    DSkim:
+    : dhad-11.4 gen dskim single 537ipbv12 ... done.
+    : dhad-11.4 chk dskim single 537ipbv12 ... OK. 
+
+    To make sure, wait for 17 to finish ... done. 
+
+    
+    Ntuple:
+    : dhad-11.4 gen ntuple single 537ipbv12 ... done.
+    : dhad-11.4 chk ntuple single 537ipbv12 ... one problem:
+
+    Problem:
+    | Single_Dm_to_Kpipi | 159960.0 | 155077 | -3.05263815954 |
+    
+    : dhad-11.4 chk cleog Single_Dm_to_Kpipi 537ipbv12 OK.
+    : dhad-11.4 chk pass2 Single_Dm_to_Kpipi 537ipbv12 OK.
+    : dhad-11.4 chk dskim Single_Dm_to_Kpipi 537ipbv12 ... one bad:
+    
+    : dhad-11.4 gen dskim Single_Dm_to_Kpipi 537ipbv12 task 17 ... done.
+    : dhad-11.4 chk dskim Single_Dm_to_Kpipi 537ipbv12 task 17 OK. 
+
+    : dhad-11.4 gen ntuple Single_Dm_to_Kpipi 537ipbv12 ... done.
+    : dhad-11.4 chk ntuple Single_Dm_to_Kpipi 537ipbv12 OK.
+
+    Clear CLEOG:
+
+    : dhad-11.4 cln cleog single 537ipbv12 ... 360 cleaned. 
+    
+    
+
+** DONE Fit mBC (537ipbv12)
+
+   Extract yields for diag double
+   : dhad-11.4 yld signal Double_Dp_to_KKpi__Dm_to_KKpi 537ipbv12 -s interact -t OK.
+   : dhad-11.4 yld signal diagdouble 537ipbv12 ... done.
+
+   : dhad-11.4 yld generic Double_Dp_to_KKpi__Dm_to_KKpi 537ipbv12 -s interact -t OK. 
+   Extract yields for non-diag double
+   : dhad-11.4 yld signal nondiagdouble 537ipbv12 ... done.
+
+   : dhad-11.4 yld signal nondiagdouble 537ipbv12 ... done.
+
+   : dhad-11.4 yld generic double 537ipbv12 ... done. 
+
+   Extract yields for single tag
+   Run for one mode:
+   
+   : dhad-11.4 yld signal Single_Dp_to_KKpi 537ipbv12 -s interact -t OK.
+   
+   : dhad-11.4 yld signal single 537ipbv12 ... done.
+
+   : dhad-11.4 yld generic single 537ipbv12 ... done. 
+   
+   Fit mBC:
+    
+   Diag Double:
+      
+   : dhad-11.4 fit signal Double_Dp_to_KKpi__Dm_to_KKpi 537ipbv12/resolution -s interact -t OK. 
+   
+   : dhad-11.4 fit signal Double_Dp_to_KKpi__Dm_to_KKpi 537ipbv12/resolution -s interact OK.
+   
+   : dhad-11.4 fit signal diagdouble 537ipbv12/resolution ... done. 
+   : dhad-11.4 fig signal diagdouble 537ipbv12/resolution ... OK. 
+
+   Make parameters table
+      
+   : dhad-11.4 tab para momentum resolution 537ipbv12 OK. 
+
+   Data single tag 
+   : dhad-11.4 fit data Single_Dp_to_KKpi 537ipbv12 -s interact OK.
+   : dhad-11.4 fit data single_p 537ipbv12 ... done. 
+   : dhad-11.4 fig data single_p 537ipbv12 OK. 
+
+   Signal MC single tag
+   : dhad-11.4 fit signal Single_Dp_to_KKpi 537ipbv12 -s interact OK. 
+   : dhad-11.4 fit signal single_p 537ipbv12 ... done. 
+   : dhad-11.4 fig signal single_p 537ipbv12 OK. 
+   
+   Data double tag
+   : dhad-11.4 fit data Double_Dp_to_KKpi__Dm_to_KKpi 537ipbv12 -s interact OK. 
+   : dhad-11.4 fit data double 537ipbv12 ... done. 
+   : dhad-11.4 fig data double 537ipbv12 OK. 
+
+   Singal MC double tag
+   : dhad-11.4 fit signal Double_Dp_to_KKpi__Dm_to_KKpi 537ipbv12 -s interact OK. 
+   : dhad-11.4 fit signal double 537ipbv12 ... done.  
+   : dhad-11.4 fig signal double 537ipbv12 OK. 
+
+   Compare yields
+   : dhad-11.4 tab compare yields data single 537ipbv7 537ipbv12 OK. 
+  
+   : dhad-11.4 tab compare yields signal single 537ipbv7 537ipbv12 OK. 
+
+   Compare with 281ipbv0:
+   : dhad-11.4 tab cbx compare_yields_data_single 281ipbv0,537ipbv12 OK.
+
+   Compare with 281ipbv12:
+   : dhad-11.4 tab cbx compare_yields_data_single 281ipbv12,537ipbv12 ... very similar, since there is not much difference for 281/pb data. 
+
+   
+** DONE Fit Crossfeed (537ipbv12)
+
+   Extract crossfeed:
+   Test on one mode: 
+    
+   : dhad-11.4 yld crossfeeds signal Single_Dp_to_Kspipipi 537ipbv12 -s interact -t OK.
+
+   For single:
+   
+   : dhad-11.4 yld crossfeeds signal single 537ipbv12 -t OK. 
+   : dhad-11.4 yld crossfeeds signal single 537ipbv12 ... done. 
+
+   Fit crossfeeds diagnoal:
+   
+   : dhad-11.4 fit crossfeeds signal diag 537ipbv12 -s interact:mode=1:sign=-1 OK. 
+   : dhad-11.4 fit crossfeeds signal diag 537ipbv12 -t OK. 
+   : dhad-11.4 fit crossfeeds signal diag 537ipbv12 ... done. 
+   : dhad-11.4 fig crossfeeds signal diag 537ipbv12 OK. 
+
+    Fit crossfeeds nondiagnoal: 
+
+    : dhad-11.4 fit crossfeeds signal nondiag  537ipbv12 -s interact:mode=0,3 OK. 
+    : dhad-11.4 fit crossfeeds signal nondiag  537ipbv12 -t OK. 
+    : dhad-11.4 fit crossfeeds signal nondiag  537ipbv12 ... done. 
+    : dhad-11.4 fig crossfeeds signal nondiag  537ipbv12 OK. 
+
+  
+** DONE Get the component of KKpi signal MC (537ipbv12)
+
+   : dhad-11.4 gen subset signal Single_Dp_to_KKpi 537ipbv12/phipi -s interact ... selected 11797 out of 39964.
+
+   : dhad-11.4 gen subset signal Single_Dm_to_KKpi 537ipbv12/phipi -s interact ... selected 11638 out of 39964.
+
+   : dhad-11.4 gen subset signal Single_Dp_to_KKpi 537ipbv12/k0star -s interact ... selected 11651 out of 39964.
+
+   : dhad-11.4 gen subset signal Single_Dm_to_KKpi 537ipbv12/k0star -s interact ... selected 11665 out of 39964.
+
+   : dhad-11.4 gen subset signal Single_Dp_to_KKpi 537ipbv12/phsp -s interact ... selected 14727 out of 39964. 
+
+   : dhad-11.4 gen subset signal Single_Dm_to_KKpi 537ipbv12/phsp -s interact ... selected 14910 out of 39964.
+   
+
+   
+* 818/pb
+
+** DONE Fit mBC (818ipbv12)
+   Diag Double
+   
+   : dhad-11.4 fit signal Double_Dp_to_KKpi__Dm_to_KKpi 818ipbv12/resolution -s interact -t 
+   
+   : dhad-11.4 fit signal Double_Dp_to_KKpi__Dm_to_KKpi 818ipbv12/resolution -s interact OK.
+
+   : dhad-11.4 fit signal diagdouble 818ipbv12/resolution  ... done.
+   : dhad-11.4 fig signal diagdouble 818ipbv12/resolution  OK. 
+
+   Make parameters table
+      
+   : dhad-11.4 tab para momentum resolution 818ipbv12 OK. 
+
+   Signal MC single tag
+   : dhad-11.4 fit signal Single_Dp_to_KKpi 818ipbv12 -s interact OK. 
+   : dhad-11.4 fit signal single_p 818ipbv12 ... done. 
+   : dhad-11.4 fig signal single_p 818ipbv12 OK. 
+
+   Data single tag 
+   : dhad-11.4 fit data Single_Dp_to_KKpi 818ipbv12 -s interact OK. 
+   : dhad-11.4 fit data single_p 818ipbv12 ... done. 
+   : dhad-11.4 fig data single_p 818ipbv12 OK. 
+
+   Singal MC double tag
+   : dhad-11.4 fit signal Double_Dp_to_KKpi__Dm_to_KKpi 818ipbv12 -s interact OK. 
+   : dhad-11.4 fit signal double 818ipbv12 ... done.  
+   : dhad-11.4 fig signal double 818ipbv12 OK. 
+
+   Data double tag
+   : dhad-11.4 fit data Double_Dp_to_KKpi__Dm_to_KKpi 818ipbv12 -s interact OK. 
+   : dhad-11.4 fit data double 818ipbv12 ... done. 
+   : dhad-11.4 fig data double 818ipbv12 OK. 
+
+
+** DONE Fit Crossfeed (818ipbv12)
+   
+   Fit crossfeeds diagnoal:
+   
+   : dhad-11.4 fit crossfeeds signal diag 818ipbv12 -s interact:mode=1:sign=-1 OK. 
+   : dhad-11.4 fit crossfeeds signal diag 818ipbv12 ... done. 
+   : dhad-11.4 fig crossfeeds signal diag 818ipbv12 OK. 
+
+    Fit crossfeeds nondiagnoal: 
+
+    : dhad-11.4 fit crossfeeds signal nondiag  818ipbv12 -s interact:mode=0,3 OK. 
+    : dhad-11.4 fit crossfeeds signal nondiag  818ipbv12 ... done. 
+    : dhad-11.4 fig crossfeeds signal nondiag  818ipbv12 OK. 
+
+
+** DONE BFs with current syst err (818ipbv12.0)
+
+   : dhad-11.4 brf 818ipbv12.0 ... done. 
+   
+   Compare with 281ipbv0:
+
+   : dhad-11.4 tab compare brf_data_results 281ipbv0 818ipbv12.0 OK. 
+   
+   
+
+   
+
+
+
+** DONE BFs for generic MC old fitter (818ipbv12.0)
+
+   FitmBC: 
+
+   Generic MC single tag
+   : dhad-11.4 fit generic Single_Dp_to_KKpi 818ipbv12 -s interact OK. 
+   : dhad-11.4 fit generic single_p 818ipbv12 ... done. 
+   : dhad-11.4 fig generic single_p 818ipbv12 OK.
+
+   Generic MC double tag
+
+   : dhad-11.4 fit generic Double_Dp_to_KKpi__Dm_to_KKpi 818ipbv12 -s interact OK.
+   : dhad-11.4 fit generic double 818ipbv12 ... done. 
+   : dhad-11.4 fig generic double 818ipbv12 OK.
+
+   
+   : dhad-11.4 brf 818ipbv12.0/generic OK. 
+   : dhad-11.4 tab web fitResultsMC 818ipbv12.0/generic OK. But not quite right. 
+
+
+** DONE BFs for generic MC new fitter update external backgrounds (81ipbv12.2)
+   
+   : dhad-11.4 brf 818ipbv12.2/generic ... done. 
+   : dhad-11.4 tab web fitResultsMC 818ipbv12.2/generic   ... still 3.6sigma. 
+
+
+** DONE External Backgrounds (818ipbv12)
+
+   Ask about Data efficiency on DHad HyperNews ... sent. 
+
+*** DONE Multipion background 
+    
+    Select Kssideband (eliminate mBC out of range events)
+
+    : dhad-11.4 sel kssideband signal Single_Dp_to_Kspi 818ipbv12 -s interact -t OK. 
+    : dhad-11.4 sel kssideband signal Single_Dp_to_Kspi 818ipbv12 -t OK. 
+    : dhad-11.4 sel kssideband signal single_ks 818ipbv12 ... done. 
+
+    : dhad-11.4 sel kssideband data Single_Dp_to_Kspi 818ipbv12 -s interact -t OK. 
+    : dhad-11.4 sel kssideband data Single_Dp_to_Kspi 818ipbv12 -t OK. 
+    : dhad-11.4 sel kssideband data single_ks 818ipbv12 ... done. 
+
+    : dhad-11.4 sel kssideband generic Single_Dp_to_Kspi 818ipbv12 -s interact -t OK
+    : dhad-11.4 sel kssideband generic single_ks 818ipbv12 ... done. 
+
+
+    Fit Kssideband:
+
+    : dhad-11.4 fit signal Single_Dp_to_Kspi 818ipbv12/kssideband -s interact OK. 
+    : dhad-11.4 fit signal Single_Dp_to_Kspi 818ipbv12/kssideband -t OK. 
+    : dhad-11.4 fit signal single_ks_p 818ipbv12/kssideband ... done. 
+    : dhad-11.4 fig signal single_ks_p 818ipbv12/kssideband OK. 
+
+    : dhad-11.4 fit data Single_Dp_to_Kspi 818ipbv12/kssideband -s interact -t OK. 
+    : dhad-11.4 fit data single_ks_p 818ipbv12/kssideband ... done. 
+    : dhad-11.4 fig data single_ks_p 818ipbv12/kssideband OK. 
+
+
+    : dhad-11.4 fit generic Single_Dp_to_Kspi 818ipbv12/kssideband -s interact -t OK. 
+    : dhad-11.4 fit generic single_ks_p 818ipbv12/kssideband ... done.  
+    : dhad-11.4 fig generic single_ks_p 818ipbv12/kssideband OK. 
+
+    Create Efficiency table: 
+
+    : dhad-11.4 tab cbx kssidebandeff 818ipbv12 OK. 
+
+    Update the table in CBX... done. 
+
+    Fit the Ks sideband with fixed sigmap1 using diag double tag fits.
+
+    : dhad-11.4 fit signal Single_Dp_to_Kspi 818ipbv12/kssideband/fix_sigmap1 -s interact -t OK. 
+    
+    Only fit for data:
+    : dhad-11.4 fit data Single_Dp_to_Kspi 818ipbv12/kssideband/fix_sigmap1 -s interact -t OK. 
+
+    : dhad-11.4 fit data single_ks_p 818ipbv12/kssideband/fix_sigmap1 ... done. 
+    : dhad-11.4 fig data single_ks_p 818ipbv12/kssideband/fix_sigmap1 OK. 
+    
+    Compare the yields with previous:
+
+    | Mode        | 818/pb (old) |  New | Diff (%) |
+    |-------------+--------------+------+----------|
+    | Ks pi       |          495 |  482 |     -2.6 |
+    | Ks pi pi0   |         2072 | 1965 |     -5.2 |
+    | Ks pi pi pi |         2438 | 2369 |     -2.8 |
+    #+TBLFM: $4=($3-$2)*100/$2;%.1f
+
+    Previous consistency check:
+
+    | Mode        | 281/pb | 281/pb * 2.91 | 818/pb (old) | Delta (%) |
+    |-------------+--------+---------------+--------------+-----------|
+    | Ks pi       |    183 |        532.53 |          495 |     -7.05 |
+    | Ks pi pi0   |    686 |       1996.26 |         2072 |      3.79 |
+    | Ks pi pi pi |    863 |       2511.33 |         2438 |     -2.92 |
+    #+TBLFM: $3=$2*2.91::$5=($4-$3)*100/$3;%.2f
+
+    | Mode        | 281/pb | 281/pb * 2.91 | 818/pb (new) | Delta (%) |
+    |-------------+--------+---------------+--------------+-----------|
+    | Ks pi       |    183 |        532.53 |          482 |     -9.49 |
+    | Ks pi pi0   |    686 |       1996.26 |         1965 |     -1.57 |
+    | Ks pi pi pi |    863 |       2511.33 |         2369 |     -5.67 |
+    #+TBLFM: $3=$2*2.91::$5=($4-$3)*100/$3;%.2f
+
+    Close to previous. 
+    
+    Update the bkg table: 
+
+    : dhad-11.4 tab cbx singletag_sigmc_eff 818ipbv12 
+
+    : dhad-11.4 tab cbx extlabsbkg 818ipbv12 ... OK. 
+
+    Generic MC truth:
+
+     3031
+     6958
+     13712
+
+     
+
+*** DONE Particle Swap 
+
+    Check all the crossfeeds:
+    
+    : dhad-11.4 tab cbx crossfeedeffs 818ipbv12 ... OK. 
+
+    Only the two listed fakes have resonable fits, all others are not
+    able to see the crossfeeds. 
+
+    
+
+
+** DONE Systematics (818ipbv12)
+
+*** DONE Signal shape DT and ST
+    Width: Default: 25.2 MeV, 0.0252 GeV +/- 2.5 MeV, Less: 0.0227
+    GeV, More: 0.0277 GeV
+
+    : dhad-11.4 fit data Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv12/gamma/0.0227 -s interact -t OK. 
+
+    : dhad-11.4 fit data double 818ipbv12/gamma/0.0227 ... done. 
+    : dhad-11.4 fig data double 818ipbv12/gamma/0.0227 OK. 
+
+    : dhad-11.4 fit data double 818ipbv12/gamma/0.0277 ... done. 
+    : dhad-11.4 fig data double 818ipbv12/gamma/0.0277 OK. 
+
+    : Creating Double_D0_to_Kpi__D0B_to_Kpi ...Skipping mode (0, 0) ...  OK.
+    : Creating Double_D0_to_Kpi__D0B_to_Kpipi0 ...Skipping mode (0, 1) ... OK.
+    
+    : dhad-11.4 fit data Double_D0_to_Kpi__D0B_to_Kpi 818ipbv12/gamma/0.0277 ... done. 
+    : dhad-11.4 fit data Double_D0_to_Kpi__D0B_to_Kpipi0 818ipbv12/gamma/0.0277 ... done. 
+    
+    : dhad-11.4 fit data Single_Dp_to_Kspipipi 818ipbv12/gamma/0.0227 -s interact -t OK. 
+
+    : dhad-11.4 fit data single_p 818ipbv12/gamma/0.0227 ... done. 
+    : dhad-11.4 fig data single_p 818ipbv12/gamma/0.0227 OK. 
+
+    : dhad-11.4 fit data single_p 818ipbv12/gamma/0.0277 ... done. 
+    : dhad-11.4 fig data single_p 818ipbv12/gamma/0.0277 OK. 
+
+
+    Mass: default: 3.7724 GeV, +/- 0.5 MeV, Less: 3.7719 GeV, More: 3.7729 GeV 
+    : dhad-11.4 fit data Single_Dp_to_Kspipipi 818ipbv12/mass/3.7719 -s interact -t OK. 
+
+    : dhad-11.4 fit data single_p 818ipbv12/mass/3.7719  ... done. 
+    : dhad-11.4 fit data single_p 818ipbv12/mass/3.7729 ... done. 
+    : dhad-11.4 fit data double 818ipbv12/mass/3.7719 ... done. 
+    : dhad-11.4 fit data double 818ipbv12/mass/3.7729 ... done. 
+
+    : dhad-11.4 fig data single_p 818ipbv12/mass/3.7719 OK. 
+    : dhad-11.4 fig data single_p 818ipbv12/mass/3.7729 ... one mode not good.
+    : dhad-11.4 fig data double 818ipbv12/mass/3.7719 OK. 
+    : dhad-11.4 fig data double 818ipbv12/mass/3.7729 OK.
+
+    Fix the KKpi in single tag 3.7729:
+    : dhad-11.4 fit data Single_Dp_to_KKpi 818ipbv12/mass/3.7729 ... done. 
+    : dhad-11.4 fig data single_p 818ipbv12/mass/3.7729 OK. 
+
+    R default: 12.7, +/- 4
+    
+    Less: 8.7, More 16.7
+
+    : dhad-11.4 fit data Single_Dp_to_Kspipipi 818ipbv12/r/8.7 -s interact -t OK. 
+
+    : dhad-11.4 fit data single_p 818ipbv12/r/8.7 ... done.
+    : dhad-11.4 fit data single_p 818ipbv12/r/16.7 ... done.
+    : dhad-11.4 fit data double 818ipbv12/r/8.7 ... done.
+    : dhad-11.4 fit data double 818ipbv12/r/16.7 ... done.
+
+    : dhad-11.4 fig data single_p 818ipbv12/r/8.7 OK. 
+    : dhad-11.4 fig data single_p 818ipbv12/r/16.7 OK. 
+    : dhad-11.4 fig data double 818ipbv12/r/8.7 OK. 
+    : dhad-11.4 fig data double 818ipbv12/r/16.7 OK.
+    
+    Update CBX:
+    : dhad-11.4 tab cbx vary_mass_double 818ipbv12 OK.
+    : dhad-11.4 tab cbx vary_mass_single 818ipbv12 OK.
+    : dhad-11.4 tab cbx vary_width_double 818ipbv12 OK.
+    : dhad-11.4 tab cbx vary_width_single 818ipbv12 OK.
+    : dhad-11.4 tab cbx vary_R_double 818ipbv12 OK.
+    : dhad-11.4 tab cbx vary_R_single 818ipbv12 OK.
+    : dhad-11.4 tab cbx signal_line_shape_syst 818ipbv12 OK.
+
+*** DONE Double DSCD interference
+
+    : dhad-11.4 tab cbx dcsd_correction 818ipb12 OK. 
+    
+    No numerical change. Update the CBX. 
+
+*** DONE Detector simulation - \pi^0 efficiency
+
+    : dhad-11.4 tab cbx pi0_eff_correction 818ipbv12 OK. 
+
+    Same numbers, since it's come from data. Just update for easier
+    handling. 
+    
+*** DONE Trigger simulation
+    
+    Get trigger yields:
+
+    : dhad-11.4 yld signal Single_Dp_to_Kspipipi 818ipbv12/trig -s interact -t OK. 
+    : dhad-11.4 yld signal single 818ipbv12/trig ... done. 
+    : dhad-11.4 yld signal double 818ipbv12/trig ... done. 
+
+    Fit mBC:
+
+    : dhad-11.4 fit signal Single_Dp_to_Kspipipi 818ipbv12/trig -s interact -t OK. 
+
+    Fixed a bug in the previous case, didn't load the evt file from
+    trig. 
+
+    : dhad-11.4 fit signal single_p 818ipbv12/trig ... done. 
+    : dhad-11.4 fit signal double 818ipbv12/trig ... done. 
+
+    : dhad-11.4 fig signal single_p 818ipbv12/trig OK. 
+    : dhad-11.4 fig signal double 818ipbv12/trig OK. 
+
+    Calculate the efficiency:
+
+    : dhad-11.4 tab cbx trigeffs 818ipbv12  OK. 
+
+    Re-produce the 281ipbv0:
+
+    : dhad-11.4 yld signal Single_Dp_to_Kspipipi 281ipbv0/trig -s interact -t OK. 
+    : dhad-11.4 yld signal single 281ipbv0/trig OK. 
+
+    : dhad-11.4 fit signal Single_Dp_to_Kspipipi 281ipbv0/trig -s interact -t OK. 
+    : dhad-11.4 fit signal single_p 281ipbv0/trig ... done. 
+    : dhad-11.4 fig signal single_p 281ipbv0/trig OK. 
+
+    : dhad-11.4 tab cbx trigeffs 281ipbv0 ... close to previous. 
+    
+    
+    Need to update the BFitter ... no need now. 
+
+    Try only the two tracks bit trigger:
+    : dhad-11.4 yld signal Single_Dp_to_Kspipipi 281ipbv0/trig2 -s interact -t OK. 
+    : dhad-11.4 yld signal single 281ipbv0/trig2 ... done. 
+    : dhad-11.4 fit signal single_p 281ipbv0/trig2 ... done. 
+
+    : dhad-11.4 tab cbx trigeffs 281ipbv0 ... same results. 
+
+*** DONE |E| requirement
+
+    Get the yields:
+
+    : dhad-11.4 yld signal Single_Dp_to_Kspipipi 818ipbv12/widede -s interact -t OK.
+    : dhad-11.4 yld signal single 818ipbv12/widede ... done.
+
+    : dhad-11.4 yld signal Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv12/widede -s interact -t OK. 
+
+    : dhad-11.4 yld signal double 818ipbv12/widede ... done. 
+
+    : dhad-11.4 yld data Single_Dp_to_Kspipipi 818ipbv12/widede -s interact -t OK. 
+    : dhad-11.4 yld data single 818ipbv12/widede ... done.
+    : dhad-11.4 yld data double 818ipbv12/widede ... done. 
+
+    Fit mBC:
+
+    : dhad-11.4 fit signal Single_Dp_to_Kspipipi 818ipbv12/widede -s interact -t OK. 
+
+    : dhad-11.4 fit signal Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv12/widede -s interact OK. 
+
+    : dhad-11.4 fit signal single_p 818ipbv12/widede ... done. 
+    : dhad-11.4 fig signal single_p 818ipbv12/widede OK. 
+
+    : dhad-11.4 fit signal double 818ipbv12/widede ... done. 
+    : dhad-11.4 fig signal double 818ipbv12/widede OK. 
+
+    : dhad-11.4 fit data Single_Dp_to_Kspipipi 818ipbv12/widede -s interact -t OK. 
+    : dhad-11.4 fit data single_p 818ipbv12/widede ... done. 
+    : dhad-11.4 fig data single_p 818ipbv12/widede OK. 
+
+    
+    : dhad-11.4 fit data Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv12/widede -s interact -t OK. 
+    : dhad-11.4 fit data double 818ipbv12/widede ... done. 
+    : dhad-11.4 fig data double 818ipbv12/widede OK. 
+
+    
+    Choose the max from the charge conjugate. 
+
+    : dhad-11.4 tab cbx singletag_de_syst 818ipbv12 OK. 
+    : dhad-11.4 tab cbx doubletag_data_yield_widede 818ipbv12 OK. 
+    : dhad-11.4 tab cbx doubletag_de_syst 818ipbv12 OK. 
+
+    Check the fitter ... all goes into mode dependent syst. 
+    
+*** DONE Background shape
+    
+    Get the yield of delta E sideband:
+    
+    : dhad-11.4 yld data Single_Dp_to_Kspipipi 818ipbv12/desideband_low -s interact -t OK. 
+    : dhad-11.4 yld data single 818ipbv12/desideband_low ... done. 
+    : dhad-11.4 yld data single 818ipbv12/desideband_high ... done. 
+
+    Fit with lineshapes:
+
+    : dhad-11.4 fit data Single_D0_to_Kpi 818ipbv12/desideband_low -s interact -t OK. 
+    : dhad-11.4 fit data single_p 818ipbv12/desideband_low ... done. 
+    : dhad-11.4 fit data single_p 818ipbv12/desideband_high ... done. 
+     
+    : dhad-11.4 fig data single_p 818ipbv12/desideband_low OK. 
+    : dhad-11.4 fig data single_p 818ipbv12/desideband_high OK. 
+
+    Need to check the fitting results, Kpipi has large chisq.  
+
+    Read the log file, sigmap1 reached the high limit - 0.04. 
+
+    Go ahead to fit with the fix sigmap1:
+
+    : dhad-11.4 fit data Single_Dp_to_Kpipi 818ipbv12/desideband_low/fix_sigmap1 ... done.  
+    High sideband looks good. 
+    
+    : dhad-11.4 fig data Single_Dp_to_Kpipi 818ipbv12/desideband_low/fix_sigmap1 still not good. 
+
+    Check the log file, noticed the ini paras loaded from 818ipbv7. 
+
+    Use the 818ipbv12 ... done. 
+
+    : dhad-11.4 fit data single_p 818ipbv12/desideband_low ... done. 
+    : dhad-11.4 fit data single_p 818ipbv12/desideband_high ... done. 
+
+    : dhad-11.4 fig data single_p 818ipbv12/desideband_low OK. 
+    : dhad-11.4 fig data single_p 818ipbv12/desideband_high OK. 
+
+    Checked the plots, look good now. 
+
+    Fit normal data with new argus paramters from the desidebands:
+
+    : dhad-11.4 fit data Single_Dp_to_Kspipipi 818ipbv12/argus_low -s interact -t OK.
+    : dhad-11.4 fit data single_p 818ipbv12/argus_low ... done. 
+    : dhad-11.4 fit data single_p 818ipbv12/argus_high ... done. 
+
+    : dhad-11.4 fig data single_p 818ipbv12/argus_low ... OK. 
+    : dhad-11.4 fig data single_p 818ipbv12/argus_high ... OK. 
+
+    : dhad-11.4 tab cbx vary_argus_single 818ipbv12 OK. 
+
+*** DONE Resonant substructure
+**** DONE kpipi0 
+     Get efficiency from signal MC:
+
+     : dhad-11.4 sel trkmtm signal Single_D0_to_Kpipi0 818ipbv12 -s interact -t OK. 
+     : dhad-11.4 sel trkmtm signal Single_D0_to_Kpipi0 818ipbv12 ... done. 
+
+     Make the efficiency plot and store the effs: 
+
+     : dhad-11.4 fig trkmtm signal Single_D0_to_Kpipi0 818ipbv12 ... done.
+
+     Get the momentum for data and generic MC:
+
+     : dhad-11.4 sel trkmtm2 data Single_D0_to_Kpipi0 818ipbv12 ... done. 
+     : dhad-11.4 sel trkmtm2 generic Single_D0_to_Kpipi0 818ipbv12 ... done. 
+
+     Plot the momentum and save the effective overall efficiency to file: 
+     : dhad-11.4 fig trkmtm2 generic/data Single_D0_to_Kpipi0 818ipbv12 OK. 
+
+
+**** DONE k3pi
+
+     Get efficiency from signal MC:
+     : dhad-11.4 sel trkmtm signal Single_D0_to_Kpipipi 818ipbv12 ... done. 
+
+     Make the efficiency plot and store the effs: 
+     : dhad-11.4 fig trkmtm signal Single_D0_to_Kpipipi 818ipbv12  OK. 
+ 
+     Get the momentum for data and generic MC:
+
+     : dhad-11.4 sel trkmtm2 data Single_D0_to_Kpipipi 818ipbv12 ... done. 
+     : dhad-11.4 sel trkmtm2 generic Single_D0_to_Kpipipi 818ipbv12 ... done. 
+
+     Plot the momentum and save the effective overall efficiency to file: 
+     : dhad-11.4 fig trkmtm2 generic/data Single_D0_to_Kpipipi 818ipbv12 OK. 
+
+
+**** DONE kpipi
+
+     Get efficiency from signal MC:
+    : dhad-11.4 sel trkmtm signal Single_Dp_to_Kpipi 818ipbv12 ... done. 
+
+     Make the efficiency plot and store the effs: 
+
+     : dhad-11.4 fig trkmtm signal Single_Dp_to_Kpipi 818ipbv12 OK. 
+
+     Get the momentum for data and generic MC:
+
+     : dhad-11.4 sel trkmtm2 data Single_Dp_to_Kpipi 818ipbv12 ... done. 
+     : dhad-11.4 sel trkmtm2 generic Single_Dp_to_Kpipi 818ipbv12 ... done. 
+
+     Plot the momentum and save the effective overall efficiency to file: 
+     : dhad-11.4 fig trkmtm2 generic/data Single_Dp_to_Kpipi 818ipbv12 OK. 
+
+
+**** DONE kpipipi0
+
+     Get efficiency from signal MC:
+     : dhad-11.4 sel trkmtm signal Single_Dp_to_Kpipipi0 818ipbv12 ... done. 
+  
+     Make the efficiency plot and store the effs: 
+     : dhad-11.4 fig trkmtm signal Single_Dp_to_Kpipipi0 818ipbv12 OK. 
+
+     Get the momentum for data and generic MC:
+
+     : dhad-11.4 sel trkmtm2 data Single_Dp_to_Kpipipi0 818ipbv12 ... done. 
+     : dhad-11.4 sel trkmtm2 generic Single_Dp_to_Kpipipi0 818ipbv12 ... done. 
+
+     Plot the momentum and save the effective overall efficiency to file: 
+     : dhad-11.4 fig trkmtm2 generic/data Single_Dp_to_Kpipipi0 818ipbv12 OK. 
+
+
+**** DONE kspipi0
+     Get efficiency from signal MC:
+     : dhad-11.4 sel trkmtm signal Single_Dp_to_Kspipi0 818ipbv12 ... done. 
+
+     Make the efficiency plot and store the effs: 
+     : dhad-11.4 fig trkmtm signal Single_Dp_to_Kspipi0 818ipbv12 OK. 
+     
+     Get the momentum for data and generic MC:
+
+     : dhad-11.4 sel trkmtm2 data Single_Dp_to_Kspipi0 818ipbv12 ... done. 
+     : dhad-11.4 sel trkmtm2 generic Single_Dp_to_Kspipi0 818ipbv12 ... done. 
+
+     Plot the momentum and save the effective overall efficiency to file: 
+     : dhad-11.4 fig trkmtm2 generic/data Single_Dp_to_Kspipi0 818ipbv12 OK. 
+
+
+**** DONE ks3pi
+     Get efficiency from signal MC:
+
+     : dhad-11.4 sel trkmtm signal Single_Dp_to_Kspipipi 818ipbv12 ... done. 
+
+     Make the efficiency plot and store the effs: 
+     : dhad-11.4 fig trkmtm signal Single_Dp_to_Kspipipi 818ipbv12 OK. 
+
+     Get the momentum for data and generic MC:
+
+     : dhad-11.4 sel trkmtm2 data Single_Dp_to_Kspipipi 818ipbv12 ... done. 
+     : dhad-11.4 sel trkmtm2 generic Single_Dp_to_Kspipipi 818ipbv12 ... done. 
+
+     Plot the momentum and save the effective overall efficiency to file: 
+     : dhad-11.4 fig trkmtm2 generic/data Single_Dp_to_Kspipipi 818ipbv12 OK. 
+
+
+**** DONE KKpi
+    
+     : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 818ipbv12 -s interact -t OK. 
+     : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 818ipbv12 -t OK. 
+     : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 818ipbv12 ... done. 
+
+     : dhad-11.4 fig trkmtm signal Single_Dp_to_KKpi 818ipbv12 OK. 
+
+
+     Get the momentum for data and generic MC:
+
+     : dhad-11.4 sel trkmtm2 data Single_Dp_to_KKpi 818ipbv12 -s interact -t OK. 
+     : dhad-11.4 sel trkmtm2 generic Single_Dp_to_KKpi 818ipbv12 -s interact -t OK. 
+
+     : dhad-11.4 sel trkmtm2 data Single_Dp_to_KKpi 818ipbv12 ... done. 
+     : dhad-11.4 sel trkmtm2 generic Single_Dp_to_KKpi 818ipbv12 ... done. 
+     
+     : dhad-11.4 fig trkmtm2 generic/data Single_Dp_to_KKpi 818ipbv12 OK. 
+
+     : dhad-11.4 tab cbx resonant_syst 818ipbv12 OK for KKpi. 
+
+	   
+
+**** DONE Update the CBX
+     : dhad-11.4 tab cbx resonant_syst 818ipbv12 OK. 
+
+*** DONE Final State Radiation
+
+    Get the noFSR yields:
+
+    : dhad-11.4 yld signal Single_Dp_to_Kspipipi 818ipbv12/nofsr -s interact -t OK. 
+    : dhad-11.4 yld signal single 818ipbv12/nofsr ... done. 
+
+    : dhad-11.4 yld signal Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv12/nofsr -s interact -t OK. 
+    : dhad-11.4 yld signal double 818ipbv12/nofsr ... done. 
+
+    Fit mBC:
+
+    : dhad-11.4 fit signal Single_Dp_to_Kspipipi 818ipbv12/nofsr -s interact -t OK. 
+    : dhad-11.4 fit signal single_p 818ipbv12/nofsr ... done. 
+
+    : dhad-11.4 fit signal Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv12/nofsr -s interact -t OK. 
+
+    : dhad-11.4 fit signal double 818ipbv12/nofsr ...  done. 
+ 
+    : dhad-11.4 fig signal double 818ipbv12/nofsr OK. 
+    : dhad-11.4 fig signal single_p 818ipbv12/nofsr OK. 
+
+
+    : dhad-11.4 tab cbx singletag_sigmc_eff_nofsr 818ipbv12 
+    : dhad-11.4 tab cbx mode_dependent_syst 818ipbv12 ... done. 
+
+*** DONE P = 0.5
+
+    : dhad-11.4 fit signal Single_Dp_to_Kspipipi 818ipbv12/p/0.5 -s interact -t OK. 
+    : dhad-11.4 fit signal Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv12/p/0.5 -s interact -t OK. 
+
+    : dhad-11.4 fit signal single_p 818ipbv12/p/0.5 ... done. 
+    : dhad-11.4 fit signal double 818ipbv12/p/0.5 ... done. 
+
+    : dhad-11.4 fig signal single_p 818ipbv12/p/0.5 OK. 
+    : dhad-11.4 fig signal double 818ipbv12/p/0.5 OK. 
+
+    : dhad-11.4 fit data Single_Dp_to_Kspipipi 818ipbv12/p/0.5 -s interact -t OK. 
+    : dhad-11.4 fit data Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv12/p/0.5 -s interact -t OK.
+
+    : dhad-11.4 fit data single_p 818ipbv12/p/0.5 ... done. 
+    : dhad-11.4 fit data double 818ipbv12/p/0.5 ... done. 
+
+    : dhad-11.4 fig data single_p 818ipbv12/p/0.5 OK. 
+    : dhad-11.4 fig data double 818ipbv12/p/0.5 OK. 
+
+*** DONE Wide dE and noFSR
+   
+    : dhad-11.4 yld signal Single_Dp_to_Kspipipi 818ipbv12/widede/nofsr -s interact -t OK.
+    : dhad-11.4 yld signal single 818ipbv12/widede/nofsr ...  done. 
+    : dhad-11.4 yld signal double 818ipbv12/widede/nofsr ...  done. 
+
+
+    : dhad-11.4 fit signal Single_Dp_to_Kspipipi 818ipbv12/widede/nofsr -s interact -t OK. 
+
+    : dhad-11.4 fit signal single_p 818ipbv12/widede/nofsr ... done. 
+
+    : dhad-11.4 fit signal Double_Dp_to_Kspipipi__Dm_to_Kspipipi 818ipbv12/widede/nofsr -s interact -t OK. 
+
+    : dhad-11.4 fit signal double 818ipbv12/widede/nofsr ... done. 
+   
+    : dhad-11.4 fig signal single_p 818ipbv12/widede/nofsr OK. 
+    : dhad-11.4 fig signal double 818ipbv12/widede/nofsr OK. 
+
+*** DONE Multiple candidates
+
+**** DONE Multiplicity
+     
+     : dhad-11.4 sel multspec inc signal Single_D0_to_Kpipi0 818ipbv12 -s interact -tOK.  
+     : dhad-11.4 sel multspec inc signal Single_D0_to_Kpipi0 818ipbv12 -t OK. 
+
+     : dhad-11.4 sel multspec inc signal single_p 818ipbv12 ... done. 
+     : dhad-11.4 sel multspec dec signal single_p 818ipbv12 ... done. 
+
+     Get the efficiency table:
+     
+     : dhad-11.4 tab cbx reweight_results 818ipbv12 OK. 
+
+     Update the CBX ... done. 
+
+**** CANCELED Multiple candidate rate 
+
+     Split the samples: 
+
+     : dhad-11.4 sel multcand signal Single_D0_to_Kpi 818ipbv12 -s interact -t OK. 
+     : dhad-11.4 sel multcand signal Single_D0_to_Kpi 818ipbv12 OK. 
+     : dhad-11.4 sel multcand signal single 818ipbv12 ... done.
+
+     Fit mBC:
+     : dhad-11.4 fit signal Single_D0_to_Kpi 818ipbv12/single_candidate -s interact -t OK. 
+
+     : dhad-11.4 fit signal Single_D0_to_Kpi 818ipbv12 /multiple_candidate -s interact -t OK.
+
+     : dhad-11.4 fit signal single_p 818ipbv12/single_candidate -t 
+     : dhad-11.4 fit signal single_p 818ipbv12/multiple_candidate ... done. 
+
+     This one later used the Generic MC to calculate the systmatic
+     errors. So, no update needed for the new signal MC. 
+
+
+
+
+
+
+
+** DONE Understand KKpi with KKmass bins (818ipbv12) 
+
+
+   Select events: 
+   : dhad-11.4 sel kkmass signal Single_Dp_to_KKpi 818ipbv12 -s interact -t OK. 
+   : dhad-11.4 sel kkmass signal Single_Dp_to_KKpi 818ipbv12 -t OK. 
+   : dhad-11.4 sel kkmass signal Single_Dp_to_KKpi 818ipbv12 ... done. 
+   : dhad-11.4 sel kkmass signal Single_Dm_to_KKpi 818ipbv12 ... done. 
+
+   : dhad-11.4 sel kkmass data Single_Dp_to_KKpi 818ipbv12 -s interact -t OK. 
+   : dhad-11.4 sel kkmass data Single_Dp_to_KKpi 818ipbv12 ... done.
+   : dhad-11.4 sel kkmass data Single_Dm_to_KKpi 818ipbv12 ... done. 
+
+   Plot KKmass:
+
+   : dhad-11.4 fig evt kkmass signal,data Single_Dp_to_KKpi 818ipbv12 OK. 
+
+   Range 0.97 to 1.73 (300bins) 
+
+*** DONE Plot KKmass bins without fitting
+
+    : dhad-11.4 fig compare kkmass0 signal,data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=300 OK.  
+
+
+*** DONE Fit mBC with Dlineshape
+
+    : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 818ipbv12 -s interact,binbase=0.9795,binwidth=0.0025,numbins=1 -t ... bypass empty evts, save assymErrors ... OK. 
+
+     Real fitting for one bin: 
+     : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 818ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=1 ... done. 
+   
+     Save figure:
+     : dhad-11.4 fig kkmass signal Single_Dp_to_KKpi 818ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=1 OK.
+
+     Fit 50 bins:
+
+     : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 818ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=50 ... done. With 2 jobs left. 
+     
+     : dhad-11.4 fig kkmass signal Single_Dp_to_KKpi 818ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=50 ... OK. 
+
+     : dhad-11.4 fit kkmass data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=50 ... done. 
+
+     : dhad-11.4 fig kkmass data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=50 ... OK. 
+
+     Fit the rest 300 bins:
+
+     : dhad-11.4 fit kkmass signal Single_Dp_to_KKpi 818ipbv12 -s binbase=1.112,binwidth=0.0025,numbins=300 ... done. 
+    
+     : dhad-11.4 fit kkmass data Single_Dp_to_KKpi 818ipbv12 -s binbase=1.112,binwidth=0.0025,numbins=300 ... done. 
+
+     : dhad-11.4 fig kkmass signal Single_Dp_to_KKpi 818ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=350 OK. 
+
+     
+     Make the comparison plot: 
+
+     : dhad-11.4 fig compare kkmass signal,data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=300 
+     
+     : dhad-11.4 fig compare kkmass1 signal,data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=300 -t 
+
+
+*** CANCELED Fit mBC with simple bkgd 
+
+    : dhad-11.4 fit kkmass2 signal Single_Dp_to_KKpi 818ipbv12 -s interact,binbase=0.987,binwidth=0.0025,numbins=1 -t  
+
+    : dhad-11.4 fit kkmass2 data Single_Dp_to_KKpi 818ipbv12 -s interact,binbase=1.017,binwidth=0.0025,numbins=1 OK. without ASYM error. 
+
+
+*** DONE Get the MC yields without fitting
+
+    : dhad-11.4 fig compare kkmass2 signal,data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=200 OK. 
+   
+*** DONE Select Kpi events:
+
+    : dhad-11.4 sel kpimass signal Single_Dp_to_KKpi 818ipbv12 -s interact -t OK. 
+    : dhad-11.4 sel kpimass signal Single_Dp_to_KKpi 818ipbv12 -t OK. 
+    : dhad-11.4 sel kpimass signal Single_Dp_to_KKpi 818ipbv12 ... done. 
+    : dhad-11.4 sel kpimass signal Single_Dm_to_KKpi 818ipbv12 ... done. 
+    : dhad-11.4 sel kpimass data Single_Dp_to_KKpi 818ipbv12 ... done. 
+    : dhad-11.4 sel kpimass data Single_Dm_to_KKpi 818ipbv12 ... done. 
+
+*** DONE Plot Kpi mass bins without fitting 
+    Plot Kpi mass:
+
+    : dhad-11.4 fig evt kpimass signal,data Single_Dp_to_KKpi 818ipbv12 OK. 
+
+    Range 0.6 to 1.4. 
+
+    : dhad-11.4 fig compare kpimass0 signal,data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.6,binwidth=0.005,numbins=160 Save to PDF. 
+
+    Use Json to save the parsed objects:
+
+    : dhad-11.4 fig compare kpimass0 signal,data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.63,binwidth=0.005,numbins=3 -t OK. 
+
+    Remake all:
+ 
+    : dhad-11.4 fig compare kpimass0 signal,data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.6,binwidth=0.005,numbins=160,dbmode=w OK.
+
+
+
+*** DONE Fit mBC with Dlineshape
+    
+    : dhad-11.4 fit kpimass data Single_Dp_to_KKpi 818ipbv12 -s interact,binbase=0.6,binwidth=0.005,numbins=1 -t OK. 
+    
+
+    First real bin: 0.63:
+    : dhad-11.4 fit kpimass data Single_Dp_to_KKpi 818ipbv12 -s interact,binbase=0.63,binwidth=0.005,numbins=1 OK. 
+
+    Test the fit with quick fitting procedure, reduce the python
+    script output ... OK. 
+    
+    : dhad-11.4 fit kpimass data Single_Dp_to_KKpi 818ipbv12 -s interact,binbase=0.63,binwidth=0.005,numbins=1 OK. 
+
+    : dhad-11.4 fit kpimass data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.63,binwidth=0.005,numbins=10 -t OK. 
+
+    : dhad-11.4 fit kpimass data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.63,binwidth=0.005,numbins=10 ... done.
+
+    : dhad-11.4 fig kpimass data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.63,binwidth=0.005,numbins=10 OK. 
+
+    Last real bin 1.38:
+    : dhad-11.4 fit kpimass data Single_Dp_to_KKpi 818ipbv12 -s interact,binbase=1.38,binwidth=0.005,numbins=1 -t OK.  
+
+    Run with Dlineshape fitting:
+
+    : dhad-11.4 fit kpimass data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.63,binwidth=0.005,numbins=155 ... done. 
+
+    : dhad-11.4 fig kpimass data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.63,binwidth=0.005,numbins=155  OK. 
+
+    Compare the signal and data: 
+
+    : dhad-11.4 fig compare kpimass1 signal,data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.63,binwidth=0.005,numbins=155 
+
+    Tune the background: 
+    : dhad-11.4 fig compare kpimass1 signal,data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.63,binwidth=0.005,numbins=155,nohtml=1
+
+ 
+
+
+*** DONE Check the mBC lineshape plot
+    Yes. Indeed used the totalPdf. 
+
+    :  totalPdf.plotOn(mbcFrame, LineColorRed, LineWidth, Slice, ProjWData)
+	
+    No need to change here unless requested. 
+
+
+*** DONE Evaluate the syst errors
+
+    Ask Peter about the details for variation ... sent. 
+    
+    Masses of the children particles:
+
+    pi+ 139.6 MeV
+    K+  490 MeV
+    K*0 892 MeV 
+
+    Generate Signal MC for different component in the KKpi
+    ... paused. 
+
+    Use the decay tree to subset the sample ... done. 
+
+    Fit the subset mBC ... OK. 
+
+    : dhad-11.4 yld signal Single_Dp_to_KKpi 818ipbv12/phipi -s interact -t OK. 
+    : dhad-11.4 yld signal Single_Dp_to_KKpi 818ipbv12/phipi... done. 
+    : dhad-11.4 yld signal Single_Dm_to_KKpi 818ipbv12/phipi... done. 
+
+    : dhad-11.4 yld signal Single_Dp_to_KKpi 818ipbv12/k0star -s interact -t OK. 
+    : dhad-11.4 yld signal Single_Dp_to_KKpi 818ipbv12/k0star ... done. 
+    : dhad-11.4 yld signal Single_Dm_to_KKpi 818ipbv12/k0star ... done. 
+
+    : dhad-11.4 yld signal Single_Dp_to_KKpi 818ipbv12/phsp -s interact -t OK. 
+    : dhad-11.4 yld signal Single_Dp_to_KKpi 818ipbv12/phsp ... done.
+    : dhad-11.4 yld signal Single_Dm_to_KKpi 818ipbv12/phsp ... done. 
+
+    : dhad-11.4 fit signal Single_Dp_to_KKpi 818ipbv12/phipi -s interact -t OK. 
+    : dhad-11.4 fit signal Single_Dp_to_KKpi 818ipbv12/phipi -s interact OK.
+    : dhad-11.4 fit signal Single_Dp_to_KKpi 818ipbv12/phipi -t OK. 
+    : dhad-11.4 fit signal Single_Dp_to_KKpi 818ipbv12/phipi ... done. 
+
+    : dhad-11.4 fit signal Single_Dp_to_KKpi 818ipbv12/k0star -s interact -t OK. 
+    : dhad-11.4 fit signal Single_Dp_to_KKpi 818ipbv12/k0star ... done.
+
+    : dhad-11.4 fit signal Single_Dp_to_KKpi 818ipbv12/phsp -s interact -t OK. 
+    : dhad-11.4 fit signal Single_Dp_to_KKpi 818ipbv12/phsp ... done. 
+
+    Plot: 
+    : dhad-11.4 fig signal Single_Dp_to_KKpi 818ipbv12/phipi ... OK. 
+    : dhad-11.4 fig signal Single_Dp_to_KKpi 818ipbv12/k0star ... OK. 
+    : dhad-11.4 fig signal Single_Dp_to_KKpi 818ipbv12/phsp ... OK. 
+
+    Calculate efficiency:
+
+    : dhad-11.4 tab cbx syst_kkpi 818ipbv12 OK. 
+
+
+*** DONE Re-do the plot for KK mass
+
+    : dhad-11.4 fig compare kkmass0 signal,data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=300,dbmode=w
+
+
+    : dhad-11.4 fig compare kkmass1 signal,data Single_Dp_to_KKpi 818ipbv12 -s binbase=0.987,binwidth=0.0025,numbins=300,dbmode=w
+
+    
+
+** DONE BFs for data with updated extl bkg and syst errs (818ipbv12.1)
+
+   Reproduce 818ipbv12.0 ...
+
+   : dhad-11.4 brf 818ipbv12.1 
+   : dhad-11.4 tab compare brf_data_results 281ipbv0 818ipbv12.1
+
+   OK. 
+
+   Update the extl bkg ...  OK. 
+   
+   Update the syst ... done. 
+
+   : dhad-11.4 brf 818ipbv12.1 
+   : dhad-11.4 tab compare brf_data_results 281ipbv0 818ipbv12.1 done. 
+
+ 
+
+** DONE BFs for data with centralized syst errors for thesis (818ipbv12.2)
+
+   Update the syst table in CBX:
+
+   : dhad-11.4 tab cbx mode_dependent_syst 818ipbv12 OK. 
+
+   : dhad-11.4 brf 818ipbv12.2  OK. 
+   : dhad-11.4 tab compare brf_data_results 281ipbv0 818ipbv12.2 done. 
+
+   : dhad-11.4 tab compare brf_data_results 818ipbv12.2 
+
+   Update CBX ... 
+
+   Plot for BExam:
+
+   Compare with PDG2010:
+
+   : dhad-11.4 fig brs pdg2004 818ipbv12.2 
+
+   
+   
+** DONE Average efficiencies for KKpi
+
+   According to David's idea (doc/ref/avg-ref.pdf):
+
+   | Mode         | BFs (PDG2007)         | Effs (%)     |
+   |--------------+-----------------------+--------------|
+   | D+ \to \phi \pi     | (3.2 \pm 0.4) x 10^^-3   | 43.68 \pm 0.38 |
+   | D+ -> K*0 K+ | (3.02 \pm 0.35) x 10^^-3 | 45.21 \pm 0.37 |
+   | D+ -> PHSP   | (3.7 \pm 0.4) x 10^-^3   | 40.52 \pm 0.33 |
+   
+   : dhad-11.4 tab cbx syst_kkpi_avg 818ipbv12 
+   
+   Send email out to David... sent. 
+
+
+** DONE Make Momentum Distributions for the KKpi components
+
+   Plot the KKpi momentum:
+
+   - phipi
+
+   : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 818ipbv12/phipi -s interact -t OK. 
+   : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 818ipbv12/phipi -t OK. 
+   : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 818ipbv12/phipi ... done. 
+
+   : dhad-11.4 fig trkmtm signal Single_Dp_to_KKpi 818ipbv12/phipi OK. 
+   
+   Need to just plot the momentum of the signal MC since there is no
+   way to select the components in data. 
+
+   : dhad-11.4 sel trkmtm2 signal Single_Dp_to_KKpi 818ipbv12/phipi -s interact -t OK. 
+   : dhad-11.4 sel trkmtm2 signal Single_Dp_to_KKpi 818ipbv12/phipi ... done. 
+
+   : dhad-11.4 fig trkmtm1 signal Single_Dp_to_KKpi 818ipbv12/phipi ... OK. 
+
+   
+
+
+   - k0star
+   : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 818ipbv12/k0star -s interact -t OK. 
+   : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 818ipbv12/k0star... done. 
+
+   : dhad-11.4 fig trkmtm signal Single_Dp_to_KKpi 818ipbv12/k0star done. 
+
+   : dhad-11.4 sel trkmtm2 signal Single_Dp_to_KKpi 818ipbv12/k0star -s interact -t OK.
+   : dhad-11.4 sel trkmtm2 signal Single_Dp_to_KKpi 818ipbv12/k0star ... done. 
+
+   : dhad-11.4 fig trkmtm1 signal Single_Dp_to_KKpi 818ipbv12/k0star OK. 
+
+   - phsp
+
+    : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 818ipbv12/phsp -s interact -t OK.
+    : dhad-11.4 sel trkmtm signal Single_Dp_to_KKpi 818ipbv12/phsp... done. 
+    : dhad-11.4 fig trkmtm signal Single_Dp_to_KKpi 818ipbv12/phsp OK. 
+
+    : dhad-11.4 sel trkmtm2 signal Single_Dp_to_KKpi 818ipbv12/phsp -s interact -t OK. 
+
+    : dhad-11.4 sel trkmtm2 signal Single_Dp_to_KKpi 818ipbv12/phsp ... done. 
+
+    : dhad-11.4 fig trkmtm1 signal Single_Dp_to_KKpi 818ipbv12/phsp OK. 
+    
+
+   Question from Peter:
+
+   :  When you say "phase space", are you also including the chain D+ ->
+   :  anti-K_0*0 K+, anti-K_0*0 -> K- pi+ ?  This would certainly tend to
+   :  produce lower pt K+, as shown in your plots.
+
+   My reply:
+
+   Thanks for reminding me. 
+
+   I checked my decay file and this is what I used for the latest signal MC sample: 
+
+   Decay myD+
+   0.00366685  myanti-K_0*0p K+			PHSP;
+   0.0031915  myphip pi+                         SVS;
+   0.00299565  myanti-K*0p  K+                    SVS;
+   0.0001	K+   K-  pi+                    PHSP;
+   0.000044	myf_0p pi+				PHSP;
+   0.0000184	myf_2p pi+				STS;
+   Enddecay
+
+   For the "phase-space" decays, except the (K+ K- pi+) decay, I also
+   used myanti-K_0*0p K+, as I thought the "PHSP" in this decay also
+   means the "phase-space" decay for D+.  So, the "phsp" subset in my
+   study is actually mostly composted of the D+ -> anti-K_0*0 K+ decay.
+
+   Since the "K+ K- pi+" only contributes to a small fraction, I think
+   the efficiency diff results won't change too much. ...
+
+   What shall we do? 
+
+   Peter's reply:
+
+   Ok, thanks for looking that up.  Unfortunately, looking at the
+   data/MC momentum comparison plots from Tuesday, I don't think it's
+   possible to reproduce data with an incoherent mixture of the modes
+   you have - there's pretty clearly some interference.  That being
+   said, I'd say that every mode is within 30% of where it should be
+   (at least there are few data/MC differences larger than this; the
+   big one is in the middle of the pi+ spectrum where it shouldn't
+   make much difference).  So if you repeat the weighting procedure
+   that David wrote up with ~30% branching fraction uncertainties, I'd
+   personally be happy with using that number.
+
+   
+   
+
+** DONE David's method with 30% uncertainties
+
+   Correct the PHSP component result first:
+
+   Particle name in decay: =anti-K_0*0=
+
+   Get the subset of kstar1410:
+
+   : dhad-11.4 gen subset signal Single_Dp_to_KKpi 281ipbv12/kstar1410 -s interact ...  selected 7263 out of 19988. (with PHSP: 7420  2% diff.)
+
+   : dhad-11.4 gen subset signal Single_Dm_to_KKpi 281ipbv12/kstar1410 -s interact ...  selected 7323 out of 19988. (with PHSP: 7504)
+
+   : dhad-11.4 gen subset signal Single_Dp_to_KKpi 537ipbv12/kstar1410 -s interact selected 14335 out of 39964.  
+
+   : dhad-11.4 gen subset signal Single_Dm_to_KKpi 537ipbv12/kstar1410 -s interact ...  selected 14553 out of 39964. 
+
+   Get the yield:
+
+   : dhad-11.4 yld signal Single_Dp_to_KKpi 818ipbv12/kstar1410 -s interact -t OK. 
+   : dhad-11.4 yld signal Single_Dp_to_KKpi 818ipbv12/kstar1410 ... done. 
+   : dhad-11.4 yld signal Single_Dm_to_KKpi 818ipbv12/kstar1410 ... done. 
+
+   Fit mBC: 
+
+   : dhad-11.4 fit signal Single_Dp_to_KKpi 818ipbv12/kstar1410 -s interact -t OK. 
+   : dhad-11.4 fit signal Single_Dp_to_KKpi 818ipbv12/kstar1410 ... done. 
+
+   Plot:
+   : dhad-11.4 fig signal Single_Dp_to_KKpi 818ipbv12/kstar1410 ... done. 
+
+   Why 3 times more yields??? ... evt file wrong. 
+
+   Fix the evt file ... OK. 
+
+   : dhad-11.4 fit signal Single_Dp_to_KKpi 818ipbv12/kstar1410 -s interact -t OK. 
+   : dhad-11.4 fit signal Single_Dp_to_KKpi 818ipbv12/kstar1410 ... done. 
+   : dhad-11.4 fig signal Single_Dp_to_KKpi 818ipbv12/kstar1410 ... done. 
+   
+   Update the efficiency table:
+
+   : dhad-11.4 tab cbx syst_kkpi 818ipbv12 ... done. 
+   
+   Update the CBX section ... done. 
+   
+   
+** DONE BFs for data with KKpi syst (818ipbv12.3)
+
+   Update the syst table in CBX:
+
+   : dhad-11.4 tab cbx mode_dependent_syst 818ipbv12 ... done. 
+
+   : dhad-11.4 brf 818ipbv12.3 ... done. 
+
+   : dhad-11.4 tab compare brf_data_results 281ipbv0 818ipbv12.3 OK. 
+
+   Update CBX ... done. 
+   
+   
+ 
+
+** DONE Make components table for KKpi 281/pb
+
+   Chcek the 281 decay file: 
+
+:    Decay myD+
+:    0.003437   myphip pi+                       SVS;
+:    0.002796   myanti-K*0p  K+                         SVS;
+:    # Is 0.0087 too high?
+:    0.0087   K+   K-  pi+                    PHSP;
+:    Enddecay
+:    #
+   
+   Need more careful thoughts... 
+
+   : dhad-11.4 gen subset signal Single_Dp_to_KKpi 281ipbv0/phipi -s interact ...  selected 4514 out of 19988.
+   : dhad-11.4 gen subset signal Single_Dm_to_KKpi 281ipbv0/phipi -s interact ...  selected 4316 out of 19988.
+
+   
+   : dhad-11.4 gen subset signal Single_Dp_to_KKpi 281ipbv0/k0star -s interact ... selected 3705 out of 19988.
+
+   : dhad-11.4 gen subset signal Single_Dm_to_KKpi 281ipbv0/k0star -s interact ...  selected 3697 out of 19988. 
+
+
+  : dhad-11.4 gen subset signal Single_Dp_to_KKpi 281ipbv0/phsp -s interact ... 0 selected! 
+
+   Check ... fixed. 
+
+  : dhad-11.4 gen subset signal Single_Dp_to_KKpi 281ipbv0/phsp -s interact ...  selected 11239 out of 19988.
+
+  : dhad-11.4 gen subset signal Single_Dm_to_KKpi 281ipbv0/phsp -s interact  ...  selected 11413 out of 19988.
+
+   Get the yield:
+
+   : dhad-11.4 yld signal Single_Dp_to_KKpi 281ipbv0/phipi -s interact -t OK. 
+   : dhad-11.4 yld signal Single_Dp_to_KKpi 281ipbv0/phipi ... done.
+   : dhad-11.4 yld signal Single_Dm_to_KKpi 281ipbv0/phipi ... done.
+
+   : dhad-11.4 yld signal Single_Dp_to_KKpi 281ipbv0/k0star ... 
+   : dhad-11.4 yld signal Single_Dm_to_KKpi 281ipbv0/k0star ...
+
+
+
+   : dhad-11.4 yld signal Single_Dp_to_KKpi 281ipbv0/phsp ... done.
+   : dhad-11.4 yld signal Single_Dm_to_KKpi 281ipbv0/phsp ... done. 
+
+   Fit mBC:
+   : dhad-11.4 fit signal Single_Dp_to_KKpi 281ipbv0/phipi -s interact -t OK. 
+   : dhad-11.4 fit signal Single_Dp_to_KKpi 281ipbv0/phipi ... done. 
+   : dhad-11.4 fit signal Single_Dp_to_KKpi 281ipbv0/k0star ... done. 
+   : dhad-11.4 fit signal Single_Dp_to_KKpi 281ipbv0/phsp ... done. 
+
+   : dhad-11.4 fig signal Single_Dp_to_KKpi 281ipbv0/phipi ... skipped. ...OK. 
+
+   Check the log file... make sure it is "phip" not "phip"! OK now. 
+
+   : dhad-11.4 fig signal Single_Dp_to_KKpi 281ipbv0/k0star ... skipped. ... OK. 
+
+   Check the log file... yld file is not OK. 
+
+   Re-fit mBC:
+   : dhad-11.4 fit signal Single_Dp_to_KKpi 281ipbv0/k0star ... done. 
+   : dhad-11.4 fig signal Single_Dp_to_KKpi 281ipbv0/phsp ... OK. 
+
+   Make efficieny table for 281/pb:
+
+   : dhad-11.4 tab web eff_kkpi_comp 281ipbv0  OK. 
+
+   Write email explain ... sent. 
+
+   
+
+
+
+** DONE Update the CP Asymmetry 
+
+   Reproduce the 281: 
+
+   : dhad-11.4 tab cbx CPAsymmetrySystematics 281ipbv0 OK. 
+
+   Update the 818:
+
+   : dhad-11.4 tab cbx CPAsymmetrySystematics 818ipbv12  ... done. 
+
+   Reproduce the 281 CP table:
+
+   : dhad-11.4 tab cbx CPAsymmetries 281ipbv0 OK. 
+
+   Update the 818:
+
+   : dhad-11.4 tab cbx CPAsymmetries 818ipbv12 ... done. 
+
+   Produce the Acp without bkgd error:
+
+   : dhad-11.4 tab cbx CPAsymmetries 818ipbv12 -s bkgerr=0 
+
+
+** TODO Address Questions from Committee
+*** TODO First Round from Phil
+    - Q: More digits for the BFs  <2011-03-03 Thu> 
+      
+      A: Done. 
+	    
+    - Q: Sec. 6.1.3 says, mψ(3770) = 3.7724 GeV; Γψ(3770) = 25.2
+      MeV; R = 12.7 GeV−1, while sec. 8.2 says 3.7718 GeV; 28.6 MeV;
+      12.3 GeV−1. I assume the first is what was used, while the second
+      is a remnant. Is this right?
+
+      A: Yes. The inconsistency has been modified in the new version of
+      the CBX.   
+      
+      Q: If so, why the change from the 281 analysis? 
+      
+      A: 
+
+
+    
+    Also, if so, this is even further from BES's (no
+      longer "recent") measurements.  Perhaps this choice needs to be
+      better explained--there is sufficient discussion of the
+      correlation between mass and width, but I didn't get why any
+      particular combination was chosen (the figure didn't help me,
+      anyway). Also, what was the basis for the choice (and change in
+      choice) of R?
+
+      Could you explain the symbols σ = x/∆x for x ± ∆x in tables 8 and
+      11?
+
+      In table 10, is p fixed for Kpi and Kspi? If so, why?
+
+      What do the colors on plots 60-68 mean?
+
+      I would like to understand better the origin of some if the
+      nonstatistical shifts btw the 281 and 818 results.
+
+*** TODO Second Round from Phil
+    
+    Except for the following obvious, and probably
+       well-answered questions, I don't see anything
+       obviously problematic in the draft (since we're
+       not proof-reading).
+     
+       1) The statistical uncertainty of the neutral Ds
+          cross-section improved (by a factor of 1.76)
+          more relative to the 281 result than did any
+          of the other cross-sections, including the
+          ratio (all about the same factor of 1.67).
+          Why?  Probably it's just rounding...
+
+	  A: From 281/pb CBX: 
+
+	  sigma D0D0bar = 3.661 +- 0.029 +- 0.060
+	  sigma DpDm = 2.910 +- 0.030 +- 0.046 
+	  sigma D = 6.571 +- 0.041 +- 0.099 
+
+	  818/pb PRD:
+	  sigma D0D0bar = 3.651 +- 0.017 +- 0.088
+	  sigma DpDm = 2.921 +- 0.018 +- 0.066 
+	  sigma D = 6.572 +- 0.024 +- 0.151 
+
+	  D0 ratio: 0.029/0.017 = 1.706 
+	  Dp ratio: 0.030/0.018 = 1.667
+	  D ratio: 0.041 / 0.024 = 1.708
+
+
+       2) Cross-section systematic uncertainties all
+          increased (relative to the 281 result), except
+          for the ratio, which decreased, while all BR
+          systematic uncertainties decreased.  Why?
+
+	  A: Sent email to Werner. 
+	  
+	  The cross-sections are determined by 
+
+	  ST * ST / DT
+
+	  So, only uncorrelated uncertainties contribute
+          to the cross-section uncertainties. In this
+          analysis, ST background modeling is the main
+          uncorrelated uncertainty, which increased
+          relative to the 281/pb result due to the
+          larger data sample. The ST background shape is
+          determined by the ARGUS function in our
+          analysis. We estimate its uncertainty by
+          repeating the ST fits with alternative ARGUS
+          parameters. These alternative parameters are
+          obtained by using the high and low deltaE
+          sidebands in data. With the increased data
+          sample, the difference of the backgrounds
+          structure between the sidebands and the one
+          under the signal region are larger than
+          previously smaller data sample case.
+
+
+	  The fact of the cross-section ratio decreased,
+          indicates that the increased uncertainties are
+          correlated between neutral and charged modes. 
+
+
+
+       3) The text states, with regard to the analysis,
+          "we will briefly review the procedure and
+          focus only on the differences."  This
+          distinction is not obviously made in the
+          text--at least I missed it.
+
+	  A: Remove the sentence. 
+
+
+* COMMENT Setup
+#+STARTUP: hidestars entitiespretty
+#+SEQ_TODO: TODO STARTED WAITING | DONE CANCELED
+
+
